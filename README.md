@@ -1,2 +1,2 @@
 # component-inventory
-Inventory of my electronic and electromechanical components
+Inventory of my electronic and electromechanical components.

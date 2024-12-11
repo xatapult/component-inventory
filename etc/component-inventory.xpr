@@ -5,6 +5,11 @@
         <options/>
     </meta>
     <projectTree name="component-inventory.xpr">
+        <folder name="reference projects">
+            <folder path="../../../work/xatapult/xprocref/"/>
+        </folder>
         <folder path="../"/>
+        <folder path="../../../work/xatapult/xtpxlib-common/"/>
+        <folder path="../../../../../xdata/"/>
     </projectTree>
 </project>

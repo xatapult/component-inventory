@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="https://eriksiegel.nl/ns/component-inventory"
+  xmlns:ci="https://eriksiegel.nl/ns/component-inventory" xmlns:xi="http://www.w3.org/2001/XInclude">
+
+  <xs:import namespace="http://www.w3.org/2001/XInclude" schemaLocation="../../../work/xatapult/xtpxlib-common/xsdmod/xinclude.mod.xsd"/>
+  <xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="../../../work/xatapult/xtpxlib-common/xsdmod/xml.mod.xsd"/>
+  <xs:include schemaLocation="../../../work/xatapult/xtpxlib-common/xsdmod/macrodefs.mod.xsd"/>
+  <xs:element name="component-inventory">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:group minOccurs="0" ref="ci:g-macrodefs"/>
+        <xs:choice>
+          <xs:annotation>
+            <xs:documentation>Property definitions.</xs:documentation>
+          </xs:annotation>
+          <xs:element ref="xi:include"/>
+          <xs:element ref="ci:property-definitions"/>
+        </xs:choice>
+        <xs:choice>
+          <xs:annotation>
+            <xs:documentation>Category definitions.</xs:documentation>
+          </xs:annotation>
+          <xs:element ref="xi:include"/>
+          <xs:element ref="ci:category-definitions"/>
+        </xs:choice>
+        <xs:choice>
+          <xs:annotation>
+            <xs:documentation>Location definitions.</xs:documentation>
+          </xs:annotation>
+          <xs:element ref="xi:include"/>
+          <xs:element ref="ci:location-definitions"/>
+        </xs:choice>
+        <xs:choice>
+          <xs:annotation>
+            <xs:documentation>Price range definitions.</xs:documentation>
+          </xs:annotation>
+          <xs:element ref="xi:include"/>
+          <xs:element ref="ci:price-range-definitions"/>
+        </xs:choice>
+        <xs:choice>
+          <xs:annotation>
+            <xs:documentation>Package definitions.</xs:documentation>
+          </xs:annotation>
+          <xs:element ref="xi:include"/>
+          <xs:element ref="ci:package-definitions"/>
+        </xs:choice>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="category-definitions">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:group minOccurs="0" ref="ci:g-macrodefs"/>
+        <xs:element maxOccurs="unbounded" minOccurs="0" name="category-definition">
+          <xs:complexType>
+            <xs:complexContent>
+              <xs:extension base="ci:ct-definition">
+                <xs:sequence>
+                  <xs:group minOccurs="0" ref="ci:g-properties">
+                    <xs:annotation>
+                      <xs:documentation>Property values for all members of this category.</xs:documentation>
+                    </xs:annotation>
+                  </xs:group>
+                  <xs:element minOccurs="0" ref="ci:category-definitions">
+                    <xs:annotation>
+                      <xs:documentation>Sub-category definitions.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                </xs:sequence>
+              </xs:extension>
+            </xs:complexContent>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="property-definitions">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:group minOccurs="0" ref="ci:g-macrodefs"/>
+        <xs:element maxOccurs="unbounded" minOccurs="0" name="property-definition">
+          <xs:complexType>
+            <xs:complexContent>
+              <xs:extension base="ci:ct-definition">
+                <xs:attribute name="value-pattern" type="ci:t-regexp">
+                  <xs:annotation>
+                    <xs:documentation>A regular expression for the value to match. If absent or empty, anything goes.</xs:documentation>
+                  </xs:annotation>
+                </xs:attribute>
+              </xs:extension>
+            </xs:complexContent>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:group name="g-properties">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="property">
+        <xs:complexType>
+          <xs:attribute name="idref" type="ci:t-identifier" use="required">
+            <xs:annotation>
+              <xs:documentation>The identifier of the property we're setting.</xs:documentation>
+            </xs:annotation>
+          </xs:attribute>
+          <xs:attribute name="value" type="xs:string" use="required">
+            <xs:annotation>
+              <xs:documentation>The value for this property.</xs:documentation>
+            </xs:annotation>
+          </xs:attribute>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:group>
+  <xs:element name="location-definitions">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:group minOccurs="0" ref="ci:g-macrodefs"/>
+        <xs:element maxOccurs="unbounded" minOccurs="0" name="location-definition" type="ci:ct-definition"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="price-range-definitions">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:group minOccurs="0" ref="ci:g-macrodefs"/>
+        <xs:element maxOccurs="unbounded" minOccurs="0" name="price-range-definition">
+          <xs:complexType>
+            <xs:complexContent>
+              <xs:extension base="ci:ct-definition">
+                <xs:attribute name="min-price" type="xs:decimal" use="required">
+                  <xs:annotation>
+                    <xs:documentation>Minimum price for this range.</xs:documentation>
+                  </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="max-price" type="xs:decimal" use="required">
+                  <xs:annotation>
+                    <xs:documentation>Maximum price for this range.</xs:documentation>
+                  </xs:annotation>
+                </xs:attribute>
+              </xs:extension>
+            </xs:complexContent>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="package-definitions">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:group minOccurs="0" ref="ci:g-macrodefs"/>
+        <xs:element maxOccurs="unbounded" minOccurs="0" name="package-definition">
+          <xs:complexType>
+            <xs:complexContent>
+              <xs:extension base="ci:ct-definition">
+                <xs:sequence>
+                  <xs:group minOccurs="0" ref="ci:g-resources"/>
+                </xs:sequence>
+              </xs:extension>
+            </xs:complexContent>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="components">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:group minOccurs="0" ref="ci:g-macrodefs"/>
+        <xs:choice maxOccurs="unbounded" minOccurs="0">
+          <xs:element ref="xi:include"/>
+          <xs:element ref="ci:component"/>
+          <xs:element name="component-group">
+            <xs:annotation>
+              <xs:documentation>Grouping element for components, without semantics. Enables generated component groups.</xs:documentation>
+            </xs:annotation>
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="ci:component"/>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="generate">
+            <xs:annotation>
+              <xs:documentation>Generate components from some other source using an external pipeline. This generate element is the source document.</xs:documentation>
+            </xs:annotation>
+            <xs:complexType>
+              <xs:sequence>
+                <xs:any maxOccurs="unbounded" minOccurs="0" namespace="##any" processContents="lax">
+                  <xs:annotation>
+                    <xs:documentation>Any element(s). Can be used by the external pipeline.</xs:documentation>
+                  </xs:annotation>
+                </xs:any>
+              </xs:sequence>
+              <xs:attribute name="href-pipeline" type="xs:anyURI" use="required"/>
+              <xs:anyAttribute namespace="##any" processContents="skip">
+                <xs:annotation>
+                  <xs:documentation>Other attributes, can be by the external pipeline. Attributes that start with href are resolved against the definition base URI.</xs:documentation>
+                </xs:annotation>
+              </xs:anyAttribute>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="component">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="ci:ct-definition">
+          <xs:sequence>
+            <xs:group minOccurs="0" ref="ci:g-properties">
+              <xs:annotation>
+                <xs:documentation>Properties for this component.</xs:documentation>
+              </xs:annotation>
+            </xs:group>
+            <xs:group minOccurs="0" ref="ci:g-resources">
+              <xs:annotation>
+                <xs:documentation>Resources for this component.</xs:documentation>
+              </xs:annotation>
+            </xs:group>
+          </xs:sequence>
+          <xs:attribute name="location-idref" type="ci:t-identifier" use="required">
+            <xs:annotation>
+              <xs:documentation>The location of the component.</xs:documentation>
+            </xs:annotation>
+          </xs:attribute>
+          <xs:attribute name="category-idrefs" use="required">
+            <xs:annotation>
+              <xs:documentation>Categories this component belongs to.</xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+              <xs:restriction>
+                <xs:simpleType>
+                  <xs:list itemType="ci:t-identifier"/>
+                </xs:simpleType>
+                <xs:minLength value="1"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="price-range-idref" type="ci:t-identifier">
+            <xs:annotation>
+              <xs:documentation>Price range for this component (omit if unknown).</xs:documentation>
+            </xs:annotation>
+          </xs:attribute>
+          <xs:attribute name="package-idref" type="ci:t-identifier">
+            <xs:annotation>
+              <xs:documentation>Package for this component (omit if unspecified, unknown or custom).</xs:documentation>
+            </xs:annotation>
+          </xs:attribute>
+          <xs:attribute name="package-label" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>The label on the package. Default: @name</xs:documentation>
+            </xs:annotation>
+          </xs:attribute>
+          <xs:attribute default="#unspecified" name="count">
+            <xs:annotation>
+              <xs:documentation>the number of components we have. Use #many for > 20. If unknown or uncounted, use #unspecfied.</xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+              <xs:union memberTypes="xs:nonNegativeInteger">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:enumeration value="#many"/>
+                    <xs:enumeration value="#unspecified"/>
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:union>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute default="false" name="discontinued" type="xs:boolean">
+            <xs:annotation>
+              <xs:documentation>Whether this component is probably discontinued (no longer for sale).</xs:documentation>
+            </xs:annotation>
+          </xs:attribute>
+          <xs:attribute default="false" name="overflow" type="xs:boolean">
+            <xs:annotation>
+              <xs:documentation>Whether there are overflow components available (in bag, in overflow storage container).</xs:documentation>
+            </xs:annotation>
+          </xs:attribute>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:group name="g-resources">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="resource">
+        <xs:annotation>
+          <xs:documentation>An external resource.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:attribute name="href" type="xs:anyURI" use="required"/>
+          <xs:attribute name="type" default="datasheet">
+            <xs:simpleType>
+              <xs:restriction base="ci:t-resource-type">
+                <xs:enumeration value="datasheet"/>
+                <xs:enumeration value="image"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="primary" type="xs:boolean">
+            <xs:annotation>
+              <xs:documentation>Whether this resource is the primary resource of this type. If not specified for a type, the first resource of this type is primary.</xs:documentation>
+            </xs:annotation>
+          </xs:attribute>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:group>
+  <xs:complexType name="ct-definition">
+    <xs:annotation>
+      <xs:documentation>Base complex type for a definition of something.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="description" type="ci:ct-text">
+        <xs:annotation>
+          <xs:documentation>Optional longer description of the definition.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="id" type="ci:t-identifier" use="required">
+      <xs:annotation>
+        <xs:documentation>The identifier of the definition.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="name" type="xs:string">
+      <xs:annotation>
+        <xs:documentation>The visible name of the definition. Default: @id</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="summary" type="xs:string">
+      <xs:annotation>
+        <xs:documentation>Optional summary of the definition.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType mixed="true" name="ct-text">
+    <xs:annotation>
+      <xs:documentation>Any textual contents.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:any maxOccurs="unbounded" minOccurs="0" namespace="##any" processContents="skip"/>
+    </xs:sequence>
+    <xs:attributeGroup ref="xml:space-default"/>
+  </xs:complexType>
+  <xs:simpleType name="t-identifier">
+    <xs:restriction base="xs:NCName"/>
+  </xs:simpleType>
+  <xs:simpleType name="t-regexp">
+    <xs:annotation>
+      <xs:documentation>A regular expression
+</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+  <xs:simpleType name="t-resource-type">
+    <xs:restriction base="ci:t-identifier">
+      <xs:enumeration value="datasheet"/>
+      <xs:enumeration value="image"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
