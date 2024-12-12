@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="../sch/component-inventory.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<component-inventory xmlns="https://eriksiegel.nl/ns/component-inventory" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory ../xsd/component-inventory.xsd">
+
+  <!-- ======================================================================= -->
+
+  <property-definitions>
+    <property-definition id="XTYPE" value-pattern="^(sss|yyy)$"/>
+  </property-definitions>
+
+  <!-- ======================================================================= -->
+
+  <category-definitions>
+    <category-definition id="CAT1" name="Category 1">
+      <property idref="XTYPE" value="yyy"/>
+      <category-definitions>
+        <category-definition id="CAT2"/>
+      </category-definitions>
+    </category-definition>
+
+  </category-definitions>
+
+  <!-- ======================================================================= -->
+
+  <location-definitions>
+    <location-definition id="BAK" summary="Bakje"/>
+  </location-definitions>
+
+  <!-- ======================================================================= -->
+
+  <price-range-definitions>
+    <price-range-definition  id="P1"/>
+  </price-range-definitions>
+
+  <!-- ======================================================================= -->
+
+  <package-definitions>
+   <package-definition id="xyz">
+     <resource href="" type=""/>
+   </package-definition>
+  </package-definitions>
+
+  <!-- ======================================================================= -->
+
+  <components>
+    <component location-idref="BAK" category-idrefs="CAT1 CAT2" id="COMP1" price-range-idref="P1">
+      
+      
+    </component>
+    <generate href-pipeline="" wef=""></generate>
+
+
+  </components>
+
+</component-inventory>

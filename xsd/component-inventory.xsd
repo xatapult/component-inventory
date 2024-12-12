@@ -44,33 +44,67 @@
           <xs:element ref="xi:include"/>
           <xs:element ref="ci:package-definitions"/>
         </xs:choice>
+        <xs:choice>
+          <xs:annotation>
+            <xs:documentation>Components</xs:documentation>
+          </xs:annotation>
+          <xs:element ref="xi:include"/>
+          <xs:element ref="ci:components"/>
+        </xs:choice>
       </xs:sequence>
     </xs:complexType>
+    <xs:key name="key-property-definition-id">
+      <xs:selector xpath=".//ci:property-definition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+    <xs:key name="key-category-definition-id">
+      <xs:selector xpath=".//ci:category-definition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+    <xs:key name="key-location-definition-id">
+      <xs:selector xpath=".//ci:location-definition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+    <xs:key name="key-price-range-definition-id">
+      <xs:selector xpath=".//ci:price-range-definition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+    <xs:key name="key-package-definition-id">
+      <xs:selector xpath=".//ci:package-definition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+    <xs:key name="key-component-id">
+      <xs:selector xpath=".//ci:component"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
   </xs:element>
   <xs:element name="category-definitions">
     <xs:complexType>
       <xs:sequence>
         <xs:group minOccurs="0" ref="ci:g-macrodefs"/>
-        <xs:element maxOccurs="unbounded" minOccurs="0" name="category-definition">
-          <xs:complexType>
-            <xs:complexContent>
-              <xs:extension base="ci:ct-definition">
-                <xs:sequence>
-                  <xs:group minOccurs="0" ref="ci:g-properties">
-                    <xs:annotation>
-                      <xs:documentation>Property values for all members of this category.</xs:documentation>
-                    </xs:annotation>
-                  </xs:group>
-                  <xs:element minOccurs="0" ref="ci:category-definitions">
-                    <xs:annotation>
-                      <xs:documentation>Sub-category definitions.</xs:documentation>
-                    </xs:annotation>
-                  </xs:element>
-                </xs:sequence>
-              </xs:extension>
-            </xs:complexContent>
-          </xs:complexType>
-        </xs:element>
+        <xs:choice maxOccurs="unbounded" minOccurs="0">
+          <xs:element name="category-definition">
+            <xs:complexType>
+              <xs:complexContent>
+                <xs:extension base="ci:ct-definition">
+                  <xs:sequence>
+                    <xs:group minOccurs="0" ref="ci:g-properties">
+                      <xs:annotation>
+                        <xs:documentation>Property values for all members of this category.</xs:documentation>
+                      </xs:annotation>
+                    </xs:group>
+                    <xs:element minOccurs="0" ref="ci:category-definitions">
+                      <xs:annotation>
+                        <xs:documentation>Sub-category definitions.</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:extension>
+              </xs:complexContent>
+            </xs:complexType>
+          </xs:element>
+          <xs:group ref="ci:g-generate"/>
+        </xs:choice>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -78,19 +112,22 @@
     <xs:complexType>
       <xs:sequence>
         <xs:group minOccurs="0" ref="ci:g-macrodefs"/>
-        <xs:element maxOccurs="unbounded" minOccurs="0" name="property-definition">
-          <xs:complexType>
-            <xs:complexContent>
-              <xs:extension base="ci:ct-definition">
-                <xs:attribute name="value-pattern" type="ci:t-regexp">
-                  <xs:annotation>
-                    <xs:documentation>A regular expression for the value to match. If absent or empty, anything goes.</xs:documentation>
-                  </xs:annotation>
-                </xs:attribute>
-              </xs:extension>
-            </xs:complexContent>
-          </xs:complexType>
-        </xs:element>
+        <xs:choice maxOccurs="unbounded" minOccurs="0">
+          <xs:element name="property-definition">
+            <xs:complexType>
+              <xs:complexContent>
+                <xs:extension base="ci:ct-definition">
+                  <xs:attribute name="value-pattern" type="ci:t-regexp">
+                    <xs:annotation>
+                      <xs:documentation>A regular expression for the value to match. If absent or empty, anything goes.</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                </xs:extension>
+              </xs:complexContent>
+            </xs:complexType>
+          </xs:element>
+          <xs:group ref="ci:g-generate"/>
+        </xs:choice>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -116,7 +153,10 @@
     <xs:complexType>
       <xs:sequence>
         <xs:group minOccurs="0" ref="ci:g-macrodefs"/>
-        <xs:element maxOccurs="unbounded" minOccurs="0" name="location-definition" type="ci:ct-definition"/>
+        <xs:choice maxOccurs="unbounded" minOccurs="0">
+          <xs:element name="location-definition" type="ci:ct-definition"/>
+          <xs:group ref="ci:g-generate"/>
+        </xs:choice>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -124,24 +164,10 @@
     <xs:complexType>
       <xs:sequence>
         <xs:group minOccurs="0" ref="ci:g-macrodefs"/>
-        <xs:element maxOccurs="unbounded" minOccurs="0" name="price-range-definition">
-          <xs:complexType>
-            <xs:complexContent>
-              <xs:extension base="ci:ct-definition">
-                <xs:attribute name="min-price" type="xs:decimal" use="required">
-                  <xs:annotation>
-                    <xs:documentation>Minimum price for this range.</xs:documentation>
-                  </xs:annotation>
-                </xs:attribute>
-                <xs:attribute name="max-price" type="xs:decimal" use="required">
-                  <xs:annotation>
-                    <xs:documentation>Maximum price for this range.</xs:documentation>
-                  </xs:annotation>
-                </xs:attribute>
-              </xs:extension>
-            </xs:complexContent>
-          </xs:complexType>
-        </xs:element>
+        <xs:choice maxOccurs="unbounded" minOccurs="0">
+          <xs:element name="price-range-definition"> </xs:element>
+          <xs:group ref="ci:g-generate"/>
+        </xs:choice>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -149,17 +175,20 @@
     <xs:complexType>
       <xs:sequence>
         <xs:group minOccurs="0" ref="ci:g-macrodefs"/>
-        <xs:element maxOccurs="unbounded" minOccurs="0" name="package-definition">
-          <xs:complexType>
-            <xs:complexContent>
-              <xs:extension base="ci:ct-definition">
-                <xs:sequence>
-                  <xs:group minOccurs="0" ref="ci:g-resources"/>
-                </xs:sequence>
-              </xs:extension>
-            </xs:complexContent>
-          </xs:complexType>
-        </xs:element>
+        <xs:choice maxOccurs="unbounded" minOccurs="0">
+          <xs:element name="package-definition">
+            <xs:complexType>
+              <xs:complexContent>
+                <xs:extension base="ci:ct-definition">
+                  <xs:sequence>
+                    <xs:group minOccurs="0" ref="ci:g-resources"/>
+                  </xs:sequence>
+                </xs:extension>
+              </xs:complexContent>
+            </xs:complexType>
+          </xs:element>
+          <xs:group ref="ci:g-generate"/>
+        </xs:choice>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -170,36 +199,7 @@
         <xs:choice maxOccurs="unbounded" minOccurs="0">
           <xs:element ref="xi:include"/>
           <xs:element ref="ci:component"/>
-          <xs:element name="component-group">
-            <xs:annotation>
-              <xs:documentation>Grouping element for components, without semantics. Enables generated component groups.</xs:documentation>
-            </xs:annotation>
-            <xs:complexType>
-              <xs:sequence>
-                <xs:element maxOccurs="unbounded" minOccurs="0" ref="ci:component"/>
-              </xs:sequence>
-            </xs:complexType>
-          </xs:element>
-          <xs:element name="generate">
-            <xs:annotation>
-              <xs:documentation>Generate components from some other source using an external pipeline. This generate element is the source document.</xs:documentation>
-            </xs:annotation>
-            <xs:complexType>
-              <xs:sequence>
-                <xs:any maxOccurs="unbounded" minOccurs="0" namespace="##any" processContents="lax">
-                  <xs:annotation>
-                    <xs:documentation>Any element(s). Can be used by the external pipeline.</xs:documentation>
-                  </xs:annotation>
-                </xs:any>
-              </xs:sequence>
-              <xs:attribute name="href-pipeline" type="xs:anyURI" use="required"/>
-              <xs:anyAttribute namespace="##any" processContents="skip">
-                <xs:annotation>
-                  <xs:documentation>Other attributes, can be by the external pipeline. Attributes that start with href are resolved against the definition base URI.</xs:documentation>
-                </xs:annotation>
-              </xs:anyAttribute>
-            </xs:complexType>
-          </xs:element>
+          <xs:group ref="ci:g-generate"/>
         </xs:choice>
       </xs:sequence>
     </xs:complexType>
@@ -303,6 +303,30 @@
               <xs:documentation>Whether this resource is the primary resource of this type. If not specified for a type, the first resource of this type is primary.</xs:documentation>
             </xs:annotation>
           </xs:attribute>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:group>
+  <xs:group name="g-generate">
+    <xs:sequence>
+      <xs:element name="generate">
+        <xs:annotation>
+          <xs:documentation>Generate components from some other source using an external pipeline. This generate element is the source document. An (optional) ci:group result root element is unwrapped.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:any maxOccurs="unbounded" minOccurs="0" namespace="##any" processContents="lax">
+              <xs:annotation>
+                <xs:documentation>Any element(s). Can be used by the external pipeline.</xs:documentation>
+              </xs:annotation>
+            </xs:any>
+          </xs:sequence>
+          <xs:attribute name="href-pipeline" type="xs:anyURI" use="required"/>
+          <xs:anyAttribute namespace="##any" processContents="skip">
+            <xs:annotation>
+              <xs:documentation>Other attributes, can be by the external pipeline. Attributes that start with href are resolved against the definition base URI.</xs:documentation>
+            </xs:annotation>
+          </xs:anyAttribute>
         </xs:complexType>
       </xs:element>
     </xs:sequence>
