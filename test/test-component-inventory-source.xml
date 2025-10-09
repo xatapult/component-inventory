@@ -45,7 +45,7 @@
 
   <components>
     <component location-idref="BAK" category-idrefs="CAT1 CAT2" id="COMP1" price-range-idref="P1">
-      
+      <property idref="xx" value=""/>
       
     </component>
     <generate href-pipeline="" wef=""></generate>

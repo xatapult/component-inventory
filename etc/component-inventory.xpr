@@ -10,6 +10,7 @@
         </folder>
         <folder path="../"/>
         <folder path="../../../work/xatapult/xtpxlib-common/"/>
+        <folder path="../../../work/xatapult/xtpxlib-sml/"/>
         <folder path="../../../../../xdata/"/>
     </projectTree>
 </project>

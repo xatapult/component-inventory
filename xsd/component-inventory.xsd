@@ -2,9 +2,9 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="https://eriksiegel.nl/ns/component-inventory"
   xmlns:ci="https://eriksiegel.nl/ns/component-inventory" xmlns:xi="http://www.w3.org/2001/XInclude">
 
-  <xs:import namespace="http://www.w3.org/2001/XInclude" schemaLocation="../../../work/xatapult/xtpxlib-common/xsdmod/xinclude.mod.xsd"/>
-  <xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="../../../work/xatapult/xtpxlib-common/xsdmod/xml.mod.xsd"/>
-  <xs:include schemaLocation="../../../work/xatapult/xtpxlib-common/xsdmod/macrodefs.mod.xsd"/>
+  <xs:import namespace="http://www.w3.org/2001/XInclude" schemaLocation="file:/xatapult/xtpxlib-common/xsdmod/xinclude.mod.xsd"/>
+  <xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="file:/work/xatapult/xtpxlib-common/xsdmod/xml.mod.xsd"/>
+  <xs:include schemaLocation="file:/xatapult/xtpxlib-common/xsdmod/macrodefs.mod.xsd"/>
   <xs:element name="component-inventory">
     <xs:complexType>
       <xs:sequence>
@@ -336,10 +336,11 @@
       <xs:documentation>Base complex type for a definition of something.</xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element minOccurs="0" name="description" type="ci:ct-text">
+      <xs:element minOccurs="0" name="description">
         <xs:annotation>
           <xs:documentation>Optional longer description of the definition.</xs:documentation>
         </xs:annotation>
+        <xs:complexType/>
       </xs:element>
     </xs:sequence>
     <xs:attribute name="id" type="ci:t-identifier" use="required">
@@ -357,15 +358,6 @@
         <xs:documentation>Optional summary of the definition.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
-  </xs:complexType>
-  <xs:complexType mixed="true" name="ct-text">
-    <xs:annotation>
-      <xs:documentation>Any textual contents.</xs:documentation>
-    </xs:annotation>
-    <xs:sequence>
-      <xs:any maxOccurs="unbounded" minOccurs="0" namespace="##any" processContents="skip"/>
-    </xs:sequence>
-    <xs:attributeGroup ref="xml:space-default"/>
   </xs:complexType>
   <xs:simpleType name="t-identifier">
     <xs:restriction base="xs:NCName"/>
