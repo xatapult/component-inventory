@@ -33,6 +33,12 @@
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
+  <xs:simpleType name="t-href-resource">
+    <xs:annotation>
+      <xs:documentation>The URI of a non-XML resource (image, PDF, etc.).</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:anyURI"/>
+  </xs:simpleType>
   <xs:simpleType name="t-href-document">
     <xs:annotation>
       <xs:documentation>The URI of an XML document.</xs:documentation>
@@ -49,7 +55,9 @@
     <xs:annotation>
       <xs:documentation>An identifier of something.</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:NCName"/>
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[A-Za-z][A-Za-z0-9\-_]*"/>
+    </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="t-regexp">
     <xs:annotation>
@@ -58,4 +66,26 @@
     </xs:annotation>
     <xs:restriction base="xs:string"/>
   </xs:simpleType>
+  <xs:simpleType name="t-amount">
+    <xs:restriction base="xs:decimal">
+      <xs:fractionDigits value="2"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="t-price">
+    <xs:restriction base="ci:t-amount">
+      <xs:minInclusive value="0"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="t-scaling">
+    <xs:annotation>
+      <xs:documentation>A percentage for the scaling of images.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[0-9]+%"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:attributeGroup name="ag-image">
+    <xs:attribute name="href" type="ci:t-href-resource" use="required"/>
+    <xs:attribute name="scaling" type="ci:t-scaling"/>
+  </xs:attributeGroup>
 </xs:schema>

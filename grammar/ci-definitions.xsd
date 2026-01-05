@@ -27,29 +27,61 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:group ref="ci:g-categories"/>
-        <xs:element name="price-ranges"/>
-        <xs:element name="packages"/>
+        <xs:element name="categories" type="ci:ct-categories"/>
+        <xs:element name="price-ranges">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:group minOccurs="0" ref="ci:g-macrodefs"/>
+              <xs:element maxOccurs="unbounded" minOccurs="0" name="price-range">
+                <xs:complexType>
+                  <xs:complexContent>
+                    <xs:extension base="ci:ct-definition">
+                      <xs:attribute name="min-inclusive" type="ci:t-price" use="required"/>
+                      <xs:attribute name="max-inclusive" type="ci:t-price" use="required"/>
+                    </xs:extension>
+                  </xs:complexContent>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="packages">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:group minOccurs="0" ref="ci:g-macrodefs"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
         <xs:element name="locations"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:group name="g-categories">
+  <xs:complexType name="ct-categories">
     <xs:sequence>
       <xs:group minOccurs="0" ref="ci:g-macrodefs"/>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="category">
         <xs:complexType>
           <xs:complexContent>
             <xs:extension base="ci:ct-definition">
-              <xs:group minOccurs="0" ref="ci:g-categories">
-                <xs:annotation>
-                  <xs:documentation>Sub-categories</xs:documentation>
-                </xs:annotation>
-              </xs:group>
+              <xs:sequence>
+                <xs:element minOccurs="0" name="categories">
+                  <xs:complexType>
+                    <xs:complexContent>
+                      <xs:extension base="ci:ct-categories">
+                        <xs:attribute default="false" name="sub-category-mandatory" type="xs:boolean">
+                          <xs:annotation>
+                            <xs:documentation>Whether a sub-category is mandatory here.</xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
+                      </xs:extension>
+                    </xs:complexContent>
+                  </xs:complexType>
+                </xs:element>
+              </xs:sequence>
             </xs:extension>
           </xs:complexContent>
         </xs:complexType>
       </xs:element>
     </xs:sequence>
-  </xs:group>
+  </xs:complexType>
 </xs:schema>

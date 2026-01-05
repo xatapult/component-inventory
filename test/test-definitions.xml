@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="../grammar/ci-definitions.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<definitions xmlns="https://eriksiegel.nl/ns/component-inventory" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory ../grammar/ci-definitions.xsd">
+
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+  <properties>
+    <property id="PA"/>
+    <property id="CA"/>
+    <!--  -->
+  </properties>
+
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+  <categories>
+    <category id="A"/>
+    <category id="B">
+      <categories sub-category-mandatory="true">
+        <category id="A"/>
+        <category id="B"/>
+      </categories>
+    </category>
+
+    <!--  -->
+  </categories>
+
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+  <price-ranges>
+    <price-range min-inclusive="5.1" max-inclusive="100000" id="expensive"/>
+    <price-range min-inclusive="1.1" max-inclusive="5" id="midprice"/>
+    <price-range min-inclusive="0.0" max-inclusive="1" id="cheap2"/>
+  </price-ranges>
+
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+  <packages>
+    <!--  -->
+  </packages>
+
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+  <locations>
+    <!--  -->
+  </locations>
+
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+</definitions>
