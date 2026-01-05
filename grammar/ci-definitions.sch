@@ -22,7 +22,7 @@
   <let name="property-identifiers" value="/ci:definitions/ci:properties/ci:property/@id/string()"/>
 
   <pattern>
-    <rule context="ci:definitions/ci:properties/ci:property">
+    <rule context="/ci:definitions/ci:properties/ci:property">
       <let name="id" value="string(@id)"/>
       <assert test="count($property-identifiers[. eq $id]) eq 1">Multiple definitions of property "<value-of select="$id"/>"</assert>
     </rule>
@@ -45,7 +45,7 @@
   <let name="price-range-identifiers" value="/ci:definitions/ci:price-ranges/ci:price-range/@id/string()"/>
 
   <pattern>
-    <rule context="ci:definitions/ci:price-ranges/ci:price-range">
+    <rule context="/ci:definitions/ci:price-ranges/ci:price-range">
       <let name="current-price-range" value="."/>
       <let name="id" value="string($current-price-range/@id)"/>
       <let name="min-inclusive" value="xs:decimal($current-price-range/@min-inclusive)"/>
@@ -57,5 +57,29 @@
       <assert test="empty($overlapping-price-range-ids)">Price range overlaps with "<value-of select="string-join($overlapping-price-range-ids, '&quot;, &quot;')"/>"</assert>
     </rule>
   </pattern>
-
+  
+  <!-- ======================================================================= -->
+  <!-- Packages related: -->
+  
+  <let name="package-identifiers" value="/ci:definitions/ci:packages/ci:package/@id/string()"/>
+  
+  <pattern>
+    <rule context="/ci:definitions/ci:packages/ci:package">
+      <let name="id" value="string(@id)"/>
+      <assert test="count($package-identifiers[. eq $id]) eq 1">Multiple definitions of package "<value-of select="$id"/>"</assert>
+    </rule>
+  </pattern>
+  
+  <!-- ======================================================================= -->
+  <!-- Packages related: -->
+  
+  <let name="location-identifiers" value="/ci:definitions/ci:locations/ci:location/@id/string()"/>
+  
+  <pattern>
+    <rule context="/ci:definitions/ci:locations/ci:location">
+      <let name="id" value="string(@id)"/>
+      <assert test="count($location-identifiers[. eq $id]) eq 1">Multiple definitions of location "<value-of select="$id"/>"</assert>
+    </rule>
+  </pattern>
+  
 </schema>

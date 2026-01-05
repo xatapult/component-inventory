@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="https://eriksiegel.nl/ns/component-inventory"
-  xmlns:ci="https://eriksiegel.nl/ns/component-inventory" xmlns:xi="http://www.w3.org/2001/XInclude">
+  xmlns:ci="https://eriksiegel.nl/ns/component-inventory" xmlns:xi="http://www.w3.org/2001/XInclude" vc:minVersion="1.1"
+  xmlns:sml="http://www.eriksiegel.nl/ns/sml" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning">
 
   <xs:import namespace="http://www.w3.org/2001/XInclude" schemaLocation="file:/xatapult/xtpxlib-common/xsdmod/xinclude.mod.xsd"/>
   <xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="file:/xatapult/xtpxlib-common/xsdmod/xml.mod.xsd"/>
   <xs:include schemaLocation="file:/xatapult/xtpxlib-common/xsdmod/macrodefs.mod.xsd"/>
+  <xs:import namespace="http://www.eriksiegel.nl/ns/sml" schemaLocation="../../xtpxlib-sml/xsd/sml.xsd"/>
   <xs:complexType name="ct-definition">
     <xs:annotation>
       <xs:documentation>Base complex type for a definition of something.</xs:documentation>
@@ -14,7 +16,11 @@
         <xs:annotation>
           <xs:documentation>Optional longer description of the definition.</xs:documentation>
         </xs:annotation>
-        <xs:complexType/>
+        <xs:complexType>
+          <xs:choice>
+            <xs:group ref="sml:g-block-contents"/>
+          </xs:choice>
+        </xs:complexType>
       </xs:element>
     </xs:sequence>
     <xs:attribute name="id" type="ci:t-identifier" use="required">
@@ -33,6 +39,58 @@
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
+  <xs:group name="g-media">
+    <xs:sequence>
+      <xs:element name="media">
+        <xs:complexType>
+          <xs:choice maxOccurs="unbounded" minOccurs="0">
+            <xs:element name="image">
+              <xs:complexType>
+                <xs:attributeGroup ref="ci:ag-media"/>
+                <xs:attribute name="scaling" default="100%">
+                  <xs:simpleType>
+                    <xs:restriction base="ci:t-scaling">
+                      <xs:pattern value="[0-1]?[0-9]?[0-9]%"/>
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:attribute>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="pdf">
+              <xs:complexType>
+                <xs:attributeGroup ref="ci:ag-media"/>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="text">
+              <xs:complexType>
+                <xs:attributeGroup ref="ci:ag-media"/>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="markdown">
+              <xs:complexType>
+                <xs:attributeGroup ref="ci:ag-media"/>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="sml">
+              <xs:complexType>
+                <xs:attributeGroup ref="ci:ag-media"/>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="html">
+              <xs:complexType>
+                <xs:attributeGroup ref="ci:ag-media"/>
+              </xs:complexType>
+            </xs:element>
+          </xs:choice>
+          <xs:attribute name="href-default-location" type="ci:t-href-directory">
+            <xs:annotation>
+              <xs:documentation>The default location for dereferencing relative paths. Default is the URI of the containing document.</xs:documentation>
+            </xs:annotation>
+          </xs:attribute>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:group>
   <xs:simpleType name="t-href-resource">
     <xs:annotation>
       <xs:documentation>The URI of a non-XML resource (image, PDF, etc.).</xs:documentation>
@@ -84,8 +142,17 @@
       <xs:pattern value="[0-9]+%"/>
     </xs:restriction>
   </xs:simpleType>
-  <xs:attributeGroup name="ag-image">
+  <xs:simpleType name="t-media-type">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="overview"/>
+      <xs:enumeration value="connections-overview"/>
+      <xs:enumeration value="usage-example"/>
+      <xs:enumeration value="instructions"/>
+      <xs:enumeration value="datasheet"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:attributeGroup name="ag-media">
     <xs:attribute name="href" type="ci:t-href-resource" use="required"/>
-    <xs:attribute name="scaling" type="ci:t-scaling"/>
+    <xs:attribute default="overview" name="type" type="ci:t-media-type"/>
   </xs:attributeGroup>
 </xs:schema>

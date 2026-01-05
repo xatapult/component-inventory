@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-model href="../grammar/ci-definitions.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
-<definitions xmlns="https://eriksiegel.nl/ns/component-inventory" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<definitions xmlns="https://eriksiegel.nl/ns/component-inventory" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sml="http://www.eriksiegel.nl/ns/sml"
   xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory ../grammar/ci-definitions.xsd">
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
@@ -36,15 +36,27 @@
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
   <packages>
-    <!--  -->
+    <package id="DIP16" name="asc"/>
+    <package id="DIP14" name="asc"/>
+
   </packages>
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
   <locations>
+    <location id="AAA">
+      <description>
+        <sml:para>wkdwqlkdqlwd</sml:para>
+      </description>
+    </location>
     <!--  -->
   </locations>
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+  <components>
+    <directory href="asdc"/>
+    <directory href="asdc"/>
+  </components>
 
 </definitions>
