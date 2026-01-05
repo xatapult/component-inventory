@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="https://eriksiegel.nl/ns/component-inventory"
+  xmlns:ci="https://eriksiegel.nl/ns/component-inventory">
+
+  <xs:include schemaLocation="ci-common.mod.xsd"/>
+  <xs:element name="definitions">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:group minOccurs="0" ref="ci:g-macrodefs"/>
+        <xs:element name="properties">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:group minOccurs="0" ref="ci:g-macrodefs"/>
+              <xs:element maxOccurs="unbounded" minOccurs="0" name="property">
+                <xs:complexType>
+                  <xs:complexContent>
+                    <xs:extension base="ci:ct-definition">
+                      <xs:attribute name="value-pattern" type="ci:t-regexp">
+                        <xs:annotation>
+                          <xs:documentation>A regular expression for the value to match. If absent or empty, anything goes.</xs:documentation>
+                        </xs:annotation>
+                      </xs:attribute>
+                    </xs:extension>
+                  </xs:complexContent>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:group ref="ci:g-categories"/>
+        <xs:element name="price-ranges"/>
+        <xs:element name="packages"/>
+        <xs:element name="locations"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:group name="g-categories">
+    <xs:sequence>
+      <xs:group minOccurs="0" ref="ci:g-macrodefs"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="category">
+        <xs:complexType>
+          <xs:complexContent>
+            <xs:extension base="ci:ct-definition">
+              <xs:group minOccurs="0" ref="ci:g-categories">
+                <xs:annotation>
+                  <xs:documentation>Sub-categories</xs:documentation>
+                </xs:annotation>
+              </xs:group>
+            </xs:extension>
+          </xs:complexContent>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:group>
+</xs:schema>

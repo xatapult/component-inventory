@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="https://eriksiegel.nl/ns/component-inventory"
+  xmlns:ci="https://eriksiegel.nl/ns/component-inventory" xmlns:xi="http://www.w3.org/2001/XInclude">
+
+  <xs:import namespace="http://www.w3.org/2001/XInclude" schemaLocation="file:/xatapult/xtpxlib-common/xsdmod/xinclude.mod.xsd"/>
+  <xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="file:/xatapult/xtpxlib-common/xsdmod/xml.mod.xsd"/>
+  <xs:include schemaLocation="file:/xatapult/xtpxlib-common/xsdmod/macrodefs.mod.xsd"/>
+  <xs:complexType name="ct-definition">
+    <xs:annotation>
+      <xs:documentation>Base complex type for a definition of something.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="description">
+        <xs:annotation>
+          <xs:documentation>Optional longer description of the definition.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType/>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="id" type="ci:t-identifier" use="required">
+      <xs:annotation>
+        <xs:documentation>The identifier of the definition.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="name" type="xs:string">
+      <xs:annotation>
+        <xs:documentation>The visible name of the definition. Default: @id</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="summary" type="xs:string">
+      <xs:annotation>
+        <xs:documentation>Optional summary of the definition.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:simpleType name="t-href-document">
+    <xs:annotation>
+      <xs:documentation>The URI of an XML document.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:anyURI"/>
+  </xs:simpleType>
+  <xs:simpleType name="t-href-directory">
+    <xs:annotation>
+      <xs:documentation>The URI of a directory (with or without trailing /).</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+  <xs:simpleType name="t-identifier">
+    <xs:annotation>
+      <xs:documentation>An identifier of something.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:NCName"/>
+  </xs:simpleType>
+  <xs:simpleType name="t-regexp">
+    <xs:annotation>
+      <xs:documentation>A regular expression
+</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+</xs:schema>

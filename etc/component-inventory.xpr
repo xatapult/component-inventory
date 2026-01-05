@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project>
     <meta>
-        <filters directoryPatterns="" filePatterns="\Qcomponent-inventory.xpr\E" positiveFilePatterns="" showHiddenFiles="false"/>
+        <filters directoryPatterns="" filePatterns="" positiveFilePatterns="" showHiddenFiles="false"/>
         <options/>
     </meta>
     <projectTree name="component-inventory.xpr">
@@ -9,8 +9,8 @@
             <folder path="../../../work/xatapult/xprocref/"/>
         </folder>
         <folder path="../"/>
-        <folder path="../../../work/xatapult/xtpxlib-common/"/>
-        <folder path="../../../work/xatapult/xtpxlib-sml/"/>
-        <folder path="../../../../../xdata/"/>
+        <folder path="../../xtpxlib-common/"/>
+        <folder path="../../xtpxlib-sml/"/>
+        <folder path="../../../../../../xdata/"/>
     </projectTree>
 </project>

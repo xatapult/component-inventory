@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<binder xmlns="https://eriksiegel.nl/ns/component-inventory" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory ../grammar/ci-binder.xsd">
+
+  <definitions href=""/>
+
+  <packages>
+    <!--  -->
+  </packages>
+
+  <components>
+    <!--  -->
+  </components>
+
+
+</binder>
