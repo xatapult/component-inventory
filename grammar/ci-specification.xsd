@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="https://eriksiegel.nl/ns/component-inventory"
-  xmlns:ci="https://eriksiegel.nl/ns/component-inventory" vc:minVersion="1.1" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning">
+  xmlns:ci="https://eriksiegel.nl/ns/component-inventory" vc:minVersion="1.1" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"
+  xmlns:sml="http://www.eriksiegel.nl/ns/sml">
 
   <xs:include schemaLocation="ci-common.mod.xsd"/>
-  <xs:element name="definitions">
+  <xs:import namespace="http://www.eriksiegel.nl/ns/sml" schemaLocation="../../xtpxlib-sml/xsd/sml.xsd"/>
+  <xs:element name="component-inventory-specification">
     <xs:complexType>
       <xs:sequence>
         <xs:group minOccurs="0" ref="ci:g-macrodefs"/>
@@ -18,6 +20,11 @@
                       <xs:attribute name="value-pattern" type="ci:t-regexp">
                         <xs:annotation>
                           <xs:documentation>A regular expression for the value to match. If absent or empty, anything goes.</xs:documentation>
+                        </xs:annotation>
+                      </xs:attribute>
+                      <xs:attribute name="default" type="xs:string">
+                        <xs:annotation>
+                          <xs:documentation>The default value for the property.</xs:documentation>
                         </xs:annotation>
                       </xs:attribute>
                     </xs:extension>
@@ -80,12 +87,12 @@
                   <xs:documentation>Search this directory, and all its sub-directories, for components.</xs:documentation>
                 </xs:annotation>
                 <xs:complexType>
+                  <xs:attribute name="href" type="ci:t-href-directory" use="required"/>
                   <xs:attribute name="component-description-document-regexp" type="ci:t-regexp">
                     <xs:annotation>
-                      <xs:documentation>The regular expression for the documents that contain a component description. </xs:documentation>
+                      <xs:documentation>The regular expression for the documents that contain a component description.</xs:documentation>
                     </xs:annotation>
                   </xs:attribute>
-                  <xs:attribute name="href" type="ci:t-href-directory" use="required"/>
                 </xs:complexType>
               </xs:element>
             </xs:sequence>
@@ -123,7 +130,15 @@
               </xs:sequence>
               <xs:attribute name="mandatory-property-idrefs">
                 <xs:annotation>
-                  <xs:documentation>When this category is used, always fill in these properties.</xs:documentation>
+                  <xs:documentation>When this category is used, these properties must have a value (either the default or something filled in).</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                  <xs:list itemType="ci:t-identifier"/>
+                </xs:simpleType>
+              </xs:attribute>
+              <xs:attribute name="optional-property-idrefs">
+                <xs:annotation>
+                  <xs:documentation>When this category is used, it is optional to fill in these properties.</xs:documentation>
                 </xs:annotation>
                 <xs:simpleType>
                   <xs:list itemType="ci:t-identifier"/>

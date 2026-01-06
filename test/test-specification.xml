@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="../grammar/ci-definitions.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
-<definitions xmlns="https://eriksiegel.nl/ns/component-inventory" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sml="http://www.eriksiegel.nl/ns/sml"
-  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory ../grammar/ci-definitions.xsd">
+<?xml-model href="../grammar/ci-specification.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<component-inventory-specification xmlns="https://eriksiegel.nl/ns/component-inventory" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sml="http://www.eriksiegel.nl/ns/sml"
+  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory ../grammar/ci-specification.xsd">
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
   <properties>
-    <property id="PA"/>
+    <property id="PA" value-pattern="A|B" default="A"/>
     <property id="CA"/>
+    <property id="XA"/>
     <!--  -->
   </properties>
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
   <categories>
-    <category id="A"/>
+    <category id="A" mandatory-property-idrefs="PA " optional-property-idrefs="CA"/>
     <category id="B">
       <categories sub-category-mandatory="true">
-        <category id="A"/>
+        <category id="A" mandatory-property-idrefs="XA "/>
         <category id="B"/>
       </categories>
     </category>
@@ -55,8 +56,8 @@
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
   <components>
-    <directory href="asdc"/>
-    <directory href="asdc"/>
+    <directory href="components/" component-description-document-regexp="^component-.+\.xml$"/>
+    
   </components>
 
-</definitions>
+</component-inventory-specification>

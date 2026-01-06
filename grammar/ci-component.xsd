@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="https://eriksiegel.nl/ns/component-inventory"
+  xmlns:ci="https://eriksiegel.nl/ns/component-inventory" vc:minVersion="1.1" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"
+  xmlns:sml="http://www.eriksiegel.nl/ns/sml">
+
+  <xs:include schemaLocation="ci-common.mod.xsd"/>
+  <xs:import namespace="http://www.eriksiegel.nl/ns/sml" schemaLocation="../../xtpxlib-sml/xsd/sml.xsd"/>
+  
+  <xs:element name="component">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="description">
+          <xs:annotation>
+            <xs:documentation>Optional longer description of the definition in SML.</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:choice>
+              <xs:group ref="sml:g-block-contents"/>
+            </xs:choice>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="id" type="ci:t-identifier">
+        <xs:annotation>
+          <xs:documentation>The identifier of the definition. If not present, this is the name of the encompassing directory.</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="name" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>The visible name of the definition. Default: @id</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="summary" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Optional (very) short description/summary for this component.</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
