@@ -114,12 +114,13 @@
   </xs:simpleType>
   <xs:simpleType name="t-identifier">
     <xs:annotation>
-      <xs:documentation>An identifier of something.</xs:documentation>
+      <xs:documentation>A single identifier of something.</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
       <xs:pattern value="[A-Za-z][A-Za-z0-9\-_]*"/>
     </xs:restriction>
   </xs:simpleType>
+
   <xs:simpleType name="t-regexp">
     <xs:annotation>
       <xs:documentation>A regular expression
@@ -156,6 +157,6 @@
   </xs:simpleType>
   <xs:attributeGroup name="ag-media">
     <xs:attribute name="href" type="ci:t-href-resource" use="required"/>
-    <xs:attribute default="overview" name="type" type="ci:t-media-type"/>
+    <xs:attribute default="overview" name="usage" type="ci:t-media-type"/>
   </xs:attributeGroup>
 </xs:schema>

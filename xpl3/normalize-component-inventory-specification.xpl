@@ -65,8 +65,10 @@
   <p:delete match="processing-instruction(xml-model)"/>
 
   <!-- Flatten the category list: -->
-  <!-- TBD -->
-
+  <p:xslt>
+    <p:with-input port="stylesheet" href="xsl-normalize-component-inventory-specification/flatten-categories.xsl"/>
+  </p:xslt>
+  
   <!-- Get the directory information on-board for the components: -->
   <p:viewport match="ci:components/ci:directory" name="get-directory-information">
     <p:variable name="href-directory" as="xs:string" select="resolve-uri(/*/@href, $base-uri)"/>
@@ -80,7 +82,13 @@
   </p:viewport>
   
   <!-- Process this information into full component specifications: -->
-
-
+  <p:xslt>
+    <p:with-input port="stylesheet" href="xsl-normalize-component-inventory-specification/create-component-descriptions.xsl"/>
+  </p:xslt>
+  
+  <!-- And now check all the component specifications: -->
+  
+  
+  
 
 </p:declare-step>

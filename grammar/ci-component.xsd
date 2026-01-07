@@ -5,7 +5,7 @@
 
   <xs:include schemaLocation="ci-common.mod.xsd"/>
   <xs:import namespace="http://www.eriksiegel.nl/ns/sml" schemaLocation="../../xtpxlib-sml/xsd/sml.xsd"/>
-  
+
   <xs:element name="component">
     <xs:complexType>
       <xs:sequence>
@@ -19,6 +19,30 @@
             </xs:choice>
           </xs:complexType>
         </xs:element>
+        <xs:element minOccurs="0" name="property-values">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" minOccurs="0" name="property-value">
+                <xs:complexType>
+                  <xs:attribute name="property-idref" type="ci:t-identifier" use="required">
+                    <xs:annotation>
+                      <xs:documentation>The identifier of the property.</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute default="#unknown" name="value">
+                    <xs:annotation>
+                      <xs:documentation>The value for this identifier, or unknown.</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:union memberTypes="xs:string ci:t-special-values-unknown"/>
+                    </xs:simpleType>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:group minOccurs="0" ref="ci:g-media"/>
       </xs:sequence>
       <xs:attribute name="id" type="ci:t-identifier">
         <xs:annotation>
@@ -35,6 +59,113 @@
           <xs:documentation>Optional (very) short description/summary for this component.</xs:documentation>
         </xs:annotation>
       </xs:attribute>
+      <xs:attribute name="count" type="ci:t-count" default="#unknown">
+        <xs:annotation>
+          <xs:documentation>The number of components we have (estimated), or unknown.</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <!--<xs:attribute name="category-idrefs">
+        <xs:annotation>
+          <xs:documentation>References to the categories.sub-categories for this component.</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction>
+            <xs:simpleType>
+              <xs:list>
+                <xs:simpleType>
+                  <xs:union memberTypes="ci:t-identifier-extended ci:t-special-values-unknown"/>
+                </xs:simpleType>
+              </xs:list>
+            </xs:simpleType>
+            <xs:minLength value="1"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>-->
+      <xs:attribute default="false" name="partly-in-reserve-stock" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>Whether part of the stock is in reserve stock.</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="categories-idrefs" default="#unknown">
+        <xs:annotation>
+          <xs:documentation>A list of the appropriate categories/sub-categories, or unknown.</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction>
+            <xs:simpleType>
+              <xs:list itemType="ci:t-category-identifier-extended"/>
+            </xs:simpleType>
+            <xs:minLength value="1"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="price-range-idref" default="#unknown" type="ci:t-identifier-extended">
+        <xs:annotation>
+          <xs:documentation>The identifier of the appropriate price-range, or unknown.</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute default="#unknown" name="package-idref" type="ci:t-identifier-extended">
+        <xs:annotation>
+          <xs:documentation>The identifier of the package for this component, or unknwon.</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute default="#unknown" name="location-idref" type="ci:t-identifier-extended">
+        <xs:annotation>
+          <xs:documentation>The identifier of the location for this component, or unknwon.</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
     </xs:complexType>
   </xs:element>
+  <xs:simpleType name="t-special-values-unknown">
+    <xs:annotation>
+      <xs:documentation>The special value used when something is unknown.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="#unknown"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="t-special-values-count">
+    <xs:annotation>
+      <xs:documentation>The special values that can be used for a component count: many and unknown.</xs:documentation>
+    </xs:annotation>
+    <xs:union memberTypes="ci:t-special-values-unknown">
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="#many"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:union>
+  </xs:simpleType>
+  <xs:simpleType name="t-count">
+    <xs:annotation>
+      <xs:documentation>Values allowed for the count of a component.</xs:documentation>
+    </xs:annotation>
+    <xs:union memberTypes="ci:t-special-values-count xs:nonNegativeInteger"/>
+  </xs:simpleType>
+  <xs:simpleType name="t-category-identifier-extended">
+    <xs:annotation>
+      <xs:documentation>A concatenation of category identifiers, separated by dots (for assigning categories an sub-categories). Can also be unknown.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction>
+      <xs:simpleType>
+        <xs:union memberTypes="ci:t-special-values-unknown">
+          <xs:simpleType>
+            <xs:restriction base="xs:string">
+              <xs:pattern value="([A-Za-z][A-Za-z0-9\-_]*)(\.[A-Za-z][A-Za-z0-9\-_]*)*"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:union>
+      </xs:simpleType>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="t-identifier-extended">
+    <xs:annotation>
+      <xs:documentation>An identifier or unknown.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction>
+      <xs:simpleType>
+        <xs:union memberTypes="ci:t-identifier ci:t-special-values-unknown"/>
+      </xs:simpleType>
+    </xs:restriction>
+  </xs:simpleType>
 </xs:schema>

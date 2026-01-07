@@ -40,14 +40,13 @@
       <let name="category-identifiers" value="../ci:category/@id/string()"/>
       <let name="id" value="string(@id)"/>
       <let name="property-identifiers-used-more-than-once"
-        value="local:identifiers-used-more-than-once((@mandatory-property-idrefs, @optional-property-idref, 
-          ../ancestor::ci:categories/ci:category/@mandatory-property-idrefs, ../ancestor::ci:categories/ci:category/@optional-property-idrefs))"/>
+        value="local:identifiers-used-more-than-once((ancestor-or-self::ci:category/@mandatory-property-idrefs, ancestor-or-self::ci:category/@optional-property-idrefs))"/>
       <let name="property-identifiers-not-present"
         value="local:identifiers-not-present((@mandatory-property-idrefs, @optional-property-idrefs), $property-identifiers)"/>
 
       <assert test="count($category-identifiers[. eq $id]) eq 1">Multiple definitions of category "<value-of select="$id"/>"</assert>
-      <assert test="empty($property-identifiers-used-more-than-once)">Property identifier(s) used more than once on category "<value-of select="$id"/>": <value-of
-          select="local:quoted-string-list($property-identifiers-used-more-than-once)"/> (on this or parent category)</assert>
+      <assert test="empty($property-identifiers-used-more-than-once)">Property identifier(s) used more than once on category "<value-of select="$id"
+        />": <value-of select="local:quoted-string-list($property-identifiers-used-more-than-once)"/> (on this or parent category)</assert>
       <assert test="empty($property-identifiers-not-present)">Property identifier(s) not found on category "<value-of select="$id"/>": <value-of
           select="local:quoted-string-list($property-identifiers-not-present)"/></assert>
     </rule>

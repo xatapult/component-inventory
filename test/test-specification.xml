@@ -16,10 +16,10 @@
 
   <categories>
     <category id="A" mandatory-property-idrefs="PA " optional-property-idrefs="CA"/>
-    <category id="B">
-      <categories sub-category-mandatory="true">
-        <category id="A" mandatory-property-idrefs="XA "/>
-        <category id="B"/>
+    <category id="B" mandatory-property-idrefs="PA" optional-property-idrefs="CA">
+      <categories sub-category-mandatory="false">
+        <category id="B-A" mandatory-property-idrefs="XA"/>
+        <category id="B-B"/>
       </categories>
     </category>
 

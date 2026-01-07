@@ -88,7 +88,7 @@
                 </xs:annotation>
                 <xs:complexType>
                   <xs:attribute name="href" type="ci:t-href-directory" use="required"/>
-                  <xs:attribute name="component-description-document-regexp" type="ci:t-regexp">
+                  <xs:attribute name="component-description-document-regexp" type="ci:t-regexp" default="^component-.+\.xml$">
                     <xs:annotation>
                       <xs:documentation>The regular expression for the documents that contain a component description.</xs:documentation>
                     </xs:annotation>
