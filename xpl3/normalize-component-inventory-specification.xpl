@@ -87,7 +87,9 @@
   </p:xslt>
   
   <!-- And now check all the component specifications: -->
-  
+  <p:xslt>
+    <p:with-input port="stylesheet" href="xsl-normalize-component-inventory-specification/check-component-descriptions.xsl"/>
+  </p:xslt>
   
   
 

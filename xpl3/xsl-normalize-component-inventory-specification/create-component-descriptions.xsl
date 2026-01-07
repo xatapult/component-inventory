@@ -205,6 +205,9 @@
         <xsl:copy copy-namespaces="false">
           <xsl:apply-templates select="@* except @href"/>
           <xsl:attribute name="href" select="xtlc:href-concat(($href-default-referenced-media-directory, @href)) => xtlc:href-canonical()"/>
+          <xsl:if test="empty(@usage)">
+            <xsl:attribute name="usage" select="local:defaul-usage-type(local-name(.))"/>
+          </xsl:if>
           <xsl:apply-templates/>
         </xsl:copy>
       </xsl:for-each>
@@ -256,16 +259,16 @@
     <xsl:variable name="media-type" as="xs:string*">
       <xsl:choose>
         <xsl:when test="$extension = ('jpg', 'jpeg', 'png', 'svg')">
-          <xsl:sequence select="('image', 'overview')"/>
+          <xsl:sequence select="$ci:media-type-image"/>
         </xsl:when>
         <xsl:when test="$extension = ('pdf')">
-          <xsl:sequence select="('pdf', 'datasheet')"/>
+          <xsl:sequence select="$ci:media-type-pdf"/>
         </xsl:when>
         <xsl:when test="$extension = ('txt', 'text')">
-          <xsl:sequence select="('text', 'instructions')"/>
+          <xsl:sequence select="$ci:media-type-text"/>
         </xsl:when>
         <xsl:when test="$extension = ('md')">
-          <xsl:sequence select="('markdown', 'instructions')"/>
+          <xsl:sequence select="$ci:media-type-markdown"/>
         </xsl:when>
         <xsl:when test="$extension = ('xml')">
           <!-- For an XML file we have to find out if it has recognizable contents: -->
@@ -274,7 +277,7 @@
             <xsl:variable name="root-element" as="element()" select="doc($href-media-document)/*"/>
             <xsl:choose>
               <xsl:when test="exists($root-element/self::sml:sml)">
-                <xsl:sequence select="('sml', 'instructions')"/>
+                <xsl:sequence select="$ci:media-type-sml"/>
               </xsl:when>
               <xsl:otherwise>
                 <!-- We cannot handle this XML document: -->
@@ -288,7 +291,7 @@
           </xsl:try>
         </xsl:when>
         <xsl:when test="$extension = ('htm', 'html')">
-          <xsl:sequence select="('html', 'instructions')"/>
+          <xsl:sequence select="$ci:media-type-html"/>
         </xsl:when>
         <xsl:otherwise>
           <xsl:sequence select="()"/>
@@ -298,9 +301,9 @@
 
     <xsl:choose>
       <xsl:when test="exists($media-type)">
-        <xsl:element name="{$media-type[1]}">
+        <xsl:element name="{$media-type}">
           <xsl:attribute name="href" select="xtlc:href-concat(($href-directory, $filename))"/>
-          <xsl:attribute name="usage" select="$media-type[2]"/>
+          <xsl:attribute name="usage" select="local:defaul-usage-type($media-type)"/>
         </xsl:element>
       </xsl:when>
       <xsl:otherwise>
@@ -309,5 +312,23 @@
     </xsl:choose>
 
   </xsl:template>
+
+  <!-- ======================================================================= -->
+
+  <xsl:function name="local:defaul-usage-type" as="xs:string">
+    <xsl:param name="media-type" as="xs:string"/>
+
+    <xsl:choose>
+      <xsl:when test="$media-type eq $ci:media-type-image">
+        <xsl:sequence select="$ci:media-usage-type-overview"/>
+      </xsl:when>
+      <xsl:when test="$media-type eq $ci:media-type-pdf">
+        <xsl:sequence select="$ci:media-usage-type-datasheet"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:sequence select="$ci:media-usage-type-instructions"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:function>
 
 </xsl:stylesheet>
