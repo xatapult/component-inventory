@@ -68,6 +68,7 @@
                 </xs:complexType>
               </xs:element>
             </xs:sequence>
+            <xs:attributeGroup ref="ci:ag-default-base-directory"/>
           </xs:complexType>
         </xs:element>
         <xs:element name="locations">
@@ -96,11 +97,7 @@
                 </xs:complexType>
               </xs:element>
             </xs:sequence>
-            <xs:attribute name="href-default-location" type="ci:t-href-directory">
-              <xs:annotation>
-                <xs:documentation>The default location for dereferencing relative paths. Default is the URI of the containing document.</xs:documentation>
-              </xs:annotation>
-            </xs:attribute>
+            <xs:attributeGroup ref="ci:ag-default-base-directory"/>
           </xs:complexType>
         </xs:element>
       </xs:sequence>

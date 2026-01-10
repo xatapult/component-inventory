@@ -38,4 +38,44 @@
   <xsl:variable name="ci:media-usage-type-instructions" as="xs:string" select="'instructions'"/>
   <xsl:variable name="ci:media-usage-type-datasheet" as="xs:string" select="'datasheet'"/>
 
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+  <xsl:function name="ci:defaul-media-usage-type" as="xs:string">
+    <!-- Determines the default usage type for a specific type of media. -->
+    <xsl:param name="media-type" as="xs:string">
+      <!-- One of the $ci:media-type-* constants defined above. -->
+    </xsl:param>
+
+    <xsl:choose>
+      <xsl:when test="$media-type eq $ci:media-type-image">
+        <xsl:sequence select="$ci:media-usage-type-overview"/>
+      </xsl:when>
+      <xsl:when test="$media-type eq $ci:media-type-pdf">
+        <xsl:sequence select="$ci:media-usage-type-datasheet"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:sequence select="$ci:media-usage-type-instructions"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:function>
+
+  <!-- ======================================================================= -->
+
+  <xsl:function name="ci:default-summary" as="xs:string">
+    <!-- Computes the default summary string for an element (for instance for a category or package). -->
+    <xsl:param name="elm" as="element()"/>
+
+    <xsl:sequence select="ci:default-summary($elm, ())"/>
+  </xsl:function>
+
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+  <xsl:function name="ci:default-summary" as="xs:string">
+    <!-- Computes the default summary string for an element (for instance for a category or package). -->
+    <xsl:param name="elm" as="element()"/>
+    <xsl:param name="default-id" as="xs:string?"/>
+
+    <xsl:sequence select="string-join((xtlc:capitalize(local-name($elm)), xs:string(($elm/@name, $elm/@id, $default-id)[1])), ' ')"/>
+  </xsl:function>
+
 </xsl:stylesheet>

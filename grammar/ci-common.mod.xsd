@@ -85,11 +85,7 @@
               </xs:element>
             </xs:choice>
           </xs:sequence>
-          <xs:attribute name="href-default-location" type="ci:t-href-directory">
-            <xs:annotation>
-              <xs:documentation>The default location for dereferencing relative paths. Default is the URI of the containing document.</xs:documentation>
-            </xs:annotation>
-          </xs:attribute>
+          <xs:attributeGroup ref="ci:ag-default-base-directory"/>
         </xs:complexType>
       </xs:element>
     </xs:sequence>
@@ -158,5 +154,12 @@
   <xs:attributeGroup name="ag-media">
     <xs:attribute name="href" type="ci:t-href-resource" use="required"/>
     <xs:attribute default="overview" name="usage" type="ci:t-media-type"/>
+  </xs:attributeGroup>
+  <xs:attributeGroup name="ag-default-base-directory">
+    <xs:attribute name="href-default-base-directory" type="ci:t-href-directory">
+      <xs:annotation>
+        <xs:documentation>The default directory for resolving all hrefs in further child elements.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
   </xs:attributeGroup>
 </xs:schema>

@@ -81,11 +81,6 @@
           </xs:restriction>
         </xs:simpleType>
       </xs:attribute>-->
-      <xs:attribute default="false" name="partly-in-reserve-stock" type="xs:boolean">
-        <xs:annotation>
-          <xs:documentation>Whether part of the stock is in reserve stock.</xs:documentation>
-        </xs:annotation>
-      </xs:attribute>
       <xs:attribute name="categories-idrefs" default="#unknown">
         <xs:annotation>
           <xs:documentation>A list of the appropriate categories/sub-categories, or unknown.</xs:documentation>
@@ -112,6 +107,22 @@
       <xs:attribute default="#unknown" name="location-idref" type="ci:t-identifier-extended">
         <xs:annotation>
           <xs:documentation>The identifier of the location for this component, or unknwon.</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute default="#unknown" name="since" type="ci:t-date-extended">
+        <xs:annotation>
+          <xs:documentation>Since when is this component registered?
+</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute default="false" name="partly-in-reserve-stock" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>Whether part of the stock is in reserve stock.</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute default="false" name="discontinued" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>Whether the component is discontnued/obsolete.</xs:documentation>
         </xs:annotation>
       </xs:attribute>
     </xs:complexType>
@@ -165,6 +176,16 @@
     <xs:restriction>
       <xs:simpleType>
         <xs:union memberTypes="ci:t-identifier ci:t-special-values-unknown"/>
+      </xs:simpleType>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="t-date-extended">
+    <xs:annotation>
+      <xs:documentation>A date or unknown.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction>
+      <xs:simpleType>
+        <xs:union memberTypes="xs:date ci:t-special-values-unknown"/>
       </xs:simpleType>
     </xs:restriction>
   </xs:simpleType>

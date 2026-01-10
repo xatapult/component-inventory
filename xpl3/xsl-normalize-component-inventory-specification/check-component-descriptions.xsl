@@ -7,6 +7,9 @@
   <!-- 
        Checks all the component descriptions (identifiers, references, etc.).
        Adds warnings and/or errors to the document.
+       
+       Remark: We could have skipped the generated properties (have an _generated="true" attribute) under the assumption
+       these are valid always. I still check these, to check the generation code.
   -->
   <!-- ================================================================== -->
   <!-- SETUP: -->
@@ -28,6 +31,8 @@
 
   <xsl:template match="ci:component">
 
+    <xsl:variable name="component-id" as="xs:string" select="xs:string(@id)"/>
+
     <xsl:copy>
 
       <!-- Find out which properties are mandatory/optional, so we can pass this down: -->
@@ -44,7 +49,6 @@
       </xsl:apply-templates>
 
       <!-- Check ID uniqueness -->
-      <xsl:variable name="component-id" as="xs:string" select="xs:string(@id)"/>
 
       <xsl:variable name="component-id-count" as="xs:integer" select="count($component-ids[. eq $component-id])"/>
       <xsl:if test="$component-id-count gt 1">
@@ -76,6 +80,7 @@
       <xsl:if test="($idref ne $ci:special-value-unknown) and empty($doc/*/ci:packages/ci:package[@id eq $idref])">
         <error>Component id "{$component-id}" refers to non-existing package "{$idref}"</error>
       </xsl:if>
+
     </xsl:copy>
 
   </xsl:template>
@@ -83,21 +88,82 @@
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
   <xsl:template match="ci:property-values">
-    <!-- 
-      * Check doubles 
-      * All mandatory properties must be there
-     
-      Pass ids to -value tempolate
-    -->
+    <xsl:param name="mandatory-property-idrefs" as="xs:string*" required="true" tunnel="true"/>
+
+    <xsl:copy copy-namespaces="false">
+      <xsl:apply-templates select="@* | node()"/>
+
+      <!-- Check whether all mandatory properties are present: -->
+      <xsl:variable name="mandatory-property-ids-not-found" as="xs:string*"
+        select="for $p in $mandatory-property-idrefs return (if (exists(ci:property-value[xs:string(@property-idref) eq $p])) then () else $p)"/>
+
+      <xsl:if test="exists($mandatory-property-ids-not-found)">
+        <error>Undefined mandatory properties {local:quoted-string-list($mandatory-property-ids-not-found)}</error>
+      </xsl:if>
+
+    </xsl:copy>
+
   </xsl:template>
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-  <xsl:template match="ci:property-value"> 
-  
-  
-  <!-- Check id allowed
-  check value--></xsl:template>
+  <xsl:template match="ci:property-value">
+    <xsl:param name="mandatory-property-idrefs" as="xs:string*" required="true" tunnel="true"/>
+    <xsl:param name="optional-property-idrefs" as="xs:string*" required="true" tunnel="true"/>
 
+    <xsl:variable name="property-idref" as="xs:string" select="xs:string(@property-idref)"/>
+    <xsl:variable name="property-elm" as="element(ci:property)?"
+      select="/ci:component-inventory-specification/ci:properties/ci:property[xs:string(@id) eq $property-idref]"/>
+
+    <xsl:copy copy-namespaces="false">
+      <xsl:apply-templates select="@* | node()"/>
+
+      <xsl:choose>
+
+        <xsl:when test="exists($property-elm)">
+
+          <!-- Check whether this property is allowed at all: -->
+          <xsl:if test="not(($property-idref = $mandatory-property-idrefs) or ($property-idref = $optional-property-idrefs))">
+            <error>Property id "{$property-idref}" not allowed (given the component categories)</error>
+          </xsl:if>
+
+          <!-- Check whether this property is unique: -->
+          <xsl:variable name="property-count" as="xs:integer" select="count(../ci:property-value[xs:string(@property-idref) eq $property-idref])"/>
+          <xsl:if test="$property-count gt 1">
+            <error>Property id "{$property-idref}" not unique (occurs {$property-count} times)</error>
+          </xsl:if>
+
+          <!-- Check whether the value of this property is ok: -->
+          <xsl:variable name="property-value" as="xs:string" select="xs:string(@value)"/>
+          <xsl:if test="$property-value ne $ci:special-value-unknown">
+            <xsl:variable name="property-elm" as="element(ci:property)"
+              select="/ci:component-inventory-specification/ci:properties/ci:property[xs:string(@id) eq $property-idref]"/>
+            <xsl:variable name="property-value-pattern" as="xs:string?" select="xs:string($property-elm/@value-pattern)"/>
+            <xsl:if test="exists($property-value-pattern)">
+              <xsl:if test="not(matches($property-value, $property-value-pattern))">
+                <error>Property id "{$property-idref}" value "{$property-value}" is invalid (against property value pattern
+                  "{$property-value-pattern}")</error>
+              </xsl:if>
+            </xsl:if>
+          </xsl:if>
+        </xsl:when>
+
+        <xsl:otherwise>
+          <error>Property id "{$property-idref}" does not exist</error>
+        </xsl:otherwise>
+
+      </xsl:choose>
+    </xsl:copy>
+  </xsl:template>
+
+  <!-- ======================================================================= -->
+
+  <xsl:function name="local:quoted-string-list" as="xs:string?">
+    <xsl:param name="strings" as="xs:string*"/>
+
+    <xsl:if test="exists($strings)">
+      <xsl:sequence select="'&quot;' || string-join($strings, '&quot;, &quot;') || '&quot;'"/>
+    </xsl:if>
+  </xsl:function>
 
 </xsl:stylesheet>

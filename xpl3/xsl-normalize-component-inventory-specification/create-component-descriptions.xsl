@@ -45,7 +45,9 @@
     <!-- This is a match on a directory containing a component description file. -->
     <xsl:param name="component-description-document-regexp" as="xs:string" required="true" tunnel="true"/>
 
-    <xsl:variable name="default-id" as="xs:string" select="xs:string(@name)"/>
+    <xsl:variable name="default-id" as="xs:string" select="xs:string(@name)">
+      <!-- The default identifier for a component is its directory name. -->
+    </xsl:variable>
     <xsl:variable name="href-directory" as="xs:string" select="xtlc:href-concat(ancestor-or-self::c:directory/@xml:base) => xtlc:href-canonical()"/>
     <xsl:variable name="filename-component-document" as="xs:string"
       select="xs:string((c:file[matches(@name, $component-description-document-regexp)][1])/@name)"/>
@@ -64,7 +66,7 @@
             <!-- Something is wrong with the root element. Fix this and leave a warning. -->
             <xsl:document>
               <component id="{$default-id}">
-                <xsl:attribute name="xml:base" select="$href-directory"/>
+                <xsl:attribute name="xml:base" select="$href-component-document"/>
                 <error>Component description document "{$filename-component-document}" has an invalid root element</error>
               </component>
             </xsl:document>
@@ -75,7 +77,7 @@
         <xsl:catch>
           <xsl:document>
             <component id="{$default-id}">
-              <xsl:attribute name="xml:base" select="$href-directory"/>
+              <xsl:attribute name="xml:base" select="$href-component-document"/>
               <error>Component description document "{$filename-component-document}" not well-formed</error>
             </component>
           </xsl:document>
@@ -93,11 +95,12 @@
       <xsl:otherwise>
         <xsl:apply-templates select="$component-document" mode="mode-process-component-description">
           <xsl:with-param name="default-id" as="xs:string" select="$default-id" tunnel="true"/>
-          <xsl:with-param name="href-directory" as="xs:string" select="$href-directory" tunnel="true"/>
+          <xsl:with-param name="href-component-document" as="xs:string" select="$href-component-document" tunnel="true"/>
           <xsl:with-param name="possible-media-files" as="element(c:file)*" select="c:file[xs:string(@name) ne $filename-component-document]"
             tunnel="true"/>
         </xsl:apply-templates>
       </xsl:otherwise>
+
     </xsl:choose>
 
   </xsl:template>
@@ -106,18 +109,17 @@
 
   <xsl:template match="/ci:component" mode="mode-process-component-description">
     <xsl:param name="default-id" as="xs:string" required="true" tunnel="true"/>
-    <xsl:param name="href-directory" as="xs:string" required="true" tunnel="true"/>
+    <xsl:param name="href-component-document" as="xs:string" required="true" tunnel="true"/>
     <xsl:param name="possible-media-files" as="element(c:file)*" required="true" tunnel="true"/>
 
     <xsl:variable name="component-element" as="element(ci:component)" select="."/>
+    <xsl:variable name="href-directory" as="xs:string" select="xtlc:href-path($href-component-document)"/>
 
     <!-- Copy the element and complete it: -->
     <xsl:copy copy-namespaces="false">
-      <xsl:attribute name="xml:base" select="$href-directory"/>
+      <xsl:attribute name="xml:base" select="$href-component-document"/>
 
       <!-- Make sure all attributes for a component description are there, event when they're unknown: -->
-      <xsl:variable name="attributes-defaulting-to-unknown" as="xs:string+"
-        select="('count', 'categories-idrefs', 'price-range-idref', 'package-idref', 'location-idref')"/>
       <xsl:call-template name="process-attribute">
         <xsl:with-param name="attribute-name" select="'id'"/>
         <xsl:with-param name="default" select="$default-id"/>
@@ -126,16 +128,27 @@
         <xsl:with-param name="attribute-name" select="'name'"/>
         <xsl:with-param name="default" select="$default-id"/>
       </xsl:call-template>
+      <xsl:call-template name="process-attribute">
+        <xsl:with-param name="attribute-name" select="'summary'"/>
+        <xsl:with-param name="default" select="ci:default-summary($component-element, $default-id)"/>
+      </xsl:call-template>
+      <xsl:call-template name="process-attribute">
+        <xsl:with-param name="attribute-name" select="'partly-in-reserve-stock'"/>
+        <xsl:with-param name="default" select="'false'"/>
+      </xsl:call-template>
+      <xsl:call-template name="process-attribute">
+        <xsl:with-param name="attribute-name" select="'discontinued'"/>
+        <xsl:with-param name="default" select="'false'"/>
+      </xsl:call-template>
+      
+      <xsl:variable name="attributes-defaulting-to-unknown" as="xs:string+"
+        select="('count', 'categories-idrefs', 'price-range-idref', 'package-idref', 'location-idref', 'since')"/>
       <xsl:for-each select="$attributes-defaulting-to-unknown">
         <xsl:call-template name="process-attribute">
           <xsl:with-param name="elm" select="$component-element"/>
           <xsl:with-param name="attribute-name" select="."/>
         </xsl:call-template>
       </xsl:for-each>
-      <xsl:call-template name="process-attribute">
-        <xsl:with-param name="attribute-name" select="'partly-in-reserve-stock'"/>
-        <xsl:with-param name="default" select="'false'"/>
-      </xsl:call-template>
 
       <!-- Handle the property values: -->
       <xsl:choose>
@@ -160,11 +173,13 @@
       <xsl:choose>
         <xsl:when test="exists($component-element/ci:media)">
           <!-- There is an existing media element. Just copy it. Checking will be done later on in the processing pipeline: -->
-          <xsl:apply-templates select="$component-element/ci:media" mode="#current"/>
+          <xsl:apply-templates select="$component-element/ci:media" mode="#current">
+            <xsl:with-param name="href-directory" select="$href-directory" tunnel="true"/>
+          </xsl:apply-templates>
         </xsl:when>
         <xsl:otherwise>
           <!-- No existing media information. Generate something from all the files in the directory: -->
-          <media _generated="true" href-default-location="{$href-directory}">
+          <media _generated="true" href-default-base-directory="{$href-directory}">
             <xsl:for-each select="$possible-media-files">
               <xsl:sort select="xs:string(@name)"/>
               <xsl:call-template name="handle-media-file">
@@ -192,29 +207,40 @@
     <xsl:param name="possible-media-files" as="element(c:file)*" required="true" tunnel="true"/>
 
     <xsl:copy copy-namespaces="false">
-      <xsl:apply-templates select="@* except @href-default-location"/>
-      <xsl:attribute name="href-default-location" select="xs:string((@href-default-location, $href-directory)[1]) => xtlc:href-canonical()"/>
-
-      <xsl:variable name="href-default-referenced-media-directory" as="xs:string"
-        select="xs:string((@href-default-location, $href-directory)[1]) => xtlc:href-canonical()"/>
+      <xsl:apply-templates select="@* except @href-default-base-directory"/>
+      
+      <!-- Get the right base directory: -->
+      <xsl:variable name="href-default-base-directory" as="xs:string">
+        <xsl:choose>
+          <xsl:when test="normalize-space(@href-default-base-directory) eq ''">
+            <!-- No default base directory present, use the directory of the component: -->
+            <xsl:sequence select="$href-directory"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <!-- Make sure the default base directory present is absolute: -->
+            <xsl:sequence select="xtlc:href-concat(($href-directory, @href-default-base-directory)) => xtlc:href-canonical()"/>
+          </xsl:otherwise>  
+        </xsl:choose>
+      </xsl:variable>
+      <xsl:attribute name="href-default-base-directory" select="$href-default-base-directory"/>
 
       <!-- First copy all the children, making the hrefs absolute: -->
-      <!-- Remark: We would also like to check here whether these files actually exist, but we can't do this. 
+      <!-- Remark: We would also like to check here whether these files actually exist, but we can't do this in XSLT. 
         So we'll leave that for something outside this stylesheet. -->
-      <xsl:for-each select="ci:*">
+      <xsl:for-each select="ci:*[exists(@href)]">
         <xsl:copy copy-namespaces="false">
           <xsl:apply-templates select="@* except @href"/>
-          <xsl:attribute name="href" select="xtlc:href-concat(($href-default-referenced-media-directory, @href)) => xtlc:href-canonical()"/>
+          <xsl:attribute name="href" select="xtlc:href-concat(($href-default-base-directory, @href)) => xtlc:href-canonical()"/>
           <xsl:if test="empty(@usage)">
-            <xsl:attribute name="usage" select="local:defaul-usage-type(local-name(.))"/>
+            <xsl:attribute name="usage" select="ci:defaul-media-usage-type(local-name(.))"/>
           </xsl:if>
           <xsl:apply-templates/>
         </xsl:copy>
       </xsl:for-each>
 
-      <!-- Now check whether all files are mentioned: -->
+      <!-- Now check whether all files in the base directory are mentioned: -->
       <xsl:variable name="hrefs-referenced-media" as="xs:string*"
-        select="for $m in ci:* return (xtlc:href-concat(($href-default-referenced-media-directory, $m/@href)) => xtlc:href-canonical())"/>
+        select="for $m in ci:* return (xtlc:href-concat(($href-default-base-directory, $m/@href)) => xtlc:href-canonical())"/>
       <xsl:for-each select="$possible-media-files">
         <xsl:variable name="media-filename" as="xs:string" select="xs:string(@name)"/>
         <xsl:variable name="href-media" as="xs:string" select="xtlc:href-concat(($href-directory, $media-filename))"/>
@@ -222,7 +248,6 @@
           <warning>Possible media file "{$media-filename}" not referenced</warning>
         </xsl:if>
       </xsl:for-each>
-
 
     </xsl:copy>
 
@@ -232,6 +257,7 @@
   <!-- ======================================================================= -->
 
   <xsl:template name="process-attribute">
+    <!-- Check whether this attribute is present and filled. if not, create one with a default value. -->
     <xsl:param name="attribute-name" as="xs:string" required="true"/>
     <xsl:param name="elm" as="element()" required="false" select="."/>
     <xsl:param name="default" as="xs:string" required="false" select="$ci:special-value-unknown"/>
@@ -254,7 +280,7 @@
     <xsl:param name="href-directory" as="xs:string" required="true"/>
     <xsl:param name="filename" as="xs:string" required="true"/>
 
-    <!-- Determine the most likely media type and usage (as a tuple). The type will be used as the element name! -->
+    <!-- Determine the most likely media type. The type will be used as the element name! -->
     <xsl:variable name="extension" as="xs:string" select="xtlc:href-ext($filename) => lower-case()"/>
     <xsl:variable name="media-type" as="xs:string*">
       <xsl:choose>
@@ -303,7 +329,7 @@
       <xsl:when test="exists($media-type)">
         <xsl:element name="{$media-type}">
           <xsl:attribute name="href" select="xtlc:href-concat(($href-directory, $filename))"/>
-          <xsl:attribute name="usage" select="local:defaul-usage-type($media-type)"/>
+          <xsl:attribute name="usage" select="ci:defaul-media-usage-type($media-type)"/>
         </xsl:element>
       </xsl:when>
       <xsl:otherwise>
@@ -312,23 +338,5 @@
     </xsl:choose>
 
   </xsl:template>
-
-  <!-- ======================================================================= -->
-
-  <xsl:function name="local:defaul-usage-type" as="xs:string">
-    <xsl:param name="media-type" as="xs:string"/>
-
-    <xsl:choose>
-      <xsl:when test="$media-type eq $ci:media-type-image">
-        <xsl:sequence select="$ci:media-usage-type-overview"/>
-      </xsl:when>
-      <xsl:when test="$media-type eq $ci:media-type-pdf">
-        <xsl:sequence select="$ci:media-usage-type-datasheet"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:sequence select="$ci:media-usage-type-instructions"/>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:function>
 
 </xsl:stylesheet>

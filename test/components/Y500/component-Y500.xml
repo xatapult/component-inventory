@@ -1,7 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component xmlns="https://eriksiegel.nl/ns/component-inventory"
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd" count="3" package-idref="XYZ" categories-idrefs="B.B-A">
+ xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd" count="3" package-idref="XYZ" >
+  
+  <property-values>
+    <property-value property-idref="PA" value="WEIRD"/>
+    <property-value property-idref="PA" value="A"/>
+    <property-value property-idref="PAERROR" value="A"/>
+    
+  </property-values>
+  
+  <media>
+    <pdf href="74HC10.pdf"/>
+    <pdf href="74HC10-EEE.pdf"/>
+    
+  </media>
   
   
 </component>

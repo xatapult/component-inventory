@@ -42,16 +42,11 @@
     <p:documentation>The resulting normalized components definition document.</p:documentation>
   </p:output>
 
-  <!-- ======================================================================= -->
-  <!-- OPTIONS: -->
-
-
-
   <!-- ================================================================== -->
   <!-- MAIN: -->
 
   <!-- Setup: -->
-  <p:variable name="base-uri" as="xs:string" select="base-uri(/) => xtlc:href-canonical()"/>
+  <p:variable name="start-timestamp" as="xs:dateTime" select="current-dateTime()"/>
 
   <!-- First check whether our input is ok: -->
   <xtlc:validate simplify-error-messages="false">
@@ -64,33 +59,77 @@
   <p:namespace-delete prefixes="xsi"/>
   <p:delete match="processing-instruction(xml-model)"/>
 
+  <!-- Make sure all URIs are there and are absolute: -->
+  <p:add-xml-base relative="false"/>
+  <p:xslt>
+    <p:with-input port="stylesheet" href="xsl-normalize-component-inventory-specification/prepare-hrefs.xsl"/>
+  </p:xslt>
+
+  <!-- Add names etc. to everything that needs it: -->
+  <p:xslt>
+    <p:with-input port="stylesheet" href="xsl-normalize-component-inventory-specification/prepare-names.xsl"/>
+  </p:xslt>
+
   <!-- Flatten the category list: -->
   <p:xslt>
     <p:with-input port="stylesheet" href="xsl-normalize-component-inventory-specification/flatten-categories.xsl"/>
   </p:xslt>
-  
+
   <!-- Get the directory information on-board for the components: -->
   <p:viewport match="ci:components/ci:directory" name="get-directory-information">
-    <p:variable name="href-directory" as="xs:string" select="resolve-uri(/*/@href, $base-uri)"/>
     <xtlc:recursive-directory-list name="directory-information">
-      <p:with-option name="path" select="$href-directory"/>
+      <p:with-option name="path" select="xs:string(/*/@href)"/>
     </xtlc:recursive-directory-list>
     <p:insert position="first-child">
       <p:with-input pipe="current@get-directory-information"/>
       <p:with-input port="insertion" pipe="@directory-information"/>
     </p:insert>
   </p:viewport>
-  
+
   <!-- Process this information into full component specifications: -->
   <p:xslt>
     <p:with-input port="stylesheet" href="xsl-normalize-component-inventory-specification/create-component-descriptions.xsl"/>
   </p:xslt>
-  
+
   <!-- And now check all the component specifications: -->
   <p:xslt>
     <p:with-input port="stylesheet" href="xsl-normalize-component-inventory-specification/check-component-descriptions.xsl"/>
   </p:xslt>
-  
-  
 
+  <!-- An finally check whether all media files referenced (that are not generated) exist: -->
+  <p:viewport match="ci:media[not(xs:boolean((@_generated, false())[1]))]/ci:*[exists(@href)]" name="check-media-file-existence">
+    <p:variable name="href" as="xs:string" select="xs:string(/*/@href)"/>
+    <p:try>
+
+      <p:file-info fail-on-error="true">
+        <p:with-option name="href" select="$href"/>
+      </p:file-info>
+      <!-- If we reach this point, the file exists, just return the original element: -->
+      <p:identity>
+        <p:with-input pipe="current@check-media-file-existence"/>
+      </p:identity>
+
+      <p:catch>
+        <!-- Some error, assume file not found. Insert an error message. -->
+        <p:insert position="last-child">
+          <p:with-input pipe="current@check-media-file-existence"/>
+          <p:with-input port="insertion">
+            <ci:error>Media file "{$href}" not found</ci:error>
+          </p:with-input>
+        </p:insert>
+      </p:catch>
+
+    </p:try>
+  </p:viewport>
+
+  <!-- Done. Record some stuff on the root element: -->
+  <p:set-attributes>
+    <p:with-option name="attributes" select="map{
+      'error-count': count(//ci:error),
+      'warning-count': count(//ci:warning),
+      'timestamp-normalization': xs:string($start-timestamp),
+      'duration-normalization': xs:string(current-dateTime() - $start-timestamp)
+    }"/>
+  </p:set-attributes>
+  
 </p:declare-step>
