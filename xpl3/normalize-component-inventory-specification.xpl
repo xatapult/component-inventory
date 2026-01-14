@@ -3,7 +3,7 @@
   xmlns:array="http://www.w3.org/2005/xpath-functions/array" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:local="#local.flf_2tl_whc"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xtlc="http://www.xtpxlib.nl/ns/common"
   xmlns:ci="https://eriksiegel.nl/ns/component-inventory" version="3.0" exclude-inline-prefixes="#all"
-  name="normalize-component-inventory-specification">
+  name="normalize-component-inventory-specification" type="ci:normalize-component-inventory-specification">
 
   <p:documentation>
     This pipeline normalizes a component inventory specification. That means:
@@ -22,6 +22,7 @@
 
   <p:import href="file:/xatapult/xtpxlib-common/xpl3mod/validate/validate.xpl"/>
   <p:import href="file:/xatapult/xtpxlib-common/xpl3mod/recursive-directory-list/recursive-directory-list.xpl"/>
+  <p:import href="file:/xatapult/xtpxlib-common/xpl3mod/expand-macro-definitions/expand-macro-definitions.xpl"/>
 
   <!-- ======================================================================= -->
   <!-- STATIC OPTIONS: -->
@@ -48,7 +49,10 @@
   <!-- Setup: -->
   <p:variable name="start-timestamp" as="xs:dateTime" select="current-dateTime()"/>
 
-  <!-- First check whether our input is ok: -->
+  <!-- Do an initial expand of the macro-definitions: -->
+  <xtlc:expand-macro-definitions/>
+
+  <!-- Check whether our input is ok: -->
   <xtlc:validate simplify-error-messages="false">
     <p:with-option name="href-schema" select="$href-schema-specification"/>
     <p:with-option name="href-schematron" select="$href-schematron-specification"/>
@@ -90,10 +94,16 @@
   <p:xslt>
     <p:with-input port="stylesheet" href="xsl-normalize-component-inventory-specification/create-component-descriptions.xsl"/>
   </p:xslt>
+  <xtlc:expand-macro-definitions/>
 
-  <!-- And now check all the component specifications: -->
+  <!-- Check all the component specifications: -->
   <p:xslt>
     <p:with-input port="stylesheet" href="xsl-normalize-component-inventory-specification/check-component-descriptions.xsl"/>
+  </p:xslt>
+
+  <!-- Add reference counts (so we can report on unreferenced items): -->
+  <p:xslt>
+    <p:with-input port="stylesheet" href="xsl-normalize-component-inventory-specification/add-reference-counts.xsl"/>
   </p:xslt>
 
   <!-- An finally check whether all media files referenced (that are not generated) exist: -->
@@ -131,5 +141,5 @@
       'duration-normalization': xs:string(current-dateTime() - $start-timestamp)
     }"/>
   </p:set-attributes>
-  
+
 </p:declare-step>

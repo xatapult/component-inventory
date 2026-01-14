@@ -12,6 +12,7 @@
       <xs:documentation>Base complex type for a definition of something.</xs:documentation>
     </xs:annotation>
     <xs:sequence>
+      <xs:group minOccurs="0" ref="ci:g-macrodefs"/>
       <xs:element minOccurs="0" name="description">
         <xs:annotation>
           <xs:documentation>Optional longer description of the definition in SML.</xs:documentation>
@@ -149,6 +150,11 @@
       <xs:enumeration value="usage-example"/>
       <xs:enumeration value="instructions"/>
       <xs:enumeration value="datasheet"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="t-non-empty-string">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
     </xs:restriction>
   </xs:simpleType>
   <xs:attributeGroup name="ag-media">

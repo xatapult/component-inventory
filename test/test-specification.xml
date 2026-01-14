@@ -29,7 +29,9 @@
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
   <price-ranges>
-    <price-range min-inclusive="5.1" max-inclusive="100000" id="expensive"/>
+    <price-range min-inclusive="5.1" max-inclusive="100000" id="expensive">
+      
+    </price-range>
     <price-range min-inclusive="1.1" max-inclusive="5" id="midprice"/>
     <price-range min-inclusive="0.0" max-inclusive="1" id="cheap2"/>
   </price-ranges>
@@ -39,8 +41,11 @@
   <packages href-default-base-directory="XXXX">
     <package id="DIP16" name="asc"/>
     <package id="DIP14" name="asc">
+      <macrodefs>
+        <macrodef name="ID" value="DIP14YYYYYY"/>
+      </macrodefs>
       <media href-default-base-directory="YYYY">
-        <image href="DIP14.jpg"/>
+        <image href="{$ID}.jpg"/>
       </media>
     </package>
 
