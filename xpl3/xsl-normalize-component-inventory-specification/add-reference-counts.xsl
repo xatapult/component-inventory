@@ -34,7 +34,7 @@
   <xsl:template match="ci:categories/ci:category">
     <xsl:variable name="id" as="xs:string" select="xs:string(@id)"/>
     <xsl:call-template name="handle-reference-count">
-      <xsl:with-param name="reference-count" select="count($components[$id = xtlc:str2seq(@categories-idrefs)])"/>
+      <xsl:with-param name="reference-count" select="count($components[$id = xtlc:str2seq(@category-idrefs)])"/>
     </xsl:call-template>
   </xsl:template>
   

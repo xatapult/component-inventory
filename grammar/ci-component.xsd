@@ -81,7 +81,7 @@
           </xs:restriction>
         </xs:simpleType>
       </xs:attribute>-->
-      <xs:attribute name="categories-idrefs" default="#unknown">
+      <xs:attribute name="category-idrefs" default="#unknown">
         <xs:annotation>
           <xs:documentation>A list of the appropriate categories/sub-categories, or unknown.</xs:documentation>
         </xs:annotation>

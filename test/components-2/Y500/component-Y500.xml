@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component xmlns="https://eriksiegel.nl/ns/component-inventory"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd" count="3" package-idref="DIP16" category-idrefs="ICS.LOGIC" location-idref="BOX" price-range-idref="cheap">
+  
+  <property-values>
+    <property-value property-idref="VOLTAGE" value="5"/>
+    <property-value property-idref="CURRENT" value="25"/>
+  </property-values>
+  
+  
+</component>

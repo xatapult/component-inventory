@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component xmlns="https://eriksiegel.nl/ns/component-inventory" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd"
+  category-idrefs="RELAYS.SMALL" price-range-idref="midprice" package-idref="RELAY" location-idref="BOX2">
+  
+  <property-values>
+    <property-value property-idref="VOLTAGE" value="24"/>
+    <property-value property-idref="CONTACTS" value="2"/>
+    <property-value property-idref="RELAYTYPE" value="SPECIAL"/>
+  </property-values>
+
+</component>

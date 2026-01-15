@@ -17,7 +17,6 @@
   <xsl:mode name="mode-process-component-description" on-no-match="shallow-copy"/>
 
   <xsl:include href="../../xslmod/ci-common.mod.xsl"/>
-  <xsl:include href="file:/xatapult/xtpxlib-common/xslmod/href.mod.xsl"/>
 
   <!-- ================================================================== -->
   <!-- GLOBAL DECLARATIONS: -->
@@ -41,7 +40,7 @@
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-  <xsl:template match="c:directory">
+  <xsl:template match="ci:components/ci:directory//c:directory">
     <!-- This is a match on a directory containing a component description file. -->
     <xsl:param name="component-description-document-regexp" as="xs:string" required="true" tunnel="true"/>
 
@@ -140,9 +139,9 @@
         <xsl:with-param name="attribute-name" select="'discontinued'"/>
         <xsl:with-param name="default" select="'false'"/>
       </xsl:call-template>
-      
+
       <xsl:variable name="attributes-defaulting-to-unknown" as="xs:string+"
-        select="('count', 'categories-idrefs', 'price-range-idref', 'package-idref', 'location-idref', 'since')"/>
+        select="('count', 'category-idrefs', 'price-range-idref', 'package-idref', 'location-idref', 'since')"/>
       <xsl:for-each select="$attributes-defaulting-to-unknown">
         <xsl:call-template name="process-attribute">
           <xsl:with-param name="elm" select="$component-element"/>
@@ -158,7 +157,7 @@
         </xsl:when>
         <xsl:otherwise>
           <!-- There are no existing property values. Create it for the mandatory properties, value unknown. -->
-          <xsl:variable name="component-categories" as="xs:string*" select="xtlc:str2seq($component-element/@categories-idrefs)"/>
+          <xsl:variable name="component-categories" as="xs:string*" select="xtlc:str2seq($component-element/@category-idrefs)"/>
           <xsl:variable name="mandatory-properties" as="xs:string*"
             select="distinct-values(for $c in $component-categories return xtlc:str2seq($flattened-categories-element/ci:category[xs:string(@id) eq $c]/@mandatory-property-idrefs))"/>
           <property-values _generated="true">
@@ -179,15 +178,17 @@
         </xsl:when>
         <xsl:otherwise>
           <!-- No existing media information. Generate something from all the files in the directory: -->
-          <media _generated="true" href-default-base-directory="{$href-directory}">
-            <xsl:for-each select="$possible-media-files">
-              <xsl:sort select="xs:string(@name)"/>
-              <xsl:call-template name="handle-media-file">
-                <xsl:with-param name="href-directory" select="$href-directory"/>
-                <xsl:with-param name="filename" select="xs:string(@name)"/>
-              </xsl:call-template>
-            </xsl:for-each>
-          </media>
+          <xsl:where-populated>
+            <media _generated="true" href-default-base-directory="{$href-directory}">
+              <xsl:for-each select="$possible-media-files">
+                <xsl:sort select="xs:string(@name)"/>
+                <xsl:call-template name="ci:handle-media-file">
+                  <xsl:with-param name="href-directory" select="$href-directory"/>
+                  <xsl:with-param name="filename" select="xs:string(@name)"/>
+                </xsl:call-template>
+              </xsl:for-each>
+            </media>
+          </xsl:where-populated>
         </xsl:otherwise>
       </xsl:choose>
 
@@ -208,7 +209,7 @@
 
     <xsl:copy copy-namespaces="false">
       <xsl:apply-templates select="@* except @href-default-base-directory"/>
-      
+
       <!-- Get the right base directory: -->
       <xsl:variable name="href-default-base-directory" as="xs:string">
         <xsl:choose>
@@ -219,7 +220,7 @@
           <xsl:otherwise>
             <!-- Make sure the default base directory present is absolute: -->
             <xsl:sequence select="xtlc:href-concat(($href-directory, @href-default-base-directory)) => xtlc:href-canonical()"/>
-          </xsl:otherwise>  
+          </xsl:otherwise>
         </xsl:choose>
       </xsl:variable>
       <xsl:attribute name="href-default-base-directory" select="$href-default-base-directory"/>
@@ -269,71 +270,6 @@
       </xsl:when>
       <xsl:otherwise>
         <xsl:copy-of select="$attr"/>
-      </xsl:otherwise>
-    </xsl:choose>
-
-  </xsl:template>
-
-  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-
-  <xsl:template name="handle-media-file">
-    <xsl:param name="href-directory" as="xs:string" required="true"/>
-    <xsl:param name="filename" as="xs:string" required="true"/>
-
-    <!-- Determine the most likely media type. The type will be used as the element name! -->
-    <xsl:variable name="extension" as="xs:string" select="xtlc:href-ext($filename) => lower-case()"/>
-    <xsl:variable name="media-type" as="xs:string*">
-      <xsl:choose>
-        <xsl:when test="$extension = ('jpg', 'jpeg', 'png', 'svg')">
-          <xsl:sequence select="$ci:media-type-image"/>
-        </xsl:when>
-        <xsl:when test="$extension = ('pdf')">
-          <xsl:sequence select="$ci:media-type-pdf"/>
-        </xsl:when>
-        <xsl:when test="$extension = ('txt', 'text')">
-          <xsl:sequence select="$ci:media-type-text"/>
-        </xsl:when>
-        <xsl:when test="$extension = ('md')">
-          <xsl:sequence select="$ci:media-type-markdown"/>
-        </xsl:when>
-        <xsl:when test="$extension = ('xml')">
-          <!-- For an XML file we have to find out if it has recognizable contents: -->
-          <xsl:variable name="href-media-document" as="xs:string" select="xtlc:href-concat(($href-directory, $filename))"/>
-          <xsl:try>
-            <xsl:variable name="root-element" as="element()" select="doc($href-media-document)/*"/>
-            <xsl:choose>
-              <xsl:when test="exists($root-element/self::sml:sml)">
-                <xsl:sequence select="$ci:media-type-sml"/>
-              </xsl:when>
-              <xsl:otherwise>
-                <!-- We cannot handle this XML document: -->
-                <xsl:sequence select="()"/>
-              </xsl:otherwise>
-            </xsl:choose>
-            <xsl:catch>
-              <!-- Some error, probably not well-formed. -->
-              <xsl:sequence select="()"/>
-            </xsl:catch>
-          </xsl:try>
-        </xsl:when>
-        <xsl:when test="$extension = ('htm', 'html')">
-          <xsl:sequence select="$ci:media-type-html"/>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:sequence select="()"/>
-        </xsl:otherwise>
-      </xsl:choose>
-    </xsl:variable>
-
-    <xsl:choose>
-      <xsl:when test="exists($media-type)">
-        <xsl:element name="{$media-type}">
-          <xsl:attribute name="href" select="xtlc:href-concat(($href-directory, $filename))"/>
-          <xsl:attribute name="usage" select="ci:defaul-media-usage-type($media-type)"/>
-        </xsl:element>
-      </xsl:when>
-      <xsl:otherwise>
-        <warning>Could not determine media-type for file "{$filename}"</warning>
       </xsl:otherwise>
     </xsl:choose>
 

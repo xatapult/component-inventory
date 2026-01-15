@@ -6,67 +6,58 @@
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
   <properties>
-    <property id="PA" value-pattern="A|B" default="A"/>
-    <property id="CA"/>
-    <property id="XA"/>
-    <!--  -->
+    <property id="VOLTAGE" value-pattern="^[0-9][0-9]*$"/>
+    <property id="CONTACTS" value-pattern="^[0-9][0-9]*$"/>
+    <property id="CURRENT" value-pattern="^[0-9][0-9]*$"/>
+    <property id="RELAYTYPE" value-pattern="^(NORMAL|SPECIAL)$" default="NORMAL"/>
   </properties>
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
   <categories>
-    <category id="A" mandatory-property-idrefs="PA " optional-property-idrefs="CA"/>
-    <category id="B" mandatory-property-idrefs="PA" optional-property-idrefs="CA">
-      <categories sub-category-mandatory="false">
-        <category id="B-A" mandatory-property-idrefs="XA"/>
-        <category id="B-B"/>
+
+    <category id="ICS" name="ICs" summary="Integrated circuits" mandatory-property-idrefs="VOLTAGE" optional-property-idrefs="CURRENT">
+      <categories sub-category-mandatory="true">
+        <category id="LOGIC" name="Logic ICs"/>
+        <category id="OPAMP" name="Opamp ICs"/>
       </categories>
     </category>
 
-    <!--  -->
+    <category id="RELAYS" name="Relays" mandatory-property-idrefs="VOLTAGE CONTACTS" optional-property-idrefs="CURRENT RELAYTYPE">
+      <categories sub-category-mandatory="false">
+        <category id="SMALL" name="Small relays"/>
+        <category id="BIG" name="Big relays"/>
+      </categories>
+    </category>
+
   </categories>
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
   <price-ranges>
-    
-    <price-range min-inclusive="5.1" max-inclusive="100000" id="expensive">
-      
-    </price-range>
+    <price-range min-inclusive="0.0" max-inclusive="1" id="cheap"/>
     <price-range min-inclusive="1.1" max-inclusive="5" id="midprice"/>
-    <price-range min-inclusive="0.0" max-inclusive="1" id="cheap2"/>
   </price-ranges>
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
   <packages href-default-base-directory="../resources/packaging/">
-    <package id="DIP16" name="asc"/>
-    <package id="DIP14" name="asc">
-      <macrodefs>
-        <macrodef name="ID" value="DIP14YYYYYY"/>
-      </macrodefs>
-      <media href-default-base-directory="YYYY">
-        <image href="{$ID}.jpg"/>
-      </media>
-    </package>
-
+    <package id="DIP16"/>
+    <!--<package id="DIP14"/>-->
+    <package id="RELAY"/>
   </packages>
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
   <locations>
-    <location id="AAA">
-      <description>
-        <sml:para>This about location AAA</sml:para>
-      </description>
-    </location>
-    <!--  -->
+    <location id="BOX" name="Box" summary="Box on the shelf"/>
+    <location id="BOX2" name="Box 2" summary="Another box on the shelf"/>
   </locations>
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
   <components>
-    <directory href="components/" component-description-document-regexp="^component-.+\.xml$"/>
+    <directory href="components-2/" component-description-document-regexp="^component-.+\.xml$"/>
   </components>
 
 </component-inventory-specification>

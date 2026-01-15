@@ -36,11 +36,11 @@
     <xsl:copy>
 
       <!-- Find out which properties are mandatory/optional, so we can pass this down: -->
-      <xsl:variable name="categories-idrefs" as="xs:string*" select="xtlc:str2seq(@categories-idrefs)[. ne $ci:special-value-unknown]"/>
+      <xsl:variable name="category-idrefs" as="xs:string*" select="xtlc:str2seq(@category-idrefs)[. ne $ci:special-value-unknown]"/>
       <xsl:variable name="mandatory-property-idrefs" as="xs:string*"
-        select="distinct-values(for $c in $categories-idrefs return xtlc:str2seq(/*/ci:categories/ci:category[@id eq $c]/@mandatory-property-idrefs))"/>
+        select="distinct-values(for $c in $category-idrefs return xtlc:str2seq(/*/ci:categories/ci:category[@id eq $c]/@mandatory-property-idrefs))"/>
       <xsl:variable name="optional-property-idrefs" as="xs:string*"
-        select="distinct-values(for $c in $categories-idrefs return xtlc:str2seq(/*/ci:categories/ci:category[@id eq $c]/@optional-property-idrefs))"/>
+        select="distinct-values(for $c in $category-idrefs return xtlc:str2seq(/*/ci:categories/ci:category[@id eq $c]/@optional-property-idrefs))"/>
 
       <!-- Check the contents of the component: -->
       <xsl:apply-templates select="@* | node()">
@@ -56,7 +56,7 @@
       </xsl:if>
 
       <!-- Check the categories: -->
-      <xsl:for-each select="$categories-idrefs">
+      <xsl:for-each select="$category-idrefs">
         <xsl:variable name="category-idref" as="xs:string" select="xs:string(.)"/>
         <xsl:if test="empty($doc/*/ci:categories/ci:category[@id eq $category-idref])">
           <error>Component id "{$component-id}" refers to non-existing category "{$category-idref}"</error>

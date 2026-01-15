@@ -7,6 +7,7 @@
 
   <p:import href="../xpl3/normalize-component-inventory-specification.xpl"/>
   <p:import href="../xpl3/create-normalized-component-inventory-specification-report.xpl"/>
+  <p:import href="../xpl3/normalized-component-inventory-specification-to-website.xpl"/>
 
   <!-- ======================================================================= -->
 
@@ -15,13 +16,19 @@
 
   <!-- ======================================================================= -->
 
-  <ci:normalize-component-inventory-specification/>
+  <ci:normalize-component-inventory-specification>
+    <p:with-input port="source" href="test-specification-2.xml"/>
+  </ci:normalize-component-inventory-specification>
   
+  <p:store href="tmp/test-build-website-normalized.xml"/>
+
   <ci:create-normalized-component-inventory-specification-report>
     <p:with-option name="href-dir-result" select="resolve-uri('tmp', static-base-uri())"/>
-    <p:with-option name="filename" select="'test-specification-report'"/>
+    <p:with-option name="filename" select="'test-build-website-report'"/>
     <p:with-option name="report-type" select="$ci:report-type-warnings-and-errors"/>
-    <p:with-option name="report-output-types" select="('html', 'md')"/>
+    <p:with-option name="report-output-types" select="$ci:report-output-type-md"/>
   </ci:create-normalized-component-inventory-specification-report>
+  
+  <ci:normalized-component-inventory-specification-to-website/>
 
 </p:declare-step>

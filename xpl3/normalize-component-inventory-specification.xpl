@@ -16,16 +16,15 @@
   </p:documentation>
 
   <!-- ======================================================================= -->
-  <!-- IMPORTS: -->
 
   <p:import-functions href="file:/xatapult/xtpxlib-common/xslmod/href.mod.xsl"/>
 
   <p:import href="file:/xatapult/xtpxlib-common/xpl3mod/validate/validate.xpl"/>
   <p:import href="file:/xatapult/xtpxlib-common/xpl3mod/recursive-directory-list/recursive-directory-list.xpl"/>
   <p:import href="file:/xatapult/xtpxlib-common/xpl3mod/expand-macro-definitions/expand-macro-definitions.xpl"/>
+  <p:import href="file:/xatapult/xtpxlib-common/xpl3mod/message/message.xpl"/>
 
   <!-- ======================================================================= -->
-  <!-- STATIC OPTIONS: -->
 
   <p:option static="true" name="href-schema-specification" as="xs:string"
     select="resolve-uri('../grammar/ci-specification.xsd', static-base-uri()) => xtlc:href-canonical()"/>
@@ -33,7 +32,6 @@
     select="resolve-uri('../grammar/ci-specification.sch', static-base-uri()) => xtlc:href-canonical()"/>
 
   <!-- ======================================================================= -->
-  <!-- PORTS: -->
 
   <p:input port="source" primary="true" sequence="false" content-types="xml" href="../test/test-specification.xml">
     <p:documentation>The component inventory specification document to process.</p:documentation>
@@ -43,11 +41,29 @@
     <p:documentation>The resulting normalized components definition document.</p:documentation>
   </p:output>
 
+  <!-- ======================================================================= -->
+
+  <p:option name="message-indent-level" as="xs:integer" required="false" select="0">
+    <p:documentation>The (starting) indent level for any console messages.</p:documentation>
+  </p:option>
+
+  <p:option name="messages-enabled" as="xs:boolean" required="false" select="true()">
+    <p:documentation>Whether or not console messages are enabled.</p:documentation>
+  </p:option>
+
   <!-- ================================================================== -->
   <!-- MAIN: -->
 
   <!-- Setup: -->
-  <p:variable name="start-timestamp" as="xs:dateTime" select="current-dateTime()"/>
+  <p:variable name="timestamp-start" as="xs:dateTime" select="current-dateTime()"/>
+  <p:variable name="base-uri" as="xs:string" select="base-uri(/) => xtlc:href-canonical()"/>
+
+  <xtlc:message enabled="{$messages-enabled}" level="{$message-indent-level}">
+    <p:with-option name="text" select="'Normalizing component-inventory specification &quot;' || $base-uri || '&quot;'"/>
+  </xtlc:message>
+  <xtlc:message enabled="{$messages-enabled}" level="{$message-indent-level + 1}">
+    <p:with-option name="text" select="'Validating and post-processing specification'"/>
+  </xtlc:message>
 
   <!-- Do an initial expand of the macro-definitions: -->
   <xtlc:expand-macro-definitions/>
@@ -78,15 +94,32 @@
   <p:xslt>
     <p:with-input port="stylesheet" href="xsl-normalize-component-inventory-specification/flatten-categories.xsl"/>
   </p:xslt>
+  
+  <!-- Auto-add the media information for the packages: -->
+  <p:viewport match="ci:packages" name="get-packages-media-directory-information">
+    <xtlc:recursive-directory-list name="packages-media-directory-information" depth="1">
+      <p:with-option name="path" select="xs:string(/*/@href-default-base-directory)" />
+    </xtlc:recursive-directory-list>
+    <p:insert position="first-child">
+      <p:with-input pipe="current@get-packages-media-directory-information"/>
+      <p:with-input port="insertion" pipe="@packages-media-directory-information"/>
+    </p:insert>
+  </p:viewport>
+  <p:xslt>
+    <p:with-input port="stylesheet" href="xsl-normalize-component-inventory-specification/create-package-media-information.xsl"/>
+  </p:xslt>
 
-  <!-- Get the directory information on-board for the components: -->
-  <p:viewport match="ci:components/ci:directory" name="get-directory-information">
-    <xtlc:recursive-directory-list name="directory-information">
+  <!-- Get the directory information on-board for components: -->
+  <xtlc:message enabled="{$messages-enabled}" level="{$message-indent-level + 1}">
+    <p:with-option name="text" select="'Generating component information'"/>
+  </xtlc:message>
+  <p:viewport match="ci:components/ci:directory" name="get-component-directory-information">
+    <xtlc:recursive-directory-list name="component-directory-information">
       <p:with-option name="path" select="xs:string(/*/@href)"/>
     </xtlc:recursive-directory-list>
     <p:insert position="first-child">
-      <p:with-input pipe="current@get-directory-information"/>
-      <p:with-input port="insertion" pipe="@directory-information"/>
+      <p:with-input pipe="current@get-component-directory-information"/>
+      <p:with-input port="insertion" pipe="@component-directory-information"/>
     </p:insert>
   </p:viewport>
 
@@ -97,6 +130,9 @@
   <xtlc:expand-macro-definitions/>
 
   <!-- Check all the component specifications: -->
+  <xtlc:message enabled="{$messages-enabled}" level="{$message-indent-level + 1}">
+    <p:with-option name="text" select="'Validating result'"/>
+  </xtlc:message>
   <p:xslt>
     <p:with-input port="stylesheet" href="xsl-normalize-component-inventory-specification/check-component-descriptions.xsl"/>
   </p:xslt>
@@ -132,13 +168,20 @@
     </p:try>
   </p:viewport>
 
-  <!-- Done. Record some stuff on the root element: -->
+  <!-- Done. Record important information on the root element: -->
+  <p:variable name="component-count" as="xs:integer" select="count(/*/ci:components/ci:component)"/>
+  <p:variable name="warning-count" as="xs:integer" select="count(//ci:warning)"/>
+  <p:variable name="error-count" as="xs:integer" select="count(//ci:error)"/>
+  <xtlc:message enabled="{$messages-enabled}" level="{$message-indent-level + 1}">
+    <p:with-option name="text" select="'Components: ' || $component-count ||' - Errors: ' || $error-count || ' - Warnings: ' || $warning-count"/>
+  </xtlc:message>
   <p:set-attributes>
     <p:with-option name="attributes" select="map{
-      'error-count': count(//ci:error),
-      'warning-count': count(//ci:warning),
-      'timestamp-normalization': xs:string($start-timestamp),
-      'duration-normalization': xs:string(current-dateTime() - $start-timestamp)
+      'component-count': $component-count,
+      'error-count': $error-count,
+      'warning-count': $warning-count,
+      'timestamp-normalization': xs:string($timestamp-start),
+      'duration-normalization': xs:string(current-dateTime() - $timestamp-start)
     }"/>
   </p:set-attributes>
 

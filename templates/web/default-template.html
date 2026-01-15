@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <!-- ================================================================== -->
+  <!--
+    Default template for the component-inventory web pages.
+    
+    The following elements are replaced:
+    * <ci:TITLE/>
+    * <ci:PAGE_CONTENTS/>
+    * <ci:MENU/>
+    
+    The following macros in attributes are replaced:
+    * $HOMEDIR$ with the path to the site's root, including a terminating /  
+  -->
+  <!-- ================================================================== -->
+
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="keywords" content=""/>
+    <link href="$HOMEDIR$css/bootstrap.min.css" rel="stylesheet" />
+    <link href="$HOMEDIR$css/component-inventory.css" rel="stylesheet" />
+    <script defer="defer" src="$HOMEDIR$js/bootstrap.bundle.min.js"><!-- --></script>
+    <title><ci:TITLE xmlns:ci="https://eriksiegel.nl/ns/component-inventory"/></title>
+    <link rel="shortcut icon" href="$HOMEDIR$images/favicon.ico" />
+  </head>
+
+  <body>
+    <!-- Navigation bar: -->
+    <nav class="navbar navbar-expand-sm bg-secondary navbar-dark ">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="$HOMEDIR$index.html">
+          <img src="$HOMEDIR$images/component-inventory-logo.png" class="img-fluid" width="18%" />
+        </a>
+      </div>
+      <!-- Menu: -->
+      <ci:MENU xmlns:ci="https://eriksiegel.nl/ns/component-inventory"/>
+    </nav>
+    <!-- Page: -->
+    <div class="container pt-5">
+      <!-- This element will be replaced with the actual page contents: -->
+      <ci:PAGE-CONTENTS xmlns:ci="https://eriksiegel.nl/ns/component-inventory"/>
+    </div>
+    <p>&#160;</p>
+  </body>
+</html>
