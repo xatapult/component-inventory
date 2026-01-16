@@ -125,10 +125,11 @@
     <projectTree name="component-inventory.xpr">
         <folder name="reference projects">
             <folder path="../../xprocref/"/>
+            <folder path="../../xtpxlib-common/"/>
+            <folder path="../../xtpxlib-container/"/>
+            <folder path="../../xtpxlib-sml/"/>
         </folder>
         <folder path="../"/>
-        <folder path="../../xtpxlib-common/"/>
-        <folder path="../../xtpxlib-sml/"/>
         <folder path="../../../../../../xdata/"/>
     </projectTree>
 </project>

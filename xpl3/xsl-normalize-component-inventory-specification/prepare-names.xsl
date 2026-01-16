@@ -15,7 +15,7 @@
 
   <xsl:mode on-no-match="shallow-copy"/>
 
-  <xsl:include href="../../xslmod/ci-common.mod.xsl"/>
+  <xsl:include href="../../xslmod/ci-normalization.mod.xsl"/>
 
   <!-- ================================================================== -->
 
