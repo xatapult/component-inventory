@@ -139,6 +139,9 @@
         <xsl:with-param name="attribute-name" select="'discontinued'"/>
         <xsl:with-param name="default" select="'false'"/>
       </xsl:call-template>
+      
+      <!-- Some attributes don't need any further processing: -->
+      <xsl:sequence select="@keywords"/>
 
       <xsl:variable name="attributes-defaulting-to-unknown" as="xs:string+"
         select="('count', 'category-idrefs', 'price-range-idref', 'package-idref', 'location-idref', 'since')"/>
@@ -148,6 +151,9 @@
           <xsl:with-param name="attribute-name" select="."/>
         </xsl:call-template>
       </xsl:for-each>
+      
+      <!-- Handle the description (just copy...) -->
+      <xsl:sequence select="ci:description"/>
 
       <!-- Handle the property values: -->
       <xsl:choose>

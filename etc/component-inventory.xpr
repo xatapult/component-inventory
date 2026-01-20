@@ -10,16 +10,36 @@
                         <scenarioAssociation-array>
                             <scenarioAssociation>
                                 <field name="url">
-                                    <String>../xpl3/tmp/XXX.xml</String>
+                                    <String>../xpl3/normalized-component-inventory-specification-to-website.xpl</String>
                                 </field>
                                 <field name="scenarioIds">
                                     <list>
-                                        <String>XXXTEST</String>
+                                        <String>create-base-container</String>
                                     </list>
                                 </field>
                                 <field name="scenarioTypes">
                                     <list>
-                                        <String>XSL</String>
+                                        <String>XML</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioStorageLocations">
+                                    <list>
+                                        <Byte>2</Byte>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../xpl3/xsl-normalized-component-inventory-specification-to-website/create-base-container.xsl</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>create-base-container</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XML</String>
                                     </list>
                                 </field>
                                 <field name="scenarioStorageLocations">
@@ -38,7 +58,7 @@
                                     <null/>
                                 </field>
                                 <field name="name">
-                                    <String>XXXTEST</String>
+                                    <String>create-base-container</String>
                                 </field>
                                 <field name="baseURL">
                                     <String></String>
@@ -56,10 +76,10 @@
                                     <String></String>
                                 </field>
                                 <field name="inputXSLURL">
-                                    <String>file:/C:/Data/Erik/work/xatapult/component-inventory/xpl3/xsl-normalize-component-inventory-specification/create-component-descriptions.xsl</String>
+                                    <String>file:/C:/Data/Erik/work/xatapult/component-inventory/xpl3/xsl-normalized-component-inventory-specification-to-website/create-base-container.xsl</String>
                                 </field>
                                 <field name="inputXMLURL">
-                                    <String>${currentFileURL}</String>
+                                    <String>file:/C:/Data/Erik/work/xatapult/component-inventory/xpl3/tmp/10-clean-specification.xml</String>
                                 </field>
                                 <field name="defaultScenario">
                                     <Boolean>false</Boolean>
@@ -68,7 +88,7 @@
                                     <Boolean>false</Boolean>
                                 </field>
                                 <field name="type">
-                                    <String>XSL</String>
+                                    <String>XML</String>
                                 </field>
                                 <field name="saveAs">
                                     <Boolean>true</Boolean>
@@ -77,7 +97,7 @@
                                     <Boolean>false</Boolean>
                                 </field>
                                 <field name="outputResource">
-                                    <String>${TMPOUT}/xxx.-out.xml</String>
+                                    <String>${TMPOUT}/result.xml</String>
                                 </field>
                                 <field name="openOtherLocationInBrowser">
                                     <Boolean>false</Boolean>
@@ -104,7 +124,32 @@
                                     <Boolean>true</Boolean>
                                 </field>
                                 <field name="xsltParams">
-                                    <list/>
+                                    <list>
+                                        <transformationParameter>
+                                            <field name="paramDescription">
+                                                <paramDescriptor>
+                                                    <field name="localName">
+                                                        <String>href-build-location</String>
+                                                    </field>
+                                                    <field name="prefix">
+                                                        <null/>
+                                                    </field>
+                                                    <field name="namespace">
+                                                        <null/>
+                                                    </field>
+                                                </paramDescriptor>
+                                            </field>
+                                            <field name="value">
+                                                <String>file:/C:/Data/Erik/work/xatapult/component-inventory/build/website/</String>
+                                            </field>
+                                            <field name="hasXPathValue">
+                                                <Boolean>false</Boolean>
+                                            </field>
+                                            <field name="isStatic">
+                                                <Boolean>false</Boolean>
+                                            </field>
+                                        </transformationParameter>
+                                    </list>
                                 </field>
                                 <field name="cascadingStylesheets">
                                     <String-array/>

@@ -21,6 +21,10 @@
 
   <!-- ======================================================================= -->
 
+  <p:option static="true" name="debug-output" as="xs:boolean" select="true()"/>
+
+  <!-- ======================================================================= -->
+
   <p:input port="source" primary="true" sequence="false" content-types="xml" href="../test/test-specification.xml">
     <p:documentation>The normalized component-inventory specification document to process.</p:documentation>
   </p:input>
@@ -138,7 +142,10 @@
     <!-- Remove generated warnings, they might get in the way... -->
     <p:delete match="ci:warning"/>
   </p:if>
+  
   <p:identity name="clean-specification"/>
+  <p:store href="tmp/10-clean-specification.xml" use-when="$debug-output"/>
+
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
   <!-- Preparations: -->
@@ -177,6 +184,7 @@
     <p:with-input port="stylesheet" href="xsl-normalized-component-inventory-specification-to-website/create-base-container.xsl"/>
     <p:with-option name="parameters" select="map{'href-build-location': $href-build-location }"/>
   </p:xslt>
+  <p:store href="tmp/20-base-container.xml" use-when="$debug-output"/>
 
   <!-- TBD TBD -->
 

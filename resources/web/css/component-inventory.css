@@ -68,6 +68,15 @@ p.step-start-character-list a {
   color: lightgrey;
 }
 
+a.nomark {
+  text-decoration: none;
+  color: black; 
+}
+
+.grey {
+  color: grey ! important;
+}
+
 /* Code and code-blocks: */
 pre {
   margin-top: 1rem ! important;
@@ -118,4 +127,31 @@ td {
   padding-right: 0.3rem !important;
   border-left: thin solid lightgrey;
   border-right: thin solid lightgrey;
+}
+
+/* TOOLTIP: */
+.citooltip {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+/* Tooltip text */
+.citooltiptext {
+  visibility: hidden; 
+  width: 25vw;
+  background-color: #FFFF88;
+  text-align: left;
+  padding: 5px 0;
+  border-radius: 4px;
+  position: absolute;
+  left: 1vw;
+  z-index: 1; /* Ensure tooltip is displayed above content */
+  font-size: 90%;
+  color: black;
+}
+
+/* Show the tooltip text on hover */
+.citooltip:hover .citooltiptext {
+  visibility: visible;
 }

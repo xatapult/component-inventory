@@ -130,6 +130,14 @@
           <xs:documentation>The label on the packaging for this component (if it's not what we might expect).</xs:documentation>
         </xs:annotation>
       </xs:attribute>
+      <xs:attribute name="keywords">
+        <xs:annotation>
+          <xs:documentation>A list of keywords (for the HTML page). The id will become a keyword by default.</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:list/>
+        </xs:simpleType>
+      </xs:attribute>
     </xs:complexType>
   </xs:element>
   <xs:simpleType name="t-special-values-unknown">

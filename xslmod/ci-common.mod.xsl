@@ -21,6 +21,8 @@
   <xsl:variable name="ci:default-component-description-document-regexp" as="xs:string" select="'^component-.+\.xml$'"/>
 
   <xsl:variable name="ci:special-value-unknown" as="xs:string" select="'#unknown'"/>
+  <xsl:variable name="ci:special-value-many" as="xs:string" select="'#many'"/>
+  <xsl:variable name="ci:special-value-many-limit" as="xs:integer" select="25"/>
 
   <!-- ======================================================================= -->
   <!-- MEDIA RELATED: -->

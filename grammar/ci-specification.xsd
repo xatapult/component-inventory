@@ -27,6 +27,11 @@
                           <xs:documentation>The default value for the property.</xs:documentation>
                         </xs:annotation>
                       </xs:attribute>
+                      <xs:attribute name="suffix" type="ci:t-non-empty-string">
+                        <xs:annotation>
+                          <xs:documentation>An optional suffix, always appened to the end of the value.</xs:documentation>
+                        </xs:annotation>
+                      </xs:attribute>
                     </xs:extension>
                   </xs:complexContent>
                 </xs:complexType>

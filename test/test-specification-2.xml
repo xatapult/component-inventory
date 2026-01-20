@@ -6,9 +6,9 @@
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
   <properties>
-    <property id="VOLTAGE" value-pattern="^[0-9][0-9]*$"/>
-    <property id="CONTACTS" value-pattern="^[0-9][0-9]*$"/>
-    <property id="CURRENT" value-pattern="^[0-9][0-9]*$"/>
+    <property id="VOLTAGE" value-pattern="^[0-9][0-9]*$" name="Voltage" summary="The voltage to use" suffix="V&#160;DC"/>
+    <property id="CONTACTS" value-pattern="^[0-9][0-9]*$" name="Number of contacts" summary="The current flowing through" />
+    <property id="CURRENT" value-pattern="^[0-9][0-9]*$" suffix="A"/>
     <property id="RELAYTYPE" value-pattern="^(NORMAL|SPECIAL)$" default="NORMAL"/>
   </properties>
 

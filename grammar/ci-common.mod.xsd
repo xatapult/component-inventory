@@ -39,6 +39,14 @@
         <xs:documentation>Optional summary of the definition.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
+    <xs:attribute name="keywords">
+      <xs:annotation>
+        <xs:documentation>A list of keywords (for the HTML page). The id will become a keyword by default.</xs:documentation>
+      </xs:annotation>
+      <xs:simpleType>
+        <xs:list itemType="ci:t-non-empty-string"/>
+      </xs:simpleType>
+    </xs:attribute>
   </xs:complexType>
   <xs:group name="g-media">
     <xs:sequence>

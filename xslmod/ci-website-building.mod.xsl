@@ -11,6 +11,7 @@
   <!-- ================================================================== -->
 
   <xsl:include href="ci-common.mod.xsl"/>
+  <xsl:include href="file:/xatapult/xtpxlib-common/xslmod/href.mod.xsl"/>
 
   <!-- ======================================================================= -->
 
