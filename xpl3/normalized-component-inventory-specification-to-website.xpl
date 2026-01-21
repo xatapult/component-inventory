@@ -2,7 +2,7 @@
 <p:declare-step xmlns:p="http://www.w3.org/ns/xproc" xmlns:c="http://www.w3.org/ns/xproc-step" xmlns:map="http://www.w3.org/2005/xpath-functions/map"
   xmlns:array="http://www.w3.org/2005/xpath-functions/array" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:local="#local.flf_2tl_whc"
   xmlns:xtlcon="http://www.xtpxlib.nl/ns/container" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xtlc="http://www.xtpxlib.nl/ns/common"
-  xmlns:ci="https://eriksiegel.nl/ns/component-inventory" version="3.0" exclude-inline-prefixes="#all"
+  xmlns:ci="https://eriksiegel.nl/ns/component-inventory" version="3.0" exclude-inline-prefixes="#all" xmlns:sml="http://www.eriksiegel.nl/ns/sml"
   name="normalized-component-inventory-specification-to-website" type="ci:normalized-component-inventory-specification-to-website">
 
   <p:documentation>
@@ -193,6 +193,10 @@
     <p:with-input port="stylesheet" href="xsl-normalized-component-inventory-specification-to-website/create-pages.xsl"/>
     <p:with-option name="parameters" select="map{'href-web-template': $href-web-template}"/>
   </p:xslt>
+  
+  <!-- TBD FOR NOW: -->
+  <p:delete match="ci:*"></p:delete>
+  <p:delete match="sml:*"></p:delete>
 
   <!-- Write it away! -->
   <xtlcon:container-to-disk remove-target="false"/>

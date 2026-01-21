@@ -109,10 +109,9 @@
           <xs:documentation>The identifier of the location for this component, or unknwon.</xs:documentation>
         </xs:annotation>
       </xs:attribute>
-      <xs:attribute default="#unknown" name="since" type="ci:t-date-extended">
+      <xs:attribute name="location-box-label" type="ci:t-non-empty-string">
         <xs:annotation>
-          <xs:documentation>Since when is this component registered?
-</xs:documentation>
+          <xs:documentation>The label on the box for this component (if it's not what we might expect).</xs:documentation>
         </xs:annotation>
       </xs:attribute>
       <xs:attribute default="false" name="partly-in-reserve-stock" type="xs:boolean">
@@ -120,14 +119,15 @@
           <xs:documentation>Whether part of the stock is in reserve stock.</xs:documentation>
         </xs:annotation>
       </xs:attribute>
+      <xs:attribute default="#unknown" name="since" type="ci:t-date-extended">
+        <xs:annotation>
+          <xs:documentation>Since when is this component registered?
+</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
       <xs:attribute default="false" name="discontinued" type="xs:boolean">
         <xs:annotation>
           <xs:documentation>Whether the component is discontnued/obsolete.</xs:documentation>
-        </xs:annotation>
-      </xs:attribute>
-      <xs:attribute name="label" type="ci:t-non-empty-string">
-        <xs:annotation>
-          <xs:documentation>The label on the packaging for this component (if it's not what we might expect).</xs:documentation>
         </xs:annotation>
       </xs:attribute>
       <xs:attribute name="keywords">

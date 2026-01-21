@@ -108,25 +108,19 @@ span.underline {
   text-decoration: underline;
 }
 
-/* Tables: */
+/* Info table: */
 
-table {
+table.info {
   margin-left: 0.5rem;
 }
 
-th {
-  background-color: grey !important;
-  color: white;
-  padding-left: 0.3rem !important;
-  padding-right: 0.3rem !important;
-  font-weight: normal;
-}
-
-td {
-  padding-left: 0.3rem !important;
-  padding-right: 0.3rem !important;
-  border-left: thin solid lightgrey;
-  border-right: thin solid lightgrey;
+td.info {
+  padding-left: 0.5rem !important;
+  padding-right: 0.5rem !important;
+  padding-top: 0.3rem !important;
+  padding-bottom: 0.3rem !important;
+  border: thin solid lightgrey;
+  vertical-align: top;
 }
 
 /* TOOLTIP: */

@@ -95,9 +95,10 @@
   
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
   
-  <xsl:template match="text()[normalize-space(.) eq '']" mode="mode-create-page">
-    <!-- Discard -->
-  </xsl:template>
+  <!-- TBD TURN BACK ON FOR PRODUCTION -->
+  <!--<xsl:template match="text()[normalize-space(.) eq '']" mode="mode-create-page">
+    <!-\- Discard -\->
+  </xsl:template>-->
   
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 

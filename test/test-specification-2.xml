@@ -41,7 +41,7 @@
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-  <packages href-default-base-directory="../resources/packaging/">
+  <packages href-default-base-directory="../src/packaging/">
     <package id="DIP16"/>
     <!--<package id="DIP14"/>-->
     <package id="RELAY"/>

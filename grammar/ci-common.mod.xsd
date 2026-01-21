@@ -168,6 +168,11 @@
   <xs:attributeGroup name="ag-media">
     <xs:attribute name="href" type="ci:t-href-resource" use="required"/>
     <xs:attribute default="overview" name="usage" type="ci:t-media-type"/>
+    <xs:attribute name="description" type="ci:t-non-empty-string">
+      <xs:annotation>
+        <xs:documentation>Optional description of this image.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
   </xs:attributeGroup>
   <xs:attributeGroup name="ag-default-base-directory">
     <xs:attribute name="href-default-base-directory" type="ci:t-href-directory">

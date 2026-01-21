@@ -2,7 +2,7 @@
 <xsl:stylesheet version="3.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:map="http://www.w3.org/2005/xpath-functions/map"
   xmlns:array="http://www.w3.org/2005/xpath-functions/array" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:local="#local.ds2_tbz_yhc"
   xmlns:sml="http://www.eriksiegel.nl/ns/sml" xmlns:xtlcon="http://www.xtpxlib.nl/ns/container" xmlns:xtlc="http://www.xtpxlib.nl/ns/common"
-  xmlns:ci="https://eriksiegel.nl/ns/component-inventory" exclude-result-prefixes="#all" expand-text="true">
+  xmlns:ci="https://eriksiegel.nl/ns/component-inventory" exclude-result-prefixes="#all" expand-text="true" xmlns="http://www.w3.org/1999/xhtml">
   <!-- ================================================================== -->
   <!-- 
        Creates a container with stubs for all the pages we have to fill in,
@@ -39,14 +39,26 @@
 
   <xsl:variable name="extension-html" as="xs:string" select="'.html'"/>
 
+  <!-- CSS classes used in creating the pages: -->
   <xsl:variable name="class-info-table" as="xs:string" select="'info'"/>
   <xsl:variable name="class-info-table-prompt-column" as="xs:string" select="'prompt'"/>
   <xsl:variable name="class-info-table-value-column" as="xs:string" select="'value'"/>
   <xsl:variable name="class-link-nomark" as="xs:string" select="'nomark'"/>
+  <xsl:variable name="class-citooltip" as="xs:string" select="'citooltip'"/>
+  <xsl:variable name="class-citooltiptext" as="xs:string" select="'citooltiptext'"/>
   <xsl:variable name="class-grey" as="xs:string" select="'grey'"/>
 
-  <xsl:variable name="suffix-idref" as="xs:string" select="'-idref'"/>
-  <xsl:variable name="suffix-idrefs" as="xs:string" select="'-idrefs'"/>
+  <!-- Some constants necessary for creating the content about attribute names and values: -->
+  <xsl:variable name="attr-suffix-idref" as="xs:string" select="'-idref'"/>
+  <xsl:variable name="attr-suffix-idrefs" as="xs:string" select="'-idrefs'"/>
+  <xsl:variable name="attr-prefix-mandatory" as="xs:string" select="'mandatory-'"/>
+  <xsl:variable name="attr-prefix-optional" as="xs:string" select="'optional-'"/>
+  <xsl:variable name="attr-name-count" as="xs:string" select="'count'"/>
+
+  <!-- Some special characters used: -->
+  <xsl:variable name="char-encircled-d" as="xs:string" select="'&#x24D3;'"/>
+  <xsl:variable name="char-encircled-i" as="xs:string" select="'&#x24D8;'"/>
+  <xsl:variable name="char-thinspace" as="xs:string" select="'&#x200A;'"/>
 
   <!-- ================================================================== -->
 
@@ -80,18 +92,34 @@
     <xsl:call-template name="create-item-page-container-document">
       <xsl:with-param name="content" as="element()*">
 
+        <!-- Create a media section: -->
+        <xsl:variable name="package-idref" as="xs:string?" select="xs:string(@package-idref)[. ne $ci:special-value-unknown]"/>
+        <xsl:variable name="package" as="element(ci:package)?"
+          select="if (exists($package-idref)) then key('package' || $suffix-index, $package-idref) else ()"/>
+        <xsl:call-template name="create-media-section">
+          <xsl:with-param name="media" select="ci:media"/>
+          <xsl:with-param name="package-media" select="$package/ci:media"/>
+        </xsl:call-template>
+
         <!-- Info table: -->
+        <p>{$char-thinspace}</p>
         <table class="{$class-info-table}">
 
           <!-- Properties: -->
           <xsl:for-each select="ci:property-values/ci:property-value">
             <xsl:variable name="property-elm" as="element(ci:property)" select="key('property' || $suffix-index, xs:string(@property-idref))"/>
             <xsl:call-template name="create-info-table-row">
-              <xsl:with-param name="item-from-elm" select="$component-elm"/>
               <xsl:with-param name="label" select="xs:string($property-elm/@name)"/>
-              <xsl:with-param name="content" select="string-join((@value, $property-elm/@suffix), '&#x200A;')"/>
-              <xsl:with-param name="popups" select="xs:string($property-elm/@summary)"/>
-              <xsl:with-param name="detail-link-item-elm" select="$property-elm"/>
+              <xsl:with-param name="content" as="item()*">
+                <xsl:value-of select="string-join((@value, $property-elm/@suffix), $char-thinspace)"/>
+                <xsl:call-template name="create-popup">
+                  <xsl:with-param name="popups" select="xs:string($property-elm/@summary)"/>
+                </xsl:call-template>
+                <xsl:call-template name="create-detail-link">
+                  <xsl:with-param name="item-from-elm" select="$component-elm"/>
+                  <xsl:with-param name="detail-link-item-elm" select="$property-elm"/>
+                </xsl:call-template>
+              </xsl:with-param>
             </xsl:call-template>
           </xsl:for-each>
 
@@ -99,9 +127,20 @@
           <xsl:call-template name="create-info-table-row-for-attribute">
             <xsl:with-param name="attr" select="@package-idref"/>
           </xsl:call-template>
+
           <xsl:call-template name="create-info-table-row-for-attribute">
             <xsl:with-param name="attr" select="@count"/>
             <xsl:with-param name="label" select="'In stock'"/>
+          </xsl:call-template>
+          <xsl:call-template name="create-info-table-row-for-attribute">
+            <xsl:with-param name="attr" select="@location-idref"/>
+          </xsl:call-template>
+          <xsl:call-template name="create-info-table-row-for-attribute">
+            <xsl:with-param name="attr" select="@location-box-label"/>
+          </xsl:call-template>
+          <xsl:call-template name="create-info-table-row-for-attribute">
+            <xsl:with-param name="attr" select="@partly-in-reserve-stock"/>
+            <xsl:with-param name="is-boolean" select="true()"/>
           </xsl:call-template>
           <xsl:call-template name="create-info-table-row-for-attribute">
             <xsl:with-param name="attr" select="@price-range-idref"/>
@@ -111,11 +150,12 @@
             <xsl:with-param name="is-boolean" select="true()"/>
           </xsl:call-template>
           <xsl:call-template name="create-info-table-row-for-attribute">
-            <xsl:with-param name="attr" select="@location-idref"/>
+            <xsl:with-param name="label" select="'In categories'"/>
+            <xsl:with-param name="attr" select="@category-idrefs"/>
           </xsl:call-template>
           <xsl:call-template name="create-info-table-row-for-attribute">
-            <xsl:with-param name="attr" select="@partly-in-reserve-stock"/>
-            <xsl:with-param name="is-boolean" select="true()"/>
+            <xsl:with-param name="label" select="'Registered since'"/>
+            <xsl:with-param name="attr" select="@since"/>
           </xsl:call-template>
 
         </table>
@@ -124,10 +164,9 @@
     </xsl:call-template>
 
     <!-- Make sure the media for this item (if any) are included and copied: -->
-    <xsl:for-each select="ci:media/ci:*">
-      <xsl:variable name="href" as="xs:string" select="xs:string(@href)"/>
-      <xtlcon:external-document href-source="{$href}" href-target="{xtlc:href-concat(($href-directory, xtlc:href-name($href)))}"/>
-    </xsl:for-each>
+    <xsl:call-template name="copy-media">
+      <xsl:with-param name="href-directory" select="$href-directory"/>
+    </xsl:call-template>
 
   </xsl:template>
 
@@ -143,14 +182,11 @@
       <!-- If it's a boolean *and* its value is false, don't show this row -->
     </xsl:param>
 
-
-    <xsl:variable name="value" as="xs:string" select="normalize-space($attr)"/>
+    <xsl:variable name="value" as="xs:string?" select="normalize-space($attr)[. ne $ci:special-value-unknown]"/>
+    <xsl:variable name="value-seq" as="xs:string*" select="xtlc:str2seq($value)[. ne $ci:special-value-unknown]"/>
     <xsl:variable name="show-row" as="xs:boolean">
       <xsl:choose>
-        <xsl:when test="$value eq ''">
-          <xsl:sequence select="false()"/>
-        </xsl:when>
-        <xsl:when test="$value eq $ci:special-value-unknown">
+        <xsl:when test="empty($value-seq)">
           <xsl:sequence select="false()"/>
         </xsl:when>
         <xsl:when test="$is-boolean and $discard-boolean-false">
@@ -164,55 +200,70 @@
 
     <xsl:if test="$show-row">
       <xsl:variable name="attr-name" as="xs:string" select="local-name($attr)"/>
-      <xsl:variable name="is-reference-attribute" as="xs:boolean" select="local:is-reference-attribute($attr)"/>
 
       <xsl:call-template name="create-info-table-row">
-        <xsl:with-param name="item-from-elm" select="$item-from-elm"/>
         <xsl:with-param name="label" select="$label"/>
+        <xsl:with-param name="content" as="item()*">
 
-        <xsl:with-param name="content" as="xs:string">
           <xsl:choose>
-            <xsl:when test="$is-reference-attribute">
-              <xsl:variable name="item-to-elm" as="element()" select="key(local:reference-attribute-item-type($attr) || $suffix-index, $value)"/>
-              <xsl:sequence select="xs:string($item-to-elm/@name)"/>
+
+            <xsl:when test="ends-with($attr-name, $attr-suffix-idref)">
+              <xsl:call-template name="create-item-reference">
+                <xsl:with-param name="item-from-elm" select="$item-from-elm"/>
+                <xsl:with-param name="item-to-type" select="local:reference-attribute-item-type($attr)"/>
+                <xsl:with-param name="item-to-id" select="$value"/>
+                <xsl:with-param name="popups" select="$popups"/>
+              </xsl:call-template>
             </xsl:when>
+
+            <xsl:when test="ends-with($attr-name, $attr-suffix-idrefs)">
+              <xsl:variable name="item-type" as="xs:string" select="local:reference-attribute-item-type($attr)"/>
+              <xsl:for-each select="$value-seq">
+                <xsl:call-template name="create-item-reference">
+                  <xsl:with-param name="item-from-elm" select="$item-from-elm"/>
+                  <xsl:with-param name="item-to-type" select="$item-type"/>
+                  <xsl:with-param name="item-to-id" select="."/>
+                  <xsl:with-param name="popups" select="$popups"/>
+                </xsl:call-template>
+                <xsl:if test="position() ne last()">
+                  <br/>
+                </xsl:if>
+              </xsl:for-each>
+            </xsl:when>
+
             <xsl:when test="$is-boolean">
               <xsl:value-of select="if (xs:boolean($value)) then 'Yes' else 'No'"/>
+              <xsl:call-template name="create-popup">
+                <xsl:with-param name="popups" as="xs:string*" select="$popups"/>
+              </xsl:call-template>
             </xsl:when>
-            <xsl:when test="$value eq $ci:special-value-many">
-              <xsl:sequence select="'Many'"/>
-            </xsl:when>
-            <xsl:otherwise>
-              <xsl:sequence select="$value"/>
-            </xsl:otherwise>
-          </xsl:choose>
-        </xsl:with-param>
 
-        <xsl:with-param name="popups" as="xs:string*">
-          <xsl:choose>
-            <xsl:when test="local-name($attr) eq 'count'">
-              <xsl:sequence select="'Approximately, not all usage is accurately recorded.'"/>
-              <xsl:choose>
-                <xsl:when test="$value eq $ci:special-value-many">
-                  <xsl:sequence select="'Too many to count comfortably (usually &gt; ' || $ci:special-value-many-limit || ').'"/>
-                </xsl:when>
-                <xsl:when test="xs:integer($value) le 0">
-                  <xsl:sequence select="'Out of stock, but kept for reference purposes.'"/>
-                </xsl:when>
-              </xsl:choose>
+            <xsl:when test="$attr-name eq $attr-name-count">
+              <xsl:variable name="is-many" as="xs:boolean" select="$value eq $ci:special-value-many"/>
+              <xsl:value-of select="if ($is-many) then 'Many' else $value"/>
+              <xsl:call-template name="create-popup">
+                <xsl:with-param name="popups" as="xs:string*">
+                  <xsl:sequence select="'Approximately, not all usage is accurately recorded.'"/>
+                  <xsl:choose>
+                    <xsl:when test="$is-many">
+                      <xsl:sequence select="'Too many to count comfortably (usually &gt; ' || $ci:special-value-many-limit || ').'"/>
+                    </xsl:when>
+                    <xsl:when test="xs:integer($value) le 0">
+                      <xsl:sequence select="'Out of stock, but kept for reference purposes.'"/>
+                    </xsl:when>
+                  </xsl:choose>
+                  <xsl:sequence select="$popups"/>
+                </xsl:with-param>
+              </xsl:call-template>
             </xsl:when>
-          </xsl:choose>
-          <xsl:sequence select="$popups"/>
-        </xsl:with-param>
 
-        <xsl:with-param name="detail-link-item-elm" as="element()?">
-          <xsl:choose>
-            <xsl:when test="$is-reference-attribute">
-              <xsl:sequence select="key(local:reference-attribute-item-type($attr) || $suffix-index, $value)"/>
-            </xsl:when>
             <xsl:otherwise>
-              <xsl:sequence select="()"/>
+              <xsl:value-of select="xs:string($attr) => xtlc:capitalize()"/>
+              <xsl:call-template name="create-popup">
+                <xsl:with-param name="popups" as="xs:string*" select="$popups"/>
+              </xsl:call-template>
             </xsl:otherwise>
+
           </xsl:choose>
         </xsl:with-param>
 
@@ -223,58 +274,26 @@
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-  <xsl:template name="create-info-table-row">
+  <xsl:template name="create-item-reference">
     <xsl:param name="item-from-elm" as="element()" required="false" select="."/>
-    <xsl:param name="label" as="xs:string" required="true"/>
-    <xsl:param name="content" as="xs:string" required="true"/>
+    <xsl:param name="item-to-type" as="xs:string" required="true"/>
+    <xsl:param name="item-to-id" as="xs:string" required="true"/>
     <xsl:param name="popups" as="xs:string*" required="false" select="()"/>
-    <xsl:param name="detail-link-item-elm" as="element()?" required="false" select="()"/>
 
-    <tr class="{$class-info-table}">
-      <td class="{$class-info-table} {$class-info-table-prompt-column}">
-        <xsl:value-of select="$label"/>
-        <xsl:text>:&#160;</xsl:text>
-      </td>
-      <td class="{$class-info-table} {$class-info-table-value-column}">
-        <xsl:value-of select="$content"/>
-
-        <!-- Handle popups (aka tooltips): -->
-        <xsl:if test="exists($popups)">
-          <xsl:text> </xsl:text>
-          <span class="citooltip {$class-grey}">
-            <!-- Encircled i: -->
-            <xsl:text>&#x24D8;</xsl:text>
-            <span class="citooltiptext">
-              <xsl:for-each select="$popups">
-                <xsl:value-of select="."/>
-                <xsl:if test="position() ne last()">
-                  <br/>
-                </xsl:if>
-              </xsl:for-each>
-            </span>
-          </span>
-        </xsl:if>
-
-        <!-- Detail link? -->
-        <xsl:if test="exists($detail-link-item-elm)">
-          <xsl:variable name="item-detail-type" as="xs:string" select="local-name($detail-link-item-elm)"/>
-          <xsl:text> </xsl:text>
-          <span>
-            <xsl:call-template name="create-item-link">
-              <xsl:with-param name="item-from-elm" select="$item-from-elm"/>
-              <xsl:with-param name="item-to-type" select="$item-detail-type"/>
-              <xsl:with-param name="item-to-id" select="xs:string($detail-link-item-elm/@id)"/>
-              <xsl:with-param name="popup" select="'Details for ' || $item-detail-type || ' ' || $detail-link-item-elm/@name"/>
-              <xsl:with-param name="prompt" select="'&#x24D3;'">
-                <!-- Encircled d -->
-              </xsl:with-param>
-              <xsl:with-param name="class" select="string-join(($class-link-nomark, $class-grey), ' ')"/>
-            </xsl:call-template>
-          </span>
-        </xsl:if>
-
-      </td>
-    </tr>
+    <xsl:for-each select="$doc">
+      <xsl:variable name="item-to-elm" as="element()" select="key($item-to-type || $suffix-index, $item-to-id)"/>
+      <xsl:value-of select="xs:string($item-to-elm/@name)"/>
+      <xsl:call-template name="create-popup">
+        <xsl:with-param name="popups" as="xs:string*">
+          <xsl:sequence select="$item-to-elm/@summary"/>
+          <xsl:sequence select="$popups"/>
+        </xsl:with-param>
+      </xsl:call-template>
+      <xsl:call-template name="create-detail-link">
+        <xsl:with-param name="item-from-elm" select="$item-from-elm"/>
+        <xsl:with-param name="detail-link-item-elm" select="$item-to-elm"/>
+      </xsl:call-template>
+    </xsl:for-each>
   </xsl:template>
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
@@ -284,27 +303,41 @@
 
     <xsl:if test="exists($attr)">
       <xsl:variable name="attr-name" as="xs:string" select="local-name($attr)"/>
-      <xsl:variable name="base-name" as="xs:string">
+      <xsl:variable name="attr-label-raw" as="xs:string">
         <xsl:choose>
-          <xsl:when test="ends-with($attr-name, $suffix-idref)">
-            <xsl:sequence select="substring-before($attr-name, $suffix-idref)"/>
-          </xsl:when>
-          <xsl:when test="ends-with($attr-name, $suffix-idrefs)">
-            <xsl:sequence select="substring-before($attr-name, $suffix-idrefs)"/>
+          <xsl:when test="ends-with($attr-name, $attr-suffix-idref) or ends-with($attr-name, $attr-suffix-idrefs)">
+            <xsl:sequence select="local:reference-attribute-item-type($attr)"/>
           </xsl:when>
           <xsl:otherwise>
             <xsl:sequence select="$attr-name"/>
           </xsl:otherwise>
         </xsl:choose>
       </xsl:variable>
-      <xsl:sequence select="translate($base-name, '-', ' ') => xtlc:capitalize()"/>
+      <xsl:sequence select="$attr-label-raw => translate('-', ' ') => xtlc:capitalize()"/>
     </xsl:if>
-
   </xsl:function>
 
   <!-- ======================================================================= -->
-  <!-- TBD OTHER ITEM TYPES... -->
-
+  <!-- TBD PAGES FOR OTHER ITEM TYPES... -->
+  
+  <xsl:template match="ci:packages/ci:package">
+    
+    <xsl:variable name="id" as="xs:string" select="xs:string(@id)"/>
+    <xsl:variable name="item-type-plural" as="xs:string" select="local-name(..)"/>
+    <xsl:variable name="href-directory" as="xs:string" select="xtlc:href-concat(($item-type-plural, $id))"/>
+    
+    <xsl:comment> == ITEM NOT YET HANDLED: {local-name(.)} - {@id} == </xsl:comment>
+    
+    <!-- Make sure the media for this item (if any) are included and copied: -->
+    <xsl:call-template name="copy-media">
+      <xsl:with-param name="href-directory" select="$href-directory"/>
+    </xsl:call-template>
+    
+  </xsl:template>
+  
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+  
+  
   <xsl:template match="/*/ci:*/ci:*" priority="-1000">
     <xsl:comment> == ITEM NOT YET HANDLED: {local-name(.)} - {@id} == </xsl:comment>
   </xsl:template>
@@ -339,7 +372,74 @@
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
+  <xsl:template name="create-info-table-row">
+    <!-- Creates a row for an information table. -->
+    <xsl:param name="label" as="xs:string" required="true"/>
+    <xsl:param name="content" as="item()*" required="true"/>
+
+    <tr class="{$class-info-table}">
+      <td class="{$class-info-table} {$class-info-table-prompt-column}">
+        <xsl:value-of select="$label"/>
+        <xsl:text>:&#160;</xsl:text>
+      </td>
+      <td class="{$class-info-table} {$class-info-table-value-column}">
+        <xsl:sequence select="$content"/>
+      </td>
+    </tr>
+  </xsl:template>
+
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+  <xsl:template name="create-popup">
+    <!-- Creates a popup (an encircled i that shows popup info when hovered over). -->
+    <xsl:param name="popups" as="xs:string*" required="true"/>
+    <xsl:if test="exists($popups)">
+      <xsl:text> </xsl:text>
+      <span class="citooltip {$class-grey}">
+        <!-- Encircled i: -->
+        <xsl:text>&#x24D8;</xsl:text>
+        <span class="citooltiptext">
+          <xsl:for-each select="$popups">
+            <xsl:value-of select="."/>
+            <xsl:if test="position() ne last()">
+              <br/>
+            </xsl:if>
+          </xsl:for-each>
+        </span>
+      </span>
+    </xsl:if>
+  </xsl:template>
+
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+  <xsl:template name="create-detail-link">
+    <!-- Creates a detail link (an encircled d that links to the page about an item) -->
+    <xsl:param name="item-from-elm" as="element()" required="false" select="."/>
+    <xsl:param name="detail-link-item-elm" as="element()" required="true"/>
+
+    <xsl:if test="exists($detail-link-item-elm)">
+      <xsl:variable name="item-detail-type" as="xs:string" select="local-name($detail-link-item-elm)"/>
+      <xsl:text> </xsl:text>
+      <span>
+        <xsl:call-template name="create-item-link">
+          <xsl:with-param name="item-from-elm" select="$item-from-elm"/>
+          <xsl:with-param name="item-to-type" select="$item-detail-type"/>
+          <xsl:with-param name="item-to-id" select="xs:string($detail-link-item-elm/@id)"/>
+          <xsl:with-param name="popup" select="'Details for ' || $item-detail-type || ' ' || $detail-link-item-elm/@name"/>
+          <xsl:with-param name="prompt" select="'&#x24D3;'">
+            <!-- Encircled d -->
+          </xsl:with-param>
+          <xsl:with-param name="class" select="string-join(($class-link-nomark, $class-grey), ' ')"/>
+        </xsl:call-template>
+      </span>
+    </xsl:if>
+
+  </xsl:template>
+
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
   <xsl:template name="create-item-link">
+    <!-- Creates a link element(<a>) to an item of a certain type/id. -->
     <xsl:param name="item-from-elm" as="element()" required="false" select="."/>
     <xsl:param name="item-to-type" as="xs:string" required="true"/>
     <xsl:param name="item-to-id" as="xs:string" required="true"/>
@@ -360,42 +460,173 @@
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-  <xsl:function name="local:is-reference-attribute" as="xs:boolean">
-    <!-- Returns true if this attribute is a reference to some item type. -->
-    <xsl:param name="attr" as="attribute()?"/>
-
-    <xsl:choose>
-      <xsl:when test="exists($attr)">
-        <xsl:variable name="attr-name" as="xs:string" select="local-name($attr)"/>
-        <xsl:sequence select="ends-with($attr-name, $suffix-idref) or ends-with($attr-name, $suffix-idrefs)"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:sequence select="false()"/>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:function>
-
-  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-
   <xsl:function name="local:reference-attribute-item-type" as="xs:string">
-    <!-- Returns the item type a reference attribute id referring to. -->
+    <!-- Returns the item type a reference attribute is referring to. For instance: 
+         * package-idref => package
+         * optional-property-idrefs => property
+    -->
     <xsl:param name="attr" as="attribute()"/>
 
     <xsl:variable name="attr-name" as="xs:string" select="local-name($attr)"/>
+    <xsl:variable name="item-type-raw" as="xs:string">
+      <xsl:choose>
+        <xsl:when test="ends-with($attr-name, $attr-suffix-idref)">
+          <xsl:sequence select="substring-before($attr-name, $attr-suffix-idref)"/>
+        </xsl:when>
+        <xsl:when test="ends-with($attr-name, $attr-suffix-idrefs)">
+          <xsl:sequence select="substring-before($attr-name, $attr-suffix-idrefs)"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:call-template name="xtlc:raise-error">
+            <xsl:with-param name="msg-parts" select="('Not a reference attribute: ', $attr)"/>
+          </xsl:call-template>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
     <xsl:choose>
-      <xsl:when test="ends-with($attr-name, $suffix-idref)">
-        <xsl:sequence select="substring-before($attr-name, $suffix-idref)"/>
+      <xsl:when test="starts-with($item-type-raw, $attr-prefix-mandatory)">
+        <xsl:sequence select="substring-after($item-type-raw, $attr-prefix-mandatory)"/>
       </xsl:when>
-      <xsl:when test="ends-with($attr-name, $suffix-idrefs)">
-        <xsl:sequence select="substring-before($attr-name, $suffix-idrefs)"/>
+      <xsl:when test="starts-with($item-type-raw, $attr-prefix-optional)">
+        <xsl:sequence select="substring-after($item-type-raw, $attr-prefix-optional)"/>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:call-template name="xtlc:raise-error">
-          <xsl:with-param name="msg-parts" select="('Not a reference attribute: ', $attr)"/>
-        </xsl:call-template>
+        <xsl:sequence select="$item-type-raw"/>
       </xsl:otherwise>
     </xsl:choose>
+
   </xsl:function>
+
+  <!-- ======================================================================= -->
+  <!-- MEDIA SUPPORT: -->
+
+  <xsl:template name="copy-media">
+    <xsl:param name="item-from-elm" as="element()" required="false" select="."/>
+    <xsl:param name="href-directory" as="xs:string" required="true"/>
+
+    <xsl:for-each select="$item-from-elm/ci:media/ci:*">
+      <xsl:variable name="href" as="xs:string" select="xs:string(@href)"/>
+      <xtlcon:external-document href-source="{$href}" href-target="{xtlc:href-concat(($href-directory, xtlc:href-name($href)))}"/>
+    </xsl:for-each>
+  </xsl:template>
+
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+  <xsl:template name="create-media-section">
+    <xsl:param name="item-from-elm" as="element()" required="false" select="."/>
+    <xsl:param name="media" as="element(ci:media)?" required="true"/>
+    <xsl:param name="package-media" as="element(ci:media)?" required="false" select="()"/>
+
+    <xsl:variable name="overview-media-elms" as="element()*"
+      select="($media/ci:image, $package-media/ci:image)[@usage eq $ci:media-usage-type-overview]"/>
+    <xsl:variable name="other-media-elms" as="element()*"
+      select="$media/ci:*[not(exists(self::ci:image) and (@usage eq $ci:media-usage-type-overview))]"/>
+    <xsl:if test="exists($overview-media-elms) or exists($other-media-elms)">
+      <div class="container">
+
+        <xsl:choose>
+
+          <xsl:when test="exists($overview-media-elms)">
+            <!-- There are overview images. Create a carousel and the (optional) other media side by side: -->
+            <div class="row pt-5">
+              <div class="col-sm-6">
+                <xsl:call-template name="create-overview-images-carousel">
+                  <xsl:with-param name="item-from-elm" select="$item-from-elm"/>
+                  <xsl:with-param name="image-elms" select="$overview-media-elms"/>
+                </xsl:call-template>
+              </div>
+              <div class="col-sm-6">
+                <xsl:call-template name="create-media-list-section">
+                  <xsl:with-param name="media-elms" select="$other-media-elms"/>
+                </xsl:call-template>
+              </div>
+            </div>
+          </xsl:when>
+
+          <xsl:otherwise>
+            <!-- No overview images. Just create something for the other media: -->
+            <xsl:call-template name="create-media-list-section">
+              <xsl:with-param name="media-elms" select="$other-media-elms"/>
+            </xsl:call-template>
+          </xsl:otherwise>
+
+        </xsl:choose>
+
+      </div>
+    </xsl:if>
+  </xsl:template>
+
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+  <xsl:template name="create-overview-images-carousel">
+    <!-- Creates a carousel with the overview images. You can only have one of these on a page! -->
+    <xsl:param name="item-from-elm" as="element()" required="false" select="."/>
+    <xsl:param name="image-elms" as="element(ci:image)*" required="true"/>
+
+    <xsl:if test="exists($image-elms)">
+      <xsl:variable name="carousel-id" as="xs:string" select="'carouselOverviewImages'"/>
+
+      <div id="{$carousel-id}" class="carousel slide" data-bs-ride="false">
+
+        <!-- Indicators: -->
+        <xsl:if test="count($image-elms) gt 1">
+          <div class="carousel-indicators">
+            <xsl:for-each select="$image-elms">
+              <button type="button" data-bs-target="#carouselOverviewImages" data-bs-slide-to="{position() - 1}"
+                aria-label="{if (exists(@description)) then xs:string(@description) else ('Overview image ' || position())}">
+                <xsl:if test="position() eq 1">
+                  <xsl:attribute name="class" select="'active'"/>
+                  <xsl:attribute name="aria-current" select="'true'"/>
+                </xsl:if>
+              </button>
+            </xsl:for-each>
+          </div>
+        </xsl:if>
+
+        <!-- The images: -->
+        <div class="carousel-inner">
+          <xsl:for-each select="$image-elms">
+            <xsl:variable name="description" as="xs:string?" select="xs:string(@description)"/>
+            <div class="carousel-item{if (position() eq 1) then ' active' else ()}">
+              <img class="d-block w-100" src="{local:link-to-media($item-from-elm, .)}">
+                <xsl:if test="exists($description)">
+                  <xsl:attribute name="alt" select="$description"/>
+                </xsl:if>
+              </img>
+              <xsl:if test="exists($description)">
+                <div class="carousel-caption d-none d-md-block">
+                  <p>{$description}</p>
+                </div>
+              </xsl:if>
+            </div>
+          </xsl:for-each>
+        </div>
+
+        <!-- Next/prev buttons: -->
+        <xsl:if test="count($image-elms) gt 1">
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselOverviewImages" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"/>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselOverviewImages" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"/>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </xsl:if>
+
+      </div>
+
+    </xsl:if>
+
+  </xsl:template>
+
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+  <xsl:template name="create-media-list-section">
+    <xsl:param name="media-elms" as="element()*" required="true"/>
+
+    <p>Other media... {count($media-elms)}</p>
+  </xsl:template>
 
   <!-- ======================================================================= -->
   <!-- FILENAME AND URI SUPPORT: -->
@@ -443,6 +674,26 @@
     <xsl:param name="item-elm-to" as="element()"/>
 
     <xsl:sequence select="local:href-to-item((), $item-elm-to)"/>
+  </xsl:function>
+
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+  <xsl:function name="local:link-to-media" as="xs:string">
+    <xsl:param name="item-elm-from" as="element()"/>
+    <xsl:param name="media-elm" as="element()">
+      <!-- A media element (for instance ci:image) -->
+    </xsl:param>
+
+    <xsl:variable name="item-of-media-elm" as="element()" select="$media-elm/../.."/>
+    <xsl:choose>
+      <xsl:when test="$item-of-media-elm is $item-elm-from">
+        <xsl:sequence select="xtlc:href-name($media-elm/@href)"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:sequence
+          select="xtlc:href-concat(('..', '..', local-name($item-of-media-elm/..), $item-of-media-elm/@id, xtlc:href-name($media-elm/@href)))"/>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:function>
 
 </xsl:stylesheet>

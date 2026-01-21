@@ -169,6 +169,7 @@
     </meta>
     <projectTree name="component-inventory.xpr">
         <folder name="reference projects">
+            <folder path="../../website-eriksiegel-nl/"/>
             <folder path="../../xprocref/"/>
             <folder path="../../xtpxlib-common/"/>
             <folder path="../../xtpxlib-container/"/>
