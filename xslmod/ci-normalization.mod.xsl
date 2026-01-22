@@ -29,7 +29,7 @@
         <xsl:sequence select="$ci:media-usage-type-datasheet"/>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:sequence select="$ci:media-usage-type-instructions"/>
+        <xsl:sequence select="$ci:media-usage-type-instruction"/>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>

@@ -35,9 +35,14 @@
 
   <!-- ======================================================================= -->
 
+  <!-- Various: -->
   <xsl:variable name="doc" as="document-node()" select="/"/>
-
   <xsl:variable name="extension-html" as="xs:string" select="'.html'"/>
+
+  <!-- Page levels: -->
+  <xsl:variable name="page-level-main" as="xs:integer" select="0"/>
+  <xsl:variable name="page-level-item-overview" as="xs:integer" select="1"/>
+  <xsl:variable name="page-level-item" as="xs:integer" select="2"/>
 
   <!-- CSS classes used in creating the pages: -->
   <xsl:variable name="class-info-table" as="xs:string" select="'info'"/>
@@ -60,6 +65,12 @@
   <xsl:variable name="char-encircled-i" as="xs:string" select="'&#x24D8;'"/>
   <xsl:variable name="char-thinspace" as="xs:string" select="'&#x200A;'"/>
 
+  <!-- The order in which the various media usage and types are presented: -->
+  <xsl:variable name="media-usage-types-ordered" as="xs:string+" select="($ci:media-usage-type-overview, $ci:media-usage-type-datasheet, 
+    $ci:media-usage-type-connections-overview, $ci:media-usage-type-instruction, $ci:media-usage-type-usage-example)"/>
+  <xsl:variable name="media-types-ordered" as="xs:string+" select="($ci:media-type-image, $ci:media-type-pdf, $ci:media-type-html, 
+    $ci:media-type-markdown, $ci:media-type-text, $ci:media-type-sml)"/>
+
   <!-- ================================================================== -->
 
   <xsl:template match="/">
@@ -72,15 +83,41 @@
       </xtlcon:document>
 
       <!-- Create pages for all the items: -->
-      <xsl:apply-templates select="/ci:component-inventory-specification/ci:*/ci:*"/>
+      <xsl:apply-templates select="/ci:component-inventory-specification/ci:*"/>
 
     </xtlcon:document-container>
   </xsl:template>
 
   <!-- ======================================================================= -->
+  <!-- OVERVIEW PAGES FOR THE ITEM TYPES: -->
+
+  <xsl:template match="/ci:component-inventory-specification/ci:*">
+    <!-- Create an item type overview page with a list of all items: -->
+
+    <xsl:variable name="item-type-name" as="xs:string" select="local-name(.)"/>
+    <xsl:call-template name="create-container-document">
+      <xsl:with-param name="href-target" select="xtlc:href-concat(($item-type-name, $item-type-name || $extension-html))"/>
+      <xsl:with-param name="title" select="xtlc:capitalize($item-type-name)"/>
+      <xsl:with-param name="title-full" select="'All ' || $item-type-name"/>
+      <xsl:with-param name="content" as="item()*">
+        <ci:LIST type="{$item-type-name}">
+          <xsl:for-each select="ci:*">
+            <xsl:variable name="id" as="xs:string" select="xs:string(@id)"/>
+            <ci:LISTITEM href="{xtlc:href-concat(($id, $id || $extension-html))}" name="{@name}" description="{@summary}"/>
+          </xsl:for-each>
+        </ci:LIST>
+      </xsl:with-param>
+    </xsl:call-template>
+
+    <!-- Now process the items for this item type: -->
+    <xsl:apply-templates select="ci:*"/>
+
+  </xsl:template>
+
+  <!-- ======================================================================= -->
   <!-- ITEM: COMPONENT: -->
 
-  <xsl:template match="ci:components/ci:component">
+  <xsl:template match="/ci:component-inventory-specification/ci:components/ci:component">
 
     <xsl:variable name="component-elm" as="element(ci:component)" select="."/>
     <xsl:variable name="id" as="xs:string" select="xs:string(@id)"/>
@@ -152,6 +189,7 @@
           <xsl:call-template name="create-info-table-row-for-attribute">
             <xsl:with-param name="label" select="'In categories'"/>
             <xsl:with-param name="attr" select="@category-idrefs"/>
+            <xsl:with-param name="make-detail-link" select="false()"/>
           </xsl:call-template>
           <xsl:call-template name="create-info-table-row-for-attribute">
             <xsl:with-param name="label" select="'Registered since'"/>
@@ -181,6 +219,8 @@
     <xsl:param name="discard-boolean-false" as="xs:boolean" required="false" select="true()">
       <!-- If it's a boolean *and* its value is false, don't show this row -->
     </xsl:param>
+    <xsl:param name="make-detail-link" as="xs:boolean" required="false" select="true()"/>
+    <xsl:param name="is-code" as="xs:boolean" required="false" select="false()"/>
 
     <xsl:variable name="value" as="xs:string?" select="normalize-space($attr)[. ne $ci:special-value-unknown]"/>
     <xsl:variable name="value-seq" as="xs:string*" select="xtlc:str2seq($value)[. ne $ci:special-value-unknown]"/>
@@ -213,6 +253,7 @@
                 <xsl:with-param name="item-to-type" select="local:reference-attribute-item-type($attr)"/>
                 <xsl:with-param name="item-to-id" select="$value"/>
                 <xsl:with-param name="popups" select="$popups"/>
+                <xsl:with-param name="make-detail-link" select="$make-detail-link"/>
               </xsl:call-template>
             </xsl:when>
 
@@ -224,6 +265,7 @@
                   <xsl:with-param name="item-to-type" select="$item-type"/>
                   <xsl:with-param name="item-to-id" select="."/>
                   <xsl:with-param name="popups" select="$popups"/>
+                  <xsl:with-param name="make-detail-link" select="$make-detail-link"/>
                 </xsl:call-template>
                 <xsl:if test="position() ne last()">
                   <br/>
@@ -257,6 +299,13 @@
               </xsl:call-template>
             </xsl:when>
 
+            <xsl:when test="$is-code">
+              <code>{xs:string($attr)}</code>
+              <xsl:call-template name="create-popup">
+                <xsl:with-param name="popups" as="xs:string*" select="$popups"/>
+              </xsl:call-template>
+            </xsl:when>
+
             <xsl:otherwise>
               <xsl:value-of select="xs:string($attr) => xtlc:capitalize()"/>
               <xsl:call-template name="create-popup">
@@ -279,20 +328,35 @@
     <xsl:param name="item-to-type" as="xs:string" required="true"/>
     <xsl:param name="item-to-id" as="xs:string" required="true"/>
     <xsl:param name="popups" as="xs:string*" required="false" select="()"/>
+    <xsl:param name="make-detail-link" as="xs:boolean" required="false" select="true()"/>
 
     <xsl:for-each select="$doc">
       <xsl:variable name="item-to-elm" as="element()" select="key($item-to-type || $suffix-index, $item-to-id)"/>
-      <xsl:value-of select="xs:string($item-to-elm/@name)"/>
+      <xsl:choose>
+        <xsl:when test="$make-detail-link">
+          <xsl:value-of select="xs:string($item-to-elm/@name)"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:call-template name="create-item-link">
+            <xsl:with-param name="item-from-elm" select="$item-from-elm"/>
+            <xsl:with-param name="item-to-type" select="$item-to-type"/>
+            <xsl:with-param name="item-to-id" select="$item-to-id"/>
+          </xsl:call-template>
+        </xsl:otherwise>
+      </xsl:choose>
+
       <xsl:call-template name="create-popup">
         <xsl:with-param name="popups" as="xs:string*">
           <xsl:sequence select="$item-to-elm/@summary"/>
           <xsl:sequence select="$popups"/>
         </xsl:with-param>
       </xsl:call-template>
-      <xsl:call-template name="create-detail-link">
-        <xsl:with-param name="item-from-elm" select="$item-from-elm"/>
-        <xsl:with-param name="detail-link-item-elm" select="$item-to-elm"/>
-      </xsl:call-template>
+      <xsl:if test="$make-detail-link">
+        <xsl:call-template name="create-detail-link">
+          <xsl:with-param name="item-from-elm" select="$item-from-elm"/>
+          <xsl:with-param name="detail-link-item-elm" select="$item-to-elm"/>
+        </xsl:call-template>
+      </xsl:if>
     </xsl:for-each>
   </xsl:template>
 
@@ -319,46 +383,169 @@
 
   <!-- ======================================================================= -->
   <!-- TBD PAGES FOR OTHER ITEM TYPES... -->
-  
-  <xsl:template match="ci:packages/ci:package">
-    
-    <xsl:variable name="id" as="xs:string" select="xs:string(@id)"/>
-    <xsl:variable name="item-type-plural" as="xs:string" select="local-name(..)"/>
-    <xsl:variable name="href-directory" as="xs:string" select="xtlc:href-concat(($item-type-plural, $id))"/>
-    
-    <xsl:comment> == ITEM NOT YET HANDLED: {local-name(.)} - {@id} == </xsl:comment>
-    
-    <!-- Make sure the media for this item (if any) are included and copied: -->
-    <xsl:call-template name="copy-media">
-      <xsl:with-param name="href-directory" select="$href-directory"/>
+
+  <xsl:template match="/ci:component-inventory-specification/ci:properties/ci:property">
+    <xsl:call-template name="create-page-for-non-component-item">
+      <xsl:with-param name="additional-content" as="item()*">
+        <p>{$char-thinspace}</p>
+        <table class="{$class-info-table}">
+          <xsl:call-template name="create-info-table-row-for-attribute">
+            <xsl:with-param name="attr" select="@value-pattern"/>
+            <xsl:with-param name="is-code" select="true()"/>
+            <xsl:with-param name="popups" select="'Regular expression for the value to match'"/>
+          </xsl:call-template>
+          <xsl:call-template name="create-info-table-row-for-attribute">
+            <xsl:with-param name="attr" select="@default"/>
+          </xsl:call-template>
+          <xsl:call-template name="create-info-table-row-for-attribute">
+            <xsl:with-param name="attr" select="@suffix"/>
+            <xsl:with-param name="label" select="'Value suffix'"/>
+          </xsl:call-template>
+        </table>
+      </xsl:with-param>
     </xsl:call-template>
-    
   </xsl:template>
   
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
   
-  
-  <xsl:template match="/*/ci:*/ci:*" priority="-1000">
-    <xsl:comment> == ITEM NOT YET HANDLED: {local-name(.)} - {@id} == </xsl:comment>
+  <xsl:template match="/ci:component-inventory-specification/ci:categories/ci:category">
+    <xsl:call-template name="create-page-for-non-component-item">
+      <xsl:with-param name="additional-content" as="item()*">
+        <p>{$char-thinspace}</p>
+        <table class="{$class-info-table}">
+          <xsl:call-template name="create-info-table-row-for-attribute">
+            <xsl:with-param name="attr" select="@mandatory-property-idrefs"/>
+            <xsl:with-param name="label" select="'Mandatory properties'"/>
+          </xsl:call-template>
+          <xsl:call-template name="create-info-table-row-for-attribute">
+            <xsl:with-param name="attr" select="@optional-property-idrefs"/>
+            <xsl:with-param name="label" select="'Optional properties'"/>
+          </xsl:call-template>
+        </table>
+      </xsl:with-param>
+    </xsl:call-template>
   </xsl:template>
+  
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+  
+  <xsl:template match="/ci:component-inventory-specification/ci:price-ranges/ci:price-range">
+    <xsl:call-template name="create-page-for-non-component-item">
+      <xsl:with-param name="additional-content" as="item()*">
+        <p>{$char-thinspace}</p>
+        <table class="{$class-info-table}">
+          <xsl:call-template name="create-info-table-row-for-attribute">
+            <xsl:with-param name="attr" select="@min-inclusive"/>
+            <xsl:with-param name="label" select="'Minimum price (inclusive)'"/>
+          </xsl:call-template>
+          <xsl:call-template name="create-info-table-row-for-attribute">
+            <xsl:with-param name="attr" select="@max-inclusive"/>
+            <xsl:with-param name="label" select="'Maximum price (inclusive)'"/>
+          </xsl:call-template>
+        </table>
+      </xsl:with-param>
+    </xsl:call-template>
+  </xsl:template>
+  
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+  <xsl:template match="/ci:component-inventory-specification/ci:*/ci:*" priority="-1000">
+    <xsl:call-template name="create-page-for-non-component-item"/>
+  </xsl:template>
+
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+  <xsl:template name="create-page-for-non-component-item">
+    <xsl:param name="item-elm" as="element()" required="false" select="."/>
+    <xsl:param name="additional-content" as="item()*" required="false" select="()"/>
+
+    <xsl:for-each select="$item-elm">
+      <xsl:variable name="id" as="xs:string" select="xs:string(@id)"/>
+      <xsl:variable name="name" as="xs:string" select="local-name(.)"/>
+      <xsl:variable name="item-type-plural" as="xs:string" select="local-name(..)"/>
+      <xsl:variable name="href-directory" as="xs:string" select="xtlc:href-concat(($item-type-plural, $id))"/>
+      <xsl:variable name="href-target" as="xs:string" select="xtlc:href-concat(($href-directory, $id || $extension-html))"/>
+      <xsl:variable name="title" as="xs:string" select="xtlc:capitalize($name) || ': ' || @name"/>
+
+      <xsl:call-template name="create-container-document">
+        <xsl:with-param name="title" select="$title"/>
+        <xsl:with-param name="title-full" select="$title || ' - ' || @summary"/>
+        <xsl:with-param name="href-target" select="$href-target"/>
+        <xsl:with-param name="content" as="item()*">
+          <xsl:call-template name="create-media-section">
+            <xsl:with-param name="media" select="ci:media"/>
+          </xsl:call-template>
+
+          <xsl:sequence select="$additional-content"/>
+
+          <xsl:variable name="idref-attribute-names" as="xs:string+" select="($name || $attr-suffix-idref, $name || $attr-suffix-idrefs)"/>
+          <xsl:variable name="referenced-components" as="element(ci:component)*"
+            select="/ci:component-inventory-specification/ci:components/ci:component[local:component-references-item(., $id, $idref-attribute-names)]"/>
+          <xsl:if test="exists($referenced-components)">
+            <h3>Components referencing this {$name}:</h3>
+            <ci:LIST type="components">
+              <xsl:for-each select="$referenced-components">
+                <xsl:variable name="component-id" as="xs:string" select="xs:string(@id)"/>
+                <ci:LISTITEM href="{xtlc:href-concat(('..', '..', 'components', $component-id, $component-id || $extension-html))}" name="{@name}"
+                  description="{@summary}"/>
+              </xsl:for-each>
+            </ci:LIST>
+          </xsl:if>
+
+        </xsl:with-param>
+      </xsl:call-template>
+
+      <!-- Make sure the media for this item (if any) are included and copied: -->
+      <xsl:call-template name="copy-media">
+        <xsl:with-param name="href-directory" select="$href-directory"/>
+      </xsl:call-template>
+
+    </xsl:for-each>
+
+  </xsl:template>
+
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+  <xsl:function name="local:component-references-item" as="xs:boolean">
+    <xsl:param name="component-elm" as="element(ci:component)"/>
+    <xsl:param name="item-id" as="xs:string"/>
+    <xsl:param name="idref-attribute-names" as="xs:string+"/>
+
+    <xsl:variable name="idref-attribute" as="attribute()?" select="$component-elm/@*[local-name(.) = $idref-attribute-names]"/>
+    <xsl:choose>
+      <xsl:when test="exists($idref-attribute)">
+        <xsl:sequence select="$item-id = xtlc:str2seq($idref-attribute)"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:sequence select="false()"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:function>
 
   <!-- ======================================================================= -->
   <!-- GENERAL SUPPORT: -->
 
-  <xsl:template name="create-item-page-container-document">
+  <xsl:template name="create-container-document">
     <!-- Creates the container document for the page for an item, filling in all the common stuff.  -->
-    <xsl:param name="item-elm" as="element()" required="false" select="."/>
+    <xsl:param name="base-elm" as="element()" required="false" select="."/>
     <xsl:param name="content" as="element()*" required="true"/>
+    <xsl:param name="href-target" as="xs:string" required="true"/>
+    <xsl:param name="title" as="xs:string" required="true"/>
+    <xsl:param name="title-full" as="xs:string" required="false" select="$title"/>
 
-    <xsl:variable name="id" as="xs:string" select="xs:string($item-elm/@id)"/>
-
-    <xtlcon:document href-target="{local:href-to-item($item-elm)}" type="{local-name($item-elm)}" id="{$id}" title="{$item-elm/@name}"
-      keywords="{distinct-values(($id, xtlc:str2seq($item-elm/@keywords))) => string-join(' ')}"
+    <xtlcon:document href-target="{$href-target}" type="{local-name($base-elm)}" title="{$title}" page-level="{count($base-elm/ancestor::ci:*)}"
       serialization="{{'method': 'html', 'indent': 'false'}}">
-      <h1>{$item-elm/@name} - {$item-elm/@summary}</h1>
+      <xsl:if test="exists($base-elm/@id)">
+        <xsl:attribute name="id" select="$base-elm/@id"/>
+      </xsl:if>
+      <xsl:if test="exists($base-elm/@keywords)">
+        <xsl:attribute name="keywords" select="distinct-values((@id, xtlc:str2seq($base-elm/@keywords))) => string-join(' ')"/>
+      </xsl:if>
+
+      <h1>{$title-full}</h1>
+
       <xsl:where-populated>
-        <sml:sml>
-          <xsl:sequence select="ci:description/sml:*"/>
+        <sml:sml _href-dir-result="{xtlc:href-path($href-target)}">
+          <xsl:sequence select="$base-elm/ci:description/sml:*"/>
         </sml:sml>
       </xsl:where-populated>
 
@@ -368,6 +555,25 @@
       <p>&#160;</p>
       <p>Created: {format-dateTime(current-dateTime(), $xtlc:default-dt-format)}</p>
     </xtlcon:document>
+
+  </xsl:template>
+
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+  <xsl:template name="create-item-page-container-document">
+    <!-- Creates the container document for the page for an item, filling in all the common stuff.  -->
+    <xsl:param name="item-elm" as="element()" required="false" select="."/>
+    <xsl:param name="content" as="element()*" required="true"/>
+
+    <xsl:variable name="name" as="xs:string" select="xs:string($item-elm/@name)"/>
+    <xsl:call-template name="create-container-document">
+      <xsl:with-param name="base-elm" select="$item-elm"/>
+      <xsl:with-param name="content" select="$content"/>
+      <xsl:with-param name="href-target" select="local:href-to-item($item-elm)"/>
+      <xsl:with-param name="title" select="$name"/>
+      <xsl:with-param name="title-full" select="$name || ' - ' || xs:string($item-elm/@summary)"/>
+    </xsl:call-template>
+
   </xsl:template>
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
@@ -506,7 +712,8 @@
 
     <xsl:for-each select="$item-from-elm/ci:media/ci:*">
       <xsl:variable name="href" as="xs:string" select="xs:string(@href)"/>
-      <xtlcon:external-document href-source="{$href}" href-target="{xtlc:href-concat(($href-directory, xtlc:href-name($href)))}"/>
+      <xtlcon:external-document href-source="{$href => xtlc:href-add-encoding()}"
+        href-target="{xtlc:href-concat(($href-directory, xtlc:href-name($href))) => xtlc:href-add-encoding()}"/>
     </xsl:for-each>
   </xsl:template>
 
@@ -517,22 +724,22 @@
     <xsl:param name="media" as="element(ci:media)?" required="true"/>
     <xsl:param name="package-media" as="element(ci:media)?" required="false" select="()"/>
 
-    <xsl:variable name="overview-media-elms" as="element()*"
+    <xsl:variable name="overview-media-image-lms" as="element()*"
       select="($media/ci:image, $package-media/ci:image)[@usage eq $ci:media-usage-type-overview]"/>
     <xsl:variable name="other-media-elms" as="element()*"
       select="$media/ci:*[not(exists(self::ci:image) and (@usage eq $ci:media-usage-type-overview))]"/>
-    <xsl:if test="exists($overview-media-elms) or exists($other-media-elms)">
+    <xsl:if test="exists($overview-media-image-lms) or exists($other-media-elms)">
       <div class="container">
 
         <xsl:choose>
 
-          <xsl:when test="exists($overview-media-elms)">
+          <xsl:when test="exists($overview-media-image-lms)">
             <!-- There are overview images. Create a carousel and the (optional) other media side by side: -->
             <div class="row pt-5">
               <div class="col-sm-6">
                 <xsl:call-template name="create-overview-images-carousel">
                   <xsl:with-param name="item-from-elm" select="$item-from-elm"/>
-                  <xsl:with-param name="image-elms" select="$overview-media-elms"/>
+                  <xsl:with-param name="image-elms" select="$overview-media-image-lms"/>
                 </xsl:call-template>
               </div>
               <div class="col-sm-6">
@@ -625,7 +832,31 @@
   <xsl:template name="create-media-list-section">
     <xsl:param name="media-elms" as="element()*" required="true"/>
 
-    <p>Other media... {count($media-elms)}</p>
+    <xsl:for-each-group select="$media-elms" group-by="xs:string(@usage)">
+      <xsl:sort select="local:sort-order-key($media-usage-types-ordered, current-grouping-key())"/>
+      <xsl:variable name="label" as="xs:string"
+        select="(xtlc:capitalize(current-grouping-key()) => translate('-', ' ')) || (if (count(current-group()) gt 1) then 's' else ()) "/>
+      <p>
+        <b>{$label}:</b>
+      </p>
+      <ul>
+        <xsl:for-each select="current-group()">
+          <xsl:sort select="local:sort-order-key($media-types-ordered, local-name(.))"/>
+          <li>
+            <xsl:variable name="name" as="xs:string" select="xtlc:href-name(@href)"/>
+            <a href="{$name}" target="_blank">
+              <xsl:value-of select="$name"/>
+              <xsl:if test="normalize-space(@description) ne ''">
+                <xsl:text> (</xsl:text>
+                <xsl:value-of select="@description"/>
+                <xsl:text>)</xsl:text>
+              </xsl:if>
+            </a>
+          </li>
+        </xsl:for-each>
+      </ul>
+    </xsl:for-each-group>
+
   </xsl:template>
 
   <!-- ======================================================================= -->
@@ -692,6 +923,25 @@
       <xsl:otherwise>
         <xsl:sequence
           select="xtlc:href-concat(('..', '..', local-name($item-of-media-elm/..), $item-of-media-elm/@id, xtlc:href-name($media-elm/@href)))"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:function>
+
+  <!-- ======================================================================= -->
+  <!-- OTHERS: -->
+
+  <xsl:function name="local:sort-order-key" as="xs:integer">
+    <xsl:param name="value-list-ordered" as="xs:string*"/>
+    <xsl:param name="value" as="xs:string?"/>
+
+    <xsl:variable name="default" as="xs:integer" select="count($value-list-ordered) + 1"/>
+    <xsl:choose>
+      <xsl:when test="empty($value) or empty($value-list-ordered)">
+        <xsl:sequence select="$value"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:variable name="index" as="xs:integer?" select="index-of($value-list-ordered, $value)[1]"/>
+        <xsl:sequence select="($index, $default)[1]"/>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>

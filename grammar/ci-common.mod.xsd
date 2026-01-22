@@ -58,13 +58,6 @@
               <xs:element name="image">
                 <xs:complexType>
                   <xs:attributeGroup ref="ci:ag-media"/>
-                  <xs:attribute name="scaling" default="100%">
-                    <xs:simpleType>
-                      <xs:restriction base="ci:t-scaling">
-                        <xs:pattern value="[0-1]?[0-9]?[0-9]%"/>
-                      </xs:restriction>
-                    </xs:simpleType>
-                  </xs:attribute>
                 </xs:complexType>
               </xs:element>
               <xs:element name="pdf">
@@ -156,7 +149,7 @@
       <xs:enumeration value="overview"/>
       <xs:enumeration value="connections-overview"/>
       <xs:enumeration value="usage-example"/>
-      <xs:enumeration value="instructions"/>
+      <xs:enumeration value="instruction"/>
       <xs:enumeration value="datasheet"/>
     </xs:restriction>
   </xs:simpleType>

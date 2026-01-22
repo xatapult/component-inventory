@@ -39,7 +39,7 @@
   <xsl:variable name="ci:media-usage-type-overview" as="xs:string" select="'overview'"/>
   <xsl:variable name="ci:media-usage-type-connections-overview" as="xs:string" select="'connections-overview'"/>
   <xsl:variable name="ci:media-usage-type-usage-example" as="xs:string" select="'usage-example'"/>
-  <xsl:variable name="ci:media-usage-type-instructions" as="xs:string" select="'instructions'"/>
+  <xsl:variable name="ci:media-usage-type-instruction" as="xs:string" select="'instruction'"/>
   <xsl:variable name="ci:media-usage-type-datasheet" as="xs:string" select="'datasheet'"/>
   
   <!-- ======================================================================= -->

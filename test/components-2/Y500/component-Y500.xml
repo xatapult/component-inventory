@@ -5,15 +5,17 @@
   package-idref="DIP16" category-idrefs="ICS.LOGIC" location-idref="BOX" price-range-idref="cheap" keywords="schmitt-trigger test">
 
   <description>
-    <sml:para>Dit is een SML stukje!</sml:para>
-    <itemizedlist>
-      <listitem>
-        <para>1!</para>
-      </listitem>
-      <listitem>
-        <para>2!</para>
-      </listitem>
-    </itemizedlist>
+    <fragment xmlns="http://www.eriksiegel.nl/ns/sml">
+      <para>Dit is een SML stukje!</para>
+      <itemizedlist>
+        <listitem>
+          <para>1!</para>
+        </listitem>
+        <listitem>
+          <para>2!</para>
+        </listitem>
+      </itemizedlist>
+    </fragment>
   </description>
 
   <property-values>

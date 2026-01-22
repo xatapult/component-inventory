@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="3.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:map="http://www.w3.org/2005/xpath-functions/map"
   xmlns:array="http://www.w3.org/2005/xpath-functions/array" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:local="#local.ds2_tbz_yhc"
-  xmlns:html="http://www.w3.org/1999/xhtml" xmlns:xtlcon="http://www.xtpxlib.nl/ns/container" xmlns:xtlc="http://www.xtpxlib.nl/ns/common"
-  xmlns:ci="https://eriksiegel.nl/ns/component-inventory" exclude-result-prefixes="#all" expand-text="true">
+  xmlns:sml="http://www.eriksiegel.nl/ns/sml" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:xtlcon="http://www.xtpxlib.nl/ns/container"
+  xmlns:xtlc="http://www.xtpxlib.nl/ns/common" xmlns:ci="https://eriksiegel.nl/ns/component-inventory" exclude-result-prefixes="#all"
+  expand-text="true">
   <!-- ================================================================== -->
   <!-- 
        Takes a container with documents containing the body HTML. 
@@ -42,9 +43,9 @@
       <xsl:apply-templates select="@*"/>
 
       <!-- Find out how deep this page is in the directory structure and create an appropriate homedir string: -->
-      <xsl:variable name="level" as="xs:integer" select="count(tokenize(@href-target, '/')[.]) - 1"/>
+      <xsl:variable name="page-level" as="xs:integer" select="count(tokenize(@href-target, '/')[.]) - 1"/>
       <xsl:variable name="homedir" as="xs:string"
-        select="string-join(for $d in (1 to $level) return '..', '/') || (if ($level gt 0) then '/' else ())"/>
+        select="string-join(for $d in (1 to $page-level) return '..', '/') || (if ($page-level gt 0) then '/' else ())"/>
 
       <!-- TBD SOMETHING WITH KEYWORDS (STANDARD + SPECIAL ON DOCUMENT ATTRIBUTE?) -->
 
@@ -89,17 +90,17 @@
 
   <xsl:template match="html:meta[@name eq 'keywords']/@content" mode="mode-create-page">
     <xsl:param name="keywords" as="xs:string?" required="true" tunnel="true"/>
-    
+
     <xsl:attribute name="{node-name(.)}" select="$keywords"/>
   </xsl:template>
-  
+
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-  
+
   <!-- TBD TURN BACK ON FOR PRODUCTION -->
   <!--<xsl:template match="text()[normalize-space(.) eq '']" mode="mode-create-page">
     <!-\- Discard -\->
   </xsl:template>-->
-  
+
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
   <xsl:template match="comment() | processing-instruction()" mode="mode-create-page">
@@ -112,8 +113,15 @@
   <xsl:template match="*" mode="mode-copy-contents">
 
     <xsl:element name="{local-name(.)}" namespace="http://www.w3.org/1999/xhtml">
-      <xsl:apply-templates select="@* | node()"/>
+      <xsl:apply-templates select="@* | node()" mode="#current"/>
     </xsl:element>
+  </xsl:template>
+
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+  <xsl:template match="sml:*" mode="mode-copy-contents">
+    <!-- SML elements will get translated into HTML later on... -->
+    <xsl:sequence select="."/>
   </xsl:template>
 
 </xsl:stylesheet>

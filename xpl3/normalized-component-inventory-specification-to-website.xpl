@@ -18,6 +18,8 @@
   <p:import href="file:/xatapult/xtpxlib-common/xpl3mod/create-clear-directory/create-clear-directory.xpl"/>
 
   <p:import href="file:/xatapult/xtpxlib-container/xpl3mod/container-to-disk/container-to-disk.xpl"/>
+  
+  <p:import href="file:/xatapult/xtpxlib-sml/xpl3/sml-to-html.xpl"></p:import>
 
   <!-- ======================================================================= -->
 
@@ -146,7 +148,6 @@
   <p:identity name="clean-specification"/>
   <p:store href="tmp/10-clean-specification.xml" use-when="$debug-output"/>
 
-
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
   <!-- Preparations: -->
 
@@ -184,20 +185,29 @@
     <p:with-input port="stylesheet" href="xsl-normalized-component-inventory-specification-to-website/create-base-container.xsl"/>
     <p:with-option name="parameters" select="map{'href-build-location': $href-build-location }"/>
   </p:xslt>
+  <!-- Turn the SML that's still inside into HTML: -->
+  <p:viewport match="sml:sml">
+    <sml:sml-to-html do-validation="false" >
+      <p:with-option name="href-template" select="()"/>
+      <p:with-option name="href-dir-result" select="xs:string(/*/@_href-dir-result)"/>
+    </sml:sml-to-html>
+  </p:viewport>
+  <!-- Turn the lists into HTML: -->
+  <p:viewport match="ci:LIST">
+    <p:xslt>
+      <p:with-input port="stylesheet" href="xsl-normalized-component-inventory-specification-to-website/process-lists.xsl"/>
+    </p:xslt>
+  </p:viewport>
+  
   <p:store href="tmp/20-base-container.xml" use-when="$debug-output"/>
-
-  <!-- TBD TBD -->
-
+  
   <!-- The container documents now contain complete body HTML. Turn this into pages: -->
   <p:xslt>
     <p:with-input port="stylesheet" href="xsl-normalized-component-inventory-specification-to-website/create-pages.xsl"/>
     <p:with-option name="parameters" select="map{'href-web-template': $href-web-template}"/>
   </p:xslt>
   
-  <!-- TBD FOR NOW: -->
-  <p:delete match="ci:*"></p:delete>
-  <p:delete match="sml:*"></p:delete>
-
+  
   <!-- Write it away! -->
   <xtlcon:container-to-disk remove-target="false"/>
 
