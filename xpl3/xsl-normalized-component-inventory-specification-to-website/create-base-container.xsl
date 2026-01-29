@@ -38,6 +38,8 @@
   <!-- Various: -->
   <xsl:variable name="doc" as="document-node()" select="/"/>
   <xsl:variable name="components" as="element(ci:component)*" select="/*/ci:components/ci:component"/>
+  <xsl:variable name="categories" as="element(ci:category)*" select="/*/ci:categories/ci:category"/>
+
   <xsl:variable name="extension-html" as="xs:string" select="'.html'"/>
   <xsl:variable name="namespace-sml" as="xs:string" select="namespace-uri-for-prefix('sml', doc('')/*)"/>
 
@@ -91,6 +93,7 @@
             <xsl:with-param name="text-block-parent-elm" select="$ci:additional-data-document/*/ci:home-page"/>
             <xsl:with-param name="href-dir-target" select="$href-build-location"/>
           </xsl:call-template>
+          <xsl:call-template name="add-favorites-section"/>
         </xsl:with-param>
       </xsl:call-template>
 
@@ -105,6 +108,7 @@
             <xsl:with-param name="href-dir-target" select="$href-build-location"/>
           </xsl:call-template>
         </xsl:with-param>
+        <xsl:with-param name="force-creation-timestamp-footer" select="true()"/>
       </xsl:call-template>
 
       <!-- Create pages for all the items: -->
@@ -127,6 +131,10 @@
       <xsl:with-param name="title" select="xtlc:capitalize($item-type-plural-no-hyphens)"/>
       <xsl:with-param name="title-full" select="'All ' || $item-type-plural-no-hyphens"/>
       <xsl:with-param name="content" as="item()*">
+        <xsl:call-template name="handle-text-block-contents">
+          <xsl:with-param name="text-block-parent-elm" select="$ci:additional-data-document/*/ci:overview-page[@item-type eq $item-type-plural]"/>
+          <xsl:with-param name="href-dir-target" select="xtlc:href-concat(($href-build-location, $item-type-plural))"/>
+        </xsl:call-template>
         <ci:LIST type="{$item-type-plural}">
           <xsl:for-each select="ci:*">
             <xsl:variable name="id" as="xs:string" select="xs:string(@id)"/>
@@ -233,7 +241,6 @@
             <xsl:with-param name="label" select="'Registered since'"/>
             <xsl:with-param name="attr" select="@since"/>
           </xsl:call-template>
-
         </table>
 
       </xsl:with-param>
@@ -571,15 +578,17 @@
     <xsl:param name="title-full" as="xs:string" required="false" select="$title"/>
     <xsl:param name="item-previous" as="element()?" required="false" select="()"/>
     <xsl:param name="item-next" as="element()?" required="false" select="()"/>
+    <xsl:param name="force-creation-timestamp-footer" as="xs:boolean" required="false" select="false()"/>
 
+    <xsl:variable name="id" as="xs:string?" select="xs:string($base-elm/@id)"/>
     <xtlcon:document href-target="{$href-target}" type="{if (empty($base-elm)) then xtlc:href-name-noext($href-target) else local-name($base-elm)}"
       title="{$title}" page-level="{if (empty($base-elm)) then 0 else count($base-elm/ancestor::ci:*)}"
       serialization="{{'method': 'html', 'indent': 'false'}}">
-      <xsl:if test="exists($base-elm/@id)">
-        <xsl:attribute name="id" select="$base-elm/@id"/>
+      <xsl:if test="exists($id)">
+        <xsl:attribute name="id" select="$id"/>
       </xsl:if>
       <xsl:if test="exists($base-elm/@keywords)">
-        <xsl:attribute name="keywords" select="distinct-values((@id, xtlc:str2seq($base-elm/@keywords))) => string-join(' ')"/>
+        <xsl:attribute name="keywords" select="distinct-values(($id, xtlc:str2seq($base-elm/@keywords))) => string-join(' ')"/>
       </xsl:if>
 
       <!-- Page title (with optional previous/next links): -->
@@ -608,11 +617,21 @@
       <!-- Contents: -->
       <xsl:sequence select="$content"/>
 
-      <!-- Add a creation timestamp if requested: -->
-      <xsl:if test="$add-page-creation-timestamp">
-        <p>&#160;</p>
-        <p class="site-remark">Created: {format-dateTime(current-dateTime(), $xtlc:default-dt-format)}</p>
-      </xsl:if>
+      <!-- Footer with internal id and optional timestamp: -->
+      <p>&#160;</p>
+      <p class="site-remark">
+        <xsl:if test="exists($id)">
+          <xsl:text>Internal identifier: </xsl:text>
+          <xsl:value-of select="$id"/>
+          <xsl:if test="$add-page-creation-timestamp or $force-creation-timestamp-footer">
+            <xsl:text> - </xsl:text>
+          </xsl:if>
+        </xsl:if>
+        <xsl:if test="$add-page-creation-timestamp or $force-creation-timestamp-footer">
+          <xsl:text>Created: </xsl:text>
+          <xsl:value-of select="format-dateTime(current-dateTime(), $xtlc:default-dt-format)"/>
+        </xsl:if>
+      </p>
 
     </xtlcon:document>
 
@@ -886,6 +905,7 @@
             />
           </xsl:call-template>
         </xsl:if>
+        <xsl:text>:</xsl:text>
       </p>
       <ul>
         <xsl:for-each select="current-group()">
@@ -1030,5 +1050,121 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
+
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+  <xsl:template name="add-favorites-section">
+    <!-- Creates some HTML structure to show the favorites: -->
+
+    <xsl:variable name="favorite-component-elements" as="element(ci:component)*"
+      select="$ci:additional-data-document/*/ci:favorite-components/ci:component"/>
+    <xsl:variable name="favorite-component-idrefs-raw" as="xs:string*">
+      <xsl:for-each select="$favorite-component-elements">
+        <xsl:variable name="idref" as="xs:string" select="xs:string(@idref)"/>
+        <xsl:variable name="component-elm" as="element(ci:component)?" select="$components[@id eq $idref]"/>
+        <xsl:if test="exists($component-elm)">
+          <xsl:sequence select="$idref"/>
+        </xsl:if>
+      </xsl:for-each>
+    </xsl:variable>
+    <xsl:variable name="favorite-component-idrefs" as="xs:string*" select="distinct-values($favorite-component-idrefs-raw)"/>
+
+    <xsl:variable name="favorite-category-elements" as="element(ci:category)*"
+      select="$ci:additional-data-document/*/ci:favorite-categories/ci:category"/>
+    <xsl:variable name="favorite-category-idrefs-raw" as="xs:string*">
+      <xsl:for-each select="$favorite-category-elements">
+        <xsl:variable name="idref" as="xs:string" select="xs:string(@idref)"/>
+        <xsl:variable name="category-elm" as="element(ci:category)?" select="$categories[@id eq $idref]"/>
+        <xsl:if test="exists($category-elm)">
+          <xsl:sequence select="$idref"/>
+        </xsl:if>
+      </xsl:for-each>
+    </xsl:variable>
+    <xsl:variable name="favorite-category-idrefs" as="xs:string*" select="distinct-values($favorite-category-idrefs-raw)"/>
+
+    <div class="container">
+
+      <xsl:choose>
+        <xsl:when test="exists($favorite-category-idrefs) and exists($favorite-component-idrefs)">
+          <div class="row pt-5">
+            <div class="col-sm-6">
+              <xsl:call-template name="add-favorites-subsection">
+                <xsl:with-param name="favorite-idrefs" select="$favorite-category-idrefs"/>
+                <xsl:with-param name="favorite-reference-elms" select="$favorite-category-elements"/>
+                <xsl:with-param name="item-elms" select="$categories"/>
+              </xsl:call-template>
+            </div>
+            <div class="col-sm-6">
+              <xsl:call-template name="add-favorites-subsection">
+                <xsl:with-param name="favorite-idrefs" select="$favorite-component-idrefs"/>
+                <xsl:with-param name="favorite-reference-elms" select="$favorite-component-elements"/>
+                <xsl:with-param name="item-elms" select="$components"/>
+              </xsl:call-template>
+            </div>
+          </div>
+        </xsl:when>
+        <xsl:when test="exists($favorite-category-idrefs)">
+          <p>&#160;</p>
+          <xsl:call-template name="add-favorites-subsection">
+            <xsl:with-param name="favorite-idrefs" select="$favorite-category-idrefs"/>
+            <xsl:with-param name="favorite-reference-elms" select="$favorite-category-elements"/>
+            <xsl:with-param name="item-elms" select="$categories"/>
+          </xsl:call-template>
+        </xsl:when>
+        <xsl:when test="exists($favorite-component-idrefs)">
+          <p>&#160;</p>
+          <xsl:call-template name="add-favorites-subsection">
+            <xsl:with-param name="favorite-idrefs" select="$favorite-component-idrefs"/>
+            <xsl:with-param name="favorite-reference-elms" select="$favorite-component-elements"/>
+            <xsl:with-param name="item-elms" select="$components"/>
+          </xsl:call-template>
+        </xsl:when>
+
+      </xsl:choose>
+
+    </div>
+
+  </xsl:template>
+
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+  <xsl:template name="add-favorites-subsection">
+    <xsl:param name="favorite-idrefs" as="xs:string*" required="true"/>
+    <xsl:param name="favorite-reference-elms" as="element()*" required="true">
+      <!-- We need this to get the additional remarks that are sometimes there. -->
+    </xsl:param>
+    <xsl:param name="item-elms" as="element()*" required="true"/>
+
+    <xsl:if test="exists($favorite-idrefs)">
+      <xsl:variable name="item-type-plural" as="xs:string" select="local-name($item-elms[1]/..)"/>
+      <p>
+        <b>Favorite {$item-type-plural}</b>
+        <xsl:call-template name="create-popup">
+          <xsl:with-param name="popups" select="'Favorite ' || $item-type-plural || ' are based on my personal preferences and usage'"/>
+        </xsl:call-template>
+        <xsl:text>:</xsl:text>
+      </p>
+      <ul>
+        <xsl:for-each select="$favorite-idrefs">
+          <xsl:variable name="idref" as="xs:string" select="."/>
+          <xsl:variable name="item-elm" as="element()" select="$item-elms[@id eq $idref]"/>
+          <xsl:variable name="reference-elm" as="element()" select="$favorite-reference-elms[@idref eq $idref][1]"/>
+          <li>
+            <a href="{$item-type-plural}/{$idref}/{$idref}{$extension-html}">
+              <xsl:value-of select="$item-elm/@name"/>
+            </a>
+            <xsl:text> - </xsl:text>
+            <xsl:value-of select="$item-elm/@summary"/>
+            <xsl:if test="normalize-space($reference-elm/@remark) ne ''">
+              <xsl:text> (</xsl:text>
+              <xsl:value-of select="$reference-elm/@remark"/>
+              <xsl:text>)</xsl:text>
+            </xsl:if>
+          </li>
+        </xsl:for-each>
+      </ul>
+    </xsl:if>
+
+  </xsl:template>
 
 </xsl:stylesheet>

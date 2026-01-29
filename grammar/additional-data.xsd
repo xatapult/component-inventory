@@ -11,6 +11,36 @@
     </xs:annotation>
     <xs:complexType>
       <xs:sequence>
+        <xs:element minOccurs="0" name="favorite-components">
+          <xs:annotation>
+            <xs:documentation>A list of favorite components. Id references that do not exist are silently ignored.</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" minOccurs="0" name="component">
+                <xs:complexType>
+                  <xs:attribute name="idref" type="ci:t-identifier" use="required"/>
+                  <xs:attribute name="remark" type="xs:string"/>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element minOccurs="0" name="favorite-categories">
+          <xs:annotation>
+            <xs:documentation>A list of favorite categories. Id references that do not exist are silently ignored.</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="category" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType>
+                  <xs:attribute name="idref" type="xs:string" use="required"/>
+                  <xs:attribute name="remark" type="xs:string"/>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
         <xs:element name="menu">
           <xs:complexType>
             <xs:sequence>
@@ -32,6 +62,29 @@
         </xs:element>
         <xs:element name="home-page" type="ci:ct-text-block-contents"/>
         <xs:element name="about-page" type="ci:ct-text-block-contents"/>
+        <xs:element maxOccurs="unbounded" minOccurs="0" name="overview-page">
+          <xs:annotation>
+            <xs:documentation>Text for at the top of the overview page for a certain item type.</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:complexContent>
+              <xs:extension base="ci:ct-text-block-contents">
+                <xs:attribute name="item-type" use="required">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:enumeration value="components"/>
+                      <xs:enumeration value="categories"/>
+                      <xs:enumeration value="packages"/>
+                      <xs:enumeration value="locations"/>
+                      <xs:enumeration value="properties"/>
+                      <xs:enumeration value="price-ranges"/>
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:attribute>
+              </xs:extension>
+            </xs:complexContent>
+          </xs:complexType>
+        </xs:element>
       </xs:sequence>
     </xs:complexType>
   </xs:element>

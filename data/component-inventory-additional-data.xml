@@ -6,6 +6,18 @@
     All kinds of additional data for building the component-inventory website.
   -->
   <!-- ======================================================================= -->
+  <!-- Favorites: -->
+
+  <favorite-components>
+    <component idref="Y500" remark="Very good to use!"/>
+    <component idref="DOESNOTEXIST"/>
+  </favorite-components>
+  
+  <favorite-categories>
+    <category idref="ICS.LOGIC"/>
+  </favorite-categories>
+
+  <!-- ======================================================================= -->
   <!-- MENU: -->
   <!-- Remark: The URIs in the menu entries must be as if the page is from the base level of the website. -->
 
@@ -21,19 +33,32 @@
     </menu-entry>
     <menu-entry href="about.html" caption="About"/>
   </menu>
-  
+
   <!-- ======================================================================= -->
   <!-- HOME PAGE: -->
-  
+
   <home-page>
     <p>This is the home page, contents TBD</p>
   </home-page>
-  
+
   <!-- ======================================================================= -->
   <!-- ABOUT PAGE: -->
-  
+
   <about-page>
     <p>This is the about page, contents TBD!</p>
   </about-page>
-  
+
+  <!-- ======================================================================= -->
+  <!-- TEXTS PER ITEM TYPE: -->
+
+  <overview-page item-type="categories">
+    <p>Components are grouped in categories. </p>
+  </overview-page>
+
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+  <overview-page item-type="locations">
+    <p>This is an indication of the location where a component can be found in my storage.</p>
+  </overview-page>
+
 </component-inventory-additional-data>
