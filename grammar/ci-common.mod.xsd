@@ -2,26 +2,26 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="https://eriksiegel.nl/ns/component-inventory"
   xmlns:ci="https://eriksiegel.nl/ns/component-inventory" xmlns:xi="http://www.w3.org/2001/XInclude" vc:minVersion="1.1"
   xmlns:sml="http://www.eriksiegel.nl/ns/sml" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning">
-
-  <xs:import namespace="http://www.w3.org/2001/XInclude" schemaLocation="file:/xatapult/xtpxlib-common/xsdmod/xinclude.mod.xsd"/>
-  <xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="file:/xatapult/xtpxlib-common/xsdmod/xml.mod.xsd"/>
   <xs:include schemaLocation="file:/xatapult/xtpxlib-common/xsdmod/macrodefs.mod.xsd"/>
   <xs:import namespace="http://www.eriksiegel.nl/ns/sml" schemaLocation="../../xtpxlib-sml/xsd/sml.xsd"/>
+  <xs:complexType name="ct-text-block-contents">
+    <xs:annotation>
+      <xs:documentation>Text contents. Anything in the sml namespace will be treated as such. Anything else will become HTML.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:any maxOccurs="unbounded" minOccurs="0" namespace="##any" processContents="skip"/>
+    </xs:sequence>
+  </xs:complexType>
   <xs:complexType name="ct-definition">
     <xs:annotation>
       <xs:documentation>Base complex type for a definition of something.</xs:documentation>
     </xs:annotation>
     <xs:sequence>
       <xs:group minOccurs="0" ref="ci:g-macrodefs"/>
-      <xs:element minOccurs="0" name="description">
+      <xs:element minOccurs="0" name="description" type="ci:ct-text-block-contents">
         <xs:annotation>
-          <xs:documentation>Optional longer description of the definition in SML.</xs:documentation>
+          <xs:documentation>Optional longer description of the definition (in SML and/or HTML).</xs:documentation>
         </xs:annotation>
-        <xs:complexType>
-          <xs:choice>
-            <xs:group ref="sml:g-block-contents"/>
-          </xs:choice>
-        </xs:complexType>
       </xs:element>
     </xs:sequence>
     <xs:attribute name="id" type="ci:t-identifier" use="required">

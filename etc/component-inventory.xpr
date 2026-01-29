@@ -10,7 +10,7 @@
                         <scenarioAssociation-array>
                             <scenarioAssociation>
                                 <field name="url">
-                                    <String>../xpl3/normalized-component-inventory-specification-to-website.xpl</String>
+                                    <String>../xpl3/xsl-normalized-component-inventory-specification-to-website/create-base-container.xsl</String>
                                 </field>
                                 <field name="scenarioIds">
                                     <list>
@@ -30,7 +30,7 @@
                             </scenarioAssociation>
                             <scenarioAssociation>
                                 <field name="url">
-                                    <String>../xpl3/xsl-normalized-component-inventory-specification-to-website/create-base-container.xsl</String>
+                                    <String>../xpl3/normalized-component-inventory-specification-to-website.xpl</String>
                                 </field>
                                 <field name="scenarioIds">
                                     <list>

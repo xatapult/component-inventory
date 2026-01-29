@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component-inventory-additional-data xmlns="https://eriksiegel.nl/ns/component-inventory" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory ../grammar/additional-data.xsd">
+  <!-- ======================================================================= -->
+  <!--
+    All kinds of additional data for building the component-inventory website.
+  -->
+  <!-- ======================================================================= -->
+  <!-- MENU: -->
+  <!-- Remark: The URIs in the menu entries must be as if the page is from the base level of the website. -->
+
+  <menu>
+    <menu-entry href="index.html" caption="Home"/>
+    <menu-entry href="components/components.html" caption="Components"/>
+    <menu-entry href="categories/categories.html" caption="Categories"/>
+    <menu-entry href="#" caption="Info">
+      <sub-menu-entry href="packages/packages.html" caption="Packages"/>
+      <sub-menu-entry href="locations/locations.html" caption="Locations"/>
+      <sub-menu-entry href="properties/properties.html" caption="Properties"/>
+      <sub-menu-entry href="price-ranges/price-ranges.html" caption="Price ranges"/>
+    </menu-entry>
+    <menu-entry href="about.html" caption="About"/>
+  </menu>
+  
+  <!-- ======================================================================= -->
+  <!-- HOME PAGE: -->
+  
+  <home-page>
+    <p>This is the home page, contents TBD</p>
+  </home-page>
+  
+  <!-- ======================================================================= -->
+  <!-- ABOUT PAGE: -->
+  
+  <about-page>
+    <p>This is the about page, contents TBD!</p>
+  </about-page>
+  
+</component-inventory-additional-data>

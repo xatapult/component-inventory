@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="https://eriksiegel.nl/ns/component-inventory"
+  xmlns:sml="http://www.eriksiegel.nl/ns/sml" xmlns:ci="https://eriksiegel.nl/ns/component-inventory" vc:minVersion="1.1"
+  xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning">
+
+  <xs:include schemaLocation="ci-common.mod.xsd"/>
+  <xs:import namespace="http://www.eriksiegel.nl/ns/sml" schemaLocation="../../xtpxlib-sml/xsd/sml.xsd"/>
+  <xs:element name="component-inventory-additional-data">
+    <xs:annotation>
+      <xs:documentation>All kinds of additional data for building the component-inventory site</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="menu">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" name="menu-entry">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="sub-menu-entry">
+                      <xs:complexType>
+                        <xs:sequence/>
+                        <xs:attributeGroup ref="ci:ag-menu-entry"/>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attributeGroup ref="ci:ag-menu-entry"/>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="home-page" type="ci:ct-text-block-contents"/>
+        <xs:element name="about-page" type="ci:ct-text-block-contents"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="ag-menu-entry">
+    <xs:attribute name="href" type="xs:anyURI" use="required"/>
+    <xs:attribute name="caption" type="ci:t-non-empty-string" use="required"/>
+  </xs:attributeGroup>
+</xs:schema>

@@ -94,11 +94,11 @@
   <p:xslt>
     <p:with-input port="stylesheet" href="xsl-normalize-component-inventory-specification/flatten-categories.xsl"/>
   </p:xslt>
-  
+
   <!-- Auto-add the media information for the packages: -->
   <p:viewport match="ci:packages" name="get-packages-media-directory-information">
     <xtlc:recursive-directory-list name="packages-media-directory-information" depth="1">
-      <p:with-option name="path" select="xs:string(/*/@href-default-base-directory)" />
+      <p:with-option name="path" select="xs:string(/*/@href-default-base-directory)"/>
     </xtlc:recursive-directory-list>
     <p:insert position="first-child">
       <p:with-input pipe="current@get-packages-media-directory-information"/>
@@ -167,6 +167,11 @@
 
     </p:try>
   </p:viewport>
+
+  <!-- Sort everything: -->
+  <p:xslt>
+    <p:with-input port="stylesheet" href="xsl-normalize-component-inventory-specification/sort-items.xsl"/>
+  </p:xslt>
 
   <!-- Done. Record important information on the root element: -->
   <p:variable name="component-count" as="xs:integer" select="count(/*/ci:components/ci:component)"/>

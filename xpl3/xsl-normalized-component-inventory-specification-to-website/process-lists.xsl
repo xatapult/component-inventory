@@ -19,6 +19,11 @@
 
   <!-- ======================================================================= -->
 
+  <xsl:variable name="limit-to-simple-list-item-count" as="xs:integer" select="10">
+    <!-- If the number of items in the list is le this, it becomes a simple list. Otherwise it becomes 
+      a list with an index banner for the first characters. -->
+  </xsl:variable>
+
   <xsl:variable name="items-id-prefix" as="xs:string" select="'items-'"/>
 
   <!-- ================================================================== -->
@@ -30,37 +35,58 @@
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
   <xsl:template match="/ci:LIST">
+
+    <xsl:variable name="listitems" as="element(ci:LISTITEM)*" select="ci:LISTITEM"/>
     <div class="item-list">
+      <xsl:choose>
 
-      <!-- Create the bar with start characters: -->
-      <xsl:variable name="item-type-name" as="xs:string" select="xs:string(@type)"/>
-      <p class="para item-start-character-list">
-        <xsl:for-each-group select="ci:LISTITEM" group-by="local:group-char(.)">
-          <xsl:sort select="current-grouping-key()"/>
-          <a href="#{$items-id-prefix || current-grouping-key()}" title="{xtlc:capitalize($item-type-name)} starting with {current-grouping-key()}"
-            >{current-grouping-key()}</a>
-          <xsl:if test="position() ne last()">
-            <xsl:text>&#160; </xsl:text>
-          </xsl:if>
-        </xsl:for-each-group>
-      </p>
-      <!-- Now create the links to the items: -->
-      <xsl:for-each-group select="ci:LISTITEM" group-by="local:group-char(.)">
-        <xsl:sort select="current-grouping-key()"/>
-        <a name="{$items-id-prefix || current-grouping-key()}"><!----></a>
-        <h2>{current-grouping-key()}</h2>
-        <ul>
-          <xsl:for-each select="current-group()">
-            <xsl:sort select="@name"/>
-            <li>
-              <a href="{@href}">{@name}</a>
-              <xsl:text> - </xsl:text>
-              <xsl:value-of select="@description"/>
-            </li>
-          </xsl:for-each>
-        </ul>
-      </xsl:for-each-group>
+        <xsl:when test="count ($listitems) gt $limit-to-simple-list-item-count">
+          <!-- Create the bar with start characters: -->
+          <xsl:variable name="item-type-name" as="xs:string" select="xs:string(@type)"/>
+          <p class="para item-start-character-list">
+            <xsl:for-each-group select="$listitems" group-by="local:group-char(.)">
+              <xsl:sort select="current-grouping-key()"/>
+              <a href="#{$items-id-prefix || current-grouping-key()}"
+                title="{xtlc:capitalize($item-type-name)} starting with {current-grouping-key()}">{current-grouping-key()}</a>
+              <xsl:if test="position() ne last()">
+                <xsl:text>&#160; </xsl:text>
+              </xsl:if>
+            </xsl:for-each-group>
+          </p>
+          <!-- Now create the links to the items: -->
+          <xsl:for-each-group select="$listitems" group-by="local:group-char(.)">
+            <xsl:sort select="current-grouping-key()"/>
+            <a name="{$items-id-prefix || current-grouping-key()}"><!----></a>
+            <h2>{current-grouping-key()}</h2>
+            <ul>
+              <xsl:for-each select="current-group()">
+                <xsl:sort select="@name"/>
+                <li>
+                  <a href="{@href}">{@name}</a>
+                  <xsl:text> - </xsl:text>
+                  <xsl:value-of select="@description"/>
+                </li>
+              </xsl:for-each>
+            </ul>
+          </xsl:for-each-group>
+        </xsl:when>
 
+        <xsl:otherwise>
+          <xsl:where-populated>
+            <ul>
+              <xsl:for-each select="$listitems">
+                <xsl:sort select="@name"/>
+                <li>
+                  <a href="{@href}">{@name}</a>
+                  <xsl:text> - </xsl:text>
+                  <xsl:value-of select="@description"/>
+                </li>
+              </xsl:for-each>
+            </ul>
+          </xsl:where-populated>
+        </xsl:otherwise>
+        
+      </xsl:choose>
     </div>
   </xsl:template>
 

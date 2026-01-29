@@ -3,7 +3,7 @@
   xmlns:array="http://www.w3.org/2005/xpath-functions/array" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:local="#local.ds2_tbz_yhc"
   xmlns:sml="http://www.eriksiegel.nl/ns/sml" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:xtlcon="http://www.xtpxlib.nl/ns/container"
   xmlns:xtlc="http://www.xtpxlib.nl/ns/common" xmlns:ci="https://eriksiegel.nl/ns/component-inventory" exclude-result-prefixes="#all"
-  expand-text="true">
+  expand-text="true" xmlns="http://www.w3.org/1999/xhtml">
   <!-- ================================================================== -->
   <!-- 
        Takes a container with documents containing the body HTML. 
@@ -19,7 +19,7 @@
 
   <xsl:mode on-no-match="shallow-copy"/>
   <xsl:mode name="mode-create-page" on-no-match="shallow-copy"/>
-  <xsl:mode name="mode-copy-contents" on-no-match="shallow-copy"/>
+  <xsl:mode name="mode-create-menu" on-no-match="fail"/>
 
   <xsl:include href="../../xslmod/ci-website-building.mod.xsl"/>
 
@@ -34,6 +34,29 @@
 
   <!-- Pre-load the web template: -->
   <xsl:variable name="web-template" as="document-node()" select="doc($href-web-template)"/>
+  
+  <!-- Discard whitespace in HTML production. Set to true for production: -->
+  <xsl:variable name="discard-html-whitespace" as="xs:boolean" select="false()"/>
+
+  <!-- ======================================================================= -->
+  <!-- We are going to prepare menus for pages a number of levels deep up-front, in a map.
+    The key is the page level, the content is the menu html.
+  -->
+
+  <xsl:variable name="max-page-level" as="xs:integer" select="2"/>
+  <xsl:variable name="menu-map" as="map(xs:integer, element(html:div))">
+    <xsl:map>
+      <xsl:for-each select="(0 to $max-page-level)">
+        <xsl:variable name="page-level" as="xs:integer" select="."/>
+        <xsl:map-entry key="$page-level">
+          <xsl:call-template name="create-menu">
+            <xsl:with-param name="base-menu" select="$ci:additional-data-document/*/ci:menu"/>
+            <xsl:with-param name="page-level" select="$page-level"/>
+          </xsl:call-template>
+        </xsl:map-entry>
+      </xsl:for-each>
+    </xsl:map>
+  </xsl:variable>
 
   <!-- ======================================================================= -->
 
@@ -43,18 +66,15 @@
       <xsl:apply-templates select="@*"/>
 
       <!-- Find out how deep this page is in the directory structure and create an appropriate homedir string: -->
-      <xsl:variable name="page-level" as="xs:integer" select="count(tokenize(@href-target, '/')[.]) - 1"/>
-      <xsl:variable name="homedir" as="xs:string"
-        select="string-join(for $d in (1 to $page-level) return '..', '/') || (if ($page-level gt 0) then '/' else ())"/>
-
-      <!-- TBD SOMETHING WITH KEYWORDS (STANDARD + SPECIAL ON DOCUMENT ATTRIBUTE?) -->
+      <xsl:variable name="page-level" as="xs:integer" select="xs:integer((@page-level, 0)[1])"/>
 
       <!-- Create the page based on the web template: -->
       <xsl:apply-templates select="$web-template/*" mode="mode-create-page">
         <xsl:with-param name="title" as="xs:string" select="xs:string(@title)" tunnel="true"/>
-        <xsl:with-param name="homedir" as="xs:string" select="$homedir" tunnel="true"/>
+        <xsl:with-param name="homedir" as="xs:string" select="local:homedir-prefix($page-level)" tunnel="true"/>
         <xsl:with-param name="page-contents" as="element()*" select="*" tunnel="true"/>
         <xsl:with-param name="keywords" as="xs:string?" select="xs:string(@keywords)" tunnel="true"/>
+        <xsl:with-param name="page-level" as="xs:integer" select="$page-level" tunnel="true"/>
       </xsl:apply-templates>
 
     </xsl:copy>
@@ -75,7 +95,17 @@
   <xsl:template match="ci:PAGE-CONTENTS" mode="mode-create-page">
     <xsl:param name="page-contents" as="element()*" required="true" tunnel="true"/>
 
-    <xsl:apply-templates mode="mode-copy-contents" select="$page-contents"/>
+    <xsl:call-template name="ci:elements-to-html-namespace">
+      <xsl:with-param name="elements" select="$page-contents"/>
+    </xsl:call-template>
+  </xsl:template>
+
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+  <xsl:template match="ci:MENU" mode="mode-create-page">
+    <xsl:param name="page-level" as="xs:integer" required="true" tunnel="true"/>
+
+    <xsl:sequence select="$menu-map($page-level)"/>
   </xsl:template>
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
@@ -96,32 +126,72 @@
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-  <!-- TBD TURN BACK ON FOR PRODUCTION -->
-  <!--<xsl:template match="text()[normalize-space(.) eq '']" mode="mode-create-page">
-    <!-\- Discard -\->
-  </xsl:template>-->
+  <xsl:template match="text()[$discard-html-whitespace][normalize-space(.) eq '']" mode="mode-create-page">
+    <!-- Discard -->
+  </xsl:template>
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
   <xsl:template match="comment() | processing-instruction()" mode="mode-create-page">
     <!-- Discard. -->
   </xsl:template>
-
+ 
   <!-- ======================================================================= -->
-  <!-- COPY CONTENTS INTO THE HTML NAMESPACE: -->
+  <!-- CREATE MENU: -->
 
-  <xsl:template match="*" mode="mode-copy-contents">
+  <xsl:template name="create-menu" as="element(html:div)">
+    <!-- This creates the menu HTML structure, suitable for use on a page on a certain level. -->
+    <xsl:param name="base-menu" as="element(ci:menu)" required="true"/>
+    <xsl:param name="page-level" as="xs:integer" required="true"/>
 
-    <xsl:element name="{local-name(.)}" namespace="http://www.w3.org/1999/xhtml">
-      <xsl:apply-templates select="@* | node()" mode="#current"/>
-    </xsl:element>
+    <div class="container-fluid">
+      <ul class="nav justify-content-end nav-pills text-light">
+        <xsl:apply-templates select="$base-menu/ci:menu-entry" mode="mode-create-menu">
+          <xsl:with-param name="homedir" as="xs:string" select="local:homedir-prefix($page-level)" tunnel="true"/>
+        </xsl:apply-templates>
+      </ul>
+    </div>
   </xsl:template>
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-  <xsl:template match="sml:*" mode="mode-copy-contents">
-    <!-- SML elements will get translated into HTML later on... -->
-    <xsl:sequence select="."/>
+  <xsl:template match="ci:menu-entry" mode="mode-create-menu">
+    <xsl:param name="homedir" as="xs:string" required="true" tunnel="true"/>
+
+    <xsl:choose>
+      <xsl:when test="exists(ci:sub-menu-entry)">
+        <li class="nav-item dropdown lead">
+          <a class="nav-link dropdown-toggle text-light" data-bs-toggle="dropdown" href="#">{@caption}</a>
+          <ul class="dropdown-menu">
+            <xsl:apply-templates select="ci:sub-menu-entry" mode="mode-create-menu"/>
+          </ul>
+        </li>
+      </xsl:when>
+      <xsl:otherwise>
+        <li class="nav-item lead">
+          <a class="nav-link text-light" href="{$homedir}{@href}">{@caption}</a>
+        </li>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:template>
+
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+  <xsl:template match="ci:sub-menu-entry" mode="mode-create-menu">
+    <xsl:param name="homedir" as="xs:string" required="true" tunnel="true"/>
+
+    <li class="lead">
+      <a class="dropdown-item" href="{$homedir}{@href}">{@caption}</a>
+    </li>
+  </xsl:template>
+
+  <!-- ======================================================================= -->
+  <!-- OTHERS: -->
+
+  <xsl:function name="local:homedir-prefix" as="xs:string">
+    <xsl:param name="page-level" as="xs:integer"/>
+
+    <xsl:sequence select="string-join(for $d in (1 to $page-level) return '..', '/') || (if ($page-level gt 0) then '/' else ())"/>
+  </xsl:function>
 
 </xsl:stylesheet>

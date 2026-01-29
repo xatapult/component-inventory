@@ -9,15 +9,10 @@
   <xs:element name="component">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="description">
+        <xs:element minOccurs="0" name="description" type="ci:ct-text-block-contents">
           <xs:annotation>
             <xs:documentation>Optional longer description of the definition in SML.</xs:documentation>
           </xs:annotation>
-          <xs:complexType>
-            <xs:choice>
-              <xs:group ref="sml:g-block-contents"/>
-            </xs:choice>
-          </xs:complexType>
         </xs:element>
         <xs:element minOccurs="0" name="property-values">
           <xs:complexType>
@@ -64,23 +59,7 @@
           <xs:documentation>The number of components we have (estimated), or unknown.</xs:documentation>
         </xs:annotation>
       </xs:attribute>
-      <!--<xs:attribute name="category-idrefs">
-        <xs:annotation>
-          <xs:documentation>References to the categories.sub-categories for this component.</xs:documentation>
-        </xs:annotation>
-        <xs:simpleType>
-          <xs:restriction>
-            <xs:simpleType>
-              <xs:list>
-                <xs:simpleType>
-                  <xs:union memberTypes="ci:t-identifier-extended ci:t-special-values-unknown"/>
-                </xs:simpleType>
-              </xs:list>
-            </xs:simpleType>
-            <xs:minLength value="1"/>
-          </xs:restriction>
-        </xs:simpleType>
-      </xs:attribute>-->
+     
       <xs:attribute name="category-idrefs" default="#unknown">
         <xs:annotation>
           <xs:documentation>A list of the appropriate categories/sub-categories, or unknown.</xs:documentation>
@@ -135,7 +114,7 @@
           <xs:documentation>A list of keywords (for the HTML page). The id will become a keyword by default.</xs:documentation>
         </xs:annotation>
         <xs:simpleType>
-          <xs:list/>
+          <xs:list itemType="ci:t-non-empty-string"/>
         </xs:simpleType>
       </xs:attribute>
     </xs:complexType>
