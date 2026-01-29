@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component id="74HC123"
+           name="74HC123"
+           summary="Dual Retriggerable Monostable Multivibrators with Resets"
+           count="#many"
+           category-idrefs="74HC"
+           package-idref="DIP16"
+           location-idref="CBSB"
+           location-box-label="HC123"
+           partly-in-reserve-stock="true"
+           since="2024-11-16"
+           xmlns="https://eriksiegel.nl/ns/component-inventory"
+           xmlns:xtlcon="http://www.xtpxlib.nl/ns/container">
+   <description>
+      <p>Remark: Is this like NE555?</p>
+   </description>
+</component>

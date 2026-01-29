@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component id="ATMEGA103"
+           name="ATMEGA103"
+           summary="8-bit microcontroller"
+           count="9"
+           package-idref="MICRO"
+           location-idref="BAG"
+           since="2024-11-11"
+           xmlns="https://eriksiegel.nl/ns/component-inventory"
+           xmlns:xtlcon="http://www.xtpxlib.nl/ns/container">
+   <description>
+      <p>Remark: Niet bruikbaar wegens micro aansluitingen</p>
+   </description>
+</component>

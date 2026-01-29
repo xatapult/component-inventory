@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component id="OQ0003"
+           name="OQ0003"
+           summary="?"
+           count="10"
+           price-range-idref="VERY-EXPENSIVE"
+           package-idref="DIP16"
+           location-idref="CBSB"
+           since="2024-10-23"
+           xmlns="https://eriksiegel.nl/ns/component-inventory"
+           xmlns:xtlcon="http://www.xtpxlib.nl/ns/container"/>

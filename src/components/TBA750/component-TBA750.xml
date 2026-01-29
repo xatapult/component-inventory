@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component id="TBA750"
+           name="TBA750"
+           summary="Limiter/Amplifier"
+           count="3"
+           price-range-idref="VERY-EXPENSIVE"
+           package-idref="DIP16"
+           location-idref="CBSB"
+           location-box-label="TCA/TBA"
+           since="2024-11-16"
+           xmlns="https://eriksiegel.nl/ns/component-inventory"
+           xmlns:xtlcon="http://www.xtpxlib.nl/ns/container"/>

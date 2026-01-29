@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component id="BD226"
+           name="BD226"
+           summary="NPN power transistor"
+           count="3"
+           category-idrefs="COMP"
+           price-range-idref="VERY-CHEAP"
+           package-idref="TO126"
+           location-idref="CBSB"
+           since="2024-10-23"
+           xmlns="https://eriksiegel.nl/ns/component-inventory"
+           xmlns:xtlcon="http://www.xtpxlib.nl/ns/container"/>

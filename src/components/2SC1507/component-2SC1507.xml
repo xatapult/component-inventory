@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component id="2SC1507"
+           name="2SC1507"
+           summary="NPN Transistor; power"
+           count="4"
+           category-idrefs="COMP"
+           price-range-idref="CHEAP"
+           package-idref="TO220"
+           location-idref="CBSB"
+           location-box-label="TRANS A"
+           since="2024-10-21"
+           xmlns="https://eriksiegel.nl/ns/component-inventory"
+           xmlns:xtlcon="http://www.xtpxlib.nl/ns/container"/>

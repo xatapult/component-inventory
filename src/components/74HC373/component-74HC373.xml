@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component id="74HC373"
+           name="74HC373"
+           summary="Transparent D-Type Latches"
+           count="#many"
+           category-idrefs="74HC"
+           price-range-idref="CHEAP"
+           package-idref="DIP20"
+           location-idref="CBSB"
+           location-box-label="HC373"
+           partly-in-reserve-stock="true"
+           since="2024-11-13"
+           xmlns="https://eriksiegel.nl/ns/component-inventory"
+           xmlns:xtlcon="http://www.xtpxlib.nl/ns/container"/>

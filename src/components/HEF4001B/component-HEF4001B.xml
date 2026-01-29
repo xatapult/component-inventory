@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component id="HEF4001B"
+           name="HEF4001"
+           summary="Quad 2-input NOR gate"
+           count="8"
+           category-idrefs="HEF4000"
+           price-range-idref="VERY-CHEAP"
+           package-idref="DIP 14"
+           location-idref="CBSB"
+           since="2024-10-25"
+           xmlns="https://eriksiegel.nl/ns/component-inventory"
+           xmlns:xtlcon="http://www.xtpxlib.nl/ns/container"/>

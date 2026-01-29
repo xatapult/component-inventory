@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component id="MPSA56"
+           name="MPSA56"
+           summary="PNP General Purpose Amplifier"
+           count="4"
+           category-idrefs="COMP"
+           package-idref="TO92"
+           location-idref="CBSB"
+           location-box-label="TRANS A"
+           since="2024-10-23"
+           xmlns="https://eriksiegel.nl/ns/component-inventory"
+           xmlns:xtlcon="http://www.xtpxlib.nl/ns/container"/>

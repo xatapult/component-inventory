@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component id="NE5534AN"
+           name="NE5534AN"
+           summary="Opamp"
+           count="#many"
+           category-idrefs="OPAMP"
+           price-range-idref="CHEAP"
+           package-idref="DIP8"
+           location-idref="CBSB"
+           since="2024-10-21"
+           xmlns="https://eriksiegel.nl/ns/component-inventory"
+           xmlns:xtlcon="http://www.xtpxlib.nl/ns/container"/>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component id="LM339N"
+           name="LM339N"
+           summary="Low-Power Low-Offset Voltage Quad Comparators"
+           count="1"
+           category-idrefs="OPAMP"
+           price-range-idref="VERY-CHEAP"
+           package-idref="DIP14"
+           location-idref="CBSB"
+           location-box-label="OPAMP A"
+           since="2024-10-23"
+           xmlns="https://eriksiegel.nl/ns/component-inventory"
+           xmlns:xtlcon="http://www.xtpxlib.nl/ns/container"/>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component id="BRY39"
+           name="BRY39"
+           summary="Programmable unijunction"
+           count="25"
+           category-idrefs="COMP"
+           package-idref="TO72"
+           location-idref="CBSB"
+           since="2024-11-06"
+           discontinued="true"
+           xmlns="https://eriksiegel.nl/ns/component-inventory"
+           xmlns:xtlcon="http://www.xtpxlib.nl/ns/container">
+   <description>
+      <p>Remark: Datasheet has example applications</p>
+   </description>
+</component>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component id="HEF4047B"
+           name="HEF4047"
+           summary="Monostable/astable multivibrator"
+           count="#many"
+           category-idrefs="HEF4000"
+           price-range-idref="VERY-CHEAP"
+           package-idref="DIP14"
+           location-idref="CBSB"
+           since="2024-10-21"
+           xmlns="https://eriksiegel.nl/ns/component-inventory"
+           xmlns:xtlcon="http://www.xtpxlib.nl/ns/container"/>

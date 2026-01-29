@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component id="HEF4022B"
+           name="HEF4022"
+           summary="4-stage divide-by-8 Johnson counter"
+           count="6"
+           category-idrefs="HEF4000"
+           price-range-idref="EXPENSIVE"
+           package-idref="DIP16"
+           location-idref="CBSB"
+           since="2024-10-21"
+           xmlns="https://eriksiegel.nl/ns/component-inventory"
+           xmlns:xtlcon="http://www.xtpxlib.nl/ns/container"/>

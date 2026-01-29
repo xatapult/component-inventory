@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component id="74HC165"
+           name="74HC165"
+           summary="8-bit parallel-in/serial-out shift"
+           count="#many"
+           category-idrefs="74HC"
+           price-range-idref="CHEAP"
+           package-idref="DIP16"
+           location-idref="CBSB"
+           location-box-label="HC165"
+           since="2024-11-13"
+           xmlns="https://eriksiegel.nl/ns/component-inventory"
+           xmlns:xtlcon="http://www.xtpxlib.nl/ns/container"/>

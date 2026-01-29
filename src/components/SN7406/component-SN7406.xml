@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component id="SN7406"
+           name="SN7406"
+           summary="Hex invertor/buffer/driver; High voltage output"
+           count="10"
+           category-idrefs="SN74"
+           price-range-idref="CHEAP"
+           package-idref="DIP14"
+           location-idref="CBSB"
+           since="2024-10-23"
+           xmlns="https://eriksiegel.nl/ns/component-inventory"
+           xmlns:xtlcon="http://www.xtpxlib.nl/ns/container"/>

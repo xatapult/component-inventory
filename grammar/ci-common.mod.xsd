@@ -115,7 +115,7 @@
       <xs:documentation>A single identifier of something.</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:pattern value="[A-Za-z][A-Za-z0-9\-_]*"/>
+      <xs:pattern value="[A-Za-z0-9][A-Za-z0-9\-_]*"/>
     </xs:restriction>
   </xs:simpleType>
 

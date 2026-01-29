@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component id="NE5230N"
+           name="NE5230N"
+           summary="Opamp"
+           count="5"
+           category-idrefs="OPAMP"
+           package-idref="DIP8"
+           location-idref="CBSB"
+           location-box-label="OPAMP A"
+           since="2024-11-13"
+           discontinued="true"
+           xmlns="https://eriksiegel.nl/ns/component-inventory"
+           xmlns:xtlcon="http://www.xtpxlib.nl/ns/container"/>

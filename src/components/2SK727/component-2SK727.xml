@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component id="2SK727"
+           name="2SK727"
+           summary="N -channel silicon power MOS-FET"
+           count="2"
+           category-idrefs="COMP"
+           price-range-idref="VERY-CHEAP"
+           package-idref="TO3PN"
+           location-idref="CBSB"
+           since="2024-10-23"
+           xmlns="https://eriksiegel.nl/ns/component-inventory"
+           xmlns:xtlcon="http://www.xtpxlib.nl/ns/container"/>

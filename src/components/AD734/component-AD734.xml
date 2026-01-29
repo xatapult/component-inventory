@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component id="AD734"
+           name="AD734"
+           summary="10 MHz, Four-Quadrant multiplier/divider"
+           count="10"
+           package-idref="DIP14"
+           location-idref="CBSB"
+           since="2024-11-13"
+           xmlns="https://eriksiegel.nl/ns/component-inventory"
+           xmlns:xtlcon="http://www.xtpxlib.nl/ns/container"/>

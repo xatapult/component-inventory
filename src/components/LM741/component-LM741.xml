@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component id="LM741"
+           name="LM741"
+           summary="Opamp"
+           count="3"
+           category-idrefs="OPAMP"
+           price-range-idref="CHEAP"
+           package-idref="DIP8"
+           location-idref="CBSB"
+           location-box-label="OPAMP A"
+           since="2024-11-11"
+           xmlns="https://eriksiegel.nl/ns/component-inventory"
+           xmlns:xtlcon="http://www.xtpxlib.nl/ns/container"/>

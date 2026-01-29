@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component id="GSIB1540"
+           name="GSIB1540"
+           summary="Rectifier 250V/15A"
+           count="9"
+           category-idrefs="COMP"
+           price-range-idref="CHEAP"
+           location-idref="BAG"
+           since="2024-11-13"
+           xmlns="https://eriksiegel.nl/ns/component-inventory"
+           xmlns:xtlcon="http://www.xtpxlib.nl/ns/container"/>

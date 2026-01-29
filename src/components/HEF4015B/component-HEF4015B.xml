@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component id="HEF4015B"
+           name="HEF4015"
+           summary="Dual 4-bit static shift register"
+           count="7"
+           category-idrefs="HEF4000"
+           price-range-idref="VERY-CHEAP"
+           package-idref="DIP16"
+           location-idref="CBSB"
+           since="2024-10-23"
+           xmlns="https://eriksiegel.nl/ns/component-inventory"
+           xmlns:xtlcon="http://www.xtpxlib.nl/ns/container"/>

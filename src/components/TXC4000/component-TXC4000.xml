@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component id="TXC4000"
+           name="TXC4000"
+           summary="Oscillator 4.000Mhz"
+           count="4"
+           category-idrefs="COMP"
+           location-idref="BAG"
+           since="2024-11-12"
+           discontinued="true"
+           xmlns="https://eriksiegel.nl/ns/component-inventory"
+           xmlns:xtlcon="http://www.xtpxlib.nl/ns/container"/>

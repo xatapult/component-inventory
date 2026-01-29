@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component id="HEF4017B"
+           name="HEF4017"
+           summary="5-stage Johnson decade counter"
+           count="1"
+           category-idrefs="HEF4000"
+           price-range-idref="VERY-CHEAP"
+           package-idref="DIP16"
+           location-idref="CBSB"
+           since="2024-10-23"
+           xmlns="https://eriksiegel.nl/ns/component-inventory"
+           xmlns:xtlcon="http://www.xtpxlib.nl/ns/container"/>

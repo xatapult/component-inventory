@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component id="DM74LS47"
+           name="74LS47"
+           summary="BCD to 7-segment decoder/driver"
+           count="14"
+           price-range-idref="CHEAP"
+           package-idref="DIP16"
+           location-idref="CBSB"
+           since="2024-11-12"
+           xmlns="https://eriksiegel.nl/ns/component-inventory"
+           xmlns:xtlcon="http://www.xtpxlib.nl/ns/container"/>

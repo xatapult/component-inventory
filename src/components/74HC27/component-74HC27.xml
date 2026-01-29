@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component id="74HC27"
+           name="74HC27"
+           summary="Triple 3-input NOR gate"
+           count="19"
+           category-idrefs="74HC"
+           package-idref="DIP14"
+           location-idref="CBSB"
+           location-box-label="HC27"
+           since="2024-11-16"
+           xmlns="https://eriksiegel.nl/ns/component-inventory"
+           xmlns:xtlcon="http://www.xtpxlib.nl/ns/container"/>

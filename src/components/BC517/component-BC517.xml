@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component id="BC517"
+           name="BC517"
+           summary="NPN Darlington trannsistor"
+           count="6"
+           category-idrefs="COMP"
+           price-range-idref="VERY-CHEAP"
+           package-idref="TO92"
+           location-idref="CBSB"
+           since="2024-11-12"
+           xmlns="https://eriksiegel.nl/ns/component-inventory"
+           xmlns:xtlcon="http://www.xtpxlib.nl/ns/container"/>

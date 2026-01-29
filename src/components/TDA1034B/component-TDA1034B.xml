@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component id="TDA1034B"
+           name="TDA1034B"
+           summary="Opamp"
+           count="13"
+           category-idrefs="OPAMP"
+           package-idref="DIP8"
+           location-idref="CBSB"
+           since="2024-11-13"
+           discontinued="true"
+           xmlns="https://eriksiegel.nl/ns/component-inventory"
+           xmlns:xtlcon="http://www.xtpxlib.nl/ns/container"/>

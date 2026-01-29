@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component id="BC337"
+           name="BC337"
+           summary="NPN transistor"
+           count="11"
+           category-idrefs="COMP"
+           price-range-idref="VERY-CHEAP"
+           package-idref="TO92"
+           location-idref="CBSB"
+           since="2024-11-21"
+           xmlns="https://eriksiegel.nl/ns/component-inventory"
+           xmlns:xtlcon="http://www.xtpxlib.nl/ns/container"/>

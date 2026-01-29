@@ -10,7 +10,8 @@
 
   <!-- ======================================================================= -->
 
-  <p:input port="source" primary="true" sequence="false" content-types="xml" href="test-specification.xml"/>
+  <p:input port="source" primary="true" sequence="false" content-types="xml" href="../src/ci-specification.xml"/>
+  <!--<p:input port="source" primary="true" sequence="false" content-types="xml" href="test-specification.xml"/>-->
   <p:output port="result" primary="true" sequence="false" content-types="xml" serialization="map{'method': 'xml', 'indent': true()}"/>
 
   <!-- ======================================================================= -->
@@ -18,8 +19,8 @@
   <ci:normalize-component-inventory-specification/>
   
   <ci:create-normalized-component-inventory-specification-report>
-    <p:with-option name="href-dir-result" select="resolve-uri('tmp', static-base-uri())"/>
-    <p:with-option name="filename" select="'test-specification-report'"/>
+    <p:with-option name="href-dir-result" select="resolve-uri('../build/', static-base-uri())"/>
+    <p:with-option name="filename" select="'ci-specification-report'"/>
     <p:with-option name="report-type" select="$ci:report-type-warnings-and-errors"/>
     <p:with-option name="report-output-types" select="('html', 'md')"/>
   </ci:create-normalized-component-inventory-specification-report>

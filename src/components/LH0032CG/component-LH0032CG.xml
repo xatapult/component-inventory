@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component id="LH0032CG"
+           name="LH0032CG"
+           summary="Opamp"
+           count="9"
+           category-idrefs="OPAMP"
+           price-range-idref="VERY-EXPENSIVE"
+           location-idref="CBSB"
+           since="2024-11-13"
+           xmlns="https://eriksiegel.nl/ns/component-inventory"
+           xmlns:xtlcon="http://www.xtpxlib.nl/ns/container"/>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component id="HEF4021B"
+           name="HEF4021"
+           summary="8-bit static shift register"
+           count="8"
+           category-idrefs="HEF4000"
+           price-range-idref="CHEAP"
+           package-idref="DIP 16"
+           location-idref="CBSB"
+           since="2024-11-11"
+           xmlns="https://eriksiegel.nl/ns/component-inventory"
+           xmlns:xtlcon="http://www.xtpxlib.nl/ns/container"/>

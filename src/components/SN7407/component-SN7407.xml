@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component id="SN7407"
+           name="SN7407"
+           summary="Hex Buffers with High Voltage Open-Collector Outputs"
+           count="#many"
+           category-idrefs="SN74"
+           package-idref="DIP14"
+           location-idref="CBSB"
+           partly-in-reserve-stock="true"
+           since="2024-11-13"
+           xmlns="https://eriksiegel.nl/ns/component-inventory"
+           xmlns:xtlcon="http://www.xtpxlib.nl/ns/container"/>

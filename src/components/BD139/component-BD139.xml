@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component id="BD139"
+           name="BD139"
+           summary="NPN Transistor"
+           count="4"
+           category-idrefs="COMP"
+           price-range-idref="VERY-CHEAP"
+           package-idref="TO225"
+           location-idref="CBSB"
+           since="2024-11-12"
+           xmlns="https://eriksiegel.nl/ns/component-inventory"
+           xmlns:xtlcon="http://www.xtpxlib.nl/ns/container"/>

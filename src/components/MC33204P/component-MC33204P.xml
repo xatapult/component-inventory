@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component id="MC33204P"
+           name="MC33204P"
+           summary="Quad low-voltage opamp"
+           count="3"
+           category-idrefs="OPAMP"
+           price-range-idref="EXPENSIVE"
+           package-idref="DIP14"
+           location-idref="CBSB"
+           location-box-label="OPAMP A"
+           since="2024-11-12"
+           discontinued="true"
+           xmlns="https://eriksiegel.nl/ns/component-inventory"
+           xmlns:xtlcon="http://www.xtpxlib.nl/ns/container"/>

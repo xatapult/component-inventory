@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component id="ICL232"
+           name="ICL232"
+           summary="Dual RS-232 Transmitter/Receiver"
+           count="4"
+           price-range-idref="CHEAP"
+           package-idref="DIP16"
+           location-idref="CBSB"
+           since="2024-11-11"
+           xmlns="https://eriksiegel.nl/ns/component-inventory"
+           xmlns:xtlcon="http://www.xtpxlib.nl/ns/container"/>

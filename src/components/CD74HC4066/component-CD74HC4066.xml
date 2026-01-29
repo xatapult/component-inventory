@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component id="CD74HC4066"
+           name="CD74HC4066"
+           summary="High-Speed CMOS Logic Quad Bilateral Switch"
+           count="24"
+           price-range-idref="CHEAP"
+           package-idref="DIP14"
+           location-idref="CBSB"
+           since="2024-11-11"
+           xmlns="https://eriksiegel.nl/ns/component-inventory"
+           xmlns:xtlcon="http://www.xtpxlib.nl/ns/container"/>

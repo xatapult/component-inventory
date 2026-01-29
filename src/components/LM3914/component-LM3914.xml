@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component id="LM3914"
+           name="LM3914"
+           summary="LED dot/bar display driver"
+           count="3"
+           price-range-idref="CHEAP"
+           package-idref="DIP18"
+           location-idref="CBSB"
+           since="2024-10-19"
+           xmlns="https://eriksiegel.nl/ns/component-inventory"
+           xmlns:xtlcon="http://www.xtpxlib.nl/ns/container">
+   <description>
+      <p>Remark: Analogue signal to dot/bar LEDs in a row</p>
+   </description>
+</component>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="../grammar/ci-specification.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<component-inventory-specification xmlns="https://eriksiegel.nl/ns/component-inventory" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:sml="http://www.eriksiegel.nl/ns/sml" xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory ../grammar/ci-specification.xsd">
+
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+  <properties>
+   <!--  -->
+  </properties>
+
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+  <categories>
+    
+  </categories>
+
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+  <price-ranges>
+   
+  </price-ranges>
+
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+  <packages href-default-base-directory="../resources/packaging/">
+
+  </packages>
+
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+  <locations>
+  </locations>
+
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+  <components>
+    <directory href="components/" component-description-document-regexp="^component-.+\.xml$"/>
+  </components>
+
+</component-inventory-specification>

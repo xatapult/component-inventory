@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component id="DS1220Y"
+           name="DS1220Y"
+           summary="16K nonvolatile SRAM"
+           count="1"
+           price-range-idref="VERY-EXPENSIVE"
+           package-idref="MICRO"
+           location-idref="BAG"
+           since="2024-11-12"
+           xmlns="https://eriksiegel.nl/ns/component-inventory"
+           xmlns:xtlcon="http://www.xtpxlib.nl/ns/container"/>

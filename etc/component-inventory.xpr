@@ -174,6 +174,7 @@
             <folder path="../../xtpxlib-common/"/>
             <folder path="../../xtpxlib-container/"/>
             <folder path="../../xtpxlib-sml/"/>
+            <folder path="../../xtpxlib-xoffice/"/>
         </folder>
         <folder path="../"/>
         <folder path="../../../../../../xdata/"/>

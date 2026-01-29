@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component id="LM101AH"
+           name="LM101AH"
+           summary="Opamp"
+           count="3"
+           category-idrefs="OPAMP"
+           price-range-idref="VERY-EXPENSIVE"
+           package-idref="TO998"
+           location-idref="CBSB"
+           location-box-label="OPAMP A"
+           since="2024-10-21"
+           xmlns="https://eriksiegel.nl/ns/component-inventory"
+           xmlns:xtlcon="http://www.xtpxlib.nl/ns/container"/>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component id="74HC162"
+           name="74HC162"
+           summary="Presettable synchronous BCD decade counter"
+           count="#many"
+           category-idrefs="74HC"
+           price-range-idref="CHEAP"
+           package-idref="DIP16"
+           location-idref="CBSB"
+           location-box-label="HC162"
+           partly-in-reserve-stock="true"
+           since="2024-11-14"
+           xmlns="https://eriksiegel.nl/ns/component-inventory"
+           xmlns:xtlcon="http://www.xtpxlib.nl/ns/container"/>

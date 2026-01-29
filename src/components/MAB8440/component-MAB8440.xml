@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component id="MAB8440"
+           name="MAB8440"
+           summary="Microcontroller"
+           count="3"
+           package-idref="DIP28"
+           location-idref="BAG"
+           since="2024-11-13"
+           discontinued="true"
+           xmlns="https://eriksiegel.nl/ns/component-inventory"
+           xmlns:xtlcon="http://www.xtpxlib.nl/ns/container"/>

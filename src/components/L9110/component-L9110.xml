@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component id="L9110"
+           name="L9110"
+           summary="Motor controller driver"
+           count="10"
+           category-idrefs="MOTOR"
+           price-range-idref="VERY-CHEAP"
+           package-idref="DIP8"
+           location-idref="CBSB"
+           since="2025-10-01"
+           xmlns="https://eriksiegel.nl/ns/component-inventory"
+           xmlns:xtlcon="http://www.xtpxlib.nl/ns/container"/>

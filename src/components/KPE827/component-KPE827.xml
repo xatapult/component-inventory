@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component id="KPE827"
+           name="KPE827"
+           summary="Audio Transducer Piezo 50Vp-p 9mA 100dB"
+           count="3"
+           location-idref="BAG"
+           since="2024-11-12"
+           xmlns="https://eriksiegel.nl/ns/component-inventory"
+           xmlns:xtlcon="http://www.xtpxlib.nl/ns/container"/>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component id="74HC20"
+           name="74HC20"
+           summary="Dual 4-input NAND gate"
+           count="#many"
+           category-idrefs="74HC"
+           price-range-idref="CHEAP"
+           package-idref="DIP14"
+           location-idref="CBSB"
+           location-box-label="HC20"
+           since="2024-11-13"
+           xmlns="https://eriksiegel.nl/ns/component-inventory"
+           xmlns:xtlcon="http://www.xtpxlib.nl/ns/container"/>

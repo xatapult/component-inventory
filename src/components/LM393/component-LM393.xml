@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component id="LM393"
+           name="LM393"
+           summary="Dual Comparators"
+           count="1"
+           category-idrefs="COMP"
+           price-range-idref="VERY-CHEAP"
+           package-idref="DIP8"
+           location-idref="CBSB"
+           location-box-label="OPAMP A"
+           since="2024-11-11"
+           xmlns="https://eriksiegel.nl/ns/component-inventory"
+           xmlns:xtlcon="http://www.xtpxlib.nl/ns/container"/>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component id="74HC161"
+           name="74HC161"
+           summary="Presettable synchronous 4-bit binary counter; asynchronous reset"
+           count="#many"
+           category-idrefs="74HC"
+           package-idref="DIP16"
+           location-idref="CBSB"
+           location-box-label="HC161"
+           since="2024-11-16"
+           xmlns="https://eriksiegel.nl/ns/component-inventory"
+           xmlns:xtlcon="http://www.xtpxlib.nl/ns/container"/>

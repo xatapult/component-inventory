@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component id="LM340"
+           name="LM340"
+           summary="Voltage regulator"
+           count="4"
+           category-idrefs="COMP"
+           price-range-idref="CHEAP"
+           location-idref="BAG"
+           since="2024-11-06"
+           xmlns="https://eriksiegel.nl/ns/component-inventory"
+           xmlns:xtlcon="http://www.xtpxlib.nl/ns/container"/>

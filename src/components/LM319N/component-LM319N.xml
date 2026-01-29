@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component id="LM319N"
+           name="LM319N"
+           summary="Opamp; Dual"
+           count="5"
+           category-idrefs="OPAMP"
+           price-range-idref="CHEAP"
+           package-idref="DIP14"
+           location-idref="CBSB"
+           since="2024-10-21"
+           xmlns="https://eriksiegel.nl/ns/component-inventory"
+           xmlns:xtlcon="http://www.xtpxlib.nl/ns/container"/>

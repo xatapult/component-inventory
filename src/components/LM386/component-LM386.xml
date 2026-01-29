@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component id="LM386"
+           name="LM386"
+           summary="Low Voltage Audio Power Amplifier"
+           count="2"
+           package-idref="DIP8"
+           location-idref="CBSB"
+           since="2025-11-12"
+           xmlns="https://eriksiegel.nl/ns/component-inventory"
+           xmlns:xtlcon="http://www.xtpxlib.nl/ns/container"/>

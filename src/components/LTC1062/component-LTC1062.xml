@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component id="LTC1062"
+           name="LTC1062"
+           summary="5th Order low-pass filter"
+           count="4"
+           price-range-idref="EXPENSIVE"
+           package-idref="DIP8"
+           location-idref="CBSB"
+           since="2024-11-14"
+           xmlns="https://eriksiegel.nl/ns/component-inventory"
+           xmlns:xtlcon="http://www.xtpxlib.nl/ns/container"/>

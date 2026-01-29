@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component id="TCA420"
+           name="TCA420"
+           summary="FM IF Amplifier"
+           count="1"
+           price-range-idref="EXPENSIVE"
+           package-idref="DIP16"
+           location-idref="CBSB"
+           since="2024-11-16"
+           xmlns="https://eriksiegel.nl/ns/component-inventory"
+           xmlns:xtlcon="http://www.xtpxlib.nl/ns/container"/>

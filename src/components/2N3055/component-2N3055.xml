@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component id="2N3055"
+           name="2N3055"
+           summary="NPN Power Transistor"
+           count="2"
+           category-idrefs="COMP"
+           price-range-idref="EXPENSIVE"
+           package-idref="TO3"
+           location-idref="BAG"
+           since="2024-10-23"
+           xmlns="https://eriksiegel.nl/ns/component-inventory"
+           xmlns:xtlcon="http://www.xtpxlib.nl/ns/container"/>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component id="IQXO-100C"
+           name="IQXO-100C"
+           summary="Oscillator 4.9152MHz"
+           count="5"
+           price-range-idref="EXPENSIVE"
+           location-idref="BAG"
+           since="2024-11-13"
+           xmlns="https://eriksiegel.nl/ns/component-inventory"
+           xmlns:xtlcon="http://www.xtpxlib.nl/ns/container"/>
