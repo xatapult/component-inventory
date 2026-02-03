@@ -16,6 +16,7 @@
 
   <p:import href="file:/xatapult/xtpxlib-common/xpl3mod/message/message.xpl"/>
   <p:import href="file:/xatapult/xtpxlib-common/xpl3mod/create-clear-directory/create-clear-directory.xpl"/>
+  <p:import href="file:/xatapult/xtpxlib-common/xpl3mod/copy-dir/copy-dir.xpl"/>
 
   <p:import href="file:/xatapult/xtpxlib-container/xpl3mod/container-to-disk/container-to-disk.xpl"/>
 
@@ -178,7 +179,7 @@
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
   <!-- Handle the SML documents: -->
-  <!-- An SML document must be converted into HTML. The media element also needs to change. -->
+  <!-- An SML document must be converted into HTML. The media element also needs to change (to <html>). -->
 
   <p:identity>
     <p:with-input pipe="@clean-specification"/>
@@ -204,6 +205,28 @@
           <p:empty/>
         </p:with-input>
       </p:identity>
+    </p:viewport>
+  </p:if>
+
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+  <!-- Handle the copying of any resource directories: -->
+
+  <p:variable name="resource-directory-count" as="xs:integer" select="count(/*/*/*/ci:media/ci:resource-directory)"/>
+  <p:if test="$resource-directory-count gt 0">
+    <xtlc:message enabled="{$messages-enabled}" level="{$message-indent-level + 1}">
+      <p:with-option name="text" select="'Copying ' || $resource-directory-count || ' resource directories'"/>
+    </xtlc:message>
+    <p:xslt>
+      <p:with-input port="stylesheet" href="xsl-normalized-component-inventory-specification-to-website/prepare-resource-directory-copies.xsl"/>
+      <p:with-option name="parameters" select="map{'href-build-location': $href-build-location }"/>
+    </p:xslt>
+    <p:viewport match="ci:resource-directory">
+      <p:variable name="href-source" as="xs:string" select="xs:string(/*/@href)"/>
+      <p:variable name="href-target" as="xs:string" select="xs:string(/*/@_href-target)"/>
+      <xtlc:copy-dir>
+        <p:with-option name="href-source" select="$href-source"/>
+        <p:with-option name="href-target" select="$href-target"/>
+      </xtlc:copy-dir>
     </p:viewport>
   </p:if>
 

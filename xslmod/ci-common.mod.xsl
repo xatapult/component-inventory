@@ -34,6 +34,7 @@
   <xsl:variable name="ci:media-type-markdown" as="xs:string" select="'markdown'"/>
   <xsl:variable name="ci:media-type-sml" as="xs:string" select="'sml'"/>
   <xsl:variable name="ci:media-type-html" as="xs:string" select="'html'"/>
+  <xsl:variable name="ci:media-type-resource-directory" as="xs:string" select="'resource-directory'"/>
 
   <!-- The following media-usage-types must be the same as defined in the schema for the any-media-element/@usage attribute! -->
   <xsl:variable name="ci:media-usage-type-overview" as="xs:string" select="'overview'"/>

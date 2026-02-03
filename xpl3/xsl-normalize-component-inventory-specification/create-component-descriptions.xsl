@@ -97,6 +97,7 @@
           <xsl:with-param name="href-component-document" as="xs:string" select="$href-component-document" tunnel="true"/>
           <xsl:with-param name="possible-media-files" as="element(c:file)*" select="c:file[xs:string(@name) ne $filename-component-document]"
             tunnel="true"/>
+          <xsl:with-param name="possible-resource-directories" as="element(c:directory)*" select="c:directory[exists(c:file)]" tunnel="true"/>
         </xsl:apply-templates>
       </xsl:otherwise>
 
@@ -110,9 +111,10 @@
     <xsl:param name="default-id" as="xs:string" required="true" tunnel="true"/>
     <xsl:param name="href-component-document" as="xs:string" required="true" tunnel="true"/>
     <xsl:param name="possible-media-files" as="element(c:file)*" required="true" tunnel="true"/>
+    <xsl:param name="possible-resource-directories" as="element(c:directory)*" required="true" tunnel="true"/>
 
     <xsl:variable name="component-element" as="element(ci:component)" select="."/>
-    <xsl:variable name="href-directory" as="xs:string" select="xtlc:href-path($href-component-document)"/>
+    <xsl:variable name="href-component-directory" as="xs:string" select="xtlc:href-path($href-component-document)"/>
 
     <!-- Copy the element and complete it: -->
     <xsl:copy copy-namespaces="false">
@@ -179,19 +181,22 @@
         <xsl:when test="exists($component-element/ci:media)">
           <!-- There is an existing media element. Just copy it. Checking will be done later on in the processing pipeline: -->
           <xsl:apply-templates select="$component-element/ci:media" mode="#current">
-            <xsl:with-param name="href-directory" select="$href-directory" tunnel="true"/>
+            <xsl:with-param name="href-component-directory" select="$href-component-directory" tunnel="true"/>
           </xsl:apply-templates>
         </xsl:when>
         <xsl:otherwise>
-          <!-- No existing media information. Generate something from all the files in the directory: -->
+          <!-- No existing media information. Generate something from all the files and resource-directories in the directory: -->
           <xsl:where-populated>
-            <media _generated="true" href-default-base-directory="{$href-directory}">
+            <media _generated="true" href-default-base-directory="{$href-component-directory}">
               <xsl:for-each select="$possible-media-files">
                 <xsl:sort select="xs:string(@name)"/>
                 <xsl:call-template name="ci:handle-media-file">
-                  <xsl:with-param name="href-directory" select="$href-directory"/>
+                  <xsl:with-param name="href-component-directory" select="$href-component-directory"/>
                   <xsl:with-param name="filename" select="xs:string(@name)"/>
                 </xsl:call-template>
+              </xsl:for-each>
+              <xsl:for-each select="$possible-resource-directories">
+                <resource-directory href="{xtlc:href-concat(($href-component-directory, encode-for-uri(@name)))}"/>
               </xsl:for-each>
             </media>
           </xsl:where-populated>
@@ -210,8 +215,9 @@
   <xsl:template match="ci:media" mode="mode-process-component-description">
     <!-- We're copying an existing media element. Check whether all files in the directory 
       are mentioned. If not, issue warnings.-->
-    <xsl:param name="href-directory" as="xs:string" required="true" tunnel="true"/>
+    <xsl:param name="href-component-directory" as="xs:string" required="true" tunnel="true"/>
     <xsl:param name="possible-media-files" as="element(c:file)*" required="true" tunnel="true"/>
+    <xsl:param name="possible-resource-directories" as="element(c:directory)*" required="true" tunnel="true"/>
 
     <xsl:copy copy-namespaces="false">
       <xsl:apply-templates select="@* except @href-default-base-directory"/>
@@ -221,11 +227,11 @@
         <xsl:choose>
           <xsl:when test="normalize-space(@href-default-base-directory) eq ''">
             <!-- No default base directory present, use the directory of the component: -->
-            <xsl:sequence select="$href-directory"/>
+            <xsl:sequence select="$href-component-directory"/>
           </xsl:when>
           <xsl:otherwise>
             <!-- Make sure the default base directory present is absolute: -->
-            <xsl:sequence select="xtlc:href-concat(($href-directory, @href-default-base-directory)) => xtlc:href-canonical()"/>
+            <xsl:sequence select="xtlc:href-concat(($href-component-directory, @href-default-base-directory)) => xtlc:href-canonical()"/>
           </xsl:otherwise>
         </xsl:choose>
       </xsl:variable>
@@ -238,24 +244,24 @@
         <xsl:copy copy-namespaces="false">
           <xsl:apply-templates select="@* except @href"/>
           <xsl:attribute name="href" select="xtlc:href-concat(($href-default-base-directory, @href)) => xtlc:href-canonical()"/>
-          <xsl:if test="empty(@usage)">
-            <xsl:attribute name="usage" select="ci:defaul-media-usage-type(local-name(.))"/>
+          <xsl:if test="not(exists(self::ci:resource-directory)) and empty(@usage)">
+            <xsl:attribute name="usage" select="ci:default-media-usage-type(local-name(.))"/>
           </xsl:if>
           <xsl:apply-templates/>
         </xsl:copy>
       </xsl:for-each>
 
-      <!-- Now check whether all files in the base directory are mentioned: -->
+      <!-- Now check whether all files and subdirectories in the base directory are mentioned: -->
       <xsl:variable name="hrefs-referenced-media" as="xs:string*"
         select="for $m in ci:* return (xtlc:href-concat(($href-default-base-directory, $m/@href)) => xtlc:href-canonical())"/>
-      <xsl:for-each select="$possible-media-files">
-        <xsl:variable name="media-filename" as="xs:string" select="xs:string(@name)"/>
-        <xsl:variable name="href-media" as="xs:string" select="xtlc:href-concat(($href-directory, $media-filename))"/>
+      <xsl:for-each select="($possible-media-files, $possible-resource-directories)">
+        <xsl:variable name="type" as="xs:string" select="if (exists(self::c:directory)) then 'resource-directory' else 'file'"/>
+        <xsl:variable name="media-name" as="xs:string" select="xs:string(@name)"/>
+        <xsl:variable name="href-media" as="xs:string" select="xtlc:href-concat(($href-component-directory, encode-for-uri($media-name)))"/>
         <xsl:if test="not($href-media = $hrefs-referenced-media)">
-          <warning>Possible media file "{$media-filename}" not referenced</warning>
+          <warning>Possible media {$type} "{$media-name}" not referenced</warning>
         </xsl:if>
       </xsl:for-each>
-
     </xsl:copy>
 
   </xsl:template>

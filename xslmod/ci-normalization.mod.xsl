@@ -15,13 +15,16 @@
 
   <!-- ======================================================================= -->
 
-  <xsl:function name="ci:defaul-media-usage-type" as="xs:string">
+  <xsl:function name="ci:default-media-usage-type" as="xs:string?">
     <!-- Determines the default usage type for a specific type of media. -->
     <xsl:param name="media-type" as="xs:string">
-      <!-- One of the $ci:media-type-* constants defined above. -->
+      <!-- One of the $ci:media-type-* constants defined in ci-common.mod.xsl. -->
     </xsl:param>
 
     <xsl:choose>
+      <xsl:when test="$media-type eq $ci:media-type-resource-directory">
+        <xsl:sequence select="()"/>
+      </xsl:when>
       <xsl:when test="$media-type eq $ci:media-type-image">
         <xsl:sequence select="$ci:media-usage-type-overview"/>
       </xsl:when>
@@ -56,8 +59,8 @@
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
   <xsl:template name="ci:handle-media-file" xmlns="https://eriksiegel.nl/ns/component-inventory">
-    <!-- Creates a media child element with the right type/element-name for the  given file. -->
-    <xsl:param name="href-directory" as="xs:string" required="true"/>
+    <!-- Creates a media child element with the right type/element-name for the given file. -->
+    <xsl:param name="href-component-directory" as="xs:string" required="true"/>
     <xsl:param name="filename" as="xs:string" required="true"/>
 
     <!-- Determine the most likely media type. The type will be used as the element name! -->
@@ -78,7 +81,7 @@
         </xsl:when>
         <xsl:when test="$extension = ('xml')">
           <!-- For an XML file we have to find out if it has recognizable contents: -->
-          <xsl:variable name="href-media-document" as="xs:string" select="xtlc:href-concat(($href-directory, $filename))"/>
+          <xsl:variable name="href-media-document" as="xs:string" select="xtlc:href-concat(($href-component-directory, $filename))"/>
           <xsl:try>
             <xsl:variable name="root-element" as="element()" select="doc($href-media-document)/*"/>
             <xsl:choose>
@@ -108,8 +111,10 @@
     <xsl:choose>
       <xsl:when test="exists($media-type)">
         <xsl:element name="{$media-type}">
-          <xsl:attribute name="href" select="xtlc:href-concat(($href-directory, encode-for-uri($filename)))"/>
-          <xsl:attribute name="usage" select="ci:defaul-media-usage-type($media-type)"/>
+          <xsl:attribute name="href" select="xtlc:href-concat(($href-component-directory, encode-for-uri($filename)))"/>
+          <xsl:if test="$media-type ne $ci:media-type-resource-directory">
+            <xsl:attribute name="usage" select="ci:default-media-usage-type($media-type)"/>
+          </xsl:if>
         </xsl:element>
       </xsl:when>
       <xsl:otherwise>

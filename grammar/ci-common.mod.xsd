@@ -85,6 +85,14 @@
                   <xs:attributeGroup ref="ci:ag-media"/>
                 </xs:complexType>
               </xs:element>
+              <xs:element name="resource-directory">
+                <xs:annotation>
+                  <xs:documentation>A directory containing media resources. The contents of this directory is copied verbatim to the website location for this item, in a subdirectory with the same name.</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:attribute name="href" type="ci:t-href-directory"/>
+                </xs:complexType>
+              </xs:element>
             </xs:choice>
           </xs:sequence>
           <xs:attributeGroup ref="ci:ag-default-base-directory"/>

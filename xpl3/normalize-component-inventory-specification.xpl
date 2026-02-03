@@ -131,7 +131,7 @@
       <p:with-input port="insertion" pipe="@component-directory-information"/>
     </p:insert>
   </p:viewport>
-  <p:store href="tmp/n-50-with-component-directoy-info.xml" use-when="$debug-output"/>
+  <p:store href="tmp/n-50-with-component-directory-info.xml" use-when="$debug-output"/>
 
   <!-- Process this information into full component specifications: -->
   <p:xslt>

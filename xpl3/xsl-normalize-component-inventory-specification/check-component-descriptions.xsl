@@ -28,7 +28,6 @@
 
   <!-- ======================================================================= -->
 
-
   <xsl:template match="ci:component">
 
     <xsl:variable name="component-id" as="xs:string" select="xs:string(@id)"/>
@@ -49,7 +48,6 @@
       </xsl:apply-templates>
 
       <!-- Check ID uniqueness -->
-
       <xsl:variable name="component-id-count" as="xs:integer" select="count($component-ids[. eq $component-id])"/>
       <xsl:if test="$component-id-count gt 1">
         <error>Component id "{$component-id}" not unique (occurs {$component-id-count} times)</error>

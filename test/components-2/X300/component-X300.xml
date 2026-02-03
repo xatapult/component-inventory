@@ -9,5 +9,11 @@
     <property-value property-idref="CONTACTS" value="2"/>
     <property-value property-idref="RELAYTYPE" value="SPECIAL"/>
   </property-values>
-
+  
+  <!--<media  href-default-base-directory="file:///C:/Data/Erik/work/xatapult/component-inventory/test/components-2/X300">
+    <pdf href="file:///C:/Data/Erik/work/xatapult/component-inventory/test/components-2/X300/74HC10.pdf" usage="datasheet"/>
+    <sml href="file:///C:/Data/Erik/work/xatapult/component-inventory/test/components-2/X300/sml-thingie.xml" usage="instruction"/>
+    <resource-directory href="file:///C:/Data/Erik/work/xatapult/component-inventory/test/components-2/X300/EXTRA"/>
+  </media>-->
+  
 </component>

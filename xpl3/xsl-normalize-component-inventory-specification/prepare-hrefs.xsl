@@ -56,9 +56,9 @@
       <xsl:attribute name="href" select="$href"/>
 
       <!-- For media, also add the usage type if not specified: -->
-      <xsl:if test="exists(../self::ci:media)">
+      <xsl:if test="not(exists(self::ci:resource-directory)) and exists(../self::ci:media)">
         <xsl:if test="normalize-space(@usage) eq ''">
-          <xsl:attribute name="usage" select="ci:defaul-media-usage-type(local-name(.))"/>
+          <xsl:attribute name="usage" select="ci:default-media-usage-type(local-name(.))"/>
         </xsl:if>
       </xsl:if>
 

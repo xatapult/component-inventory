@@ -42,7 +42,7 @@
         <media _generated="true" href-default-base-directory="{$href-package-base-directory}">
           <xsl:for-each select="$applicable-media-filenames">
             <xsl:call-template name="ci:handle-media-file">
-              <xsl:with-param name="href-directory" select="$href-package-base-directory"/>
+              <xsl:with-param name="href-component-directory" select="$href-package-base-directory"/>
               <xsl:with-param name="filename" select="."/>
             </xsl:call-template>
           </xsl:for-each>

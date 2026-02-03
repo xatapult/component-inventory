@@ -768,9 +768,9 @@
   <xsl:template name="copy-media">
     <xsl:param name="item-from-elm" as="element()" required="false" select="."/>
     <xsl:param name="href-directory" as="xs:string" required="true"/>
-<!-- Remark: The SML conversion process converts SML documents into HTML and directly copies these to the 
+    <!-- Remark: The SML conversion process converts SML documents into HTML and directly copies these to the 
       right location. It adds a _no-copy="true" attribute. Therefore we skip media with such an attribute. -->
-    <xsl:for-each select="$item-from-elm/ci:media/ci:*[not(xtlc:str2bln(@_no-copy, false()))]">
+    <xsl:for-each select="$item-from-elm/ci:media/ci:*[not(xtlc:str2bln(@_no-copy, false()))][not(exists(self::ci:resource-directory))]">
       <xsl:variable name="href" as="xs:string" select="xs:string(@href)"/>
       <xtlcon:external-document href-source="{$href => xtlc:href-add-encoding()}"
         href-target="{xtlc:href-concat(($href-directory, xtlc:href-name($href))) => xtlc:href-add-encoding()}"/>
@@ -915,12 +915,12 @@
             <xsl:variable name="name" as="xs:string" select="xtlc:href-name(@href)"/>
             <a href="{$name}" target="_blank">
               <xsl:value-of select="$name"/>
-              <xsl:if test="normalize-space(@description) ne ''">
-                <xsl:text> (</xsl:text>
-                <xsl:value-of select="@description"/>
-                <xsl:text>)</xsl:text>
-              </xsl:if>
             </a>
+            <xsl:if test="normalize-space(@description) ne ''">
+              <xsl:text> (</xsl:text>
+              <xsl:value-of select="@description"/>
+              <xsl:text>)</xsl:text>
+            </xsl:if>
           </li>
         </xsl:for-each>
       </ul>
