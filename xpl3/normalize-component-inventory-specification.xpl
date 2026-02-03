@@ -26,6 +26,10 @@
 
   <!-- ======================================================================= -->
 
+  <p:option static="true" name="debug-output" as="xs:boolean" select="true()"/>
+  
+  <!-- ======================================================================= -->
+  
   <p:option static="true" name="href-schema-specification" as="xs:string"
     select="resolve-uri('../grammar/ci-specification.xsd', static-base-uri()) => xtlc:href-canonical()"/>
   <p:option static="true" name="href-schematron-specification" as="xs:string"
@@ -33,7 +37,7 @@
 
   <!-- ======================================================================= -->
 
-  <p:input port="source" primary="true" sequence="false" content-types="xml" href="../test/test-specification.xml">
+  <p:input port="source" primary="true" sequence="false" content-types="xml" href="../test/test-specification-2.xml">
     <p:documentation>The component inventory specification document to process.</p:documentation>
   </p:input>
 
@@ -84,16 +88,20 @@
   <p:xslt>
     <p:with-input port="stylesheet" href="xsl-normalize-component-inventory-specification/prepare-hrefs.xsl"/>
   </p:xslt>
+  <p:store href="tmp/n-10-hrefs-prepared.xml" use-when="$debug-output"/>
+  
 
   <!-- Add names etc. to everything that needs it: -->
   <p:xslt>
     <p:with-input port="stylesheet" href="xsl-normalize-component-inventory-specification/prepare-names.xsl"/>
   </p:xslt>
+  <p:store href="tmp/n-20-names-prepared.xml" use-when="$debug-output"/>
 
   <!-- Flatten the category list: -->
   <p:xslt>
     <p:with-input port="stylesheet" href="xsl-normalize-component-inventory-specification/flatten-categories.xsl"/>
   </p:xslt>
+  <p:store href="tmp/n-30-categories-flattened.xml" use-when="$debug-output"/>
 
   <!-- Auto-add the media information for the packages: -->
   <p:viewport match="ci:packages" name="get-packages-media-directory-information">
@@ -108,6 +116,7 @@
   <p:xslt>
     <p:with-input port="stylesheet" href="xsl-normalize-component-inventory-specification/create-package-media-information.xsl"/>
   </p:xslt>
+  <p:store href="tmp/n-40-package-media-added.xml" use-when="$debug-output"/>
 
   <!-- Get the directory information on-board for components: -->
   <xtlc:message enabled="{$messages-enabled}" level="{$message-indent-level + 1}">
@@ -122,12 +131,14 @@
       <p:with-input port="insertion" pipe="@component-directory-information"/>
     </p:insert>
   </p:viewport>
+  <p:store href="tmp/n-50-with-component-directoy-info.xml" use-when="$debug-output"/>
 
   <!-- Process this information into full component specifications: -->
   <p:xslt>
     <p:with-input port="stylesheet" href="xsl-normalize-component-inventory-specification/create-component-descriptions.xsl"/>
   </p:xslt>
   <xtlc:expand-macro-definitions/>
+  <p:store href="tmp/n-60-with-component-descriptions.xml" use-when="$debug-output"/>
 
   <!-- Check all the component specifications: -->
   <xtlc:message enabled="{$messages-enabled}" level="{$message-indent-level + 1}">
@@ -172,6 +183,7 @@
   <p:xslt>
     <p:with-input port="stylesheet" href="xsl-normalize-component-inventory-specification/sort-items.xsl"/>
   </p:xslt>
+  <p:store href="tmp/n-90-normalized.xml" use-when="$debug-output"/>
 
   <!-- Done. Record important information on the root element: -->
   <p:variable name="component-count" as="xs:integer" select="count(/*/ci:components/ci:component)"/>

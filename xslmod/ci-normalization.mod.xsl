@@ -108,7 +108,7 @@
     <xsl:choose>
       <xsl:when test="exists($media-type)">
         <xsl:element name="{$media-type}">
-          <xsl:attribute name="href" select="xtlc:href-concat(($href-directory, $filename))"/>
+          <xsl:attribute name="href" select="xtlc:href-concat(($href-directory, encode-for-uri($filename)))"/>
           <xsl:attribute name="usage" select="ci:defaul-media-usage-type($media-type)"/>
         </xsl:element>
       </xsl:when>

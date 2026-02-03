@@ -18,8 +18,8 @@
   <p:import href="file:/xatapult/xtpxlib-common/xpl3mod/create-clear-directory/create-clear-directory.xpl"/>
 
   <p:import href="file:/xatapult/xtpxlib-container/xpl3mod/container-to-disk/container-to-disk.xpl"/>
-  
-  <p:import href="file:/xatapult/xtpxlib-sml/xpl3/sml-to-html.xpl"></p:import>
+
+  <p:import href="file:/xatapult/xtpxlib-sml/xpl3/sml-to-html.xpl"/>
 
   <!-- ======================================================================= -->
 
@@ -144,9 +144,9 @@
     <!-- Remove generated warnings, they might get in the way... -->
     <p:delete match="ci:warning"/>
   </p:if>
-  
+
   <p:identity name="clean-specification"/>
-  <p:store href="tmp/10-clean-specification.xml" use-when="$debug-output"/>
+  <p:store href="tmp/w-10-clean-specification.xml" use-when="$debug-output"/>
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
   <!-- Preparations: -->
@@ -180,6 +180,9 @@
   <!-- Create the website container: -->
 
   <!-- First make a container with documents for all pages. Fill in what we can. -->
+  <xtlc:message enabled="{$messages-enabled}" level="{$message-indent-level + 1}">
+    <p:with-option name="text" select="'Creating base container'"/>
+  </xtlc:message>
   <p:xslt>
     <p:with-input pipe="@clean-specification"/>
     <p:with-input port="stylesheet" href="xsl-normalized-component-inventory-specification-to-website/create-base-container.xsl"/>
@@ -187,7 +190,7 @@
   </p:xslt>
   <!-- Turn the SML that's still inside into HTML: -->
   <p:viewport match="sml:sml">
-    <sml:sml-to-html do-validation="false" >
+    <sml:sml-to-html do-validation="false">
       <p:with-option name="href-template" select="()"/>
       <p:with-option name="href-dir-result" select="xs:string(/*/@_href-dir-result)"/>
     </sml:sml-to-html>
@@ -198,17 +201,41 @@
       <p:with-input port="stylesheet" href="xsl-normalized-component-inventory-specification-to-website/process-lists.xsl"/>
     </p:xslt>
   </p:viewport>
-  
-  <p:store href="tmp/20-base-container.xml" use-when="$debug-output"/>
-  
+  <p:store href="tmp/w-20-base-container.xml" use-when="$debug-output"/>
+
   <!-- The container documents now contain complete body HTML. Turn this into pages: -->
+  <p:variable name="page-count" as="xs:integer" select="count(/*/xtlcon:document)"/>
+  <xtlc:message enabled="{$messages-enabled}" level="{$message-indent-level + 1}">
+    <p:with-option name="text" select="'Creating ' || $page-count || ' pages'"/>
+  </xtlc:message>
   <p:xslt>
     <p:with-input port="stylesheet" href="xsl-normalized-component-inventory-specification-to-website/create-pages.xsl"/>
     <p:with-option name="parameters" select="map{'href-web-template': $href-web-template}"/>
   </p:xslt>
-  
-  
+  <p:store href="tmp/w-30-page-container.xml" use-when="$debug-output"/>
+
   <!-- Write it away! -->
-  <xtlcon:container-to-disk remove-target="false"/>
+  <xtlcon:container-to-disk remove-target="false" name="write-container"/>
+
+  <!-- Create a report: -->
+  <p:group depends="write-container">
+    <!-- We take the root element of the original input (with all its attributes) and add some of our own: -->
+    <p:delete match="/*/node()">
+      <p:with-input pipe="source@normalized-component-inventory-specification-to-website"/>
+    </p:delete>
+    <p:namespace-delete prefixes="sml"/>
+    <p:set-attributes match="/*">
+      <p:with-option name="attributes" select="map{
+        'href-source': xs:string(/*/@xml:base) => xtlc:href-canonical(),
+        'page-count': xs:string($page-count),
+        'href-website-build': $href-build-location => xtlc:href-canonical(),
+        'timestamp-website-build': xs:string($timestamp-start),
+        'duration-website-build': xs:string(current-dateTime() - $timestamp-start)
+      }"/>
+    </p:set-attributes>
+    <p:delete match="/*/@xml:base"/>
+    <p:rename match="/*" new-name="component-inventory-website-build-result"/>
+  </p:group>
+
 
 </p:declare-step>
