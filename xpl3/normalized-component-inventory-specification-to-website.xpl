@@ -177,14 +177,46 @@
   </p:if>
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+  <!-- Handle the SML documents: -->
+  <!-- An SML document must be converted into HTML. The media element also needs to change. -->
+
+  <p:identity>
+    <p:with-input pipe="@clean-specification"/>
+  </p:identity>
+  <p:variable name="sml-media-count" as="xs:integer" select="count(/*/*/*/ci:media/ci:sml)"/>
+  <p:if test="$sml-media-count gt 0">
+    <xtlc:message enabled="{$messages-enabled}" level="{$message-indent-level + 1}">
+      <p:with-option name="text" select="'Converting ' || $sml-media-count || ' SML document(s) to HTML'"/>
+    </xtlc:message>
+    <p:xslt>
+      <p:with-input port="stylesheet" href="xsl-normalized-component-inventory-specification-to-website/prepare-sml-conversion.xsl"/>
+      <p:with-option name="parameters" select="map{'href-build-location': $href-build-location }"/>
+    </p:xslt>
+    <p:viewport match="ci:CONVERTSML">
+      <p:variable name="href-source" as="xs:string" select="xs:string(/*/@href-source)"/>
+      <p:variable name="href-target" as="xs:string" select="xs:string(/*/@href-target)"/>
+      <sml:sml-to-html>
+        <p:with-input port="source" href="{$href-source}"/>
+      </sml:sml-to-html>
+      <p:store href="{$href-target}"/>
+      <p:identity>
+        <p:with-input>
+          <p:empty/>
+        </p:with-input>
+      </p:identity>
+    </p:viewport>
+  </p:if>
+
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
   <!-- Create the website container: -->
 
   <!-- First make a container with documents for all pages. Fill in what we can. -->
+  <p:variable name="item-type-count" as="xs:integer" select="count(/*/*)"/>
+  <p:variable name="item-count" as="xs:integer" select="count(/*/*/*)"/>
   <xtlc:message enabled="{$messages-enabled}" level="{$message-indent-level + 1}">
-    <p:with-option name="text" select="'Creating base container'"/>
+    <p:with-option name="text" select="'Creating base container for ' || $item-type-count || ' item-types containing ' || $item-count || ' items'"/>
   </xtlc:message>
   <p:xslt>
-    <p:with-input pipe="@clean-specification"/>
     <p:with-input port="stylesheet" href="xsl-normalized-component-inventory-specification-to-website/create-base-container.xsl"/>
     <p:with-option name="parameters" select="map{'href-build-location': $href-build-location }"/>
   </p:xslt>
@@ -206,7 +238,7 @@
   <!-- The container documents now contain complete body HTML. Turn this into pages: -->
   <p:variable name="page-count" as="xs:integer" select="count(/*/xtlcon:document)"/>
   <xtlc:message enabled="{$messages-enabled}" level="{$message-indent-level + 1}">
-    <p:with-option name="text" select="'Creating ' || $page-count || ' pages'"/>
+    <p:with-option name="text" select="'Creating ' || $page-count || ' HTML pages'"/>
   </xtlc:message>
   <p:xslt>
     <p:with-input port="stylesheet" href="xsl-normalized-component-inventory-specification-to-website/create-pages.xsl"/>
@@ -227,6 +259,8 @@
     <p:set-attributes match="/*">
       <p:with-option name="attributes" select="map{
         'href-source': xs:string(/*/@xml:base) => xtlc:href-canonical(),
+        'item-type-count': $item-type-count,
+        'item-count': $item-count,
         'page-count': xs:string($page-count),
         'href-website-build': $href-build-location => xtlc:href-canonical(),
         'timestamp-website-build': xs:string($timestamp-start),

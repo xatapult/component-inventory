@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sml xmlns="http://www.eriksiegel.nl/ns/sml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.eriksiegel.nl/ns/sml file:/xatapult/xtpxlib-sml/xsd/sml.xsd" toc="true">
+  <title>Some example SML document</title>
+
+  <!-- ======================================================================= -->
+
+  <section>
+    <title>Introduction</title>
+
+    <para>TBD</para>
+  </section>
+
+  <!-- ======================================================================= -->
+
+  <section>
+    <title>TBD</title>
+
+    <para>TBD</para>
+  </section>
+
+  <!-- ======================================================================= -->
+
+</sml>
