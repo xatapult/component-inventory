@@ -37,10 +37,13 @@
   <xsl:template match="/ci:LIST">
 
     <xsl:variable name="listitems" as="element(ci:LISTITEM)*" select="ci:LISTITEM"/>
+    <xsl:variable name="grouping-characters" as="xs:string*" select="distinct-values(for $l in $listitems return local:group-char($l))"/>
     <div class="item-list">
       <xsl:choose>
 
-        <xsl:when test="count ($listitems) gt $limit-to-simple-list-item-count">
+        <xsl:when test="(count ($listitems) gt $limit-to-simple-list-item-count) and (count($grouping-characters) gt 1)">
+          <!-- We have enough different listitems *and* enough different grouping characters to create a 
+            list with a bar of start characters. -->
           <!-- Create the bar with start characters: -->
           <xsl:variable name="item-type-name" as="xs:string" select="xs:string(@type)"/>
           <p class="para item-start-character-list">
@@ -63,8 +66,10 @@
                 <xsl:sort select="@name"/>
                 <li>
                   <a href="{@href}">{@name}</a>
-                  <xsl:text> - </xsl:text>
-                  <xsl:value-of select="@description"/>
+                  <xsl:if test="normalize-space(@description) ne ''">
+                    <xsl:text> - </xsl:text>
+                    <xsl:value-of select="@description"/>
+                  </xsl:if>
                 </li>
               </xsl:for-each>
             </ul>
@@ -72,20 +77,23 @@
         </xsl:when>
 
         <xsl:otherwise>
+          <!-- Just create a "simple" list: -->
           <xsl:where-populated>
             <ul>
               <xsl:for-each select="$listitems">
                 <xsl:sort select="@name"/>
                 <li>
                   <a href="{@href}">{@name}</a>
-                  <xsl:text> - </xsl:text>
-                  <xsl:value-of select="@description"/>
+                  <xsl:if test="normalize-space(@description) ne ''">
+                    <xsl:text> - </xsl:text>
+                    <xsl:value-of select="@description"/>
+                  </xsl:if>
                 </li>
               </xsl:for-each>
             </ul>
           </xsl:where-populated>
         </xsl:otherwise>
-        
+
       </xsl:choose>
     </div>
   </xsl:template>

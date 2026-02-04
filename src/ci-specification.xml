@@ -6,30 +6,67 @@
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
   <properties>
-   <!--  -->
+    <!--  -->
   </properties>
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
   <categories>
-    
+    <category id="COMP" name="Simple components"/>
+    <category id="74HC"/>
+    <category id="SN74"/>
+    <category id="HEF4000"/>
+    <category id="OPAMP" name="Operational amplifiers"/>
+    <category id="OPTOCPL" name="Optocouplers"/>
+    <category id="MOTOR" name="Motor drivers"/>
   </categories>
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
   <price-ranges>
-   
+    <price-range id="VERY-CHEAP" min-inclusive="0.00" max-inclusive="0.50" name="Very cheap"/>
+    <price-range id="CHEAP" min-inclusive="0.51" max-inclusive="2.00" name="Cheap"/>
+    <price-range id="EXPENSIVE" min-inclusive="2.01" max-inclusive="10.00" name="Expensive"/>
+    <price-range id="VERY-EXPENSIVE" min-inclusive="10.01" max-inclusive="1000.00" name="Very expensive"/>
   </price-ranges>
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-  <packages href-default-base-directory="../resources/packaging/">
+  <packages href-default-base-directory="packaging">
+    <package id="DIP4" summary="4-pin dual inline package"/>
+    <package id="DIP6" summary="6-pin dual inline package"/>
+    <package id="DIP8" summary="8-pin dual inline package"/>
+    <package id="DIP14" summary="14-pin dual inline package"/>
+    <package id="DIP16" summary="16-pin dual inline package"/>
+    <package id="DIP18" summary="18-pin dual inline package"/>
+    <package id="DIP20" summary="20-pin dual inline package"/>
+    <package id="DIP24" summary="24-pin dual inline package"/>
+    <package id="DIP28" summary="28-pin dual inline package"/>
+    <package id="DIP40" summary="40-pin dual inline package"/>
 
+    <package id="TO3"/>
+    <package id="TO8"/>
+    <package id="TO18"/>
+    <package id="TO39"/>
+    <package id="TO71"/>
+    <package id="TO72"/>
+    <package id="TO92"/>
+    <package id="TO126"/>
+    <package id="TO220"/>
+    <package id="TO225"/>
+    <package id="TO247"/>
+    <package id="TO998"/>
+    <package id="TO3PN"/>
+
+    <package id="MICRO" name="SMD package"/>
   </packages>
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
   <locations>
+    <location id="CBSB" name="Component box (with sub-boxes)"/>
+    <location id="BAG" name="Plastic bag in storage container"/>
+    <location id="CBAW" name="Component box above workbench"/>
   </locations>
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->

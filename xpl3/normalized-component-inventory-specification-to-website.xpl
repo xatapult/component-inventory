@@ -24,7 +24,7 @@
 
   <!-- ======================================================================= -->
 
-  <p:option static="true" name="debug-output" as="xs:boolean" select="true()"/>
+  <p:option static="true" name="debug-output" as="xs:boolean" select="false()"/>
 
   <!-- ======================================================================= -->
 
@@ -270,6 +270,9 @@
   <p:store href="tmp/w-30-page-container.xml" use-when="$debug-output"/>
 
   <!-- Write it away! -->
+  <xtlc:message enabled="{$messages-enabled}" level="{$message-indent-level + 1}">
+    <p:with-option name="text" select="'Writing container to &quot;' || /*/@href-target-path || '&quot;'"/>
+  </xtlc:message>
   <xtlcon:container-to-disk remove-target="false" name="write-container"/>
 
   <!-- Create a report: -->

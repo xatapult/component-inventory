@@ -26,7 +26,7 @@
 
   <!-- ======================================================================= -->
 
-  <p:option static="true" name="debug-output" as="xs:boolean" select="true()"/>
+  <p:option static="true" name="debug-output" as="xs:boolean" select="false()"/>
   
   <!-- ======================================================================= -->
   

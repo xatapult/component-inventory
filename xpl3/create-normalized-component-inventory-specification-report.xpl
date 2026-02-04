@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <p:library xmlns:p="http://www.w3.org/ns/xproc" xmlns:c="http://www.w3.org/ns/xproc-step" xmlns:map="http://www.w3.org/2005/xpath-functions/map"
   xmlns:array="http://www.w3.org/2005/xpath-functions/array" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:local="#local.flf_2tl_whc"
-  xmlns:sml="http://www.eriksiegel.nl/ns/sml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xtlc="http://www.xtpxlib.nl/ns/common" 
+  xmlns:sml="http://www.eriksiegel.nl/ns/sml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xtlc="http://www.xtpxlib.nl/ns/common"
   xmlns:ci="https://eriksiegel.nl/ns/component-inventory" version="3.0">
 
   <!-- ======================================================================= -->
@@ -33,7 +33,7 @@
     <p:import-functions href="file:/xatapult/xtpxlib-common/xslmod/href.mod.xsl"/>
 
     <p:import href="file:/xatapult/xtpxlib-common/xpl3mod/message/message.xpl"/>
-    
+
     <p:import href="file:/xatapult/xtpxlib-sml/xpl3/sml-prepare.xpl"/>
     <p:import href="file:/xatapult/xtpxlib-sml/xpl3/prepared-sml-to-html.xpl"/>
     <p:import href="file:/xatapult/xtpxlib-sml/xpl3/prepared-sml-to-markdown.xpl"/>
@@ -71,22 +71,22 @@
     <p:option name="report-output-types" as="xs:string+" required="false" select="$ci:report-output-type-html">
       <p:documentation>One or more report output type names (see the static options $report-type-*).</p:documentation>
     </p:option>
-    
+
     <p:option name="message-indent-level" as="xs:integer" required="false" select="0">
       <p:documentation>The (starting) indent level for any console messages.</p:documentation>
     </p:option>
-    
+
     <p:option name="messages-enabled" as="xs:boolean" required="false" select="true()">
       <p:documentation>Whether or not console messages are enabled.</p:documentation>
     </p:option>
-    
+
     <!-- ================================================================== -->
     <!-- MAIN: -->
 
     <p:variable name="timestamp-start" as="xs:dateTime" select="current-dateTime()"/>
 
     <p:group name="create-report">
-      
+
       <xtlc:message enabled="{$messages-enabled}" level="{$message-indent-level}">
         <p:with-option name="text" select="'Creating component-inventory ' || $report-type || ' report'"/>
       </xtlc:message>
@@ -95,9 +95,9 @@
       <p:xslt>
         <p:with-input port="stylesheet" href="xsl-create-normalized-component-inventory-specification-report/create-sml-report.xsl"/>
         <p:with-option name="parameters" select="map{
-      'report-type': $report-type,
-      'add-toc': $add-toc
-    }"/>
+          'report-type': $report-type,
+          'add-toc': $add-toc
+        }"/>
       </p:xslt>
 
       <!-- Prepare the SML: -->

@@ -77,6 +77,9 @@
 
   <!-- Flags for additional contents: -->
   <xsl:variable name="add-page-creation-timestamp" as="xs:boolean" select="true()"/>
+  
+  <!-- Currency prefix: -->
+  <xsl:variable name="currency-prefix" as="xs:string" select="'€'"/>
 
   <!-- ================================================================== -->
 
@@ -171,7 +174,7 @@
       <xsl:with-param name="item-next" select="(following-sibling::ci:component)[1]"/>
       <xsl:with-param name="href-target" select="local:href-to-item($component-elm)"/>
       <xsl:with-param name="title" select="$name"/>
-      <xsl:with-param name="title-full" select="$name || ' - ' || xs:string($component-elm/@summary)"/>
+      <xsl:with-param name="title-full" select="string-join(($name, xs:string($component-elm/@summary)[.]), ' - ')"/>
       <xsl:with-param name="content" as="element()*">
 
         <!-- Create a media section: -->
@@ -266,6 +269,7 @@
     </xsl:param>
     <xsl:param name="make-detail-link" as="xs:boolean" required="false" select="true()"/>
     <xsl:param name="is-code" as="xs:boolean" required="false" select="false()"/>
+    <xsl:param name="prefix" as="xs:string?" required="false" select="()"/>
 
     <xsl:variable name="value" as="xs:string?" select="normalize-space($attr)[. ne $ci:special-value-unknown]"/>
     <xsl:variable name="value-seq" as="xs:string*" select="xtlc:str2seq($value)[. ne $ci:special-value-unknown]"/>
@@ -352,6 +356,7 @@
             </xsl:when>
 
             <xsl:otherwise>
+              <xsl:value-of select="$prefix"/>
               <xsl:value-of select="xs:string($attr) => xtlc:capitalize()"/>
               <xsl:call-template name="create-popup">
                 <xsl:with-param name="popups" as="xs:string*" select="$popups"/>
@@ -479,10 +484,12 @@
           <xsl:call-template name="create-info-table-row-for-attribute">
             <xsl:with-param name="attr" select="@min-inclusive"/>
             <xsl:with-param name="label" select="'Minimum price (inclusive)'"/>
+            <xsl:with-param name="prefix" select="$currency-prefix"/>
           </xsl:call-template>
           <xsl:call-template name="create-info-table-row-for-attribute">
             <xsl:with-param name="attr" select="@max-inclusive"/>
             <xsl:with-param name="label" select="'Maximum price (inclusive)'"/>
+            <xsl:with-param name="prefix" select="$currency-prefix"/>
           </xsl:call-template>
         </table>
       </xsl:with-param>
@@ -513,7 +520,7 @@
         <xsl:with-param name="item-previous" select="(preceding-sibling::ci:*[local-name(.) eq $name])[last()]"/>
         <xsl:with-param name="item-next" select="(following-sibling::ci:*[local-name(.) eq $name])[1]"/>
         <xsl:with-param name="title" select="$title"/>
-        <xsl:with-param name="title-full" select="$title || ' - ' || @summary"/>
+        <xsl:with-param name="title-full" select="string-join(($title, xs:string(@summary)[.]), ' - ')"/>
         <xsl:with-param name="href-target" select="$href-target"/>
         <xsl:with-param name="content" as="item()*">
           <xsl:call-template name="create-media-section">
@@ -660,13 +667,15 @@
   <xsl:template name="create-popup">
     <!-- Creates a popup (an encircled i that shows popup info when hovered over). -->
     <xsl:param name="popups" as="xs:string*" required="true"/>
-    <xsl:if test="exists($popups)">
+
+    <xsl:variable name="popups-normalized" as="xs:string*" select="for $p in $popups return normalize-space($p)[.]"/>
+    <xsl:if test="exists($popups-normalized)">
       <xsl:text> </xsl:text>
       <span class="citooltip {$class-grey}">
         <!-- Encircled i: -->
         <xsl:text>&#x24D8;</xsl:text>
         <span class="citooltiptext">
-          <xsl:for-each select="$popups">
+          <xsl:for-each select="$popups-normalized">
             <xsl:value-of select="."/>
             <xsl:if test="position() ne last()">
               <br/>
@@ -914,7 +923,7 @@
           <li>
             <xsl:variable name="name" as="xs:string" select="xtlc:href-name(@href)"/>
             <a href="{$name}" target="_blank">
-              <xsl:value-of select="$name"/>
+              <xsl:value-of select="xtlc:href-decode-uri($name)"/>
             </a>
             <xsl:if test="normalize-space(@description) ne ''">
               <xsl:text> (</xsl:text>

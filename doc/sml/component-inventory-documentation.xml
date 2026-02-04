@@ -239,7 +239,6 @@
             </entry>
             <entry>
               <para>A short summary of this component (optional).</para>
-              <para>If not specified, a summary will be generated. For instance <code>Component 64HC123</code>.</para>
             </entry>
             <entry>
               <para>

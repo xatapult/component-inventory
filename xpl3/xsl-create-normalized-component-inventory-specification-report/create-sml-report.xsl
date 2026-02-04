@@ -246,7 +246,7 @@
       </xsl:when>
 
       <xsl:otherwise>
-        <para>{$prompt}: <code>{$value}</code></para>
+        <para>{$prompt}: {$value}</para>
       </xsl:otherwise>
 
     </xsl:choose>

@@ -131,7 +131,7 @@
       </xsl:call-template>
       <xsl:call-template name="process-attribute">
         <xsl:with-param name="attribute-name" select="'summary'"/>
-        <xsl:with-param name="default" select="ci:default-summary($component-element, $default-id)"/>
+        <xsl:with-param name="default" select="()"/>
       </xsl:call-template>
       <xsl:call-template name="process-attribute">
         <xsl:with-param name="attribute-name" select="'partly-in-reserve-stock'"/>
@@ -273,7 +273,7 @@
     <!-- Check whether this attribute is present and filled. if not, create one with a default value. -->
     <xsl:param name="attribute-name" as="xs:string" required="true"/>
     <xsl:param name="elm" as="element()" required="false" select="."/>
-    <xsl:param name="default" as="xs:string" required="false" select="$ci:special-value-unknown"/>
+    <xsl:param name="default" as="xs:string?" required="false" select="$ci:special-value-unknown"/>
 
     <xsl:variable name="attr" as="attribute()?" select="$elm/@*[local-name() eq $attribute-name]"/>
     <xsl:choose>

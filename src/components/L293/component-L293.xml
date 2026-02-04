@@ -4,7 +4,7 @@
            summary="Quadruple Half-H Motor Drivers"
            count="2"
            category-idrefs="MOTOR"
-           package-idref="DIO16"
+           package-idref="DIP16"
            location-idref="CBSB"
            since="2025-11-12"
            xmlns="https://eriksiegel.nl/ns/component-inventory"

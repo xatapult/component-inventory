@@ -39,25 +39,6 @@
 
   <!-- ======================================================================= -->
 
-  <xsl:function name="ci:default-summary" as="xs:string">
-    <!-- Computes the default summary string for an element (for instance for a category or package). -->
-    <xsl:param name="elm" as="element()"/>
-
-    <xsl:sequence select="ci:default-summary($elm, ())"/>
-  </xsl:function>
-
-  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-
-  <xsl:function name="ci:default-summary" as="xs:string">
-    <!-- Computes the default summary string for an element (for instance for a category or package). -->
-    <xsl:param name="elm" as="element()"/>
-    <xsl:param name="default-id" as="xs:string?"/>
-
-    <xsl:sequence select="string-join((xtlc:capitalize(local-name($elm)), xs:string(($elm/@name, $elm/@id, $default-id)[1])), ' ')"/>
-  </xsl:function>
-
-  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-
   <xsl:template name="ci:handle-media-file" xmlns="https://eriksiegel.nl/ns/component-inventory">
     <!-- Creates a media child element with the right type/element-name for the given file. -->
     <xsl:param name="href-component-directory" as="xs:string" required="true"/>

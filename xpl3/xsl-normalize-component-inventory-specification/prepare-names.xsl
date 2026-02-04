@@ -27,7 +27,7 @@
         <xsl:attribute name="name" select="$id"/>
       </xsl:if>
       <xsl:if test="normalize-space(@summary) eq ''">
-        <xsl:attribute name="summary" select="ci:default-summary(.)"/>
+        <xsl:attribute name="summary" select="()"/>
       </xsl:if>
       <xsl:apply-templates/>
     </xsl:copy>

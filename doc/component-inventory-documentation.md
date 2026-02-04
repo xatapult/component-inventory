@@ -10,7 +10,7 @@
     * [General properties of all items](#section-d16e366)
 
 
-* [Component-inventory processing](#section-d16e589)
+* [Component-inventory processing](#section-d16e583)
 
   * [Automatic creation of media elements](#sect-auto-media)
 
@@ -31,13 +31,13 @@
     * [Defining property values](#sect-xml-property-values)
 
   * [The additional data document](#sect-ci-additional-data)
-  * [Shared definitions](#section-d16e2540)
+  * [Shared definitions](#section-d16e2534)
 
     * [Media](#sect-xml-media)
     * [Text/SML](#sect-text-sml)
     * [The macro mechanism](#macro-mechanism)
 
-      * [Standard macros](#section-d16e3291)
+      * [Standard macros](#section-d16e3285)
 
 
 
@@ -89,13 +89,13 @@ All items of all item-types share the following common properties:
 | ----- | ----- | ----- | ----- | 
 | Identifier |  `@id`  | The (mandatory) identifier for this item. This must be unique for all items of this item-type. |  `id="74HC123B"`  | 
 | Name |  `@name`  | The (optional) name of this item, as used to display/identify it in the generated website.<br/>If not specified, it is the same as the identifier of the item. |  `name="74HC123"`  | 
-| Summary |  `@summary`  | A short summary of this component (optional).<br/>If not specified, a summary will be generated. For instance `Component 64HC123`. |  `summary="Quad 4-input NAND gate"`  | 
+| Summary |  `@summary`  | A short summary of this component (optional). |  `summary="Quad 4-input NAND gate"`  | 
 | keywords |  `@keywords`  | An (optional) whitespace-separated list of keywords for the HTML page about this item (the name of the item automatically becomes a keyword and does not need to be specified again). |  `keywords="logic-circuit flipflop"`  | 
 | Description |  `ci:description`  | An (optional) description for this item, see [Text/SML](#sect-text-sml). |  `<ci:description><para xmlns="http://www.eriksiegel.nl/ns/sml">This is a descriptive paragraph…</para></ci:description>`  | 
 
 -----
 
-## Component-inventory processing<a name="section-d16e589"/>
+## Component-inventory processing<a name="section-d16e583"/>
 
 TBD
 
@@ -203,7 +203,7 @@ The component-inventory specification document is the starting point for generat
 #### Defining `category` items: `<ci:categories>`<a name="sect-xml-categories"/>
 
 Categories can have sub-categories. The identifier of a category+sub-category is made by concatenating their identifiers, with a dot
-            (`.`) in between, to a combined identifier.
+            (`.`) in between, to a combined-identifier.
 
 
 ```
@@ -436,7 +436,7 @@ A component specification document contains the description of a component item.
            name? = xs:string
            summary? = xs:string
            count? = xs:integer \| #many \| #unknown
-           category-idrefs? = list of (combined identifier \| #unknown)
+           category-idrefs? = list of (combined-identifier \| #unknown)
            price-range-idref? = identifier \| #unknown
            package-idref? = identifier \| #unknown
            location-idref? = identifier \| #unknown
@@ -459,7 +459,7 @@ A component specification document contains the description of a component item.
 | `name` | ? | `xs:string` | Default: `@id`<br/>The visible name of this component. | 
 | `summary` | ? | `xs:string` | A short summary of this component. If not present, something will be made up using `@name`. | 
 | `count` | ? | `xs:integer \| #many \| #unknown` | Default: `#unknown`<br/>The number in stock.<br/>Use the special value `#many` for large numbers (large remains undefined but usually means something like > 25).<br/>Use the special value `#unknown` if unknown. | 
-| `category-idrefs` | ? | `list of (combined identifier \| #unknown)` | Default: `#unknown`<br/>A whitespace-separated list of (combined) identifiers of the categories this component is in.<br/>Use the special value `#unknown` if unknown. | 
+| `category-idrefs` | ? | `list of (combined-identifier \| #unknown)` | Default: `#unknown`<br/>A whitespace-separated list of combined-identifiers of the categories this component is in.<br/>Use the special value `#unknown` if unknown. | 
 | `price-range-idref` | ? | `identifier \| #unknown` | Default: `#unknwon`<br/>The identifier of the price-range this component is in.<br/>Use the special value `#unknown` if unknown. | 
 | `package-idref` | ? | `identifier \| #unknown` | Default: `#unknown`<br/>The identifier of the package for this component.<br/>Use the special value `#unknown` if unknown. | 
 | `location-idref` | ? | `identifier \| #unknown` | Default: `#unknown`<br/>The identifier of the location for this component.<br/>Use the special value `#unknown` if unknown. | 
@@ -515,7 +515,7 @@ The additional data document contains information used to build the final websit
 
 It is fairly simple, using [Text/SML](#sect-text-sml) to define contents. 
 
-### Shared definitions<a name="section-d16e2540"/>
+### Shared definitions<a name="section-d16e2534"/>
 
 #### Media<a name="sect-xml-media"/>
 
@@ -596,7 +596,7 @@ Any descriptions and longer pieces of content can be stated in both HTML and SML
 
 The macro mechanism allows using and defining string macros.
 
-##### Using macros<a name="section-d16e2968"/>
+##### Using macros<a name="section-d16e2962"/>
 
 A reference to a parameter can be done in two different ways:
 
@@ -610,7 +610,7 @@ Referencing macros can be done in text nodes and attribute values. If the macro 
 
 *Watch out:* it is possible that the software that uses the macro mechanism limits where macros can be used!
 
-##### Macro expansion flags<a name="section-d16e3010"/>
+##### Macro expansion flags<a name="section-d16e3004"/>
 
 A macro reference can be followed by zero or more flags, separated by colons (`:`). Assume for instance that the macro called
         `REF` contains the value `alpha:beta`. Then referring to it as `${REF:uc}` results in `ALPHA:BETA`
@@ -630,7 +630,7 @@ The following flags are defined:
 |  `normalize`  | Normalize the macro value (like the `normalize-space()` function). | 
 |  `uc`  | All upper-case. | 
 
-##### Defining macros<a name="section-d16e3201"/>
+##### Defining macros<a name="section-d16e3195"/>
 
 Macros can be defined using the `<macrodefs>` element. Where this element can appear depends on the application that uses the macro
       mechanism and must be defined in its schema. It is *always* the first child element of some other element (usually for
@@ -660,7 +660,7 @@ Macros can be defined using the `<macrodefs>` element. Where this element can ap
 | `name` | 1 | `xs:NCName` | The name of the macro. Convention is to use all upper-case. | 
 | `value` | ? | `xs:string` | The value for the macro. Can contain nested references to other macros. | 
 
-##### Standard macros<a name="section-d16e3291"/>
+##### Standard macros<a name="section-d16e3285"/>
 
 The following macros are always available:
 

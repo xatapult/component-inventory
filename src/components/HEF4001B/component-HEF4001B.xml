@@ -5,7 +5,7 @@
            count="8"
            category-idrefs="HEF4000"
            price-range-idref="VERY-CHEAP"
-           package-idref="DIP 14"
+           package-idref="DIP14"
            location-idref="CBSB"
            since="2024-10-25"
            xmlns="https://eriksiegel.nl/ns/component-inventory"
