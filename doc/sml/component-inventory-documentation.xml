@@ -1,0 +1,983 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sml xmlns="http://www.eriksiegel.nl/ns/sml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.eriksiegel.nl/ns/sml file:/xatapult/xtpxlib-sml/xsd/sml.xsd" xmlns:xi="http://www.w3.org/2001/XInclude" toc="true">
+  <title>Component-inventory</title>
+
+  <!-- ======================================================================= -->
+
+  <section>
+    <title>Introduction</title>
+
+    <para>Component-inventory is a Xatapult component that generates a website with information about my electronic components (ICs, transistors,
+      etc.). </para>
+    <para>GitHub: <link href="https://github.com/xatapult/component-inventory"/> (<code>git@github.com:xatapult/component-inventory.git</code>)</para>
+  </section>
+
+  <!-- ======================================================================= -->
+
+  <section>
+    <title>Base concepts</title>
+
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+    <section>
+
+      <title>Base terminology</title>
+
+      <table>
+        <header>
+          <entry>
+            <para>Term</para>
+          </entry>
+          <entry>
+            <para>Description</para>
+          </entry>
+        </header>
+        <row>
+          <entry>
+            <para>Identifier</para>
+          </entry>
+          <entry>
+            <para>A string to identify something with. An identifier in component-inventory consists of letters, numbers, hyphens (<code>-</code>) and
+              underscores (<code>_</code>). It must start with a letter of number.</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para>Combined-identifier</para>
+          </entry>
+          <entry>
+            <para>For categories, identifiers are combined (because categories can have sub-categories, see <link href="#sect-xml-categories"/>).
+              Combining identifiers is done using the dot (<code>.</code>) as separator, for instance <code>ICS.LOGIC.74HC</code>.</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para>Item-type</para>
+          </entry>
+          <entry>
+            <para>The component-inventory system works with items (see below) of a certain item-type, for instance <code>property</code>,
+                <code>category</code>, <code>component</code>, etc. See <link href="#sect-item-types"/>.</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para>Item</para>
+          </entry>
+          <entry>
+            <para>An item is the basic building block component-inventory works with. An item is always of a certain item-type (see above).</para>
+            <para>The most common item is the <code>component</code>.</para>
+          </entry>
+        </row>
+      </table>
+    </section>
+
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+    <section id="sect-item-types">
+      <title>Item-types</title>
+
+      <table>
+        <header>
+          <entry>
+            <para>Item-type</para>
+          </entry>
+          <entry>
+            <para>Description</para>
+          </entry>
+        </header>
+        <row>
+          <entry>
+            <para>
+              <code>property</code>
+            </para>
+          </entry>
+          <entry>
+            <para>A <code>property item</code> describes some property of a component. For instance its supply voltage, number of connections,
+              etc.</para>
+            <para>You must define which properties are mandatory/optional for components in a certain category. </para>
+            <para>Items of this item-type are defined in the <link href="#sect-ci-specification-document">component-inventory specification
+                document</link>.</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para>
+              <code>category</code>
+            </para>
+          </entry>
+          <entry>
+            <para>A <code>category item</code> describes a category to divide the components into. For instance <code>ICS</code>, or
+                <code>RELAYS</code>.</para>
+            <para>Categories can have sub-categories.</para>
+            <para>Items of this item-type are defined in the <link href="#sect-ci-specification-document">component-inventory specification
+                document</link>.</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para>
+              <code>price-range</code>
+            </para>
+          </entry>
+          <entry>
+            <para>A <code>price-range item</code> describes a price-range to attach to a component. For instance <code>CHEAP</code> (between €0.01 and
+              €0.50), <code>EXPENSIVE</code> (over €10.00), etc.</para>
+            <para>Price-ranges were chosen over exact pricing because commercial prices differ and it is not always clear what a component exactly
+              costs.</para>
+            <para>Items of this item-type are defined in the <link href="#sect-ci-specification-document">component-inventory specification
+                document</link>.</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para>
+              <code>package</code>
+            </para>
+          </entry>
+          <entry>
+            <para>A <code>package item</code> describes the packaging of a component. For instance <code>DIP16</code>.</para>
+            <para>Items of this item-type are defined in the <link href="#sect-ci-specification-document">component-inventory specification
+                document</link>.</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para>
+              <code>location</code>
+            </para>
+          </entry>
+          <entry>
+            <para>A <code>location item</code> describes where the component can (usually) be found in my shed.</para>
+            <para>Items of this item-type are defined in the <link href="#sect-ci-specification-document">component-inventory specification
+                document</link>.</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para>
+              <code>component</code>
+            </para>
+          </entry>
+          <entry>
+            <para>A <code>component item</code> describes what this system is all about: an electronic component.</para>
+            <para>Items of this item-type are defined in their own <link href="#sect-ci-component-specification">component specification
+                document</link>. The central <link href="#sect-ci-specification-document">component-inventory specification document</link> defines
+              where on disk to search for component information.</para>
+          </entry>
+        </row>
+
+      </table>
+
+      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+      <section>
+        <title>General properties of all items</title>
+
+        <para>All items of all item-types share the following common properties:</para>
+
+        <table>
+          <header>
+            <entry>
+              <para>Property</para>
+            </entry>
+            <entry>
+              <para>Where</para>
+            </entry>
+            <entry>
+              <para>Description</para>
+            </entry>
+            <entry>
+              <para>Example</para>
+            </entry>
+          </header>
+          <row>
+            <entry>
+              <para>Identifier</para>
+            </entry>
+            <entry>
+              <para>
+                <code>@id</code>
+              </para>
+            </entry>
+            <entry>
+              <para>The (mandatory) identifier for this item. This must be unique for all items of this item-type.</para>
+            </entry>
+            <entry>
+              <para>
+                <code>id="74HC123B"</code>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>Name</para>
+            </entry>
+            <entry>
+              <para>
+                <code>@name</code>
+              </para>
+            </entry>
+            <entry>
+              <para>The (optional) name of this item, as used to display/identify it in the generated website.</para>
+              <para>If not specified, it is the same as the identifier of the item.</para>
+            </entry>
+            <entry>
+              <para>
+                <code>name="74HC123"</code>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>Summary</para>
+            </entry>
+            <entry>
+              <para>
+                <code>@summary</code>
+              </para>
+            </entry>
+            <entry>
+              <para>A short summary of this component (optional).</para>
+              <para>If not specified, a summary will be generated. For instance <code>Component 64HC123</code>.</para>
+            </entry>
+            <entry>
+              <para>
+                <code>summary="Quad 4-input NAND gate"</code>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>keywords</para>
+            </entry>
+            <entry>
+              <para>
+                <code>@keywords</code>
+              </para>
+            </entry>
+            <entry>
+              <para>An (optional) whitespace-separated list of keywords for the HTML page about this item (the name of the item automatically becomes
+                a keyword and does not need to be specified again).</para>
+            </entry>
+            <entry>
+              <para>
+                <code>keywords="logic-circuit flipflop"</code>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>Description</para>
+            </entry>
+            <entry>
+              <para>
+                <code>ci:description</code>
+              </para>
+            </entry>
+            <entry>
+              <para>An (optional) description for this item, see <link href="#sect-text-sml"/>.</para>
+            </entry>
+            <entry>
+              <para>
+                <code><![CDATA[<ci:description><para xmlns="http://www.eriksiegel.nl/ns/sml">This is a descriptive paragraph…</para></ci:description>]]></code>
+              </para>
+            </entry>
+          </row>
+        </table>
+
+      </section>
+
+    </section>
+
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+  </section>
+
+  <!-- ======================================================================= -->
+
+  <section>
+    <title>Component-inventory processing</title>
+    <para>TBD</para>
+
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+    <section id="sect-auto-media">
+      <title>Automatic creation of <tag>media</tag> elements</title>
+
+      <para>If an item that can have a <tag>media</tag> element has none, an attempt is being made to create one.</para>
+      <itemizedlist>
+        <listitem>
+          <para>For packages, files in the designated directory with same name as the package identifier are considered.</para>
+        </listitem>
+        <listitem>
+          <para>For components, all files in the directory where the <link href="#sect-ci-component-specification">component specification
+              document</link> is stored are considered. Any sub-directories are considered to be additional resource directories.</para>
+        </listitem>
+      </itemizedlist>
+
+      <para>The usage type (the contents of <code>@usage</code>) is determined as follows:</para>
+      <itemizedlist>
+        <listitem>
+          <para>Any image is considered usage type <code>overview</code>.</para>
+        </listitem>
+        <listitem>
+          <para>A PDF is considered usage type <code>datasheet</code>.</para>
+        </listitem>
+        <listitem>
+          <para>Anything else is considered usage type <code>instruction</code>.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+  </section>
+
+  <!-- ======================================================================= -->
+
+  <section id="ci-documents">
+    <title>Component-inventory XML documents</title>
+
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+    <section id="sect-namespace-usage">
+      <title>Namespace usage</title>
+
+      <para>All XML for the component-inventory uses the <code>https://eriksiegel.nl/ns/component-inventory</code> namespace.</para>
+      <para>This document uses the recommended namespace prefix <code>ci</code> for this.</para>
+    </section>
+
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+    <section id="sect-ci-specification-document">
+      <title>The component-inventory specification document</title>
+      <para>The component-inventory specification document is the starting point for generating the website. It contains the definitions of most items
+        and points to where the information about component items can be found.</para>
+
+      <element name="component-inventory-specification">
+        <children>
+          <element name="macrodefs" occurrences="?">
+            <para>Optional macro definitions. See <link href="#macro-mechanism"/>.</para>
+          </element>
+          <element name="properties" occurrences="1">
+            <para>Property item definitions. See <link href="#sect-xml-properties"/>.</para>
+          </element>
+          <element name="categories" occurrences="1">
+            <para>Category item definitions. See <link href="#sect-xml-categories"/>.</para>
+          </element>
+          <element name="proces-ranges">
+            <para>Price-range item definitions. See <link href="#sect-xml-price-ranges"/>.</para>
+          </element>
+          <element name="packages" occurrences="1">
+            <para>Package item definitions. See <link href="#sect-xml-packages"/>.</para>
+          </element>
+          <element name="locations" occurrences="1">
+            <para>Location item definitions. See <link href="sect-xml-locations"/>.</para>
+          </element>
+          <element name="components" occurrences="1">
+            <para>The locations where component item information can be found. See <link href="sect-xml-components"/>.</para>
+          </element>
+        </children>
+
+      </element>
+
+      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+      <section id="sect-xml-properties">
+        <title>Defining <code>property</code> items: <tag>ci:properties</tag></title>
+
+        <element name="properties">
+          <children>
+            <element name="macrodefs" occurrences="?">
+              <para>Optional macro definitions. See <link href="#macro-mechanism"/>.</para>
+            </element>
+            <element name="property" occurrences="*">
+              <para>A single item definition.</para>
+            </element>
+          </children>
+        </element>
+
+        <element name="property">
+          <attributes>
+            <attribute name="id" type="identifier" required="true">
+              <para>The identifier of this item.</para>
+            </attribute>
+            <attribute name="name" type="xs:string" default="@id">
+              <para>The visible name of this item.</para>
+            </attribute>
+            <attribute name="summary" type="xs:string">
+              <para>A short summary of this item. If not present, something will be made up using <code>@name</code>.</para>
+            </attribute>
+            <attribute name="keywords" type="list of xs:string">
+              <para>A whitespace-separated list of keywords for the HTML page for this item.</para>
+            </attribute>
+
+            <attribute name="value-pattern" type="xs:string">
+              <para>A regular expression for the value to match. If absent or empty, anything goes.</para>
+              <para>If you want this pattern to match the whole value, take care to anchor it using <code>^</code> and <code>$</code>.</para>
+            </attribute>
+            <attribute name="default" type="xs:string">
+              <para>The default value for this property.</para>
+            </attribute>
+            <attribute name="suffix" type="xs:string">
+              <para>An optional suffix appended to the value when displaying this property. For instance <code>suffix="V&#160;DC"</code>.</para>
+            </attribute>
+          </attributes>
+          <children>
+            <element name="macrodefs" occurrences="?">
+              <para>Optional macro definitions. See <link href="#macro-mechanism"/>.</para>
+            </element>
+            <element name="description" occurrences="?">
+              <para>A longer description of this item. See <link href="sect-text-sml"/>.</para>
+            </element>
+          </children>
+
+        </element>
+      </section>
+
+      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+      <section id="sect-xml-categories">
+        <title>Defining <code>category</code> items: <tag>ci:categories</tag></title>
+
+        <para>Categories can have sub-categories. The identifier of a category+sub-category is made by concatenating their identifiers, with a dot
+            (<code>.</code>) in between, to a combined-identifier.</para>
+
+        <element name="categories">
+          <attributes>
+            <attribute name="sub-category-mandatory" type="xs:boolean" default="false">
+              <para><emphasis>Only for nested categories.</emphasis> Whether using these sub-categories is mandatory. If <code>true</code> it means
+                that the parent category cannot exist on its own.</para>
+            </attribute>
+          </attributes>
+          <children>
+            <element name="macrodefs" occurrences="?">
+              <para>Optional macro definitions. See <link href="#macro-mechanism"/>.</para>
+            </element>
+            <element name="category" occurrences="*">
+              <para>A single item definition.</para>
+            </element>
+          </children>
+        </element>
+
+        <element name="category">
+          <attributes>
+            <attribute name="id" type="identifier" required="true">
+              <para>The identifier of this item.</para>
+            </attribute>
+            <attribute name="name" type="xs:string" default="@id">
+              <para>The visible name of this item.</para>
+            </attribute>
+            <attribute name="summary" type="xs:string">
+              <para>A short summary of this item. If not present, something will be made up using <code>@name</code>.</para>
+            </attribute>
+            <attribute name="keywords" type="list of xs:string">
+              <para>A whitespace-separated list of keywords for the HTML page for this item.</para>
+            </attribute>
+            <attribute name="mandatory-property-idrefs" type="list of identifier">
+              <para>A whitespace-separated list of property identifiers. These identifiers are mandatory for components in this category and must have
+                a value.</para>
+            </attribute>
+            <attribute name="optional-property-idrefs" type="list of identifier">
+              <para>A whitespace-separated list of property identifiers. These identifiers are optional for components in this category.</para>
+            </attribute>
+          </attributes>
+          <children>
+            <element name="macrodefs" occurrences="?">
+              <para>Optional macro definitions. See <link href="#macro-mechanism"/>.</para>
+            </element>
+            <element name="description" occurrences="?">
+              <para>A longer description of this item. See <link href="sect-text-sml"/>.</para>
+            </element>
+            <element name="categories" occurrences="?">
+              <para>Definition of sub-categories for this category. The definition of this element is the same as that of the <tag>categories</tag>
+                element described above.</para>
+            </element>
+          </children>
+        </element>
+
+      </section>
+
+      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+      <section id="sect-xml-price-ranges">
+        <title>Defining <code>price-range</code> items: <tag>ci:price-ranges</tag></title>
+
+        <element name="price-ranges">
+          <children>
+            <element name="macrodefs" occurrences="?">
+              <para>Optional macro definitions. See <link href="#macro-mechanism"/>.</para>
+            </element>
+            <element name="price-range" occurrences="*">
+              <para>A single item definition.</para>
+            </element>
+          </children>
+        </element>
+
+        <element name="price-range">
+          <attributes>
+            <attribute name="id" type="identifier" required="true">
+              <para>The identifier of this item.</para>
+            </attribute>
+            <attribute name="name" type="xs:string" default="@id">
+              <para>The visible name of this item.</para>
+            </attribute>
+            <attribute name="summary" type="xs:string">
+              <para>A short summary of this item. If not present, something will be made up using <code>@name</code>.</para>
+            </attribute>
+            <attribute name="keywords" type="list of xs:string">
+              <para>A whitespace-separated list of keywords for the HTML page for this item.</para>
+            </attribute>
+            <attribute name="min-inclusive" type="xs:double" required="true">
+              <para>Minimum inclusive price for this price-range.</para>
+            </attribute>
+            <attribute name="max-inclusive" type="xs:double" required="true">
+              <para>Maximum inclusive price for this price-range.</para>
+            </attribute>
+          </attributes>
+          <children>
+            <element name="macrodefs" occurrences="?">
+              <para>Optional macro definitions. See <link href="#macro-mechanism"/>.</para>
+            </element>
+            <element name="description" occurrences="?">
+              <para>A longer description of this item. See <link href="sect-text-sml"/>.</para>
+            </element>
+          </children>
+        </element>
+      </section>
+
+      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+      <section id="sect-xml-packages">
+        <title>Defining <code>package</code> items: <tag>ci:packages</tag></title>
+
+        <element name="packages">
+          <attributes>
+            <attribute name="href-default-base-directory" type="xs:anyURI">
+              <para>The default directory for resolving all URIs in further child elements. If not specified the base URI of the document will be
+                used.</para>
+            </attribute>
+          </attributes>
+          <children>
+            <element name="macrodefs" occurrences="?">
+              <para>Optional macro definitions. See <link href="#macro-mechanism"/>.</para>
+            </element>
+            <element name="package" occurrences="*">
+              <para>A single item definition.</para>
+            </element>
+          </children>
+        </element>
+
+        <element name="package">
+          <attributes>
+            <attribute name="id" type="identifier" required="true">
+              <para>The identifier of this item.</para>
+            </attribute>
+            <attribute name="name" type="xs:string" default="@id">
+              <para>The visible name of this item.</para>
+            </attribute>
+            <attribute name="summary" type="xs:string">
+              <para>A short summary of this item. If not present, something will be made up using <code>@name</code>.</para>
+            </attribute>
+            <attribute name="keywords" type="list of xs:string">
+              <para>A whitespace-separated list of keywords for the HTML page for this item.</para>
+            </attribute>
+          </attributes>
+          <children>
+            <element name="macrodefs" occurrences="?">
+              <para>Optional macro definitions. See <link href="#macro-mechanism"/>.</para>
+            </element>
+            <element name="description" occurrences="?">
+              <para>A longer description of this item. See <link href="sect-text-sml"/>.</para>
+            </element>
+            <element name="media" occurrences="?">
+              <para>Any media for this package. See <link href="#sect-xml-media"/>.</para>
+              <para>If not present an attempt will be made to create one. The directory located by <code>packages/@href-default-base-directory</code>
+                is searched for media files with the same filename as the package identifier. See <link href="#sect-auto-media"/>.</para>
+            </element>
+          </children>
+        </element>
+
+      </section>
+
+      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+      <section id="sect-xml-locations">
+        <title>Defining <code>location</code> items: <tag>ci:locations</tag></title>
+
+        <element name="locations">
+          <children>
+            <element name="macrodefs" occurrences="?">
+              <para>Optional macro definitions. See <link href="#macro-mechanism"/>.</para>
+            </element>
+            <element name="location" occurrences="*">
+              <para>A single item definition.</para>
+            </element>
+          </children>
+        </element>
+
+        <element name="location">
+          <attributes>
+            <attribute name="id" type="identifier" required="true">
+              <para>The identifier of this item.</para>
+            </attribute>
+            <attribute name="name" type="xs:string" default="@id">
+              <para>The visible name of this item.</para>
+            </attribute>
+            <attribute name="summary" type="xs:string">
+              <para>A short summary of this item. If not present, something will be made up using <code>@name</code>.</para>
+            </attribute>
+            <attribute name="keywords" type="list of xs:string">
+              <para>A whitespace-separated list of keywords for the HTML page for this item.</para>
+            </attribute>
+          </attributes>
+          <children>
+            <element name="macrodefs" occurrences="?">
+              <para>Optional macro definitions. See <link href="#macro-mechanism"/>.</para>
+            </element>
+            <element name="description" occurrences="?">
+              <para>A longer description of this item. See <link href="sect-text-sml"/>.</para>
+            </element>
+          </children>
+        </element>
+
+      </section>
+
+      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+      <section id="sect-xml-components">
+        <title>Defining <code>component</code> items: <tag>ci:components</tag></title>
+        <para>Components are not defined directly in the main specification document. Instead, this document contains a list of directories to search
+          for component definitions.</para>
+
+        <element name="components">
+          <attributes>
+            <attribute name="href-default-base-directory" type="xs:anyURI">
+              <para>The default directory for resolving all URIs in further child elements. If not specified the base URI of the document will be
+                used.</para>
+            </attribute>
+          </attributes>
+          <children>
+            <element name="macrodefs" occurrences="?">
+              <para>Optional macro definitions. See <link href="#macro-mechanism"/>.</para>
+            </element>
+            <element name="directory" occurrences="*">
+              <para>A directory to search for component definitions. Sub-directories are also searched, recursively.</para>
+            </element>
+          </children>
+        </element>
+
+        <element name="directory">
+          <attributes>
+            <attribute name="href" type="xs:anyURI" required="true">
+              <para>The URI of the directory.</para>
+            </attribute>
+            <attribute name="component-description-document-regexp" type="xs:string" default="^component(-.+)?\.xml$">
+              <para>The regular expression for the filename of a component description file. If such a file is found, it is assumed to be a component
+                description. See <link href="#sect-ci-component-specification"/>.</para>
+              <para>The directory it is in is used for automatically finding its media. See <link href="#sect-auto-media"/>.</para>
+            </attribute>
+          </attributes>
+        </element>
+
+      </section>
+
+      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+    </section>
+
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+    <section id="sect-ci-component-specification">
+      <title>Component specification documents</title>
+
+      <para>A component specification document contains the description of a component item. It can be very minimal. Missing information will be
+        filled in as best as possible (often using the special value <code>#unknown</code>).</para>
+
+      <element name="component">
+        <attributes>
+          <attribute name="id" type="identifier">
+            <para>The identifier for this component. If absent, the name of the encompassing directory is used.</para>
+          </attribute>
+          <attribute name="name" type="xs:string" default="@id">
+            <para>The visible name of this component.</para>
+          </attribute>
+          <attribute name="summary" type="xs:string">
+            <para>A short summary of this component. If not present, something will be made up using <code>@name</code>.</para>
+          </attribute>
+          <attribute name="count" type="xs:integer \| #many \| #unknown" default="#unknown">
+            <para>The number in stock.</para>
+            <para>Use the special value <code>#many</code> for large numbers (large remains undefined but usually means something like &gt;
+              25).</para>
+            <para>Use the special value <code>#unknown</code> if unknown.</para>
+          </attribute>
+          <attribute name="category-idrefs" type="list of (combined-identifier \| #unknown)" default="#unknown">
+            <para>A whitespace-separated list of combined-identifiers of the categories this component is in.</para>
+            <para>Use the special value <code>#unknown</code> if unknown.</para>
+          </attribute>
+          <attribute name="price-range-idref" type="identifier \| #unknown" default="#unknwon">
+            <para>The identifier of the price-range this component is in.</para>
+            <para>Use the special value <code>#unknown</code> if unknown.</para>
+          </attribute>
+          <attribute name="package-idref" type="identifier \| #unknown" default="#unknown">
+            <para>The identifier of the package for this component.</para>
+            <para>Use the special value <code>#unknown</code> if unknown.</para>
+          </attribute>
+          <attribute name="location-idref" type="identifier \| #unknown" default="#unknown">
+            <para>The identifier of the location for this component.</para>
+            <para>Use the special value <code>#unknown</code> if unknown.</para>
+          </attribute>
+          <attribute name="location-box-label" type="xs:string">
+            <para>Optional label on the box (or bag) where this component is stored in.</para>
+          </attribute>
+          <attribute name="partly-in-reserve-stock" type="xs:boolean" default="false">
+            <para>Sometimes there are so many components, they do not fit in their main box (or bag).</para>
+          </attribute>
+          <attribute name="since" type="xs:date \| #unknown" default="#unknown">
+            <para>The date when this component was registered.</para>
+          </attribute>
+          <attribute name="discontinued" type="xs:boolean" default="false">
+            <para>Set to <code>true</code> for a discontinued component (a component that is no longer produced).</para>
+          </attribute>
+          <attribute name="keywords" type="list of xs:string">
+            <para>A whitespace-separated list of keywords for the HTML page for this component.</para>
+          </attribute>
+        </attributes>
+        <children>
+          <element name="macrodefs" occurrences="?">
+            <para>Optional macro definitions. See <link href="#macro-mechanism"/>.</para>
+          </element>
+          <element name="description" occurrences="?">
+            <para>A longer description of this component. See <link href="sect-text-sml"/>.</para>
+          </element>
+          <element name="property-values" occurrences="?">
+            <para>Definition of the property item values for this component. See <link href="#sect-xml-property-values"/>.</para>
+          </element>
+          <element name="media" occurrences="?">
+            <para>Any media for this component. See <link href="#sect-xml-media"/>.</para>
+            <para>If not present an attempt will be made to create one. The directory this component description document is in is searched for media
+              files. See <link href="#sect-auto-media"/>.</para>
+          </element>
+        </children>
+      </element>
+
+      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+      <section id="sect-xml-property-values">
+        <title>Defining property values</title>
+
+        <element name="property-values">
+          <children>
+            <element name="property-value" occurrences="*">
+              <para>A property value.</para>
+            </element>
+          </children>
+        </element>
+
+        <element name="property-value">
+          <attributes>
+            <attribute name="property-idref" type="identifier" required="true">
+              <para>The identifier of the property.</para>
+            </attribute>
+            <attribute name="value" type="xs:string \| #unknown">
+              <para>The value for this property.</para>
+              <para>Use the special value <code>#unknown</code> if unknown.</para>
+            </attribute>
+          </attributes>
+        </element>
+
+      </section>
+
+    </section>
+
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+    <section id="sect-ci-additional-data">
+      <title>The additional data document</title>
+
+      <para>The additional data document contains information used to build the final website. It contains:</para>
+      <itemizedlist>
+        <listitem>
+          <para>Favorite categories and components.</para>
+        </listitem>
+        <listitem>
+          <para>The menu (the same for every page).</para>
+        </listitem>
+        <listitem>
+          <para>Contents of the home and about page.</para>
+        </listitem>
+        <listitem>
+          <para>Some information to put at the top of the item-type overview pages.</para>
+        </listitem>
+      </itemizedlist>
+
+      <para>It is fairly simple, using <link href="#sect-text-sml"/> to define contents. </para>
+    </section>
+
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+    <section>
+      <title>Shared definitions</title>
+
+      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+      <section id="sect-xml-media">
+        <title>Media</title>
+
+        <para>A <tag>media</tag> element defines media for some of the items.</para>
+        <para>If it is not present for an item it is defined on, an attempt will be made to automatically create it, using the available media files.
+          See <link href="#sect-auto-media"/>.</para>
+
+        <element name="media">
+          <attributes>
+            <attribute name="href-default-base-directory" type="xs:anyURI">
+              <para>The default directory for resolving all URIs in further child elements. If not specified the base URI of the document will be
+                used.</para>
+            </attribute>
+          </attributes>
+          <children>
+            <element name="macrodefs" occurrences="?">
+              <para>Optional macro definitions. See <link href="#macro-mechanism"/>.</para>
+            </element>
+            <choice occurrences="*">
+              <element name="image">
+                <para>Some image. Supported are <code>jpg</code>, <code>png</code>, and <code>svg</code>.</para>
+              </element>
+              <element name="pdf">
+                <para>A PDF document.</para>
+              </element>
+              <element name="text">
+                <para>A text document.</para>
+              </element>
+              <element name="markdown">
+                <para>A markdown document.</para>
+              </element>
+              <element name="sml">
+                <para>An SML document.</para>
+              </element>
+              <element name="html">
+                <para>A HTML document.</para>
+              </element>
+              <element name="resource-directory" pseudo-attributes="href">
+                <para>A directory with further resources for the media (for instance images on a HTML page). This directory will be copied to the
+                  website build location, on the location of the page for the item its is defined on, under the same name.</para>
+              </element>
+            </choice>
+          </children>
+        </element>
+
+        <para>The <tag>image</tag>, <tag>pdf</tag>, <tag>text</tag>, <tag>markdown</tag>, <tag>sml</tag>, and <tag>html</tag> elements all have the
+          same definition as the <tag>image</tag> element described here:</para>
+        <element name="image">
+          <attributes>
+            <attribute name="href" type="xs:anyURI" required="true">
+              <para>The URI of the media file.</para>
+            </attribute>
+            <attribute name="usage" type="xs:string" default="overview">
+              <para>Defines how this media document must be used/presented. See the table below.</para>
+            </attribute>
+            <attribute name="description" type="xs:string">
+              <para>An optional short description for the media file.</para>
+            </attribute>
+          </attributes>
+        </element>
+
+        <para>The <code>usage</code> attribute can have the following values. This will be used to group them on the website page for the item.</para>
+        <table>
+          <header>
+            <entry>
+              <para>Value</para>
+            </entry>
+            <entry>
+              <para>Description</para>
+            </entry>
+          </header>
+          <row>
+            <entry>
+              <para>
+                <code>overview</code>
+              </para>
+            </entry>
+            <entry>
+              <para>Anything that provides an overview of the item. For instance a straight image.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <code>connections-overview</code>
+              </para>
+            </entry>
+            <entry>
+              <para>A media file that provides an overview of the connections of the item (pinning).</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <code>datasheet</code>
+              </para>
+            </entry>
+            <entry>
+              <para>A datasheet for the item.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <code>usage-example</code>
+              </para>
+            </entry>
+            <entry>
+              <para>Some example of how to use the item.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <code>instruction</code>
+              </para>
+            </entry>
+            <entry>
+              <para>Instructions on how to use the item.</para>
+            </entry>
+          </row>
+        </table>
+
+      </section>
+
+      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+      <section id="sect-text-sml">
+        <title>Text/SML</title>
+
+        <para>Any descriptions and longer pieces of content can be stated in both HTML and SML. The rules are:</para>
+        <itemizedlist>
+          <listitem>
+            <para>The child elements of a content/description element that are in the SML namespace (<code>http://www.eriksiegel.nl/ns/sml</code>) are
+              considered to be SML. This will be converted into HTML.</para>
+            <para>For more information on SML see its component documentation.</para>
+            <para>Tip: Use a <tag>fragment xmlns="http://www.eriksiegel.nl/ns/sml"</tag> element to surround larger chunks of SML, so the namespace is
+              defaulted.</para>
+          </listitem>
+          <listitem>
+            <para>Child elements in any other namespace are considered to be HTML and will be put in the HTML namespace.</para>
+          </listitem>
+        </itemizedlist>
+
+      </section>
+
+      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+      <xi:include href="file:/xatapult/xtpxlib-common/xpl3mod/expand-macro-definitions/doc/macro-mechanism-with-standard-macros.xml"/>
+
+      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+    </section>
+
+  </section>
+
+  <!-- ======================================================================= -->
+
+</sml>
