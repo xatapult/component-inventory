@@ -9,6 +9,7 @@
   <xs:element name="component">
     <xs:complexType>
       <xs:sequence>
+        <xs:group minOccurs="0" ref="ci:g-macrodefs"/>
         <xs:element minOccurs="0" name="description" type="ci:ct-text-block-contents">
           <xs:annotation>
             <xs:documentation>Optional longer description of the definition in SML.</xs:documentation>
@@ -59,7 +60,7 @@
           <xs:documentation>The number of components we have (estimated), or unknown.</xs:documentation>
         </xs:annotation>
       </xs:attribute>
-     
+
       <xs:attribute name="category-idrefs" default="#unknown">
         <xs:annotation>
           <xs:documentation>A list of the appropriate categories/sub-categories, or unknown.</xs:documentation>
