@@ -4,7 +4,7 @@
            summary="Microcontroller"
            count="3"
            package-idref="DIP28"
-           location-idref="BAG"
+           location-idref="bag"
            since="2024-11-13"
            discontinued="true"
            xmlns="https://eriksiegel.nl/ns/component-inventory"

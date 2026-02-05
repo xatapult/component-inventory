@@ -3,9 +3,9 @@
            name="LM311N"
            summary="Hogesnelheidsverschilvergelijker"
            count="4"
-           price-range-idref="VERY-CHEAP"
+           price-range-idref="very-cheap"
            package-idref="DIP8"
-           location-idref="CBSB"
+           location-idref="box-sub-boxes"
            since="2024-10-21"
            xmlns="https://eriksiegel.nl/ns/component-inventory"
            xmlns:xtlcon="http://www.xtpxlib.nl/ns/container"/>

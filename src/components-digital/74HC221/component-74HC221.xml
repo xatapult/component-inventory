@@ -5,7 +5,7 @@
            count="19"
            category-idrefs="74HC"
            package-idref="DIP16"
-           location-idref="CBSB"
+           location-idref="box-sub-boxes"
            location-box-label="HC221"
            since="2024-11-16"
            xmlns="https://eriksiegel.nl/ns/component-inventory"

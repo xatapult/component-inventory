@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<component id="2N3055"
-           name="2N3055"
-           summary="NPN Power Transistor"
-           count="2"
-           category-idrefs="COMP TRANSISTORS TRANSISTORS.NPN TRANSISTORS.POWER"
-           price-range-idref="EXPENSIVE"
-           package-idref="TO3"
-           location-idref="BAG"
-           since="2024-10-23"
-           xmlns="https://eriksiegel.nl/ns/component-inventory"
-           xmlns:xtlcon="http://www.xtpxlib.nl/ns/container"/>
+<component
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory ../../../grammar/ci-component.xsd"
+  xmlns="https://eriksiegel.nl/ns/component-inventory"
+  xmlns:xtlcon="http://www.xtpxlib.nl/ns/container"
+  id="2N3055"
+  name="2N3055"
+  summary="NPN Power Transistor"
+  count="2"
+  category-idrefs="comp transistor transistor.npn transistor.power"
+  price-range-idref="expensive"
+  package-idref="TO3"
+  location-idref="bag"
+  since="2024-10-23"/>

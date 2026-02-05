@@ -3,9 +3,9 @@
            name="TCA580"
            summary="Gyrator"
            count="9"
-           price-range-idref="VERY-EXPENSIVE"
+           price-range-idref="very-expensive"
            package-idref="DIP16"
-           location-idref="CBSB"
+           location-idref="box-sub-boxes"
            since="2024-11-13"
            xmlns="https://eriksiegel.nl/ns/component-inventory"
            xmlns:xtlcon="http://www.xtpxlib.nl/ns/container"/>

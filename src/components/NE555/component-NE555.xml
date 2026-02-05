@@ -3,10 +3,10 @@
            name="NE555"
            summary="Precision timer"
            count="5"
-           category-idrefs="OPTOCPL"
-           price-range-idref="CHEAP"
+           category-idrefs="optocoupler"
+           price-range-idref="cheap"
            package-idref="DIP8"
-           location-idref="CBAW"
+           location-idref="box-workbench"
            since="2024-11-20"
            xmlns="https://eriksiegel.nl/ns/component-inventory"
            xmlns:xtlcon="http://www.xtpxlib.nl/ns/container"/>

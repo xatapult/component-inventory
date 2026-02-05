@@ -3,9 +3,9 @@
            name="PC89C51RD"
            summary="Microcintroller"
            count="1"
-           price-range-idref="VERY-EXPENSIVE"
+           price-range-idref="very-expensive"
            package-idref="DIP40"
-           location-idref="BAG"
+           location-idref="bag"
            since="2024-11-13"
            xmlns="https://eriksiegel.nl/ns/component-inventory"
            xmlns:xtlcon="http://www.xtpxlib.nl/ns/container"/>

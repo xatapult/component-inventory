@@ -3,9 +3,9 @@
            name="TCA420"
            summary="FM IF Amplifier"
            count="1"
-           price-range-idref="EXPENSIVE"
+           price-range-idref="expensive"
            package-idref="DIP16"
-           location-idref="CBSB"
+           location-idref="box-sub-boxes"
            since="2024-11-16"
            xmlns="https://eriksiegel.nl/ns/component-inventory"
            xmlns:xtlcon="http://www.xtpxlib.nl/ns/container"/>

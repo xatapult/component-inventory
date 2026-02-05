@@ -6,50 +6,91 @@
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
   <properties>
-    <!--  -->
+
+    <!-- For transistors: -->
+    <property id="collector-to-base" name="Collector to base voltage" value-pattern="^-?[0-9]+$" suffix="V"/>
+    <property id="collector-to-emitter" name="Collector to emitter voltage" value-pattern="^-?[0-9]+$" suffix="V"/>
+    <property id="emitter-to-base" name="Emitter to base voltage" value-pattern="^-?[0-9]+$" suffix="V"/>
+    <property id="collector-current" name="Collector current" value-pattern="^-?[0-9]+$" suffix="mA"/>
+    <property id="gain" name="Gain" value-pattern="^[0-9]+$"/>
+
   </properties>
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
   <categories>
 
-    <category id="COMP" name="Simple components">
+    <!-- Simple components: -->
+    <category id="comp" name="Simple components">
       <description>
         <p>Straight and simple components, like transistors, MOS-FETs etc.</p>
       </description>
     </category>
 
-    <category id="TRANSISTORS" name="Transistors">
+    <category id="transistor" name="Transistors"
+      optional-property-idrefs="collector-to-base collector-to-emitter emitter-to-base collector-current gain">
       <categories>
-        <category id="NPN" name="Transistors; NPN"/>
-        <category id="PNP" name="Transistors; PNP"/>
-        <category id="POWER" name="Transistors; Power"></category>
+        <category id="npn" name="Transistors - NPN"/>
+        <category id="pnp" name="Transistors - PNP"/>
+        <category id="power" name="Transistors - Power"/>
+        <category id="dual" name="Transistors - Dual" summary="Two transistors in one package"/>
+        <category id="darlington" name="Transistors - Darlington"/>
+        <category id="special" summary="Transistors - Special"/>
       </categories>
     </category>
-    
-    <category id="MOS-FET" name="MOS-FETs">
+
+    <category id="mos-fet" name="MOS-FETs">
       <categories>
-        <category id="POWER" name="MOS-FETs; Power"></category>
+        <category id="power" name="MOS-FETs - Power"/>
       </categories>
     </category>
 
+    <category id="thyristor" name="Thyristors"/>
+    <category id="triac" name="Triacs"/>
 
 
+    <!-- Digital components: -->
+    <category id="I2C" name="I2C related products"/>
+    <category id="memory" name="Computer memory"/>
+    <category id="timer" name="Timer/timing related"/>
     <category id="74HC"/>
     <category id="SN74"/>
+    <category id="cmos" name="CMOS"/>
     <category id="HEF4000"/>
-    <category id="OPAMP" name="Operational amplifiers"/>
-    <category id="OPTOCPL" name="Optocouplers"/>
-    <category id="MOTOR" name="Motor drivers"/>
+    <category id="microcontroller" name="Micro-controllers"/>
+
+    <category id="logic" name="Logic ICs">
+      <categories>
+        <category id="switch" name="Switches"/>
+        <category id="schmitt-trigger" name="Schmitt triggers"/>
+        <category id="nand" name="NAND gates"/>
+      </categories>
+
+    </category>
+
+    <!-- Various: -->
+    <category id="driver" name="Drivers"/>
+    <category id="motor-driver" name="Motor drivers"/>
+    <category id="analog-computation" name="Analog computation"/>
+    <category id="opamp" name="Operational amplifiers"/>
+    <category id="optocoupler" name="Optocouplers"/>
+    <category id="dac" name="Digital-analog converter"/>
+    <category id="rectifier" name="Rectifiers"/>
+    <category id="display" name="Display related components"/>
+    <category id="thermal" name="Thermal switches"/>
+    <category id="communication" name="Communication related ICs"/>
+    <category id="oscillator" name="Oscillators"/>
+    <category id="audio" name="Audio related components"/>
+    <category id="movement" name="MOvement related components"/>
   </categories>
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
   <price-ranges>
-    <price-range id="VERY-CHEAP" min-inclusive="0.00" max-inclusive="0.50" name="Very cheap (less than €0.50)"/>
-    <price-range id="CHEAP" min-inclusive="0.51" max-inclusive="2.00" name="Cheap (between €0.50 and €2)"/>
-    <price-range id="EXPENSIVE" min-inclusive="2.01" max-inclusive="10.00" name="Expensive (between €2 and €10)"/>
-    <price-range id="VERY-EXPENSIVE" min-inclusive="10.01" max-inclusive="1000.00" name="Very expensive (over €10)."/>
+    <price-range id="very-cheap" min-inclusive="0.00" max-inclusive="0.50" name="Very cheap (less than €0.50)"/>
+    <price-range id="cheap" min-inclusive="0.51" max-inclusive="2.00" name="Cheap (between €0.50 and €2)"/>
+    <price-range id="expensive" min-inclusive="2.01" max-inclusive="10.00" name="Expensive (between €2 and €10)"/>
+    <price-range id="very-expensive" min-inclusive="10.01" max-inclusive="1000.00" name="Very expensive (over €10)."/>
   </price-ranges>
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
@@ -80,21 +121,22 @@
     <package id="TO998"/>
     <package id="TO3PN"/>
 
-    <package id="MICRO" name="SMD package"/>
+    <package id="SMD" name="SMD package"/>
   </packages>
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
   <locations>
-    <location id="CBSB" name="Component box (with sub-boxes)"/>
-    <location id="BAG" name="Plastic bag in storage container"/>
-    <location id="CBAW" name="Component box above workbench"/>
+    <location id="box-sub-boxes" name="Component box (with sub-boxes)"/>
+    <location id="bag" name="Plastic bag in storage container"/>
+    <location id="box-workbench" name="Component box above workbench"/>
   </locations>
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
   <components>
     <directory href="components"/>
+    <directory href="components-opamps"/>
     <directory href="components-simple"/>
     <directory href="components-analog"/>
     <directory href="components-digital"/>

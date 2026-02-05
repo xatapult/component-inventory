@@ -138,6 +138,9 @@
     <p:with-input port="stylesheet" href="xsl-normalize-component-inventory-specification/create-component-descriptions.xsl"/>
   </p:xslt>
   <xtlc:expand-macro-definitions/>
+  <p:xslt>
+    <p:with-input port="stylesheet" href="xsl-normalize-component-inventory-specification/add-parent-category-idrefs.xsl"/>
+  </p:xslt>
   <p:store href="tmp/n-60-with-component-descriptions.xml" use-when="$debug-output"/>
 
   <!-- Check all the component specifications: -->

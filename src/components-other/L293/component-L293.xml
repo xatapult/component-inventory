@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory ../../../grammar/ci-component.xsd"
+ xmlns="https://eriksiegel.nl/ns/component-inventory" xmlns:xtlcon="http://www.xtpxlib.nl/ns/container" id="L293" name="L293"
+ summary="Quadruple Half-H Motor Drivers" count="2" category-idrefs="motor-driver" package-idref="DIP16" location-idref="box-sub-boxes"
+ since="2025-11-12"/>

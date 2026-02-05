@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<component id="2SC1507"
-           name="2SC1507"
-           summary="NPN power transistor"
-           count="4"
-           category-idrefs="COMP TRANSISTORS TRANSISTORS.NPN TRANSISTORS.POWER"
-           price-range-idref="CHEAP"
-           package-idref="TO220"
-           location-idref="CBSB"
-           location-box-label="TRANS A"
-           since="2024-10-21"
-           xmlns="https://eriksiegel.nl/ns/component-inventory"
-           xmlns:xtlcon="http://www.xtpxlib.nl/ns/container"/>
+<component
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory ../../../grammar/ci-component.xsd"
+  xmlns="https://eriksiegel.nl/ns/component-inventory"
+  xmlns:xtlcon="http://www.xtpxlib.nl/ns/container"
+  id="2SC1507"
+  name="2SC1507"
+  summary="NPN power transistor"
+  count="4"
+  category-idrefs="comp transistor transistor.npn transistor.power"
+  price-range-idref="cheap"
+  package-idref="TO220"
+  location-idref="box-sub-boxes"
+  location-box-label="TRANS A"
+  since="2024-10-21"/>

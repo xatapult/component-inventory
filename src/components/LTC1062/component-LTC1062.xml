@@ -3,9 +3,9 @@
            name="LTC1062"
            summary="5th Order low-pass filter"
            count="4"
-           price-range-idref="EXPENSIVE"
+           price-range-idref="expensive"
            package-idref="DIP8"
-           location-idref="CBSB"
+           location-idref="box-sub-boxes"
            since="2024-11-14"
            xmlns="https://eriksiegel.nl/ns/component-inventory"
            xmlns:xtlcon="http://www.xtpxlib.nl/ns/container"/>

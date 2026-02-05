@@ -4,9 +4,9 @@
            summary="BCD to 7-segment latch/decoder/driver"
            count="10"
            category-idrefs="HEF4000"
-           price-range-idref="VERY-CHEAP"
+           price-range-idref="very-cheap"
            package-idref="DIP16"
-           location-idref="CBSB"
+           location-idref="box-sub-boxes"
            since="2024-11-11"
            xmlns="https://eriksiegel.nl/ns/component-inventory"
            xmlns:xtlcon="http://www.xtpxlib.nl/ns/container"/>

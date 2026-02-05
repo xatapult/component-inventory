@@ -5,7 +5,7 @@
            count="#many"
            category-idrefs="SN74"
            package-idref="DIP14"
-           location-idref="CBSB"
+           location-idref="box-sub-boxes"
            partly-in-reserve-stock="true"
            since="2024-11-13"
            xmlns="https://eriksiegel.nl/ns/component-inventory"

@@ -5,7 +5,7 @@
            count="17"
            category-idrefs="74HC"
            package-idref="DIP20"
-           location-idref="CBSB"
+           location-idref="box-sub-boxes"
            location-box-label="HC374N"
            since="2024-11-13"
            discontinued="true"

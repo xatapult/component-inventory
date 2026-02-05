@@ -4,7 +4,7 @@
            summary="Low Voltage Audio Power Amplifier"
            count="2"
            package-idref="DIP8"
-           location-idref="CBSB"
+           location-idref="box-sub-boxes"
            since="2025-11-12"
            xmlns="https://eriksiegel.nl/ns/component-inventory"
            xmlns:xtlcon="http://www.xtpxlib.nl/ns/container"/>

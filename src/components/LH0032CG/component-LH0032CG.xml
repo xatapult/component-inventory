@@ -3,9 +3,9 @@
            name="LH0032CG"
            summary="Opamp"
            count="9"
-           category-idrefs="OPAMP"
-           price-range-idref="VERY-EXPENSIVE"
-           location-idref="CBSB"
+           category-idrefs="opamp"
+           price-range-idref="very-expensive"
+           location-idref="box-sub-boxes"
            since="2024-11-13"
            xmlns="https://eriksiegel.nl/ns/component-inventory"
            xmlns:xtlcon="http://www.xtpxlib.nl/ns/container"/>

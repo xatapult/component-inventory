@@ -4,7 +4,7 @@
            summary="High precision voltage regulator"
            count="7"
            package-idref="DIP14"
-           location-idref="CBSB"
+           location-idref="box-sub-boxes"
            since="2024-11-11"
            discontinued="true"
            xmlns="https://eriksiegel.nl/ns/component-inventory"

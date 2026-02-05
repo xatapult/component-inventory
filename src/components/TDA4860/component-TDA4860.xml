@@ -3,9 +3,9 @@
            name="TDA4860"
            summary="Vertical deflection power amplifier for monitors"
            count="3"
-           category-idrefs="COMP"
-           price-range-idref="EXPENSIVE"
-           location-idref="BAG"
+           category-idrefs="comp"
+           price-range-idref="expensive"
+           location-idref="bag"
            since="2024-11-11"
            xmlns="https://eriksiegel.nl/ns/component-inventory"
            xmlns:xtlcon="http://www.xtpxlib.nl/ns/container"/>

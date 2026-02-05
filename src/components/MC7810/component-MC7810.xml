@@ -3,10 +3,10 @@
            name="MC7810"
            summary="3-Terminal 1A Positive Voltage Regulator"
            count="7"
-           category-idrefs="COMP"
-           price-range-idref="CHEAP"
+           category-idrefs="comp"
+           price-range-idref="cheap"
            package-idref="TO220"
-           location-idref="CBSB"
+           location-idref="box-sub-boxes"
            since="2024-11-11"
            xmlns="https://eriksiegel.nl/ns/component-inventory"
            xmlns:xtlcon="http://www.xtpxlib.nl/ns/container"/>

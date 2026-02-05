@@ -3,10 +3,10 @@
            name="PC817"
            summary="Optocoupler"
            count="#many"
-           category-idrefs="OPTOCPL"
-           price-range-idref="VERY-CHEAP"
+           category-idrefs="optocoupler"
+           price-range-idref="very-cheap"
            package-idref="DIP4"
-           location-idref="CBAW"
+           location-idref="box-workbench"
            since="2024-11-20"
            xmlns="https://eriksiegel.nl/ns/component-inventory"
            xmlns:xtlcon="http://www.xtpxlib.nl/ns/container"/>

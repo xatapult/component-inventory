@@ -3,10 +3,10 @@
            name="ULN2803A"
            summary="Eight darlington arrays; driver"
            count="21"
-           category-idrefs="COMP"
-           price-range-idref="VERY-CHEAP"
+           category-idrefs="comp"
+           price-range-idref="very-cheap"
            package-idref="DIP18"
-           location-idref="CBSB"
+           location-idref="box-sub-boxes"
            since="2024-12-03"
            xmlns="https://eriksiegel.nl/ns/component-inventory"
            xmlns:xtlcon="http://www.xtpxlib.nl/ns/container"/>

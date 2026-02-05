@@ -3,9 +3,9 @@
            name="MC14069"
            summary="Hex inverter"
            count="2"
-           price-range-idref="CHEAP"
+           price-range-idref="cheap"
            package-idref="DIP14"
-           location-idref="CBSB"
+           location-idref="box-sub-boxes"
            since="2024-11-11"
            xmlns="https://eriksiegel.nl/ns/component-inventory"
            xmlns:xtlcon="http://www.xtpxlib.nl/ns/container">

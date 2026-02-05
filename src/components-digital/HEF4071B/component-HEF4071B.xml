@@ -4,9 +4,9 @@
            summary="Quad 2-input OR gate"
            count="8"
            category-idrefs="HEF4000"
-           price-range-idref="VERY-CHEAP"
+           price-range-idref="very-cheap"
            package-idref="DIP14"
-           location-idref="CBSB"
+           location-idref="box-sub-boxes"
            since="2024-10-25"
            xmlns="https://eriksiegel.nl/ns/component-inventory"
            xmlns:xtlcon="http://www.xtpxlib.nl/ns/container"/>

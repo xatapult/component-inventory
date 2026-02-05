@@ -4,9 +4,9 @@
            summary="Triple single-pole double-throw analog switch"
            count="#many"
            category-idrefs="HEF4000"
-           price-range-idref="VERY-CHEAP"
+           price-range-idref="very-cheap"
            package-idref="DIP16"
-           location-idref="CBSB"
+           location-idref="box-sub-boxes"
            since="2024-11-06"
            xmlns="https://eriksiegel.nl/ns/component-inventory"
            xmlns:xtlcon="http://www.xtpxlib.nl/ns/container"/>

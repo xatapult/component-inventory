@@ -4,9 +4,9 @@
            summary="4 * low-to-high voltage translator; 3-state"
            count="10"
            category-idrefs="HEF4000"
-           price-range-idref="EXPENSIVE"
+           price-range-idref="expensive"
            package-idref="DIP16"
-           location-idref="CBSB"
+           location-idref="box-sub-boxes"
            since="2024-10-19"
            xmlns="https://eriksiegel.nl/ns/component-inventory"
            xmlns:xtlcon="http://www.xtpxlib.nl/ns/container"/>

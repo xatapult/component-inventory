@@ -3,9 +3,9 @@
            name="LM340"
            summary="Voltage regulator"
            count="4"
-           category-idrefs="COMP"
-           price-range-idref="CHEAP"
-           location-idref="BAG"
+           category-idrefs="comp"
+           price-range-idref="cheap"
+           location-idref="bag"
            since="2024-11-06"
            xmlns="https://eriksiegel.nl/ns/component-inventory"
            xmlns:xtlcon="http://www.xtpxlib.nl/ns/container"/>

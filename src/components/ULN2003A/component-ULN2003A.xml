@@ -3,10 +3,10 @@
            name="ULN2003A"
            summary="Seven darlington arrays; driver"
            count="10"
-           category-idrefs="COMP"
-           price-range-idref="VERY-CHEAP"
+           category-idrefs="comp"
+           price-range-idref="very-cheap"
            package-idref="DIP16"
-           location-idref="CBAW"
+           location-idref="box-workbench"
            since="2024-12-03"
            xmlns="https://eriksiegel.nl/ns/component-inventory"
            xmlns:xtlcon="http://www.xtpxlib.nl/ns/container"/>

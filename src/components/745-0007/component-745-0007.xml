@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<component id="745-0007"
-           name="745-0007"
-           summary="Hexadecimal display with logic"
-           count="1"
-           location-idref="BAG"
-           since="2024-11-13"
-           xmlns="https://eriksiegel.nl/ns/component-inventory"
-           xmlns:xtlcon="http://www.xtpxlib.nl/ns/container"/>

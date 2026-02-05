@@ -40,7 +40,8 @@
     <xsl:param name="parent-mandatory-property-idrefs" as="xs:string*" required="true" tunnel="true"/>
     <xsl:param name="parent-optional-property-idrefs" as="xs:string*" required="true" tunnel="true"/>
 
-    <xsl:variable name="id" as="xs:string" select="string-join(($parent-category-ids, @id), $ci:category-separator)"/>
+    <xsl:variable name="base-id" as="xs:string" select="xs:string(@id)"/>
+    <xsl:variable name="id" as="xs:string" select="string-join(($parent-category-ids, $base-id), $ci:category-separator)"/>
     <xsl:variable name="mandatory-property-idrefs" as="xs:string*"
       select="distinct-values(($parent-mandatory-property-idrefs, xtlc:str2seq(@mandatory-property-idrefs)))"/>
     <xsl:variable name="optional-property-idrefs" as="xs:string*"
@@ -59,14 +60,14 @@
           <xsl:attribute name="optional-property-idrefs" select="$optional-property-idrefs"/>
           <!-- We do nothing with the other attributes of the parent categories, only keep these for the current one: -->
           <xsl:copy-of select="@* except (@id, @mandatory-property-idrefs, @optional-property-idrefs)"/>
-          <xsl:copy-of select="ci:*"/>
+          <xsl:copy-of select="ci:description"/>
         </category>
       </xsl:otherwise>
     </xsl:choose>
 
     <!-- Now descend into the optional sub-categories: -->
     <xsl:apply-templates select="ci:categories/ci:category" mode="#current">
-      <xsl:with-param name="parent-category-ids" as="xs:string*" select="($parent-category-ids, $id)" tunnel="true"/>
+      <xsl:with-param name="parent-category-ids" as="xs:string*" select="($parent-category-ids, $base-id)" tunnel="true"/>
       <xsl:with-param name="parent-mandatory-property-idrefs" as="xs:string*" select="$mandatory-property-idrefs" tunnel="true"/>
       <xsl:with-param name="parent-optional-property-idrefs" as="xs:string*" select="$optional-property-idrefs" tunnel="true"/>
     </xsl:apply-templates>

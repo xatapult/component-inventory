@@ -3,9 +3,9 @@
            name="74LS245"
            summary="Octal Bus Transceivers With 3-State Outputs"
            count="9"
-           price-range-idref="CHEAP"
+           price-range-idref="cheap"
            package-idref="DIP20"
-           location-idref="CBSB"
+           location-idref="box-sub-boxes"
            since="2024-11-11"
            xmlns="https://eriksiegel.nl/ns/component-inventory"
            xmlns:xtlcon="http://www.xtpxlib.nl/ns/container"/>
