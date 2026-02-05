@@ -3,7 +3,7 @@
            name="2N2905A"
            summary="PNP Transistor"
            count="4"
-           category-idrefs="COMP"
+           category-idrefs="COMP TRANSISTORS TRANSISTORS.PNP"
            price-range-idref="CHEAP"
            package-idref="TO39"
            location-idref="CBSB"

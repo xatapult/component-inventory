@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component id="2SC1507"
            name="2SC1507"
-           summary="NPN Transistor; power"
+           summary="NPN power transistor"
            count="4"
-           category-idrefs="COMP"
+           category-idrefs="COMP TRANSISTORS TRANSISTORS.NPN TRANSISTORS.POWER"
            price-range-idref="CHEAP"
            package-idref="TO220"
            location-idref="CBSB"

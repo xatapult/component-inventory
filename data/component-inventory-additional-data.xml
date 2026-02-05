@@ -9,12 +9,12 @@
   <!-- Favorites: -->
 
   <favorite-components>
-    <component idref="Y500" remark="Very good to use!"/>
-    <component idref="DOESNOTEXIST"/>
+    <component idref="ULN2003A"/>
+    <component idref="ULN2803A"/>
   </favorite-components>
-  
+
   <favorite-categories>
-    <category idref="ICS.LOGIC"/>
+    <!-- TBD -->
   </favorite-categories>
 
   <!-- ======================================================================= -->
@@ -38,27 +38,74 @@
   <!-- HOME PAGE: -->
 
   <home-page>
-    <p>This is the home page, contents TBD</p>
+
+    <p>I&#x2019;m a tinkerer who uses electronic and electromechanical components to create bizarre and hopefully interesting installations and
+      devices. I call it &#x201c;Theatronics&#x201d;: electronics with a theatrical twist. Examples of these can be found on the <a
+        href="https://eriksiegel.nl/" target="_blank">Erik&#x2019;s Theatronics</a> website.</p>
+
+    <p>Over the years, I&#x2019;ve acquired a large number of electronic components, mostly through the acquisition of secondhand batches of parts.
+      There have been so many of them that I&#x2019;ve lost track a bit, hence this website. It also allows me to find additional information, such as
+      datasheets, more easily.</p>
+    <p>There are so many now that I will probably never be able to use them all in my lifetime. I also don&#x2019;t have an application for all
+      components (I work more with digital than analogue).</p>
+
+    <p>&#160;</p>
+    <p>
+      <b>Therefore, if you see something interesting or just want a few components for a very small price, <a href="mailto:erik@eriksiegel.nl">let me
+          know</a>.</b>
+    </p>
+    <p>&#160;</p>
+
+    <p>Of course, there may be additional packaging and shipping costs. I won&#x2019;t sell all, but most of it is for sale. And that would do me a
+      favor too: I&#x2019;d rather have things used than left lying around in my shed!</p>
   </home-page>
 
   <!-- ======================================================================= -->
   <!-- ABOUT PAGE: -->
 
   <about-page>
-    <p>This is the about page, contents TBD!</p>
+    <p>The component-inventory website is a completely static website (so no cookies!). It is built with <a href="https://en.wikipedia.org/wiki/XML"
+        target="_blank">XML technology</a>, using <a href="https://en.wikipedia.org/wiki/XProc" target="_blank">XProc</a> and <a
+        href="https://en.wikipedia.org/wiki/XSLT" target="_blank">XSLT</a> to generate all the HTML pages. Parts are built with technology developed
+      within my company <a href="https://www.xatapult.com/" target="_blank">Xatapult</a>. Generating the full website from its XML sources takes less
+      than 10&#160;seconds.</p>
+
+    <p>As far as I know, all additional information on this website, like datasheets, is public and not copyright protected. If I have accidentally
+      violated anyone&#x2019;s intellectual property, please <a href="mailto:erik@eriksiegel.nl">let me know</a>.</p>
+
+    <p>The source code and data for this website is hosted on <a href="https://github.com/xatapult/component-inventory" target="_blank">Github</a>.
+      Everything is published under the <a href="https://www.gnu.org/licenses/gpl-3.0.html" target="_blank">GNU General Public License</a>, giving you
+      complete freedom to copy, share, reuse, or modify it to your heart&#x2019;s content. Keep in mind, however, that it probably won&#x2019;t work
+      right away: it requires several additional (also open-source) components and references to, for example, include files use a format that will
+      not function directly (<a href="https://en.wikipedia.org/wiki/XML_catalog" target="_blank">XML catalogs</a> are used). See the
+      repository&#x2019;s README file for more information.</p>
+    <p>The site is published using <a href="https://docs.github.com/en/pages" target="_blank">GitHub Pages</a>.</p>
+
+    <p>&#160;</p>
+    <p>If you find a bug or want to comment on the site&#x2019;s contents, please use the GitHub issues mechanism and <a
+        href="https://github.com/xatapult/component-inventory/issues" target="_blank">raise an issue</a>.</p>
+
   </about-page>
 
   <!-- ======================================================================= -->
   <!-- TEXTS PER ITEM TYPE: -->
 
   <overview-page item-type="categories">
-    <p>Components are grouped in categories. </p>
+    <p>Components are grouped in categories, allowing you to find something more easily (if you know what you&#x2019;re looking for…).</p>
   </overview-page>
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
   <overview-page item-type="locations">
-    <p>This is an indication of the location where a component can be found in my storage.</p>
+    <p>This is an indication of the location where a component can be found in my storage/shed.</p>
+  </overview-page>
+
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+  <overview-page item-type="price-ranges">
+    <p>I&#x2019;ve chosen to not state an exact price on the components. Commercial prices differ and change over time, so that would be unreliable
+      and hard to keep up to date. Instead, I&#x2019;ve categorized the components into price ranges. This gives you a rough idea of what they
+      typically cost. I don&#x2019;guarantee that the price range indications are correct.</p>
   </overview-page>
 
 </component-inventory-additional-data>

@@ -3,7 +3,7 @@
            name="2N3055"
            summary="NPN Power Transistor"
            count="2"
-           category-idrefs="COMP"
+           category-idrefs="COMP TRANSISTORS TRANSISTORS.NPN TRANSISTORS.POWER"
            price-range-idref="EXPENSIVE"
            package-idref="TO3"
            location-idref="BAG"

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component id="2SK727"
            name="2SK727"
-           summary="N -channel silicon power MOS-FET"
+           summary="N-channel silicon power MOS-FET"
            count="2"
-           category-idrefs="COMP"
+           category-idrefs="COMP MOS-FET MOS-FET.POWER"
            price-range-idref="VERY-CHEAP"
            package-idref="TO3PN"
            location-idref="CBSB"

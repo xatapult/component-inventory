@@ -250,13 +250,14 @@
       <p:with-option name="href-dir-result" select="xs:string(/*/@_href-dir-result)"/>
     </sml:sml-to-html>
   </p:viewport>
+  <p:store href="tmp/w-20-base-container.xml" use-when="$debug-output"/>
   <!-- Turn the lists into HTML: -->
   <p:viewport match="ci:LIST">
     <p:xslt>
       <p:with-input port="stylesheet" href="xsl-normalized-component-inventory-specification-to-website/process-lists.xsl"/>
     </p:xslt>
   </p:viewport>
-  <p:store href="tmp/w-20-base-container.xml" use-when="$debug-output"/>
+  <p:store href="tmp/w-25-base-container-lists-processed.xml" use-when="$debug-output"/>
 
   <!-- The container documents now contain complete body HTML. Turn this into pages: -->
   <p:variable name="page-count" as="xs:integer" select="count(/*/xtlcon:document)"/>

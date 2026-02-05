@@ -12,7 +12,29 @@
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
   <categories>
-    <category id="COMP" name="Simple components"/>
+
+    <category id="COMP" name="Simple components">
+      <description>
+        <p>Straight and simple components, like transistors, MOS-FETs etc.</p>
+      </description>
+    </category>
+
+    <category id="TRANSISTORS" name="Transistors">
+      <categories>
+        <category id="NPN" name="Transistors; NPN"/>
+        <category id="PNP" name="Transistors; PNP"/>
+        <category id="POWER" name="Transistors; Power"></category>
+      </categories>
+    </category>
+    
+    <category id="MOS-FET" name="MOS-FETs">
+      <categories>
+        <category id="POWER" name="MOS-FETs; Power"></category>
+      </categories>
+    </category>
+
+
+
     <category id="74HC"/>
     <category id="SN74"/>
     <category id="HEF4000"/>
@@ -24,10 +46,10 @@
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
   <price-ranges>
-    <price-range id="VERY-CHEAP" min-inclusive="0.00" max-inclusive="0.50" name="Very cheap"/>
-    <price-range id="CHEAP" min-inclusive="0.51" max-inclusive="2.00" name="Cheap"/>
-    <price-range id="EXPENSIVE" min-inclusive="2.01" max-inclusive="10.00" name="Expensive"/>
-    <price-range id="VERY-EXPENSIVE" min-inclusive="10.01" max-inclusive="1000.00" name="Very expensive"/>
+    <price-range id="VERY-CHEAP" min-inclusive="0.00" max-inclusive="0.50" name="Very cheap (less than €0.50)"/>
+    <price-range id="CHEAP" min-inclusive="0.51" max-inclusive="2.00" name="Cheap (between €0.50 and €2)"/>
+    <price-range id="EXPENSIVE" min-inclusive="2.01" max-inclusive="10.00" name="Expensive (between €2 and €10)"/>
+    <price-range id="VERY-EXPENSIVE" min-inclusive="10.01" max-inclusive="1000.00" name="Very expensive (over €10)."/>
   </price-ranges>
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
@@ -72,7 +94,12 @@
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
   <components>
-    <directory href="components/" component-description-document-regexp="^component-.+\.xml$"/>
+    <directory href="components"/>
+    <directory href="components-simple"/>
+    <directory href="components-analog"/>
+    <directory href="components-digital"/>
+    <directory href="components-other"/>
+
   </components>
 
 </component-inventory-specification>

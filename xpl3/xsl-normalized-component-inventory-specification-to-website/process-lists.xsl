@@ -61,37 +61,17 @@
             <xsl:sort select="current-grouping-key()"/>
             <a name="{$items-id-prefix || current-grouping-key()}"><!----></a>
             <h2>{current-grouping-key()}</h2>
-            <ul>
-              <xsl:for-each select="current-group()">
-                <xsl:sort select="@name"/>
-                <li>
-                  <a href="{@href}">{@name}</a>
-                  <xsl:if test="normalize-space(@description) ne ''">
-                    <xsl:text> - </xsl:text>
-                    <xsl:value-of select="@description"/>
-                  </xsl:if>
-                </li>
-              </xsl:for-each>
-            </ul>
+            <xsl:call-template name="create-items-list">
+              <xsl:with-param name="listitems" select="current-group()"/>
+            </xsl:call-template>
           </xsl:for-each-group>
         </xsl:when>
 
         <xsl:otherwise>
           <!-- Just create a "simple" list: -->
-          <xsl:where-populated>
-            <ul>
-              <xsl:for-each select="$listitems">
-                <xsl:sort select="@name"/>
-                <li>
-                  <a href="{@href}">{@name}</a>
-                  <xsl:if test="normalize-space(@description) ne ''">
-                    <xsl:text> - </xsl:text>
-                    <xsl:value-of select="@description"/>
-                  </xsl:if>
-                </li>
-              </xsl:for-each>
-            </ul>
-          </xsl:where-populated>
+          <xsl:call-template name="create-items-list">
+            <xsl:with-param name="listitems" select="$listitems"/>
+          </xsl:call-template>
         </xsl:otherwise>
 
       </xsl:choose>
@@ -106,5 +86,30 @@
     <xsl:sequence select="normalize-space($listitem/@name) => substring(1, 1) => upper-case()"/>
   </xsl:function>
 
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+  <xsl:template name="create-items-list">
+    <xsl:param name="listitems" as="element(ci:LISTITEM)*" required="true"/>
+
+    <xsl:where-populated>
+      <ul>
+        <xsl:for-each select="$listitems">
+          <xsl:sort select="@name"/>
+          <li>
+            <a href="{@href}">{@name}</a>
+            <xsl:if test="normalize-space(@description) ne ''">
+              <xsl:text> - </xsl:text>
+              <xsl:value-of select="@description"/>
+            </xsl:if>
+            <xsl:if test="exists(@count)">
+              <xsl:text> (</xsl:text>
+              <xsl:value-of select="@count"/>
+              <xsl:text>)</xsl:text>
+            </xsl:if>
+          </li>
+        </xsl:for-each>
+      </ul>
+    </xsl:where-populated>
+  </xsl:template>
 
 </xsl:stylesheet>

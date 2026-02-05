@@ -3,7 +3,7 @@
            name="2N2222"
            summary="NPN Transistor"
            count="7"
-           category-idrefs="COMP"
+           category-idrefs="COMP TRANSISTORS TRANSISTORS.NPN"
            price-range-idref="CHEAP"
            package-idref="TO18"
            location-idref="CBSB"

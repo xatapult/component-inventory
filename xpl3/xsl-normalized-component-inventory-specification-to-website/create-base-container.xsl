@@ -77,7 +77,7 @@
 
   <!-- Flags for additional contents: -->
   <xsl:variable name="add-page-creation-timestamp" as="xs:boolean" select="true()"/>
-  
+
   <!-- Currency prefix: -->
   <xsl:variable name="currency-prefix" as="xs:string" select="'€'"/>
 
@@ -142,9 +142,11 @@
           <xsl:for-each select="ci:*">
             <xsl:variable name="id" as="xs:string" select="xs:string(@id)"/>
             <!-- For categories, add a count: -->
-            <xsl:variable name="count-string" as="xs:string?"
-              select="if ($is-categories) then (' (' || count($components[$id = xtlc:str2seq(@category-idrefs)]) || ')') else ()"/>
-            <ci:LISTITEM href="{xtlc:href-concat(($id, $id || $extension-html))}" name="{@name}" description="{@summary}{$count-string}"/>
+            <ci:LISTITEM href="{xtlc:href-concat(($id, $id || $extension-html))}" name="{@name}" description="{@summary}">
+              <xsl:if test="$is-categories">
+                <xsl:attribute name="count" select="count($components[$id = xtlc:str2seq(@category-idrefs)])"/>
+              </xsl:if>
+            </ci:LISTITEM>
           </xsl:for-each>
         </ci:LIST>
       </xsl:with-param>

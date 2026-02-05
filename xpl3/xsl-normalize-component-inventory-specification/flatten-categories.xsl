@@ -59,6 +59,7 @@
           <xsl:attribute name="optional-property-idrefs" select="$optional-property-idrefs"/>
           <!-- We do nothing with the other attributes of the parent categories, only keep these for the current one: -->
           <xsl:copy-of select="@* except (@id, @mandatory-property-idrefs, @optional-property-idrefs)"/>
+          <xsl:copy-of select="ci:*"/>
         </category>
       </xsl:otherwise>
     </xsl:choose>

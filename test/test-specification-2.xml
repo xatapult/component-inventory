@@ -26,7 +26,9 @@
     <category id="RELAYS" name="Relays" mandatory-property-idrefs="VOLTAGE CONTACTS" optional-property-idrefs="CURRENT RELAYTYPE">
       <categories sub-category-mandatory="false">
         <category id="SMALL" name="Small relays"/>
-        <category id="BIG" name="Big relays"/>
+        <category id="BIG" name="Big relays">
+          <description><p>BLA BLA BLA</p></description>
+        </category>
       </categories>
     </category>
 
@@ -35,7 +37,9 @@
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
   <price-ranges>
-    <price-range min-inclusive="0.0" max-inclusive="1" id="cheap"/>
+    <price-range min-inclusive="0.0" max-inclusive="1" id="cheap">
+      <description><p>BLA BLA BLA</p></description>
+    </price-range>
     <price-range min-inclusive="1.1" max-inclusive="5" id="midprice"/>
   </price-ranges>
 
