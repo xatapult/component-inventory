@@ -30,39 +30,146 @@
     <category id="transistor" name="Transistors"
       optional-property-idrefs="collector-to-base collector-to-emitter emitter-to-base collector-current gain">
       <categories>
-        <category id="npn" name="Transistors - NPN"/>
-        <category id="pnp" name="Transistors - PNP"/>
+        <category id="npn" name="Transistors - NPN">
+          <description>
+            <sml:fragment>
+              <sml:image href="images/NPN.png" scale="10%"/>
+            </sml:fragment>
+          </description>
+        </category>
+        <category id="pnp" name="Transistors - PNP">
+          <description>
+            <sml:fragment>
+              <sml:image href="images/PNP.png" scale="10%"/>
+            </sml:fragment>
+          </description>
+        </category>
         <category id="power" name="Transistors - Power"/>
         <category id="dual" name="Transistors - Dual" summary="Two transistors in one package"/>
-        <category id="darlington" name="Transistors - Darlington"/>
+        <category id="darlington" name="Transistors - Darlington">
+          <description>
+            <p>A Darlington transistor—also known as a Darlington pair—is an electronic device that combines two bipolar junction transistors so that
+              the current amplified by the first is further amplified by the second, resulting in an exceptionally high overall current gain and
+              allowing a very small input current to control a much larger output current. In this configuration, the emitter of the first transistor
+              feeds the base of the second, and both collectors are typically tied together, making the pair behave like a single transistor with one
+              base, one collector, and one emitter. </p>
+          </description>
+        </category>
         <category id="special" summary="Transistors - Special"/>
       </categories>
     </category>
 
     <category id="mos-fet" name="MOS-FETs">
+      <description>
+        <p>A MOS-FET (Metal-Oxide-Semiconductor Field-Effect Transistor) is a voltage-controlled semiconductor device that uses an insulated gate to
+          regulate how much current flows between its source and drain terminals, allowing it to function efficiently as a switch or amplifier. Its
+          gate is separated from the conducting channel by a thin oxide layer, so applying a voltage creates an electric field that either enables or
+          blocks current flow, depending on the MOS-FET type (enhancement or depletion, and N-channel or P-channel). Because it requires almost no
+          input current, switches quickly, and consumes very little power, the MOS-FET is the most widely used transistor in modern digital and power
+          electronics, forming the foundation of microprocessors, memory chips, and many switching circuits.</p>
+      </description>
       <categories>
-        <category id="power" name="MOS-FETs - Power"/>
+        <category id="power" name="MOS-FETs - Power">
+          <description>
+            <p>A MOS-FET (Metal-Oxide-Semiconductor Field-Effect Transistor) is a voltage-controlled semiconductor device that uses an insulated gate
+              to regulate how much current flows between its source and drain terminals, allowing it to function efficiently as a switch or amplifier.
+              Its gate is separated from the conducting channel by a thin oxide layer, so applying a voltage creates an electric field that either
+              enables or blocks current flow, depending on the MOS-FET type (enhancement or depletion, and N-channel or P-channel). Because it
+              requires almost no input current, switches quickly, and consumes very little power, the MOS-FET is the most widely used transistor in
+              modern digital and power electronics, forming the foundation of microprocessors, memory chips, and many switching circuits.</p>
+          </description>
+        </category>
       </categories>
     </category>
 
-    <category id="thyristor" name="Thyristors"/>
-    <category id="triac" name="Triacs"/>
+    <category id="thyristor" name="Thyristors">
+      <description>
+        <p>A thyristor is a four-layer semiconductor device that acts as a solid-state switch, designed to handle high voltages and large currents in
+          power-control applications. It remains in a non-conductive “off” state until a small trigger current is applied to its gate, at which point
+          it rapidly switches to a conductive “on” state and continues conducting as long as current flows above a certain holding threshold. This
+          latching behavior makes thyristors ideal for controlling AC power, such as in motor drives, light dimmers, and controlled rectifiers, where
+          precise timing of switching is essential. Their robustness, efficiency, and ability to manage significant electrical loads have made them
+          foundational components in power electronics.</p>
+      </description>
+    </category>
+    <category id="triac" name="Triacs">
+      <description>
+        <p>A triac is a bidirectional, three-terminal semiconductor device used for controlling AC power, capable of switching current on both halves
+          of an AC waveform. Functionally similar to two thyristors connected in opposite directions, it can be triggered into conduction by a small
+          gate current regardless of the polarity of the voltage across it. Once turned on, it remains conducting until the current naturally drops
+          below its holding level, making it ideal for applications like lamp dimmers, motor-speed controllers, and heater regulation. Its ability to
+          modulate power smoothly and efficiently in AC circuits has made the triac a staple component in many household and industrial control
+          systems.</p>
+      </description>
+    </category>
 
 
     <!-- Digital components: -->
-    <category id="I2C" name="I2C related products"/>
+    <category id="I2C" name="I2C related products">
+      <description>
+        <p>I²C (Inter-Integrated Circuit) is a simple, low-speed, two-wire communication protocol designed for short-distance data exchange between
+          chips on the same circuit board. It uses just two shared lines—SDA for data and SCL for the clock—to let multiple “slave” devices
+          communicate with one “master” controller without needing separate wiring for each connection. Each device has a unique address, and the
+          master controls when data is sent, making the bus efficient and easy to scale. Because it’s lightweight, flexible, and inexpensive to
+          implement, I²C is widely used in embedded systems to connect sensors, displays, memory chips, and other peripherals.</p>
+      </description>
+    </category>
     <category id="memory" name="Computer memory"/>
     <category id="timer" name="Timer/timing related"/>
-    <category id="74HC"/>
-    <category id="SN74"/>
-    <category id="cmos" name="CMOS"/>
-    <category id="HEF4000"/>
+    <category id="74HC">
+      <description>
+        <p>The 74HC (High-Speed CMOS) IC series is a family of logic chips known for combining the low-power characteristics of CMOS technology with
+          the speed of traditional TTL logic. These devices operate over a wide supply-voltage range—typically 2 V to 6 V—while offering fast
+          switching times, high noise immunity, and very low power consumption compared to older logic families. They are pin- and function-compatible
+          with the classic 74LS series, making them easy drop-in replacements in many designs, but with significantly improved performance. Because of
+          their versatility, speed, and efficiency, 74HC chips are widely used in modern digital electronics for tasks like buffering, decoding,
+          timing, and general logic control.</p>
+      </description>
+    </category>
+    <category id="SN74">
+      <description>
+        <p>The SN74 series is a broad family of Texas Instruments logic ICs built on modern CMOS technology, offering fast switching speeds, low power
+          consumption, and wide operating voltage ranges that make them suitable for both classic digital logic tasks and contemporary embedded
+          designs. These devices maintain functional compatibility with earlier 7400-series logic while improving electrical performance, noise
+          immunity, and efficiency. The SN74 lineup includes gates, flip-flops, counters, buffers, translators, and many other building-block
+          functions, giving designers a flexible toolkit for constructing reliable digital systems across industrial, consumer, and automotive
+          applications.</p>
+      </description>
+    </category>
+    <category id="cmos" name="CMOS">
+      <description>
+        <p>CMOS (Complementary Metal-Oxide-Semiconductor) ICs are defined by their extremely low power consumption, high noise immunity, and wide
+          operating-voltage range, all made possible by using complementary pairs of p-channel and n-channel MOSFETs that draw almost no current
+          except when switching. This design gives CMOS logic excellent energy efficiency, making it ideal for battery-powered and portable devices,
+          while also enabling high-density integration for complex digital circuits. CMOS ICs typically offer slower edge speeds than some
+          high-performance logic families but compensate with minimal heat generation, strong reliability, and broad applicability across
+          microprocessors, memory chips, sensors, and general-purpose logic functions.</p>
+      </description>
+    </category>
+    <category id="HEF4000">
+      <description>
+        <p>The HEF series is a family of CMOS logic ICs known for their extremely low power consumption, wide operating-voltage range (typically 3 V
+          to 15 V), and high noise immunity, making them well-suited for both battery-powered and industrial applications. These devices follow the
+          classic 4000-series CMOS logic functions but offer improved speed and robustness, while maintaining compatibility with a broad variety of
+          digital systems. Because they draw very little current and tolerate higher supply voltages than many other logic families, HEF chips are
+          often used in analog-digital interfacing, timing circuits, and general-purpose logic where reliability and efficiency are key.</p>
+      </description>
+    </category>
     <category id="microcontroller" name="Micro-controllers"/>
 
     <category id="logic" name="Logic ICs">
       <categories>
         <category id="switch" name="Switches"/>
-        <category id="schmitt-trigger" name="Schmitt triggers"/>
+        <category id="schmitt-trigger" name="Schmitt triggers">
+          <description>
+            <p>A Schmitt trigger is a type of comparator circuit with built-in hysteresis, meaning it uses two different threshold voltages to
+              determine when its output switches between high and low states. This dual-threshold behavior prevents rapid, noisy, or slowly changing
+              input signals from causing erratic output transitions, making the circuit excellent for cleaning up noisy waveforms, debouncing
+              mechanical switches, and converting analog signals into crisp digital pulses. By ensuring that the input must cross a higher threshold
+              to switch one way and a lower threshold to switch back, a Schmitt trigger provides stable, predictable switching even in electrically
+              noisy environments.</p>
+          </description>
+        </category>
         <category id="nand" name="NAND gates"/>
       </categories>
 
@@ -72,16 +179,61 @@
     <category id="driver" name="Drivers"/>
     <category id="motor-driver" name="Motor drivers"/>
     <category id="analog-computation" name="Analog computation"/>
-    <category id="opamp" name="Operational amplifiers"/>
-    <category id="optocoupler" name="Optocouplers"/>
-    <category id="dac" name="Digital-analog converter"/>
-    <category id="rectifier" name="Rectifiers"/>
+    <category id="opamp" name="Operational amplifiers">
+      <description>
+        <p>An operational amplifier, or op-amp, is a high-gain differential amplifier designed to compare two input voltages and produce an output
+          that reflects their difference, making it one of the most versatile building blocks in analog electronics. With extremely high input
+          impedance, very low output impedance, and a large open-loop gain, an op-amp can be configured using external resistors and components to
+          perform a wide range of functions such as amplification, filtering, summing, integration, differentiation, and signal conditioning. Because
+          of this flexibility and its predictable linear behavior when used with feedback, the op-amp is foundational in audio circuits, sensors,
+          control systems, and countless analog signal-processing applications.</p>
+      </description>
+    </category>
+    <category id="optocoupler" name="Optocouplers">
+      <description>
+        <p>An optocoupler, also known as an optoisolator, is a device that transfers electrical signals between two isolated circuits using light,
+          providing a safe and reliable way to prevent high voltages or electrical noise from passing between them. It typically contains an LED on
+          the input side and a light-sensitive component—such as a phototransistor, photodiode, or phototriac—on the output side, all sealed within a
+          single package. When the LED turns on, it emits light that activates the output device, allowing the signal to cross the isolation barrier
+          without any direct electrical connection. This makes optocouplers essential in protecting microcontrollers, communication interfaces, and
+          low-voltage electronics from surges, spikes, and ground-loop issues in power supplies, industrial controls, and switching circuits.</p>
+      </description>
+    </category>
+    <category id="dac" name="Digital-analog converter">
+      <description>
+        <p> A DAC, or Digital-to-Analog Converter, is an electronic device that transforms digital data—typically a series of binary numbers—into a
+          corresponding analog voltage or current, allowing digital systems to interface with the analog world. By converting discrete digital values
+          into smooth, continuous signals, DACs enable microcontrollers, computers, and digital audio systems to drive speakers, control motors,
+          generate waveforms, and produce precise analog outputs. Their performance is defined by factors like resolution, sampling rate, linearity,
+          and noise, all of which determine how accurately the analog output represents the original digital information. </p>
+      </description>
+    </category>
+    <category id="rectifier" name="Rectifiers">
+      <description>
+        <p>A rectifier is an electronic circuit or device that converts alternating current (AC) into direct current (DC), making it essential for
+          powering most electronic equipment that requires a steady, one-directional flow of electricity. It works by using diodes—or controlled
+          devices like thyristors—to allow current to pass only during specific portions of the AC cycle, effectively blocking the reverse direction.
+          Rectifiers come in several forms, such as half-wave, full-wave, and bridge configurations, each offering different levels of efficiency and
+          smoothness in the resulting DC output. They are widely used in power supplies, battery chargers, and any system that needs to transform AC
+          mains power into usable DC energy.</p>
+      </description>
+    </category>
     <category id="display" name="Display related components"/>
     <category id="thermal" name="Thermal switches"/>
     <category id="communication" name="Communication related ICs"/>
     <category id="oscillator" name="Oscillators"/>
     <category id="audio" name="Audio related components"/>
-    <category id="movement" name="MOvement related components"/>
+    <category id="movement" name="Movement related components"/>
+    <category id="voltage-comparator" name="Voltage comparators">
+      <description>
+        <p>A voltage comparator is an electronic circuit designed to compare two input voltages and switch its output to a defined high or low state
+          depending on which input is greater. Unlike an op-amp, which is optimized for linear amplification, a comparator is built for fast, clean
+          transitions and typically operates in saturation, making it ideal for turning analog signals into digital logic levels. When the
+          non-inverting input rises above the inverting input, the output snaps to its high state; when it falls below, the output switches low. This
+          sharp switching behavior makes comparators essential in applications like threshold detection, zero-crossing detection, waveform shaping,
+          and many types of control and timing circuits.</p>
+      </description>
+    </category>
   </categories>
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
@@ -121,7 +273,15 @@
     <package id="TO998"/>
     <package id="TO3PN"/>
 
-    <package id="SMD" name="SMD package"/>
+    <package id="SMD" name="SMD package">
+      <description>
+        <p>SMD, or Surface-Mount Device, refers to electronic components designed to be mounted directly onto the surface of a printed circuit board
+          rather than inserted through holes, allowing for much smaller, lighter, and more densely packed circuits. These components typically have
+          flat leads or contact pads instead of long wire pins, enabling automated placement and soldering processes that improve manufacturing speed,
+          reliability, and consistency. Because SMD parts support high-density layouts and reduced parasitic effects, they’re widely used in modern
+          electronics ranging from smartphones to industrial equipment, where compact size and efficient assembly are essential.</p>
+      </description>
+    </package>
   </packages>
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
