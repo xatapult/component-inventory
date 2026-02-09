@@ -234,6 +234,17 @@
           and many types of control and timing circuits.</p>
       </description>
     </category>
+    <category id="voltage-regulator" name="Voltage regulators">
+      <description>
+        <p>A voltage regulator is an electronic device or circuit that maintains a stable, constant output voltage despite changes in input voltage,
+          load current, or other external conditions, ensuring that sensitive electronics receive clean and reliable power. It works by continuously
+          monitoring its output and adjusting its internal resistance or switching behavior to compensate for fluctuations, preventing overvoltage or
+          undervoltage conditions. Regulators come in linear and switching types: linear regulators provide low noise and simplicity, while switching
+          regulators offer higher efficiency and can handle larger voltage differences. They are essential in power supplies for everything from
+          microcontrollers to industrial equipment, where consistent voltage is critical for proper operation.</p>
+      </description>
+    </category>
+
   </categories>
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
