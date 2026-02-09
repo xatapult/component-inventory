@@ -171,11 +171,14 @@
           </description>
         </category>
         <category id="nand" name="NAND gates"/>
+        <category id="inverter" name="Inverters"/>
       </categories>
 
     </category>
 
     <!-- Various: -->
+    <category id="converter" name="Converters"/>
+    <category id="filter" name="Filters"/>
     <category id="driver" name="Drivers"/>
     <category id="motor-driver" name="Motor drivers"/>
     <category id="analog-computation" name="Analog computation"/>
@@ -219,11 +222,15 @@
       </description>
     </category>
     <category id="display" name="Display related components"/>
+    <category id="radio" summary="Radio related components"></category>
     <category id="thermal" name="Thermal switches"/>
     <category id="communication" name="Communication related ICs"/>
     <category id="oscillator" name="Oscillators"/>
     <category id="audio" name="Audio related components"/>
     <category id="movement" name="Movement related components"/>
+    <category id="modulator" summary="Modulators"/>
+    <category id="demodulator" summary="Demodulators"/>
+    <category id="gyrator" summary="Gyrators"></category>
     <category id="voltage-comparator" name="Voltage comparators">
       <description>
         <p>A voltage comparator is an electronic circuit designed to compare two input voltages and switch its output to a defined high or low state
@@ -244,6 +251,9 @@
           microcontrollers to industrial equipment, where consistent voltage is critical for proper operation.</p>
       </description>
     </category>
+
+    <!-- For everything we can't identify or don't know how to categorize: -->
+    <category id="unknown" summary="Unknown components"/>
 
   </categories>
 

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory ../../../grammar/ci-component.xsd"
+  xmlns="https://eriksiegel.nl/ns/component-inventory" xmlns:xtlcon="http://www.xtpxlib.nl/ns/container" id="LN1031" name="LN1031"
+  summary="Unknow component" count="13" package-idref="DIP16" location-idref="box-sub-boxes" since="2024-11-16" category-idrefs="unknown"/>

@@ -11,6 +11,7 @@
   <favorite-components>
     <component idref="ULN2003A"/>
     <component idref="ULN2803A"/>
+    <component idref="PC817"/>
   </favorite-components>
 
   <favorite-categories>

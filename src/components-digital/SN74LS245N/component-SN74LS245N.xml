@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory ../../../grammar/ci-component.xsd"
+ xmlns="https://eriksiegel.nl/ns/component-inventory" xmlns:xtlcon="http://www.xtpxlib.nl/ns/container" id="SN74LS245N" name="74LS245"
+ summary="Octal Bus Transceivers With 3-State Outputs" count="9" price-range-idref="cheap" package-idref="DIP20" location-idref="box-sub-boxes"
+ since="2024-11-11" category-idrefs="logic communication"/>
