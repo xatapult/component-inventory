@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component id="74HC240"
+           name="74HC240"
+           summary="Octal buffer/line driver; 3-state; inverting"
+           count="#many"
+           category-idrefs="74HC"
+           price-range-idref="very-cheap"
+           package-idref="DIP20"
+           location-idref="box-sub-boxes"
+           location-box-label="HC240"
+           since="2024-11-13"
+           xmlns="https://eriksiegel.nl/ns/component-inventory"
+           />

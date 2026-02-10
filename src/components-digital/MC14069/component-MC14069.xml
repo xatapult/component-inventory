@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd"
- xmlns="https://eriksiegel.nl/ns/component-inventory" xmlns:xtlcon="http://www.xtpxlib.nl/ns/container" id="MC14069" name="MC14069"
- summary="Hex inverter" count="2" price-range-idref="cheap" package-idref="DIP14" location-idref="box-sub-boxes" since="2024-11-11" category-idrefs="driver logic.inverter">
-   <description>
-      <p>Compatible with CD4069</p>
-   </description>
-</component>

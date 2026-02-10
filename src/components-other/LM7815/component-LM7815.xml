@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd"
- xmlns="https://eriksiegel.nl/ns/component-inventory" xmlns:xtlcon="http://www.xtpxlib.nl/ns/container" id="LM7815" name="LM7815"
- summary="1.5-A Fixed Voltage Regulator 15V out" count="6" category-idrefs="voltage-regulator" price-range-idref="cheap" package-idref="TO220"
- location-idref="box-sub-boxes" since="2024-10-23" />

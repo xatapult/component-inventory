@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd"
+ xmlns="https://eriksiegel.nl/ns/component-inventory"  id="TBA750" name="TBA750"
+ summary="Limiter/Amplifier" count="3" price-range-idref="very-expensive" package-idref="DIP16" location-idref="box-sub-boxes"
+ location-box-label="TCA/TBA" since="2024-11-16" category-idrefs="audio"/>

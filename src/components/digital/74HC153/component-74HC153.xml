@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component id="74HC153"
+           name="74HC153"
+           summary="Dual 4-input multiplexer"
+           count="#many"
+           category-idrefs="74HC"
+           package-idref="DIP16"
+           location-idref="box-sub-boxes"
+           location-box-label="HC153"
+           since="2024-11-16"
+           xmlns="https://eriksiegel.nl/ns/component-inventory"
+           />

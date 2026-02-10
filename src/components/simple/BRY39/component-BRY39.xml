@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd"
+  xmlns="https://eriksiegel.nl/ns/component-inventory"  id="BRY39" name="BRY39"
+  summary="Programmable unijunction transistor" count="25" category-idrefs="transistor.special" package-idref="TO72" location-idref="box-sub-boxes"
+  since="2024-11-06" discontinued="true">
+  <description>
+    <p>Datasheet contains example applications.</p>
+  </description>
+</component>

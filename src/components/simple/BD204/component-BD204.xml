@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component id="BD204"
+           name="BD204"
+           summary="PNP power transistor"
+           count="5"
+           category-idrefs="transistor.pnp transistor.power"
+           price-range-idref="very-cheap"
+           package-idref="TO220"
+           location-idref="box-sub-boxes"
+           since="2024-11-11"
+           xmlns="https://eriksiegel.nl/ns/component-inventory"
+           />

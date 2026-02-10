@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component id="74HC192"
+           name="74HC192"
+           summary="Presettable Synchronous 4-Bit Up/Down Counters (BCD &amp; BInary)"
+           count="#many"
+           category-idrefs="74HC"
+           package-idref="DIP16"
+           location-idref="box-sub-boxes"
+           location-box-label="HC192"
+           since="2024-11-16"
+           xmlns="https://eriksiegel.nl/ns/component-inventory"
+           />

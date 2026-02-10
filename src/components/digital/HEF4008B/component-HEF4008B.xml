@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component id="HEF4008B"
+           name="HEF4008"
+           summary="4-bit binary full adder"
+           count="9"
+           category-idrefs="HEF4000"
+           price-range-idref="cheap"
+           package-idref="DIP16"
+           location-idref="box-sub-boxes"
+           since="2024-11-11"
+           xmlns="https://eriksiegel.nl/ns/component-inventory"
+           />

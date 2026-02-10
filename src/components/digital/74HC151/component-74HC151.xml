@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component id="74HC151"
+           name="74HC151"
+           summary="8-input multiplexer"
+           count="#many"
+           category-idrefs="74HC"
+           price-range-idref="very-cheap"
+           package-idref="DIP16"
+           location-idref="box-sub-boxes"
+           location-box-label="HC151"
+           since="2024-11-14"
+           xmlns="https://eriksiegel.nl/ns/component-inventory"
+           />

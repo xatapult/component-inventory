@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd"
- xmlns="https://eriksiegel.nl/ns/component-inventory" xmlns:xtlcon="http://www.xtpxlib.nl/ns/container" id="BD140" name="BD140"
- summary="PNP medium power transistor" count="14" category-idrefs="transistor.pnp transistor.power" price-range-idref="very-cheap"
- package-idref="TO225" location-idref="box-sub-boxes" since="2024-11-06"/>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd"
+ xmlns="https://eriksiegel.nl/ns/component-inventory"  id="MPSA56" name="MPSA56"
+ summary="PNP General Purpose Amplifier" count="4" category-idrefs="comp transistor.pnp" package-idref="TO92" location-idref="box-sub-boxes"
+ location-box-label="TRANS A" since="2024-10-23" />

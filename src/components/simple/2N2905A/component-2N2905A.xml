@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd"
+  xmlns="https://eriksiegel.nl/ns/component-inventory"
+  
+  id="2N2905A"
+  name="2N2905A"
+  summary="PNP Transistor"
+  count="4"
+  category-idrefs="comp transistor transistor.pnp"
+  price-range-idref="cheap"
+  package-idref="TO39"
+  location-idref="box-sub-boxes"
+  location-box-label="TRANS A"
+  since="2024-10-21"/>

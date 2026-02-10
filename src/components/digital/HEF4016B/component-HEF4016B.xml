@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component id="HEF4016B"
+           name="HEF4016"
+           summary="Quadruple bilateral analogue switches"
+           count="6"
+           category-idrefs="HEF4000"
+           price-range-idref="very-cheap"
+           package-idref="DIP14"
+           location-idref="box-sub-boxes"
+           since="2024-10-23"
+           xmlns="https://eriksiegel.nl/ns/component-inventory"
+           >
+   <description>
+      <p>Remark: See also HEF4066B</p>
+   </description>
+</component>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd"
+  xmlns="https://eriksiegel.nl/ns/component-inventory"  id="LM101AH" name="LM101AH" summary="Opamp"
+  count="3" category-idrefs="opamp" price-range-idref="very-expensive" package-idref="TO998" location-idref="box-sub-boxes"
+  location-box-label="OPAMP A" since="2024-10-21"/>

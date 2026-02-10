@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd"
- xmlns="https://eriksiegel.nl/ns/component-inventory" xmlns:xtlcon="http://www.xtpxlib.nl/ns/container" id="DS1220Y" name="DS1220Y"
- summary="16K nonvolatile SRAM" count="1" price-range-idref="very-expensive" package-idref="SMD" location-idref="bag" since="2024-11-12" category-idrefs="memory"/>

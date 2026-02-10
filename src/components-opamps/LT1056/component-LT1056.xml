@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd"
-  xmlns="https://eriksiegel.nl/ns/component-inventory" xmlns:xtlcon="http://www.xtpxlib.nl/ns/container" id="LT1056" name="LT1056"
-  summary="Precision, High Speed, JFET Input Operational Amplifier" count="6" category-idrefs="opamp" price-range-idref="expensive" package-idref="DIP8"
-  location-idref="box-sub-boxes" location-box-label="OPAMP A" since="2024-11-13"/>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd"
+  xmlns="https://eriksiegel.nl/ns/component-inventory"  id="555" name="NE555"
+  summary="Precision timer" count="5" category-idrefs="timer" price-range-idref="very-cheap" package-idref="DIP8"
+  location-idref="box-sub-boxes" since="2024-12-03">
+  
+  <media>
+    <pdf href="ne555.pdf" usage="datasheet"/>
+    <pdf href="555-timer-cheat-sheet.pdf" usage="instruction"/>
+    <image href="555-overview.png" usage="overview"/>
+  </media>
+  
+</component>

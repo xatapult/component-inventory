@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component id="74HC32"
+           name="74HC32"
+           summary="Quadruple 2-input OR gates"
+           count="#many"
+           category-idrefs="74HC"
+           package-idref="DIP14"
+           location-idref="box-sub-boxes"
+           location-box-label="HC32"
+           since="2024-11-16"
+           xmlns="https://eriksiegel.nl/ns/component-inventory"
+           />

@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd"
-  xmlns="https://eriksiegel.nl/ns/component-inventory" xmlns:xtlcon="http://www.xtpxlib.nl/ns/container" id="PC817" name="PC817" summary="Optocoupler"
-  count="#many" category-idrefs="optocoupler" price-range-idref="very-cheap" package-idref="DIP4" location-idref="box-workbench" since="2024-11-20"/>

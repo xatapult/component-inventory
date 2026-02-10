@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd"
+  xmlns="https://eriksiegel.nl/ns/component-inventory"
+  
+  id="2SK727"
+  name="2SK727"
+  summary="N-channel silicon power MOS-FET"
+  count="2"
+  category-idrefs="comp mos-fet mos-fet.power"
+  price-range-idref="very-cheap"
+  package-idref="TO3PN"
+  location-idref="box-sub-boxes"
+  since="2024-10-23"/>

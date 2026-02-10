@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd"
- xmlns="https://eriksiegel.nl/ns/component-inventory" xmlns:xtlcon="http://www.xtpxlib.nl/ns/container" id="IRFP9140" name="IRFP9140"
- summary="19A, 100V, 0.200 Ohm, P-Channel Power MOSFET" count="1" category-idrefs="mos-fet.power" package-idref="TO247" location-idref="bag"
- since="2024-11-13" discontinued="true"/>

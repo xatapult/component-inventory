@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component id="74HC4051"
+           name="74HC4051"
+           summary="8-channel analog multiplexer/demultiplexer"
+           count="20"
+           category-idrefs="74HC"
+           price-range-idref="cheap"
+           package-idref="DIP16"
+           location-idref="box-sub-boxes"
+           location-box-label="HC4051"
+           since="2024-11-11"
+           xmlns="https://eriksiegel.nl/ns/component-inventory"
+           />

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component id="74HC85"
+           name="74HC85"
+           summary="4-bit magnitude comparator"
+           count="#many"
+           category-idrefs="74HC"
+           price-range-idref="cheap"
+           package-idref="DIP16"
+           location-idref="box-sub-boxes"
+           location-box-label="HC85"
+           since="2024-11-14"
+           xmlns="https://eriksiegel.nl/ns/component-inventory"
+           />

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd"
+  xmlns="https://eriksiegel.nl/ns/component-inventory"  id="NE5534AN" name="NE5534AN"
+  summary="Low noise Opamp" count="#many" category-idrefs="opamp" price-range-idref="cheap" package-idref="DIP8" location-idref="box-sub-boxes"
+  since="2024-10-21"/>

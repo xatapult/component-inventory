@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component id="74HC02"
+           name="74HC02"
+           summary="Quad 2−Input NOR Gate"
+           count="#many"
+           category-idrefs="74HC"
+           package-idref="DIP14"
+           location-idref="box-sub-boxes"
+           location-box-label="HC02"
+           since="2024-11-16"
+           xmlns="https://eriksiegel.nl/ns/component-inventory"
+           />

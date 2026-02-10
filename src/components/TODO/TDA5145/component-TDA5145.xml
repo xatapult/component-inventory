@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component id="TDA5145"
+           name="TDA5145"
+           summary="Brushless DC motor drive circuit"
+           count="2"
+           package-idref="DIP28"
+           location-idref="bag"
+           since="2024-11-13"
+           discontinued="true"
+           xmlns="https://eriksiegel.nl/ns/component-inventory"
+           />

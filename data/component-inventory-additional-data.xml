@@ -65,21 +65,20 @@
   <!-- ABOUT PAGE: -->
 
   <about-page>
-    <p>The component-inventory website is a completely static website (so no cookies!). It is built with <a href="https://en.wikipedia.org/wiki/XML"
-        target="_blank">XML technology</a>, using <a href="https://en.wikipedia.org/wiki/XProc" target="_blank">XProc</a> and <a
-        href="https://en.wikipedia.org/wiki/XSLT" target="_blank">XSLT</a> to generate all the HTML pages. Parts are built with technology developed
-      within my company <a href="https://www.xatapult.com/" target="_blank">Xatapult</a>. Generating the full website from its XML sources takes less
-      than 10&#160;seconds.</p>
+    <p>The component-inventory website is a completely static website (so no search but also no cookies…). It is built with <a
+        href="https://en.wikipedia.org/wiki/XML" target="_blank">XML technology</a>, using <a href="https://en.wikipedia.org/wiki/XProc"
+        target="_blank">XProc</a> and <a href="https://en.wikipedia.org/wiki/XSLT" target="_blank">XSLT</a> to generate all the HTML pages. Some texts
+      were generated using an AI. Parts of the software were built with technology developed within my company <a href="https://www.xatapult.com/"
+        target="_blank">Xatapult</a>. Generating the full website from its XML sources takes less than 10&#160;seconds.</p>
 
     <p>As far as I know, all additional information on this website, like datasheets, is public and not copyright protected. If I have accidentally
       violated anyone&#x2019;s intellectual property, please <a href="mailto:erik@eriksiegel.nl">let me know</a>.</p>
 
     <p>The source code and data for this website is hosted on <a href="https://github.com/xatapult/component-inventory" target="_blank">Github</a>.
       Everything is published under the <a href="https://www.gnu.org/licenses/gpl-3.0.html" target="_blank">GNU General Public License</a>, giving you
-      complete freedom to copy, share, reuse, or modify it to your heart&#x2019;s content. Keep in mind, however, that it probably won&#x2019;t work
-      right away: it requires several additional (also open-source) components and references to, for example, include files use a format that will
-      not function directly (<a href="https://en.wikipedia.org/wiki/XML_catalog" target="_blank">XML catalogs</a> are used). See the
-      repository&#x2019;s README file for more information.</p>
+      complete freedom to copy, share, reuse, or modify it to your heart&#x2019;s content. However, you will not be able to run it: it requires
+      several additional, not always published, components and <a href="https://en.wikipedia.org/wiki/XML_catalog" target="_blank">XML catalogs</a>
+      are used for internal referencing. See the repository&#x2019;s README file for more information.</p>
     <p>The site is published using <a href="https://docs.github.com/en/pages" target="_blank">GitHub Pages</a>.</p>
 
     <p>&#160;</p>
