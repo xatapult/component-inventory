@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd"
- xmlns="https://eriksiegel.nl/ns/component-inventory"  id="BUX86" name="BUX86"
- summary="BUX86 NPN Si Epibase Power Switch" count="23" category-idrefs="transistor.npn transistor.power" price-range-idref="expensive"
- package-idref="TO126" location-idref="box-sub-boxes" since="2024-11-11"/>
+<component
+  category-idrefs="transistor.npn transistor.power"
+  count="23"
+  id="BUX86"
+  location-idref="box-sub-boxes"
+  name="BUX86"
+  package-idref="TO126"
+  price-range-idref="expensive"
+  since="2024-11-11"
+  summary="BUX86 NPN Si Epibase Power Switch"
+  xmlns="https://eriksiegel.nl/ns/component-inventory"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd"/>

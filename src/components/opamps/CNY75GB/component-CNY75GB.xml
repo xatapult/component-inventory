@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd"
- xmlns="https://eriksiegel.nl/ns/component-inventory"  id="CNY75GB" name="CNY75GB"
- summary="Optocoupler" count="5" category-idrefs="optocoupler" price-range-idref="very-cheap" package-idref="DIP6" location-idref="box-sub-boxes"
- since="2024-10-23"/>

@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd"
- xmlns="https://eriksiegel.nl/ns/component-inventory"  id="BTA140-800" name="BTA140-800"
- summary="Triac" count="2" category-idrefs="triac" price-range-idref="cheap" package-idref="TO220" location-idref="box-sub-boxes"
- location-box-label="TRANS A" since="2024-10-21"/>
+<component
+  category-idrefs="triac"
+  count="2"
+  id="BTA140-800"
+  location-box-label="TRANS A"
+  location-idref="box-sub-boxes"
+  name="BTA140-800"
+  package-idref="TO220"
+  price-range-idref="cheap"
+  since="2024-10-21"
+  summary="Triac"
+  xmlns="https://eriksiegel.nl/ns/component-inventory"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd"/>

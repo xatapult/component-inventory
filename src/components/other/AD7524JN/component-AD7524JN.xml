@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component
+  category-idrefs="dac"
+  count="5"
+  discontinued="true"
+  id="AD7524JN"
+  location-idref="box-sub-boxes"
+  name="AD7524JN"
+  package-idref="DIP16"
+  since="2024-11-13"
+  summary="8-Bit Buffered Multiplying DAC"
+  xmlns="https://eriksiegel.nl/ns/component-inventory"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd"/>

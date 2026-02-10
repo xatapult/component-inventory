@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<component id="HEF4046B"
-           name="HEF4046"
-           summary="Phase-locked loop"
-           count="#many"
-           category-idrefs="HEF4000"
-           price-range-idref="very-cheap"
-           package-idref="DIP16"
-           location-idref="box-sub-boxes"
-           since="2024-11-11"
-           xmlns="https://eriksiegel.nl/ns/component-inventory"
-           />
+<component
+  category-idrefs="HEF4000"
+  count="#many"
+  id="HEF4046B"
+  location-idref="box-sub-boxes"
+  name="HEF4046"
+  package-idref="DIP16"
+  price-range-idref="very-cheap"
+  since="2024-11-11"
+  summary="Phase-locked loop"
+  xmlns="https://eriksiegel.nl/ns/component-inventory"/>

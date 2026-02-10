@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd"
-  xmlns="https://eriksiegel.nl/ns/component-inventory"  id="BD226" name="BD226"
-  summary="NPN power transistor" count="3" category-idrefs="transistor.npn transistor.power" price-range-idref="very-cheap" package-idref="TO126"
-  location-idref="box-sub-boxes" since="2024-10-23"/>
+<component
+  category-idrefs="transistor.npn transistor.power"
+  count="3"
+  id="BD226"
+  location-idref="box-sub-boxes"
+  name="BD226"
+  package-idref="TO126"
+  price-range-idref="very-cheap"
+  since="2024-10-23"
+  summary="NPN power transistor"
+  xmlns="https://eriksiegel.nl/ns/component-inventory"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd"/>

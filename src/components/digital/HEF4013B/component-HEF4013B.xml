@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<component id="HEF4013B"
-           name="HEF4013"
-           summary="Dual D-type flip-flop"
-           count="10"
-           category-idrefs="HEF4000"
-           price-range-idref="cheap"
-           package-idref="DIP14"
-           location-idref="box-sub-boxes"
-           since="2024-10-21"
-           xmlns="https://eriksiegel.nl/ns/component-inventory"
-           />
+<component
+  category-idrefs="HEF4000"
+  count="10"
+  id="HEF4013B"
+  location-idref="box-sub-boxes"
+  name="HEF4013"
+  package-idref="DIP14"
+  price-range-idref="cheap"
+  since="2024-10-21"
+  summary="Dual D-type flip-flop"
+  xmlns="https://eriksiegel.nl/ns/component-inventory"/>

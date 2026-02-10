@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component
+  category-idrefs="opamp"
+  count="13"
+  discontinued="true"
+  id="TDA1034B"
+  location-idref="box-sub-boxes"
+  name="TDA1034B"
+  package-idref="DIP8"
+  since="2024-11-13"
+  summary="Operational amplifier"
+  xmlns="https://eriksiegel.nl/ns/component-inventory"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd"/>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component
+  category-idrefs="radio communication"
+  count="1"
+  id="TCA420"
+  location-idref="box-sub-boxes"
+  name="TCA420"
+  package-idref="DIP16"
+  price-range-idref="expensive"
+  since="2024-11-16"
+  summary="FM IF Amplifier"
+  xmlns="https://eriksiegel.nl/ns/component-inventory"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd"/>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component
+  category-idrefs="display"
+  count="1"
+  id="745-0007"
+  location-idref="bag"
+  name="745-0007"
+  since="2024-11-13"
+  summary="Hexadecimal display with logic"
+  xmlns="https://eriksiegel.nl/ns/component-inventory"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd"/>

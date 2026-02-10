@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd"
-  xmlns="https://eriksiegel.nl/ns/component-inventory"  id="LH0032CG" name="LH0032CG"
-  summary="Ultra fast FET-input operational amplifier" count="9" category-idrefs="opamp" price-range-idref="very-expensive"
-  location-idref="box-sub-boxes" since="2024-11-13"/>
+<component
+  category-idrefs="opamp"
+  count="9"
+  id="LH0032CG"
+  location-idref="box-sub-boxes"
+  name="LH0032CG"
+  price-range-idref="very-expensive"
+  since="2024-11-13"
+  summary="Ultra fast FET-input operational amplifier"
+  xmlns="https://eriksiegel.nl/ns/component-inventory"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd"/>

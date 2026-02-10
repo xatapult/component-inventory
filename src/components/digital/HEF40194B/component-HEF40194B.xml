@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<component id="HEF40194B"
-           name="HEF40194"
-           summary="4-bit bidirectional universal shift register"
-           count="7"
-           category-idrefs="HEF4000"
-           price-range-idref="cheap"
-           package-idref="DIP16"
-           location-idref="box-sub-boxes"
-           since="2024-11-11"
-           xmlns="https://eriksiegel.nl/ns/component-inventory"
-           />
+<component
+  category-idrefs="HEF4000"
+  count="7"
+  id="HEF40194B"
+  location-idref="box-sub-boxes"
+  name="HEF40194"
+  package-idref="DIP16"
+  price-range-idref="cheap"
+  since="2024-11-11"
+  summary="4-bit bidirectional universal shift register"
+  xmlns="https://eriksiegel.nl/ns/component-inventory"/>

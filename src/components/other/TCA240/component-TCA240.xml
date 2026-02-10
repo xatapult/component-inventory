@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component
+  category-idrefs="modulator demodulator"
+  count="3"
+  id="TCA240"
+  location-box-label="TCA/TBA"
+  location-idref="box-sub-boxes"
+  name="TCA240"
+  package-idref="DIP16"
+  price-range-idref="expensive"
+  since="2024-11-16"
+  summary="Double balanced modulator/demodulator"
+  xmlns="https://eriksiegel.nl/ns/component-inventory"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd"/>

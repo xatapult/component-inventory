@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<component id="HEF4041B"
-           name="HEF4041"
-           summary="Quadruple true/complement buffer"
-           count="9"
-           category-idrefs="HEF4000"
-           price-range-idref="very-cheap"
-           package-idref="DIP14"
-           location-idref="box-sub-boxes"
-           since="2024-11-11"
-           xmlns="https://eriksiegel.nl/ns/component-inventory"
-           />
+<component
+  category-idrefs="HEF4000"
+  count="9"
+  id="HEF4041B"
+  location-idref="box-sub-boxes"
+  name="HEF4041"
+  package-idref="DIP14"
+  price-range-idref="very-cheap"
+  since="2024-11-11"
+  summary="Quadruple true/complement buffer"
+  xmlns="https://eriksiegel.nl/ns/component-inventory"/>

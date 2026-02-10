@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<component id="HEF4071B"
-           name="HEF4071"
-           summary="Quad 2-input OR gate"
-           count="8"
-           category-idrefs="HEF4000"
-           price-range-idref="very-cheap"
-           package-idref="DIP14"
-           location-idref="box-sub-boxes"
-           since="2024-10-25"
-           xmlns="https://eriksiegel.nl/ns/component-inventory"
-           />
+<component
+  category-idrefs="HEF4000"
+  count="8"
+  id="HEF4071B"
+  location-idref="box-sub-boxes"
+  name="HEF4071"
+  package-idref="DIP14"
+  price-range-idref="very-cheap"
+  since="2024-10-25"
+  summary="Quad 2-input OR gate"
+  xmlns="https://eriksiegel.nl/ns/component-inventory"/>

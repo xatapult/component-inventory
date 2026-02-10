@@ -1,18 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-model href="../grammar/ci-specification.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
-<component-inventory-specification xmlns="https://eriksiegel.nl/ns/component-inventory" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xmlns:sml="http://www.eriksiegel.nl/ns/sml" xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory ../grammar/ci-specification.xsd">
+<component-inventory-specification
+  xmlns="https://eriksiegel.nl/ns/component-inventory"
+  xmlns:sml="http://www.eriksiegel.nl/ns/sml"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory ../grammar/ci-specification.xsd">
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
   <properties>
 
     <!-- For transistors: -->
-    <property id="collector-to-base" name="Collector to base voltage" value-pattern="^-?[0-9]+$" suffix="V"/>
-    <property id="collector-to-emitter" name="Collector to emitter voltage" value-pattern="^-?[0-9]+$" suffix="V"/>
-    <property id="emitter-to-base" name="Emitter to base voltage" value-pattern="^-?[0-9]+$" suffix="V"/>
-    <property id="collector-current" name="Collector current" value-pattern="^-?[0-9]+$" suffix="mA"/>
-    <property id="gain" name="Gain" value-pattern="^[0-9]+$"/>
+    <property
+      id="collector-to-base"
+      name="Collector to base voltage"
+      suffix="V"
+      value-pattern="^-?[0-9]+$"/>
+    <property
+      id="collector-to-emitter"
+      name="Collector to emitter voltage"
+      suffix="V"
+      value-pattern="^-?[0-9]+$"/>
+    <property
+      id="emitter-to-base"
+      name="Emitter to base voltage"
+      suffix="V"
+      value-pattern="^-?[0-9]+$"/>
+    <property
+      id="collector-current"
+      name="Collector current"
+      suffix="mA"
+      value-pattern="^-?[0-9]+$"/>
+    <property
+      id="gain"
+      name="Gain"
+      value-pattern="^[0-9]+$"/>
 
   </properties>
 
@@ -21,32 +43,51 @@
   <categories>
 
     <!-- Simple components: -->
-    <category id="comp" name="Simple components">
+    <category
+      id="comp"
+      name="Simple components">
       <description>
         <p>Straight and simple components, like transistors, MOS-FETs etc.</p>
       </description>
     </category>
 
-    <category id="transistor" name="Transistors"
+    <category
+      id="transistor"
+      name="Transistors"
       optional-property-idrefs="collector-to-base collector-to-emitter emitter-to-base collector-current gain">
       <categories>
-        <category id="npn" name="Transistors - NPN">
+        <category
+          id="npn"
+          name="Transistors - NPN">
           <description>
             <sml:fragment>
-              <sml:image href="images/NPN.png" scale="10%"/>
+              <sml:image
+                href="images/NPN.png"
+                scale="10%"/>
             </sml:fragment>
           </description>
         </category>
-        <category id="pnp" name="Transistors - PNP">
+        <category
+          id="pnp"
+          name="Transistors - PNP">
           <description>
             <sml:fragment>
-              <sml:image href="images/PNP.png" scale="10%"/>
+              <sml:image
+                href="images/PNP.png"
+                scale="10%"/>
             </sml:fragment>
           </description>
         </category>
-        <category id="power" name="Transistors - Power"/>
-        <category id="dual" name="Transistors - Dual" summary="Two transistors in one package"/>
-        <category id="darlington" name="Transistors - Darlington">
+        <category
+          id="power"
+          name="Transistors - Power"/>
+        <category
+          id="dual"
+          name="Transistors - Dual"
+          summary="Two transistors in one package"/>
+        <category
+          id="darlington"
+          name="Transistors - Darlington">
           <description>
             <p>A Darlington transistor—also known as a Darlington pair—is an electronic device that combines two bipolar junction transistors so that
               the current amplified by the first is further amplified by the second, resulting in an exceptionally high overall current gain and
@@ -55,11 +96,15 @@
               base, one collector, and one emitter. </p>
           </description>
         </category>
-        <category id="special" summary="Transistors - Special"/>
+        <category
+          id="special"
+          summary="Transistors - Special"/>
       </categories>
     </category>
 
-    <category id="mos-fet" name="MOS-FETs">
+    <category
+      id="mos-fet"
+      name="MOS-FETs">
       <description>
         <p>A MOS-FET (Metal-Oxide-Semiconductor Field-Effect Transistor) is a voltage-controlled semiconductor device that uses an insulated gate to
           regulate how much current flows between its source and drain terminals, allowing it to function efficiently as a switch or amplifier. Its
@@ -69,7 +114,9 @@
           electronics, forming the foundation of microprocessors, memory chips, and many switching circuits.</p>
       </description>
       <categories>
-        <category id="power" name="MOS-FETs - Power">
+        <category
+          id="power"
+          name="MOS-FETs - Power">
           <description>
             <p>A MOS-FET (Metal-Oxide-Semiconductor Field-Effect Transistor) is a voltage-controlled semiconductor device that uses an insulated gate
               to regulate how much current flows between its source and drain terminals, allowing it to function efficiently as a switch or amplifier.
@@ -82,7 +129,9 @@
       </categories>
     </category>
 
-    <category id="thyristor" name="Thyristors">
+    <category
+      id="thyristor"
+      name="Thyristors">
       <description>
         <p>A thyristor is a four-layer semiconductor device that acts as a solid-state switch, designed to handle high voltages and large currents in
           power-control applications. It remains in a non-conductive “off” state until a small trigger current is applied to its gate, at which point
@@ -92,7 +141,9 @@
           foundational components in power electronics.</p>
       </description>
     </category>
-    <category id="triac" name="Triacs">
+    <category
+      id="triac"
+      name="Triacs">
       <description>
         <p>A triac is a bidirectional, three-terminal semiconductor device used for controlling AC power, capable of switching current on both halves
           of an AC waveform. Functionally similar to two thyristors connected in opposite directions, it can be triggered into conduction by a small
@@ -105,7 +156,9 @@
 
 
     <!-- Digital components: -->
-    <category id="I2C" name="I2C related products">
+    <category
+      id="I2C"
+      name="I2C related products">
       <description>
         <p>I²C (Inter-Integrated Circuit) is a simple, low-speed, two-wire communication protocol designed for short-distance data exchange between
           chips on the same circuit board. It uses just two shared lines—SDA for data and SCL for the clock—to let multiple “slave” devices
@@ -114,9 +167,14 @@
           implement, I²C is widely used in embedded systems to connect sensors, displays, memory chips, and other peripherals.</p>
       </description>
     </category>
-    <category id="memory" name="Computer memory"/>
-    <category id="timer" name="Timer/timing related"/>
-    <category id="74HC">
+    <category
+      id="memory"
+      name="Computer memory"/>
+    <category
+      id="timer"
+      name="Timer/timing related"/>
+    <category
+      id="74HC">
       <description>
         <p>The 74HC (High-Speed CMOS) IC series is a family of logic chips known for combining the low-power characteristics of CMOS technology with
           the speed of traditional TTL logic. These devices operate over a wide supply-voltage range—typically 2 V to 6 V—while offering fast
@@ -126,7 +184,8 @@
           timing, and general logic control.</p>
       </description>
     </category>
-    <category id="SN74">
+    <category
+      id="SN74">
       <description>
         <p>The SN74 series is a broad family of Texas Instruments logic ICs built on modern CMOS technology, offering fast switching speeds, low power
           consumption, and wide operating voltage ranges that make them suitable for both classic digital logic tasks and contemporary embedded
@@ -136,7 +195,9 @@
           applications.</p>
       </description>
     </category>
-    <category id="cmos" name="CMOS">
+    <category
+      id="cmos"
+      name="CMOS">
       <description>
         <p>CMOS (Complementary Metal-Oxide-Semiconductor) ICs are defined by their extremely low power consumption, high noise immunity, and wide
           operating-voltage range, all made possible by using complementary pairs of p-channel and n-channel MOSFETs that draw almost no current
@@ -146,7 +207,8 @@
           microprocessors, memory chips, sensors, and general-purpose logic functions.</p>
       </description>
     </category>
-    <category id="HEF4000">
+    <category
+      id="HEF4000">
       <description>
         <p>The HEF series is a family of CMOS logic ICs known for their extremely low power consumption, wide operating-voltage range (typically 3 V
           to 15 V), and high noise immunity, making them well-suited for both battery-powered and industrial applications. These devices follow the
@@ -155,12 +217,20 @@
           often used in analog-digital interfacing, timing circuits, and general-purpose logic where reliability and efficiency are key.</p>
       </description>
     </category>
-    <category id="microcontroller" name="Micro-controllers"/>
+    <category
+      id="microcontroller"
+      name="Micro-controllers"/>
 
-    <category id="logic" name="Logic ICs">
+    <category
+      id="logic"
+      name="Logic ICs">
       <categories>
-        <category id="switch" name="Switches"/>
-        <category id="schmitt-trigger" name="Schmitt triggers">
+        <category
+          id="switch"
+          name="Switches"/>
+        <category
+          id="schmitt-trigger"
+          name="Schmitt triggers">
           <description>
             <p>A Schmitt trigger is a type of comparator circuit with built-in hysteresis, meaning it uses two different threshold voltages to
               determine when its output switches between high and low states. This dual-threshold behavior prevents rapid, noisy, or slowly changing
@@ -170,19 +240,35 @@
               noisy environments.</p>
           </description>
         </category>
-        <category id="nand" name="NAND gates"/>
-        <category id="inverter" name="Inverters"/>
+        <category
+          id="nand"
+          name="NAND gates"/>
+        <category
+          id="inverter"
+          name="Inverters"/>
       </categories>
 
     </category>
 
     <!-- Various: -->
-    <category id="converter" name="Converters"/>
-    <category id="filter" name="Filters"/>
-    <category id="driver" name="Drivers"/>
-    <category id="motor-driver" name="Motor drivers"/>
-    <category id="analog-computation" name="Analog computation"/>
-    <category id="opamp" name="Operational amplifiers">
+    <category
+      id="converter"
+      name="Converters"/>
+    <category
+      id="filter"
+      name="Filters"/>
+    <category
+      id="driver"
+      name="Drivers"/>
+    <category
+      id="motor-driver"
+      name="Motor drivers"/>
+    <category
+      id="analog-computation"
+      name="Analog computation"/>
+    <category
+      id="opamp"
+      name="Operational amplifiers">
       <description>
         <p>An operational amplifier, or op-amp, is a high-gain differential amplifier designed to compare two input voltages and produce an output
           that reflects their difference, making it one of the most versatile building blocks in analog electronics. With extremely high input
@@ -192,7 +278,9 @@
           control systems, and countless analog signal-processing applications.</p>
       </description>
     </category>
-    <category id="optocoupler" name="Optocouplers">
+    <category
+      id="optocoupler"
+      name="Optocouplers">
       <description>
         <p>An optocoupler, also known as an optoisolator, is a device that transfers electrical signals between two isolated circuits using light,
           providing a safe and reliable way to prevent high voltages or electrical noise from passing between them. It typically contains an LED on
@@ -202,7 +290,9 @@
           low-voltage electronics from surges, spikes, and ground-loop issues in power supplies, industrial controls, and switching circuits.</p>
       </description>
     </category>
-    <category id="dac" name="Digital-analog converter">
+    <category
+      id="dac"
+      name="Digital-analog converter">
       <description>
         <p> A DAC, or Digital-to-Analog Converter, is an electronic device that transforms digital data—typically a series of binary numbers—into a
           corresponding analog voltage or current, allowing digital systems to interface with the analog world. By converting discrete digital values
@@ -211,7 +301,9 @@
           and noise, all of which determine how accurately the analog output represents the original digital information. </p>
       </description>
     </category>
-    <category id="rectifier" name="Rectifiers">
+    <category
+      id="rectifier"
+      name="Rectifiers">
       <description>
         <p>A rectifier is an electronic circuit or device that converts alternating current (AC) into direct current (DC), making it essential for
           powering most electronic equipment that requires a steady, one-directional flow of electricity. It works by using diodes—or controlled
@@ -221,17 +313,39 @@
           mains power into usable DC energy.</p>
       </description>
     </category>
-    <category id="display" name="Display related components"/>
-    <category id="radio" summary="Radio related components"></category>
-    <category id="thermal" name="Thermal switches"/>
-    <category id="communication" name="Communication related ICs"/>
-    <category id="oscillator" name="Oscillators"/>
-    <category id="audio" name="Audio related components"/>
-    <category id="movement" name="Movement related components"/>
-    <category id="modulator" summary="Modulators"/>
-    <category id="demodulator" summary="Demodulators"/>
-    <category id="gyrator" summary="Gyrators"></category>
-    <category id="voltage-comparator" name="Voltage comparators">
+    <category
+      id="display"
+      name="Display related components"/>
+    <category
+      id="radio"
+      summary="Radio related components"/>
+    <category
+      id="thermal"
+      name="Thermal switches"/>
+    <category
+      id="communication"
+      name="Communication related ICs"/>
+    <category
+      id="oscillator"
+      name="Oscillators"/>
+    <category
+      id="audio"
+      name="Audio related components"/>
+    <category
+      id="movement"
+      name="Movement related components"/>
+    <category
+      id="modulator"
+      summary="Modulators"/>
+    <category
+      id="demodulator"
+      summary="Demodulators"/>
+    <category
+      id="gyrator"
+      summary="Gyrators"/>
+    <category
+      id="voltage-comparator"
+      name="Voltage comparators">
       <description>
         <p>A voltage comparator is an electronic circuit designed to compare two input voltages and switch its output to a defined high or low state
           depending on which input is greater. Unlike an op-amp, which is optimized for linear amplification, a comparator is built for fast, clean
@@ -241,7 +355,9 @@
           and many types of control and timing circuits.</p>
       </description>
     </category>
-    <category id="voltage-regulator" name="Voltage regulators">
+    <category
+      id="voltage-regulator"
+      name="Voltage regulators">
       <description>
         <p>A voltage regulator is an electronic device or circuit that maintains a stable, constant output voltage despite changes in input voltage,
           load current, or other external conditions, ensuring that sensitive electronics receive clean and reliable power. It works by continuously
@@ -253,48 +369,102 @@
     </category>
 
     <!-- For everything we can't identify or don't know how to categorize: -->
-    <category id="unknown" summary="Unknown components"/>
+    <category
+      id="unknown"
+      summary="Unknown components"/>
 
   </categories>
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
   <price-ranges>
-    <price-range id="very-cheap" min-inclusive="0.00" max-inclusive="0.50" name="Very cheap (less than €0.50)"/>
-    <price-range id="cheap" min-inclusive="0.51" max-inclusive="2.00" name="Cheap (between €0.50 and €2)"/>
-    <price-range id="expensive" min-inclusive="2.01" max-inclusive="10.00" name="Expensive (between €2 and €10)"/>
-    <price-range id="very-expensive" min-inclusive="10.01" max-inclusive="1000.00" name="Very expensive (over €10)."/>
+    <price-range
+      id="very-cheap"
+      max-inclusive="0.50"
+      min-inclusive="0.00"
+      name="Very cheap (less than €0.50)"/>
+    <price-range
+      id="cheap"
+      max-inclusive="2.00"
+      min-inclusive="0.51"
+      name="Cheap (between €0.50 and €2)"/>
+    <price-range
+      id="expensive"
+      max-inclusive="10.00"
+      min-inclusive="2.01"
+      name="Expensive (between €2 and €10)"/>
+    <price-range
+      id="very-expensive"
+      max-inclusive="1000.00"
+      min-inclusive="10.01"
+      name="Very expensive (over €10)."/>
   </price-ranges>
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-  <packages href-default-base-directory="packaging">
-    <package id="DIP4" summary="4-pin dual inline package"/>
-    <package id="DIP6" summary="6-pin dual inline package"/>
-    <package id="DIP8" summary="8-pin dual inline package"/>
-    <package id="DIP14" summary="14-pin dual inline package"/>
-    <package id="DIP16" summary="16-pin dual inline package"/>
-    <package id="DIP18" summary="18-pin dual inline package"/>
-    <package id="DIP20" summary="20-pin dual inline package"/>
-    <package id="DIP24" summary="24-pin dual inline package"/>
-    <package id="DIP28" summary="28-pin dual inline package"/>
-    <package id="DIP40" summary="40-pin dual inline package"/>
+  <packages
+    href-default-base-directory="packaging">
+    <package
+      id="DIP4"
+      summary="4-pin dual inline package"/>
+    <package
+      id="DIP6"
+      summary="6-pin dual inline package"/>
+    <package
+      id="DIP8"
+      summary="8-pin dual inline package"/>
+    <package
+      id="DIP14"
+      summary="14-pin dual inline package"/>
+    <package
+      id="DIP16"
+      summary="16-pin dual inline package"/>
+    <package
+      id="DIP18"
+      summary="18-pin dual inline package"/>
+    <package
+      id="DIP20"
+      summary="20-pin dual inline package"/>
+    <package
+      id="DIP24"
+      summary="24-pin dual inline package"/>
+    <package
+      id="DIP28"
+      summary="28-pin dual inline package"/>
+    <package
+      id="DIP40"
+      summary="40-pin dual inline package"/>
 
-    <package id="TO3"/>
-    <package id="TO8"/>
-    <package id="TO18"/>
-    <package id="TO39"/>
-    <package id="TO71"/>
-    <package id="TO72"/>
-    <package id="TO92"/>
-    <package id="TO126"/>
-    <package id="TO220"/>
-    <package id="TO225"/>
-    <package id="TO247"/>
-    <package id="TO998"/>
-    <package id="TO3PN"/>
+    <package
+      id="TO3"/>
+    <package
+      id="TO8"/>
+    <package
+      id="TO18"/>
+    <package
+      id="TO39"/>
+    <package
+      id="TO71"/>
+    <package
+      id="TO72"/>
+    <package
+      id="TO92"/>
+    <package
+      id="TO126"/>
+    <package
+      id="TO220"/>
+    <package
+      id="TO225"/>
+    <package
+      id="TO247"/>
+    <package
+      id="TO998"/>
+    <package
+      id="TO3PN"/>
 
-    <package id="SMD" name="SMD package">
+    <package
+      id="SMD"
+      name="SMD package">
       <description>
         <p>SMD, or Surface-Mount Device, refers to electronic components designed to be mounted directly onto the surface of a printed circuit board
           rather than inserted through holes, allowing for much smaller, lighter, and more densely packed circuits. These components typically have
@@ -308,20 +478,32 @@
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
   <locations>
-    <location id="box-sub-boxes" name="Component box (with sub-boxes)"/>
-    <location id="bag" name="Plastic bag in storage container"/>
-    <location id="box-workbench" name="Component box above workbench"/>
+    <location
+      id="box-sub-boxes"
+      name="Component box (with sub-boxes)"/>
+    <location
+      id="bag"
+      name="Plastic bag in storage container"/>
+    <location
+      id="box-workbench"
+      name="Component box above workbench"/>
   </locations>
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
   <components>
-    <directory href="components"/>
-    <directory href="components-opamps"/>
-    <directory href="components-simple"/>
-    <directory href="components-analog"/>
-    <directory href="components-digital"/>
-    <directory href="components-other"/>
+    <directory
+      href="components"/>
+    <directory
+      href="components-opamps"/>
+    <directory
+      href="components-simple"/>
+    <directory
+      href="components-analog"/>
+    <directory
+      href="components-digital"/>
+    <directory
+      href="components-other"/>
 
   </components>
 

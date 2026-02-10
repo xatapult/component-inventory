@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd"
-  xmlns="https://eriksiegel.nl/ns/component-inventory"  id="BT152-800R" name="BT152-800R"
-  summary="Thyristor" count="18" category-idrefs="thyristor" price-range-idref="cheap" package-idref="TO220" location-idref="box-sub-boxes"
-  since="2024-10-23"/>
+<component
+  category-idrefs="thyristor"
+  count="18"
+  id="BT152-800R"
+  location-idref="box-sub-boxes"
+  name="BT152-800R"
+  package-idref="TO220"
+  price-range-idref="cheap"
+  since="2024-10-23"
+  summary="Thyristor"
+  xmlns="https://eriksiegel.nl/ns/component-inventory"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd"/>

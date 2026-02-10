@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd"
- xmlns="https://eriksiegel.nl/ns/component-inventory"  id="BC639" name="BC639"
- summary="NPN Transistor" count="5" category-idrefs="transistor.npn" price-range-idref="very-cheap" package-idref="TO92" location-idref="box-sub-boxes"
- since="2024-10-25"/>
+<component
+  category-idrefs="transistor.npn"
+  count="5"
+  id="BC639"
+  location-idref="box-sub-boxes"
+  name="BC639"
+  package-idref="TO92"
+  price-range-idref="very-cheap"
+  since="2024-10-25"
+  summary="NPN Transistor"
+  xmlns="https://eriksiegel.nl/ns/component-inventory"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd"/>

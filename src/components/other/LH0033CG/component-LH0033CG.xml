@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component
+  category-idrefs="comp"
+  count="17"
+  discontinued="true"
+  id="LH0033CG"
+  location-idref="bag"
+  name="LH0033CG"
+  package-idref="TO8"
+  since="2024-10-23"
+  summary="high speed, FET input, voltage follower/buffer"
+  xmlns="https://eriksiegel.nl/ns/component-inventory"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd"/>

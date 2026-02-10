@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd"
- xmlns="https://eriksiegel.nl/ns/component-inventory"  id="LM386" name="LM386"
- summary="Low Voltage Audio Power Amplifier" count="2" package-idref="DIP8" location-idref="box-sub-boxes" since="2025-11-12" category-idrefs="audio"/>

@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<component id="74HC259"
-           name="74HC259"
-           summary="8-bit addressable latch"
-           count="#many"
-           category-idrefs="74HC"
-           price-range-idref="cheap"
-           package-idref="DIP16"
-           location-idref="box-sub-boxes"
-           location-box-label="HC259"
-           since="2024-11-16"
-           xmlns="https://eriksiegel.nl/ns/component-inventory"
-           >
-   <description>
-      <p>Remark: Looks usefull</p>
-   </description>
+<component
+  category-idrefs="74HC"
+  count="#many"
+  id="74HC259"
+  location-box-label="HC259"
+  location-idref="box-sub-boxes"
+  name="74HC259"
+  package-idref="DIP16"
+  price-range-idref="cheap"
+  since="2024-11-16"
+  summary="8-bit addressable latch"
+  xmlns="https://eriksiegel.nl/ns/component-inventory">
+  <description>
+    <p>Remark: Looks usefull</p>
+  </description>
 </component>

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<component id="74HC00"
-           name="74HC00"
-           summary="Quadruple 2-input NAND gates"
-           count="#many"
-           category-idrefs="74HC"
-           price-range-idref="very-cheap"
-           package-idref="DIP14"
-           location-idref="box-sub-boxes"
-           location-box-label="HC00"
-           partly-in-reserve-stock="true"
-           since="2024-11-16"
-           xmlns="https://eriksiegel.nl/ns/component-inventory"
-           />
+<component
+  category-idrefs="74HC"
+  count="#many"
+  id="74HC00"
+  location-box-label="HC00"
+  location-idref="box-sub-boxes"
+  name="74HC00"
+  package-idref="DIP14"
+  partly-in-reserve-stock="true"
+  price-range-idref="very-cheap"
+  since="2024-11-16"
+  summary="Quadruple 2-input NAND gates"
+  xmlns="https://eriksiegel.nl/ns/component-inventory"/>

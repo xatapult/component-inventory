@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<component id="HEF4027B"
-           name="HEF4027"
-           summary="Dual JK flipflop"
-           count="6"
-           category-idrefs="HEF4000"
-           price-range-idref="very-cheap"
-           package-idref="DIP16"
-           location-idref="box-sub-boxes"
-           since="2024-10-23"
-           discontinued="true"
-           xmlns="https://eriksiegel.nl/ns/component-inventory"
-           />
+<component
+  category-idrefs="HEF4000"
+  count="6"
+  discontinued="true"
+  id="HEF4027B"
+  location-idref="box-sub-boxes"
+  name="HEF4027"
+  package-idref="DIP16"
+  price-range-idref="very-cheap"
+  since="2024-10-23"
+  summary="Dual JK flipflop"
+  xmlns="https://eriksiegel.nl/ns/component-inventory"/>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component
+  category-idrefs="voltage-regulator"
+  count="16"
+  id="LM7915"
+  location-idref="box-sub-boxes"
+  name="LM7915"
+  package-idref="TO220"
+  price-range-idref="cheap"
+  since="2024-11-11"
+  summary="3-Terminal Negative Voltage Regulator"
+  xmlns="https://eriksiegel.nl/ns/component-inventory"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd"/>

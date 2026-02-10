@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd"
- xmlns="https://eriksiegel.nl/ns/component-inventory"  id="BU508A" name="BU508A"
- summary="NPN Power Transistor" count="8" category-idrefs="transistor.npn transistor.power" price-range-idref="cheap" package-idref="TO3PN"
- location-idref="box-sub-boxes" since="2024-10-23"/>
+<component
+  category-idrefs="transistor.npn transistor.power"
+  count="8"
+  id="BU508A"
+  location-idref="box-sub-boxes"
+  name="BU508A"
+  package-idref="TO3PN"
+  price-range-idref="cheap"
+  since="2024-10-23"
+  summary="NPN Power Transistor"
+  xmlns="https://eriksiegel.nl/ns/component-inventory"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd"/>

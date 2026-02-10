@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<component id="74HC373"
-           name="74HC373"
-           summary="Transparent D-Type Latches"
-           count="#many"
-           category-idrefs="74HC"
-           price-range-idref="cheap"
-           package-idref="DIP20"
-           location-idref="box-sub-boxes"
-           location-box-label="HC373"
-           partly-in-reserve-stock="true"
-           since="2024-11-13"
-           xmlns="https://eriksiegel.nl/ns/component-inventory"
-           />
+<component
+  category-idrefs="74HC"
+  count="#many"
+  id="74HC373"
+  location-box-label="HC373"
+  location-idref="box-sub-boxes"
+  name="74HC373"
+  package-idref="DIP20"
+  partly-in-reserve-stock="true"
+  price-range-idref="cheap"
+  since="2024-11-13"
+  summary="Transparent D-Type Latches"
+  xmlns="https://eriksiegel.nl/ns/component-inventory"/>

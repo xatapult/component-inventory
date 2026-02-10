@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component
+  category-idrefs="oscillator"
+  count="5"
+  id="IQXO-100C"
+  location-idref="bag"
+  name="IQXO-100C"
+  price-range-idref="expensive"
+  since="2024-11-13"
+  summary="Oscillator 4.9152MHz"
+  xmlns="https://eriksiegel.nl/ns/component-inventory"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd"/>

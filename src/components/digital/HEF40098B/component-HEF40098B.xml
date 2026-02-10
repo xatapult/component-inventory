@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<component id="HEF40098B"
-           name="HEF40098"
-           summary="Hex inverting buffer; 3-state"
-           count="8"
-           category-idrefs="HEF4000"
-           price-range-idref="cheap"
-           package-idref="DIP16"
-           location-idref="box-sub-boxes"
-           since="2024-10-19"
-           xmlns="https://eriksiegel.nl/ns/component-inventory"
-           />
+<component
+  category-idrefs="HEF4000"
+  count="8"
+  id="HEF40098B"
+  location-idref="box-sub-boxes"
+  name="HEF40098"
+  package-idref="DIP16"
+  price-range-idref="cheap"
+  since="2024-10-19"
+  summary="Hex inverting buffer; 3-state"
+  xmlns="https://eriksiegel.nl/ns/component-inventory"/>

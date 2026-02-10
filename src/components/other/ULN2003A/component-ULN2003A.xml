@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component
+  category-idrefs="driver"
+  count="10"
+  id="ULN2003A"
+  location-idref="box-workbench"
+  name="ULN2003A"
+  package-idref="DIP16"
+  price-range-idref="very-cheap"
+  since="2024-12-03"
+  summary="Seven darlington arrays; driver"
+  xmlns="https://eriksiegel.nl/ns/component-inventory"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd"/>

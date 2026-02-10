@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<component id="HEF4025B"
-           name="HEF4025"
-           summary="Triple 3-input NOR gate"
-           count="8"
-           category-idrefs="HEF4000"
-           price-range-idref="cheap"
-           package-idref="DIP14"
-           location-idref="box-sub-boxes"
-           since="2024-10-23"
-           xmlns="https://eriksiegel.nl/ns/component-inventory"
-           />
+<component
+  category-idrefs="HEF4000"
+  count="8"
+  id="HEF4025B"
+  location-idref="box-sub-boxes"
+  name="HEF4025"
+  package-idref="DIP14"
+  price-range-idref="cheap"
+  since="2024-10-23"
+  summary="Triple 3-input NOR gate"
+  xmlns="https://eriksiegel.nl/ns/component-inventory"/>

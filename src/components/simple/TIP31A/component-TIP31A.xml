@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component
+  category-idrefs="transistor.npn transistor.power"
+  count="1"
+  id="TIP31A"
+  location-box-label="TRANS A"
+  location-idref="box-sub-boxes"
+  name="TIP31A"
+  package-idref="TO220"
+  price-range-idref="cheap"
+  since="2024-10-21"
+  summary="NPN Transistor; power"
+  xmlns="https://eriksiegel.nl/ns/component-inventory"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd"/>

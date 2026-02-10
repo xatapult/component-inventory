@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component
+  category-idrefs="gyrator"
+  count="9"
+  id="TCA580"
+  location-idref="box-sub-boxes"
+  name="TCA580"
+  package-idref="DIP16"
+  price-range-idref="very-expensive"
+  since="2024-11-13"
+  summary="Gyrator"
+  xmlns="https://eriksiegel.nl/ns/component-inventory"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd"/>

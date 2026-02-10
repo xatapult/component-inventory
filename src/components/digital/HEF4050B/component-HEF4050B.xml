@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<component id="HEF4050B"
-           name="HEF4050"
-           summary="Hex non-inverting buffers"
-           count="4"
-           category-idrefs="HEF4000"
-           price-range-idref="very-cheap"
-           package-idref="DIP16"
-           location-idref="box-sub-boxes"
-           since="2024-11-06"
-           xmlns="https://eriksiegel.nl/ns/component-inventory"
-           />
+<component
+  category-idrefs="HEF4000"
+  count="4"
+  id="HEF4050B"
+  location-idref="box-sub-boxes"
+  name="HEF4050"
+  package-idref="DIP16"
+  price-range-idref="very-cheap"
+  since="2024-11-06"
+  summary="Hex non-inverting buffers"
+  xmlns="https://eriksiegel.nl/ns/component-inventory"/>

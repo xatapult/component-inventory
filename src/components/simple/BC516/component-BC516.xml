@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd"
- xmlns="https://eriksiegel.nl/ns/component-inventory"  id="BC516" name="BC516"
- summary="PNP Darlington transistor" count="6" category-idrefs="transistor.pnp transistor.darlington" price-range-idref="cheap" package-idref="TO92" location-idref="box-sub-boxes"
- since="2024-11-12"/>
+<component
+  category-idrefs="transistor.pnp transistor.darlington"
+  count="6"
+  id="BC516"
+  location-idref="box-sub-boxes"
+  name="BC516"
+  package-idref="TO92"
+  price-range-idref="cheap"
+  since="2024-11-12"
+  summary="PNP Darlington transistor"
+  xmlns="https://eriksiegel.nl/ns/component-inventory"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd"/>

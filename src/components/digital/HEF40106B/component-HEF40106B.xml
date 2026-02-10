@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<component id="HEF40106B"
-           name="HEF40106"
-           summary="Hex inverting Schmitt trigger"
-           count="7"
-           category-idrefs="HEF4000"
-           price-range-idref="very-cheap"
-           package-idref="DIP14"
-           location-idref="box-sub-boxes"
-           since="2024-10-21"
-           xmlns="https://eriksiegel.nl/ns/component-inventory"
-           />
+<component
+  category-idrefs="HEF4000"
+  count="7"
+  id="HEF40106B"
+  location-idref="box-sub-boxes"
+  name="HEF40106"
+  package-idref="DIP14"
+  price-range-idref="very-cheap"
+  since="2024-10-21"
+  summary="Hex inverting Schmitt trigger"
+  xmlns="https://eriksiegel.nl/ns/component-inventory"/>

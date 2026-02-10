@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<component id="74HC273"
-           name="74HC273"
-           summary="Octal D-type flip-flop with reset; positive-edge trigger"
-           count="23"
-           category-idrefs="74HC"
-           price-range-idref="very-cheap"
-           package-idref="DIP20"
-           location-idref="box-sub-boxes"
-           location-box-label="HC273"
-           since="2024-11-14"
-           xmlns="https://eriksiegel.nl/ns/component-inventory"
-           />
+<component
+  category-idrefs="74HC"
+  count="23"
+  id="74HC273"
+  location-box-label="HC273"
+  location-idref="box-sub-boxes"
+  name="74HC273"
+  package-idref="DIP20"
+  price-range-idref="very-cheap"
+  since="2024-11-14"
+  summary="Octal D-type flip-flop with reset; positive-edge trigger"
+  xmlns="https://eriksiegel.nl/ns/component-inventory"/>

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<component id="HEF4053B"
-           name="HEF4053"
-           summary="Triple single-pole double-throw analog switch"
-           count="#many"
-           category-idrefs="HEF4000"
-           price-range-idref="very-cheap"
-           package-idref="DIP16"
-           location-idref="box-sub-boxes"
-           since="2024-11-06"
-           xmlns="https://eriksiegel.nl/ns/component-inventory"
-           />
+<component
+  category-idrefs="HEF4000"
+  count="#many"
+  id="HEF4053B"
+  location-idref="box-sub-boxes"
+  name="HEF4053"
+  package-idref="DIP16"
+  price-range-idref="very-cheap"
+  since="2024-11-06"
+  summary="Triple single-pole double-throw analog switch"
+  xmlns="https://eriksiegel.nl/ns/component-inventory"/>

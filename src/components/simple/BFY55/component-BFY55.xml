@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd"
-  xmlns="https://eriksiegel.nl/ns/component-inventory"  id="BFY55" name="BFY55"
-  summary="NPN high frequency transistor" count="19" category-idrefs="transistor.npn" price-range-idref="cheap" package-idref="TO39"
-  location-idref="box-sub-boxes" since="2024-11-11"/>
+<component
+  category-idrefs="transistor.npn"
+  count="19"
+  id="BFY55"
+  location-idref="box-sub-boxes"
+  name="BFY55"
+  package-idref="TO39"
+  price-range-idref="cheap"
+  since="2024-11-11"
+  summary="NPN high frequency transistor"
+  xmlns="https://eriksiegel.nl/ns/component-inventory"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd"/>

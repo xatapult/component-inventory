@@ -1,9 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd"
-  xmlns="https://eriksiegel.nl/ns/component-inventory"  id="BD240" name="BD240"
-  summary="PNP transistor" count="4" category-idrefs="transistor.pnp" package-idref="TO220" location-idref="box-sub-boxes"
-  location-box-label="TRANS A" since="2024-11-20" discontinued="true">
+<component
+  category-idrefs="transistor.pnp"
+  count="4"
+  discontinued="true"
+  id="BD240"
+  location-box-label="TRANS A"
+  location-idref="box-sub-boxes"
+  name="BD240"
+  package-idref="TO220"
+  since="2024-11-20"
+  summary="PNP transistor"
+  xmlns="https://eriksiegel.nl/ns/component-inventory"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd">
   <description>
     <p>Both A and B variant present (mixed).</p>
   </description>

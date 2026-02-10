@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd"
-  xmlns="https://eriksiegel.nl/ns/component-inventory"  id="MC1458N" name="MC1458N"
-  summary="General purpose operational amplifier" count="8" category-idrefs="opamp" price-range-idref="very-cheap" package-idref="DIP8"
-  location-idref="box-sub-boxes" since="2024-11-12"/>
+<component
+  category-idrefs="opamp"
+  count="8"
+  id="MC1458N"
+  location-idref="box-sub-boxes"
+  name="MC1458N"
+  package-idref="DIP8"
+  price-range-idref="very-cheap"
+  since="2024-11-12"
+  summary="General purpose operational amplifier"
+  xmlns="https://eriksiegel.nl/ns/component-inventory"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd"/>

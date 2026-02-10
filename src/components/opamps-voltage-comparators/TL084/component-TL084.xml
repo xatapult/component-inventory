@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component
+  category-idrefs="opamp"
+  count="1"
+  id="TL084"
+  location-box-label="OPAMP A"
+  location-idref="box-sub-boxes"
+  name="TL084"
+  package-idref="DIP14"
+  since="2024-11-16"
+  summary="FET-Input Operational Amplifiers"
+  xmlns="https://eriksiegel.nl/ns/component-inventory"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd"/>

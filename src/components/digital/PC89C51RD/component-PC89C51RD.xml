@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd" id="PC89C51RD"
-  name="PC89C51RD" summary="Microcontroller" count="1" price-range-idref="very-expensive" package-idref="DIP40" location-idref="bag"
-  since="2024-11-13" xmlns="https://eriksiegel.nl/ns/component-inventory" category-idrefs="microcontroller"/>
+<component
+  category-idrefs="microcontroller"
+  count="1"
+  id="PC89C51RD"
+  location-idref="bag"
+  name="PC89C51RD"
+  package-idref="DIP40"
+  price-range-idref="very-expensive"
+  since="2024-11-13"
+  summary="Microcontroller"
+  xmlns="https://eriksiegel.nl/ns/component-inventory"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd"/>

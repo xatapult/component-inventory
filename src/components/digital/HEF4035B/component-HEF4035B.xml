@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<component id="HEF4035B"
-           name="HEF4035"
-           summary="4-bit universal shift register"
-           count="10"
-           category-idrefs="HEF4000"
-           package-idref="DIP16"
-           location-idref="box-sub-boxes"
-           since="2024-11-06"
-           discontinued="true"
-           xmlns="https://eriksiegel.nl/ns/component-inventory"
-           />
+<component
+  category-idrefs="HEF4000"
+  count="10"
+  discontinued="true"
+  id="HEF4035B"
+  location-idref="box-sub-boxes"
+  name="HEF4035"
+  package-idref="DIP16"
+  since="2024-11-06"
+  summary="4-bit universal shift register"
+  xmlns="https://eriksiegel.nl/ns/component-inventory"/>

@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd"
-  xmlns="https://eriksiegel.nl/ns/component-inventory"  id="LM723" name="LM723"
-  summary="High precision voltage regulator" count="7" package-idref="DIP14" location-idref="box-sub-boxes" since="2024-11-11" discontinued="true"
-  category-idrefs="voltage-regulator"/>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component
+  category-idrefs="thermal"
+  count="2"
+  id="F100C"
+  location-idref="bag"
+  name="F100C"
+  since="2024-11-12"
+  summary="Thermal switch 80C"
+  xmlns="https://eriksiegel.nl/ns/component-inventory"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd"/>

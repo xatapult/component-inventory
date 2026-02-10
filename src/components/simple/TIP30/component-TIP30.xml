@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component
+  category-idrefs="transistor.pnp transistor.power"
+  count="3"
+  id="TIP30"
+  location-box-label="TRANS A"
+  location-idref="box-sub-boxes"
+  name="TIP30"
+  package-idref="TO220"
+  since="2024-11-20"
+  summary="PNP power transistor"
+  xmlns="https://eriksiegel.nl/ns/component-inventory"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd">
+  <description>
+    <p>Remark: Both A and B variant</p>
+  </description>
+</component>

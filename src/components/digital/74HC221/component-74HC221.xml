@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<component id="74HC221"
-           name="74HC221"
-           summary="Dual Monostable Multivibrator with Reset"
-           count="19"
-           category-idrefs="74HC"
-           package-idref="DIP16"
-           location-idref="box-sub-boxes"
-           location-box-label="HC221"
-           since="2024-11-16"
-           xmlns="https://eriksiegel.nl/ns/component-inventory"
-           >
-   <description>
-      <p>Remark: Like 74HC123?</p>
-   </description>
+<component
+  category-idrefs="74HC"
+  count="19"
+  id="74HC221"
+  location-box-label="HC221"
+  location-idref="box-sub-boxes"
+  name="74HC221"
+  package-idref="DIP16"
+  since="2024-11-16"
+  summary="Dual Monostable Multivibrator with Reset"
+  xmlns="https://eriksiegel.nl/ns/component-inventory">
+  <description>
+    <p>Remark: Like 74HC123?</p>
+  </description>
 </component>

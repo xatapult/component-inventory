@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd"
-  xmlns="https://eriksiegel.nl/ns/component-inventory"  id="LM339N" name="LM339N"
-  summary="Low-Power Low-Offset Voltage Quad Comparators" count="1" category-idrefs="voltage-comparator" price-range-idref="very-cheap"
-  package-idref="DIP14" location-idref="box-sub-boxes" location-box-label="OPAMP A" since="2024-10-23"/>
+<component
+  category-idrefs="voltage-comparator"
+  count="1"
+  id="LM339N"
+  location-box-label="OPAMP A"
+  location-idref="box-sub-boxes"
+  name="LM339N"
+  package-idref="DIP14"
+  price-range-idref="very-cheap"
+  since="2024-10-23"
+  summary="Low-Power Low-Offset Voltage Quad Comparators"
+  xmlns="https://eriksiegel.nl/ns/component-inventory"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd"/>

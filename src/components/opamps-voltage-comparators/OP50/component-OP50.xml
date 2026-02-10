@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd"
- xmlns="https://eriksiegel.nl/ns/component-inventory"  id="OP50" name="OP50"
- summary="High output current Opamp" count="9" category-idrefs="opamp" package-idref="DIP14" location-idref="box-sub-boxes" since="2024-11-13"
- discontinued="true"/>
+<component
+  category-idrefs="opamp"
+  count="9"
+  discontinued="true"
+  id="OP50"
+  location-idref="box-sub-boxes"
+  name="OP50"
+  package-idref="DIP14"
+  since="2024-11-13"
+  summary="High output current Opamp"
+  xmlns="https://eriksiegel.nl/ns/component-inventory"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd"/>

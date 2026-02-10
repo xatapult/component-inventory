@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component
+  category-idrefs="movement"
+  count="3"
+  discontinued="true"
+  id="LA02-0201-1"
+  location-idref="bag"
+  name="LA02-0201-1"
+  since="2024-11-13"
+  summary="Convective accelerometer and
+ inclinometer"
+  xmlns="https://eriksiegel.nl/ns/component-inventory"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd"/>

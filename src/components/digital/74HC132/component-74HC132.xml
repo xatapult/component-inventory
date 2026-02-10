@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<component id="74HC132"
-           name="74HC132"
-           summary="Quad 2−Input NAND Gate; Schmitt-trigger inputs"
-           count="#many"
-           category-idrefs="74HC"
-           package-idref="DIP14"
-           location-idref="box-sub-boxes"
-           location-box-label="HC132"
-           since="2024-11-16"
-           xmlns="https://eriksiegel.nl/ns/component-inventory"
-           />
+<component
+  category-idrefs="74HC"
+  count="#many"
+  id="74HC132"
+  location-box-label="HC132"
+  location-idref="box-sub-boxes"
+  name="74HC132"
+  package-idref="DIP14"
+  since="2024-11-16"
+  summary="Quad 2−Input NAND Gate; Schmitt-trigger inputs"
+  xmlns="https://eriksiegel.nl/ns/component-inventory"/>
