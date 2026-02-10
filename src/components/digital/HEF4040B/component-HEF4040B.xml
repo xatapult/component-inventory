@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component
-  category-idrefs="HEF4000"
+  category-idrefs="HEF4000 logic.counter logic.schmitt-trigger"
   count="8"
   id="HEF4040B"
   location-idref="box-sub-boxes"
@@ -8,5 +8,7 @@
   package-idref="DIP16"
   price-range-idref="cheap"
   since="2024-10-21"
-  summary="14 stage binary counter"
-  xmlns="https://eriksiegel.nl/ns/component-inventory"/>
+  summary="12 stage binary ripple counter (Schmitt-trigger CP)"
+  xmlns="https://eriksiegel.nl/ns/component-inventory"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd"/>

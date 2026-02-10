@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component
-  category-idrefs="HEF4000"
+  category-idrefs="HEF4000 voltage-translator"
   count="10"
   id="HEF4104B"
   location-idref="box-sub-boxes"
@@ -9,4 +9,6 @@
   price-range-idref="expensive"
   since="2024-10-19"
   summary="4 * low-to-high voltage translator; 3-state"
-  xmlns="https://eriksiegel.nl/ns/component-inventory"/>
+  xmlns="https://eriksiegel.nl/ns/component-inventory"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd"/>

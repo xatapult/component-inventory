@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component
-  category-idrefs="HEF4000"
+  category-idrefs="HEF4000 logic.inverter"
   count="8"
   id="HEF40098B"
   location-idref="box-sub-boxes"
@@ -9,4 +9,6 @@
   price-range-idref="cheap"
   since="2024-10-19"
   summary="Hex inverting buffer; 3-state"
-  xmlns="https://eriksiegel.nl/ns/component-inventory"/>
+  xmlns="https://eriksiegel.nl/ns/component-inventory"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd"/>

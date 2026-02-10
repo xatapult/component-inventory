@@ -15,7 +15,8 @@
   </favorite-components>
 
   <favorite-categories>
-    <!-- TBD -->
+    <category idref="driver"/>
+    <category idref="optocoupler"/>
   </favorite-categories>
 
   <!-- ======================================================================= -->

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component
-  category-idrefs="HEF4000 logic.decoder"
-  count="10"
-  id="HEF4028B"
+  category-idrefs="HEF4000 logic.counter"
+  count="#unknown"
+  id="HEF4020B"
   location-idref="box-sub-boxes"
-  name="HEF4028"
+  name="HEF4020"
   package-idref="DIP16"
-  price-range-idref="cheap"
-  since="2024-10-23"
-  summary="BCD to decimal decoder"
+  price-range-idref="#unknown"
+  since="2024-11-11"
+  summary="14-stage binary counter"
   xmlns="https://eriksiegel.nl/ns/component-inventory"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd"/>

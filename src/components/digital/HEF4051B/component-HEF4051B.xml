@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component
-  category-idrefs="HEF4000"
+  category-idrefs="HEF4000 logic.multiplexer logic.demultiplexer analogue-switch"
   count="#many"
   id="HEF4051B"
   location-idref="box-sub-boxes"
@@ -9,4 +9,6 @@
   price-range-idref="very-cheap"
   since="2024-11-06"
   summary="8-channel analog multiplexer/demultiplexer"
-  xmlns="https://eriksiegel.nl/ns/component-inventory"/>
+  xmlns="https://eriksiegel.nl/ns/component-inventory"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd"/>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component xmlns="https://eriksiegel.nl/ns/component-inventory" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd"
+  summary="General purpose diode"
+  category-idrefs="diode"
+  count="#many"
+  location-idref="box-workbench"
+>
+  <property-values>
+    <property-value property-idref="max-current" value="1000"/>
+  </property-values>
+</component>
