@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component
-  category-idrefs="74HC"
+  category-idrefs="74HC logic.comparator"
   count="#many"
   id="74HC85"
   location-box-label="HC85"
@@ -10,4 +10,6 @@
   price-range-idref="cheap"
   since="2024-11-14"
   summary="4-bit magnitude comparator"
-  xmlns="https://eriksiegel.nl/ns/component-inventory"/>
+  xmlns="https://eriksiegel.nl/ns/component-inventory"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd"/>

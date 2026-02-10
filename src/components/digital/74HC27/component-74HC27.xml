@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component
-  category-idrefs="74HC"
+  category-idrefs="74HC logic.nor"
   count="19"
   id="74HC27"
   location-box-label="HC27"
@@ -9,4 +9,6 @@
   package-idref="DIP14"
   since="2024-11-16"
   summary="Triple 3-input NOR gate"
-  xmlns="https://eriksiegel.nl/ns/component-inventory"/>
+  xmlns="https://eriksiegel.nl/ns/component-inventory"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd"/>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component
-  category-idrefs="driver logic"
+  category-idrefs="driver logic.non-inverter"
   count="#many"
   id="DM7407"
   location-idref="box-sub-boxes"

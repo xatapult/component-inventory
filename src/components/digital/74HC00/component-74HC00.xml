@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component
-  category-idrefs="74HC"
+  category-idrefs="74HC logic.nand"
   count="#many"
   id="74HC00"
   location-box-label="HC00"
@@ -11,4 +11,5 @@
   price-range-idref="very-cheap"
   since="2024-11-16"
   summary="Quadruple 2-input NAND gates"
-  xmlns="https://eriksiegel.nl/ns/component-inventory"/>
+  xmlns="https://eriksiegel.nl/ns/component-inventory" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd"/>

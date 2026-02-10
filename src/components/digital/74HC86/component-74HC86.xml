@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component
-  category-idrefs="74HC"
+  category-idrefs="74HC logic.or"
   count="#many"
   id="74HC86"
   location-box-label="HC86"
@@ -10,4 +10,6 @@
   price-range-idref="cheap"
   since="2024-11-13"
   summary="Quadruple 2-input exclusive OR gates"
-  xmlns="https://eriksiegel.nl/ns/component-inventory"/>
+  xmlns="https://eriksiegel.nl/ns/component-inventory"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd"/>

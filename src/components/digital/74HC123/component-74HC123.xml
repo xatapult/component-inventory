@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component
-  category-idrefs="74HC"
+  category-idrefs="74HC timer"
   count="#many"
   id="74HC123"
   location-box-label="HC123"
@@ -10,8 +10,6 @@
   partly-in-reserve-stock="true"
   since="2024-11-16"
   summary="Dual Retriggerable Monostable Multivibrators with Resets"
-  xmlns="https://eriksiegel.nl/ns/component-inventory">
-  <description>
-    <p>Remark: Is this like NE555?</p>
-  </description>
-</component>
+  xmlns="https://eriksiegel.nl/ns/component-inventory"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd"/>

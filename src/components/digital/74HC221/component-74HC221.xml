@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component
-  category-idrefs="74HC"
+  category-idrefs="74HC timer"
   count="19"
   id="74HC221"
   location-box-label="HC221"
@@ -9,8 +9,6 @@
   package-idref="DIP16"
   since="2024-11-16"
   summary="Dual Monostable Multivibrator with Reset"
-  xmlns="https://eriksiegel.nl/ns/component-inventory">
-  <description>
-    <p>Remark: Like 74HC123?</p>
-  </description>
-</component>
+  xmlns="https://eriksiegel.nl/ns/component-inventory"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd"/>

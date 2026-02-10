@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component
-  category-idrefs="74HC"
+  category-idrefs="74HC logic.flip-flop.d-type"
   count="#many"
   id="74HC174"
   location-box-label="HC174"
@@ -9,4 +9,6 @@
   package-idref="DIP16"
   since="2024-11-16"
   summary="Hex D-type flip-flop with reset; positive-edge trigger"
-  xmlns="https://eriksiegel.nl/ns/component-inventory"/>
+  xmlns="https://eriksiegel.nl/ns/component-inventory"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd"/>

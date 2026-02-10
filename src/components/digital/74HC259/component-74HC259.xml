@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component
-  category-idrefs="74HC"
+  category-idrefs="74HC logic.addressable-latch"
   count="#many"
   id="74HC259"
   location-box-label="HC259"
@@ -10,8 +10,6 @@
   price-range-idref="cheap"
   since="2024-11-16"
   summary="8-bit addressable latch"
-  xmlns="https://eriksiegel.nl/ns/component-inventory">
-  <description>
-    <p>Remark: Looks usefull</p>
-  </description>
-</component>
+  xmlns="https://eriksiegel.nl/ns/component-inventory"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd"> </component>

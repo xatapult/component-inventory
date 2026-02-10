@@ -226,9 +226,6 @@
       name="Logic ICs">
       <categories>
         <category
-          id="switch"
-          name="Switches"/>
-        <category
           id="schmitt-trigger"
           name="Schmitt triggers">
           <description>
@@ -244,13 +241,130 @@
           id="nand"
           name="NAND gates"/>
         <category
+          id="and"
+          name="AND gates"/>
+        <category
+          id="nor"
+          name="NOR gates"/>
+        <category
+          id="or"
+          name="OR gates"/>
+        <category
           id="inverter"
           name="Inverters"/>
+        <category
+          id="non-inverter"
+          name="Non-inverter drivers"/>
+        <category
+          id="comparator"
+          name="Logic comparators"/>
+        <category
+          id="computation"
+          name="Digital computation"/>
+        <category
+          id="multiplexer"
+          name="Multiplexers"/>
+        <category
+          id="demultiplexer"
+          name="Demultiplexers"/>
+        <category
+          id="counter"
+          name="Counters">
+          <categories>
+            <category
+              id="johnson-decade">
+              <description>
+                <p>A Johnson decade counter is a type of shift-register-based counter that cycles through ten unique states by feeding the inverted
+                  output of the last flip-flop back into the first. As the clock advances, a single stream of ones and zeros “walks” through the
+                  register in a predictable pattern, producing a sequence that is easy to decode and inherently glitch-resistant. Because it generates
+                  ten distinct, evenly spaced states with minimal decoding logic, a Johnson decade counter is often used in timing circuits, LED
+                  chasers, frequency dividers, and other applications where a clean, repeatable 10-step sequence is needed.</p>
+              </description>
+            </category>
+          </categories>
+        </category>
+        <category
+          id="shift-register"
+          name="Shift registers"/>
+        <category
+          id="transceiver"
+          name="Transceivers">
+          <description>
+            <p>A digital transceiver is an integrated communication device that both transmits and receives digital signals, enabling reliable two-way
+              data exchange between electronic systems. Unlike analog transceivers, it processes information as discrete binary values, which improves
+              noise immunity, supports error detection and correction, and allows for higher-speed, protocol-driven communication. Digital
+              transceivers are used in everything from microcontroller serial interfaces and wireless modules to high-speed networking equipment,
+              where they serve as the essential bridge between digital logic and the physical communication medium.</p>
+          </description>
+        </category>
+        <category
+          id="addressable-latch">
+          <description>
+            <p>An addressable latch is a digital storage element that allows one of several latch cells to be individually selected and updated using
+              an address input, while all others remain unchanged. It typically combines a bank of simple latches with a decoder so that only the
+              latch corresponding to the active address line responds to the data and enable signals. This structure makes it efficient for building
+              small register files, configuration registers, or memory-mapped control blocks, because a single shared data path can write to many
+              storage locations without needing separate control lines for each one.</p>
+          </description>
+        </category>
+        <category
+          id="d-type-latch"
+          name="D-type latches">
+          <description>
+            <p>A D-type latch is a level-sensitive storage element that captures the value on its data input D whenever its enable signal is active,
+              and holds that value steady when the enable signal is inactive. While the latch is “open,” the output follows the input continuously;
+              once the enable signal goes low, the latch “closes” and preserves the last input value, effectively storing a single bit until it is
+              enabled again. This makes D-type latches useful for controlled data flow, temporary storage, and building larger sequential circuits
+              where timing and transparency behavior matter.</p>
+          </description>
+        </category>
+        <category
+          id="switch"
+          name="Switches">
+          <description>
+            <p>A digital switch is an integrated circuit that uses MOSFET-based analog switches to route or isolate signals under digital control.
+              Each switch behaves like a voltage-controlled resistor: when its control input is activated, the internal MOSFET conducts and allows an
+              analog or digital signal to pass with low resistance; when deactivated, it presents a very high resistance, effectively disconnecting
+              the path. Devices like the 74HC4316 offer multiple independently controlled bilateral switches, making them useful for signal
+              multiplexing, audio routing, sensor selection, and other applications where flexible, low-distortion switching is needed without
+              mechanical relays.</p>
+          </description>
+        </category>
+
+        <category
+          id="flip-flop"
+          name="Flip-flops">
+          <description>
+            <p>A flip-flop is a fundamental digital memory element that stores a single bit of information by maintaining one of two stable output
+              states until an input signal causes it to change. Unlike simple logic gates, a flip-flop is sequential, meaning its output depends not
+              only on current inputs but also on its previous state, allowing it to act as a tiny, clocked memory cell. By responding predictably to
+              control signals—such as clock pulses, set/reset inputs, or data lines—flip-flops form the backbone of registers, counters, and virtually
+              all synchronous digital systems where reliable state retention and timing are essential.</p>
+          </description>
+          <categories>
+            <category
+              id="d-type"
+              name="D-type flip-flops">
+              <description>
+                <p>A D-type flip-flop is a digital storage element that captures the value present on its data input (D) at the moment of a triggering
+                  clock edge and then holds that value stable at its output (Q) until the next clock event. Internally, it uses gating logic to ensure
+                  that only the value at the precise clock transition—typically the rising or falling edge—is latched, making it ideal for building
+                  synchronous circuits where timing and state progression must be tightly controlled. Because it cleanly separates input sampling from
+                  output holding, the D-flip-flop is the fundamental building block for registers, counters, finite-state machines, and virtually all
+                  modern sequential logic.</p>
+              </description>
+            </category>
+          </categories>
+
+        </category>
       </categories>
 
     </category>
 
     <!-- Various: -->
+    <category
+      id="analogue-switch"
+      name="Analogue switches"/>
     <category
       id="converter"
       name="Converters"/>
@@ -342,7 +456,15 @@
       summary="Demodulators"/>
     <category
       id="gyrator"
-      summary="Gyrators"/>
+      summary="Gyrators">
+      <description>
+        <p>A gyrator is an active circuit element that mimics the behavior of an inductor by using amplifiers and capacitors to create an impedance
+          that looks inductive at its terminals. Because real inductors can be bulky, expensive, or impractical at low frequencies, a gyrator provides
+          a compact, tunable alternative that preserves the same reactive characteristics—such as phase shift and energy storage—without requiring a
+          physical coil. This makes gyrators especially useful in analog signal processing, where they enable filters, equalizers, and resonant
+          circuits to be built using only resistors, capacitors, and active devices.</p>
+      </description>
+    </category>
     <category
       id="voltage-comparator"
       name="Voltage comparators">
