@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory ../../../grammar/ci-component.xsd"
+  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd"
   xmlns="https://eriksiegel.nl/ns/component-inventory" xmlns:xtlcon="http://www.xtpxlib.nl/ns/container" id="OQ0003" name="OQ0003" summary="?"
   count="10" price-range-idref="very-expensive" package-idref="DIP16" location-idref="box-sub-boxes" since="2024-10-23" category-idrefs="unknown">
   <description>

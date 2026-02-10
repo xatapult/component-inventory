@@ -6,16 +6,13 @@
 
   <!-- ======================================================================= -->
 
+  <p:import href="../xpl3mod/component-inventory.mod.xpl"/>
+
+  <!-- ======================================================================= -->
+
   <p:option static="true" name="ci:report-type-errors" as="xs:string" select="'errors'"/>
   <p:option static="true" name="ci:report-type-warnings-and-errors" as="xs:string" select="'warnings-and-errors'"/>
   <p:option static="true" name="ci:report-type-full" as="xs:string" select="'full'"/>
-
-  <!-- Report output types: -->
-  <p:option static="true" name="ci:report-output-type-html" as="xs:string" select="'html'"/>
-  <p:option static="true" name="ci:report-output-type-md" as="xs:string" select="'md'"/>
-
-  <!-- Others: -->
-  <p:option static="true" name="local:empty-map" as="map(*)" select="map{}" visibility="private"/>
 
   <!-- ======================================================================= -->
 
@@ -33,11 +30,7 @@
     <p:import-functions href="file:/xatapult/xtpxlib-common/xslmod/href.mod.xsl"/>
 
     <p:import href="file:/xatapult/xtpxlib-common/xpl3mod/message/message.xpl"/>
-
-    <p:import href="file:/xatapult/xtpxlib-sml/xpl3/sml-prepare.xpl"/>
-    <p:import href="file:/xatapult/xtpxlib-sml/xpl3/prepared-sml-to-html.xpl"/>
-    <p:import href="file:/xatapult/xtpxlib-sml/xpl3/prepared-sml-to-markdown.xpl"/>
-
+   
     <!-- ======================================================================= -->
     <!-- PORTS: -->
 
@@ -85,6 +78,7 @@
 
     <p:variable name="timestamp-start" as="xs:dateTime" select="current-dateTime()"/>
 
+    <!-- Create and output the report: -->
     <p:group name="create-report">
 
       <xtlc:message enabled="{$messages-enabled}" level="{$message-indent-level}">
@@ -100,44 +94,18 @@
         }"/>
       </p:xslt>
 
-      <!-- Prepare the SML: -->
-      <sml:sml-prepare>
+      <ci:write-sml-report>
         <p:with-option name="href-dir-result" select="$href-dir-result"/>
-      </sml:sml-prepare>
-      <p:set-properties>
-        <p:with-option name="properties" select="map{'serialization': $local:empty-map}"/>
-      </p:set-properties>
-      <p:identity name="prepared-sml"/>
-
-      <!-- Output it: -->
-      <p:if test="$ci:report-output-type-html = $report-output-types">
-        <p:variable name="href-output" as="xs:string" select="xtlc:href-concat(($href-dir-result, $filename || '.html'))"/>
-        <sml:prepared-sml-to-html>
-          <p:with-input pipe="@prepared-sml"/>
-        </sml:prepared-sml-to-html>
-        <p:store serialization="map{'method': 'html'}">
-          <p:with-option name="href" select="$href-output"/>
-        </p:store>
-        <xtlc:message enabled="{$messages-enabled}" level="{$message-indent-level + 1}">
-          <p:with-option name="text" select="'HTML report written to &quot;' || $href-output || '&quot;'"/>
-        </xtlc:message>
-      </p:if>
-
-      <p:if test="$ci:report-output-type-md = $report-output-types">
-        <p:variable name="href-output" as="xs:string" select="xtlc:href-concat(($href-dir-result, $filename || '.md'))"/>
-        <sml:prepared-sml-to-markdown>
-          <p:with-input pipe="@prepared-sml"/>
-        </sml:prepared-sml-to-markdown>
-        <p:store serialization="map{'method': 'text'}">
-          <p:with-option name="href" select="$href-output"/>
-        </p:store>
-        <xtlc:message enabled="{$messages-enabled}" level="{$message-indent-level + 1}">
-          <p:with-option name="text" select="'Markdown report written to &quot;' || $href-output || '&quot;'"/>
-        </xtlc:message>
-      </p:if>
+        <p:with-option name="filename" select="$filename"/>
+        <p:with-option name="add-toc" select="$add-toc"/>
+        <p:with-option name="report-output-types" select="$report-output-types"/>
+        <p:with-option name="message-indent-level" select="$message-indent-level"/>
+        <p:with-option name="messages-enabled" select="$messages-enabled"/>
+      </ci:write-sml-report>
 
     </p:group>
 
+    <!-- Create the output (= source + duration attribute): -->
     <p:add-attribute depends="create-report" attribute-name="duration-reporting">
       <p:with-input pipe="source@create-normalized-component-inventory-specification-report"/>
       <p:with-option name="attribute-value" select="string(current-dateTime() - $timestamp-start)"/>

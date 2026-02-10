@@ -18,7 +18,7 @@
     <!-- The character to use if we concatenate categories and sub-categories. -->
   </xsl:variable>
 
-  <xsl:variable name="ci:default-component-description-document-regexp" as="xs:string" select="'^component-.+\.xml$'"/>
+  <xsl:variable name="ci:default-component-description-document-regexp" as="xs:string" select="'^component(-.+)?\.xml$'"/>
 
   <xsl:variable name="ci:special-value-unknown" as="xs:string" select="'#unknown'"/>
   <xsl:variable name="ci:special-value-many" as="xs:string" select="'#many'"/>

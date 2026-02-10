@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory ../../../grammar/ci-component.xsd"
+  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd"
   xmlns="https://eriksiegel.nl/ns/component-inventory" xmlns:xtlcon="http://www.xtpxlib.nl/ns/container" id="SN7407" name="SN7407"
   summary="Hex Buffers with High Voltage Open-Collector Outputs" count="#many" category-idrefs="SN74 driver" package-idref="DIP14"
   location-idref="box-sub-boxes" partly-in-reserve-stock="true" since="2024-11-13"/>

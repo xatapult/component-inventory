@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory ../../../grammar/ci-component.xsd" summary="NPN video transistor"
+  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd" summary="NPN video transistor"
  xmlns="https://eriksiegel.nl/ns/component-inventory" xmlns:xtlcon="http://www.xtpxlib.nl/ns/container" id="BFQ13" name="BFQ13" count="6"
  category-idrefs="transistor.npn" package-idref="TO71" location-idref="box-sub-boxes" since="2024-11-11"/>
