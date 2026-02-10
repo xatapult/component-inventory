@@ -11,6 +11,10 @@
     <!-- General: -->
     <property id="max-current" name="Maximum current" value-pattern="^-?[0-9]+$" suffix="mA"/>
 
+
+    <!-- For Zener diodes: -->
+    <property id="reverse-voltage" value-pattern="^[0-9]+(\.[0-9]*)?$" suffix="V"/>
+
     <!-- For transistors: -->
     <property id="collector-to-base" name="Collector to base voltage" suffix="V" value-pattern="^-?[0-9]+$"/>
     <property id="collector-to-emitter" name="Collector to emitter voltage" suffix="V" value-pattern="^-?[0-9]+$"/>
@@ -187,7 +191,7 @@
         <category id="decoder" name="Decoders"/>
         <category id="counter" name="Counters">
           <categories>
-            <category id="johnson-decade">
+            <category id="johnson-decade" name="Johnson decade counter">
               <description>
                 <p>A Johnson decade counter is a type of shift-register-based counter that cycles through ten unique states by feeding the inverted
                   output of the last flip-flop back into the first. As the clock advances, a single stream of ones and zeros “walks” through the
@@ -196,7 +200,7 @@
                   chasers, frequency dividers, and other applications where a clean, repeatable 10-step sequence is needed.</p>
               </description>
             </category>
-            <category id="johnson">
+            <category id="johnson" name="Johnson counter">
               <description>
                 <p>A Johnson counter is a type of shift-register-based sequential circuit that generates a repeating sequence of states by feeding the
                   inverted output of the last flip-flop back into the first. As the clock advances, a pattern of ones and zeros circulates through the
@@ -378,6 +382,7 @@
     <category id="voltage-translator" name="Voltage translators"/>
 
     <category id="diode" name="Diodes" optional-property-idrefs="max-current"/>
+    <category id="zener-diode" name="Zener diodes" optional-property-idrefs="max-current reverse-voltage"/>
 
     <!-- For everything we can't identify or don't know how to categorize: -->
     <category id="unknown" summary="Unknown components"/>

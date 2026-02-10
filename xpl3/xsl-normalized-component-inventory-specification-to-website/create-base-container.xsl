@@ -1165,8 +1165,10 @@
             <a href="{$item-type-plural}/{$idref}/{$idref}{$extension-html}">
               <xsl:value-of select="$item-elm/@name"/>
             </a>
-            <xsl:text> - </xsl:text>
-            <xsl:value-of select="$item-elm/@summary"/>
+            <xsl:if test="normalize-space($item-elm/@summary) ne ''">
+              <xsl:text> - </xsl:text>
+              <xsl:value-of select="$item-elm/@summary"/>
+            </xsl:if>
             <xsl:if test="normalize-space($reference-elm/@remark) ne ''">
               <xsl:text> (</xsl:text>
               <xsl:value-of select="$reference-elm/@remark"/>
