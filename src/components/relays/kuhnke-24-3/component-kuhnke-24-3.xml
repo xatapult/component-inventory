@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component xmlns="https://eriksiegel.nl/ns/component-inventory" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="Relay Kuhnke"
+  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd" count="#many" summary="Kuhnke relay 24V&#160;DC (3C)"
+  location-idref="relay-container" category-idrefs="relay.24vdc" price-range-idref="cheap">
+
+  <description>
+    <ul>
+      <li>Coil pins A + B (bottom row, middle pin not used)</li>
+      <li>Pins 11 + 12 + 13 = common (top row)</li>
+      <li>Pins 32 + 22 + 12 = NC (bottom row)</li>
+      <li>Pins 24 + 34 + 14 = NO (top row)</li>
+    </ul>
+  </description>
+
+  <property-values>
+    <property-value property-idref="relay-coil-voltage-dc" value="24"/>
+    <property-value property-idref="relay-changeover-contacts" value="3"/>
+  </property-values>
+
+</component>

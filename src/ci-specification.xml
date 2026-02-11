@@ -22,11 +22,31 @@
     <property id="collector-current" name="Collector current" suffix="mA" value-pattern="^-?[0-9]+$"/>
     <property id="gain" name="Gain" value-pattern="^[0-9]+$"/>
 
+    <!-- For relays: -->
+    <property id="relay-coil-impedance" name="Coil impedance" value-pattern="^[0-9]+$" suffix="&#2126;"/>
+    <property id="relay-coil-voltage-dc" name="Coil voltage" value-pattern="^[0-9]+$" suffix="V&#160;DC"/>
+    <property id="relay-coil-voltage-ac" name="Coil voltage" value-pattern="^[0-9]+$" suffix="V&#160;AC"/>
+    <property id="relay-changeover-contacts" name="Changeover contacts" value-pattern="^[0-9]+$"/>
+    <property id="relay-make-contacts" name="Make contacts" value-pattern="^[0-9]+$"/>
+
   </properties>
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
   <categories>
+
+    <!-- Relays -->
+    <category id="relay" name="Relays"
+      optional-property-idrefs="relay-coil-impedance relay-coil-voltage-dc relay-coil-voltage-ac relay-changeover-contacts relay-make-contacts">
+      <categories>
+        <category id="24vdc" name="Relays (24V&#160;DC)"/>
+        <category id="24vac" name="Relays (24V&#160;AC)"/>
+        <category id="12vdc" name="Relays (12V&#160;DC)"/>
+        <category id="12vac" name="Relays (12V&#160;AC)"/>
+        <category id="5vdc" name="Relays (5V&#160;DC)"/>
+        <category id="5vac" name="Relays (5V&#160;AC)"/>
+      </categories>
+    </category>
 
     <!-- Simple components: -->
     <category id="comp" name="Simple components">
@@ -63,7 +83,7 @@
               base, one collector, and one emitter. </p>
           </description>
         </category>
-        <category id="special" summary="Transistors - Special"/>
+        <category id="special" name="Transistors - Special"/>
       </categories>
     </category>
 
@@ -191,15 +211,6 @@
         <category id="decoder" name="Decoders"/>
         <category id="counter" name="Counters">
           <categories>
-            <category id="johnson-decade" name="Johnson decade counter">
-              <description>
-                <p>A Johnson decade counter is a type of shift-register-based counter that cycles through ten unique states by feeding the inverted
-                  output of the last flip-flop back into the first. As the clock advances, a single stream of ones and zeros “walks” through the
-                  register in a predictable pattern, producing a sequence that is easy to decode and inherently glitch-resistant. Because it generates
-                  ten distinct, evenly spaced states with minimal decoding logic, a Johnson decade counter is often used in timing circuits, LED
-                  chasers, frequency dividers, and other applications where a clean, repeatable 10-step sequence is needed.</p>
-              </description>
-            </category>
             <category id="johnson" name="Johnson counter">
               <description>
                 <p>A Johnson counter is a type of shift-register-based sequential circuit that generates a repeating sequence of states by feeding the
@@ -296,6 +307,7 @@
     </category>
 
     <!-- Various: -->
+    <category id="dcdc-voltage-converter" name="DC to DC voltage converters"></category>
     <category id="analogue-switch" name="Analogue switches"/>
     <category id="converter" name="Converters"/>
     <category id="filter" name="Filters"/>
@@ -342,15 +354,16 @@
       </description>
     </category>
     <category id="display" name="Display related components"/>
-    <category id="radio" summary="Radio related components"/>
+    <category id="radio" name="Radio related components"/>
     <category id="thermal" name="Thermal switches"/>
     <category id="communication" name="Communication related ICs"/>
     <category id="oscillator" name="Oscillators"/>
     <category id="audio" name="Audio related components"/>
     <category id="movement" name="Movement related components"/>
-    <category id="modulator" summary="Modulators"/>
-    <category id="demodulator" summary="Demodulators"/>
-    <category id="gyrator" summary="Gyrators">
+    <category id="modulator" name="Modulators"/>
+    <category id="demodulator" name="Demodulators"/>
+    <category id="motion-sensor" name="Motion sensors"></category>
+    <category id="gyrator" name="Gyrators">
       <description>
         <p>A gyrator is an active circuit element that mimics the behavior of an inductor by using amplifiers and capacitors to create an impedance
           that looks inductive at its terminals. Because real inductors can be bulky, expensive, or impractical at low frequencies, a gyrator provides
@@ -385,7 +398,7 @@
     <category id="zener-diode" name="Zener diodes" optional-property-idrefs="max-current reverse-voltage"/>
 
     <!-- For everything we can't identify or don't know how to categorize: -->
-    <category id="unknown" summary="Unknown components"/>
+    <category id="unknown" name="Unknown components"/>
 
   </categories>
 
@@ -443,6 +456,7 @@
     <location id="box-sub-boxes" name="Component box (with sub-boxes)"/>
     <location id="bag" name="Plastic bag in storage container"/>
     <location id="box-workbench" name="Component box above workbench"/>
+    <location id="relay-container" name="Relay container box"/>
   </locations>
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->

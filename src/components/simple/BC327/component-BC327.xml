@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component category-idrefs="transistor transistor.pnp" count="#unknown" location-idref="box-sub-boxes" package-idref="TO92"
+  price-range-idref="very-cheap" summary="PNP transistor" xmlns="https://eriksiegel.nl/ns/component-inventory"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd">
+
+  <property-values>
+    <property-value property-idref="collector-to-base" value="-50"/>
+    <property-value property-idref="collector-to-emitter" value="-45"/>
+    <property-value property-idref="emitter-to-base" value="-5"/>
+    <property-value property-idref="collector-current" value="-800"/>
+  </property-values>
+
+</component>

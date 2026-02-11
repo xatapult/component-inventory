@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component xmlns="https://eriksiegel.nl/ns/component-inventory" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="Relay Omron"
+  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd" count="#unknown"
+  summary="Omron relay 24V&#160;DC (4C)" location-idref="relay-container" category-idrefs="relay.24vdc" price-range-idref="cheap">
+
+  <description>
+    <ul>
+      <li>To use the built-in LED: 13&#160;=&#160;- and 14&#160;=&#160;+</li>
+      <li>Pins 9 + 10 + 11 + 12 = common</li>
+      <li>Pin 4 (front row beside the coil pins 13 and 14) = NC of common pin 12 </li>
+      <li>Pins 1 + 2 + 3 = NC of common pins 9 + 10 + 11</li>
+      <li>Pins 5 + 6 + 7 + 8 = NO</li>
+    </ul>
+  </description>
+
+  <property-values>
+    <property-value property-idref="relay-coil-voltage-dc" value="24"/>
+    <property-value property-idref="relay-changeover-contacts" value="4"/>
+  </property-values>
+
+</component>

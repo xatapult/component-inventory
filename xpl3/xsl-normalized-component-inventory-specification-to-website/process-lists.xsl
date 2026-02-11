@@ -36,7 +36,8 @@
 
   <xsl:template match="/ci:LIST">
 
-    <xsl:variable name="listitems" as="element(ci:LISTITEM)*" select="ci:LISTITEM"/>
+    <!-- Remark: We take the list items. If these have a count, this must be > 1 -->
+    <xsl:variable name="listitems" as="element(ci:LISTITEM)*" select="ci:LISTITEM[xs:integer((@count, 1)[1]) gt 0]"/>
     <xsl:variable name="grouping-characters" as="xs:string*" select="distinct-values(for $l in $listitems return local:group-char($l))"/>
     <div class="item-list">
       <xsl:choose>
