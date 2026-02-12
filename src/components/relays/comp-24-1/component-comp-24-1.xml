@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component xmlns="https://eriksiegel.nl/ns/component-inventory"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd"
+  
+  name="Computer relay"
+  
+  category-idrefs="relay.24vdc"
+  count="#many"
+  location-idref="relay-container"
+  package-idref="#unknown"
+  price-range-idref="cheap"
+  since="2026-02-12"
+>
+  <description>
+    <p>These are ancient computer relays. Simple, but fast in switching (not for very big loads).</p>
+    <p>They come with feet "arrays" of 4 x 5 relays, so you can put 20 together.</p>
+  </description>
+  
+  <property-values>
+    <property-value property-idref="relay-coil-voltage-dc" value="24"/>
+    <property-value property-idref="relay-changeover-contacts" value="1"/>
+    <property-value property-idref="relay-coil-impedance" value="1500"/>
+  </property-values>
+  
+</component>
+

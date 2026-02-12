@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component
   category-idrefs="HEF4000 logic.counter"
-  count="#unknown"
+  count="7"
   id="HEF4020B"
   location-idref="box-sub-boxes"
   name="HEF4020"
   package-idref="DIP16"
-  price-range-idref="#unknown"
+  price-range-idref="cheap"
   since="2024-11-11"
   summary="14-stage binary counter"
   xmlns="https://eriksiegel.nl/ns/component-inventory"

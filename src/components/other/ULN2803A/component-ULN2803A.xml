@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component
   category-idrefs="driver"
-  count="21"
+  count="20"
   id="ULN2803A"
-  location-idref="box-sub-boxes"
+  location-idref="box-workbench"
   name="ULN2803A"
   package-idref="DIP18"
   price-range-idref="very-cheap"

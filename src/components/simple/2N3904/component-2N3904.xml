@@ -2,7 +2,8 @@
 <component
   category-idrefs="transistor.npn"
   
-  location-idref="box-sub-boxes"
+  count="#many"
+  location-idref="box-workbench"
   package-idref="TO92"
   price-range-idref="very-cheap"
   since="2024-10-21"

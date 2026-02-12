@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<component xmlns="https://eriksiegel.nl/ns/component-inventory" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="Relay Omron"
-  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd" count="#unknown"
-  summary="Omron relay 24V&#160;DC (4C)" location-idref="relay-container" category-idrefs="relay.24vdc" price-range-idref="cheap">
+<component
+  category-idrefs="relay.24vdc"
+  count="12"
+  location-idref="relay-container"
+  name="Relay Omron"
+  price-range-idref="cheap"
+  summary="Omron relay 24V&#160;DC (4C)"
+  xmlns="https://eriksiegel.nl/ns/component-inventory"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd">
 
   <description>
     <ul>
@@ -14,8 +21,12 @@
   </description>
 
   <property-values>
-    <property-value property-idref="relay-coil-voltage-dc" value="24"/>
-    <property-value property-idref="relay-changeover-contacts" value="4"/>
+    <property-value
+      property-idref="relay-coil-voltage-dc"
+      value="24"/>
+    <property-value
+      property-idref="relay-changeover-contacts"
+      value="4"/>
   </property-values>
 
 </component>

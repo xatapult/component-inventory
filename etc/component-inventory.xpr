@@ -6,6 +6,10 @@
             <serialized xml:space="preserve">
                 <serializableOrderedMap>
                     <entry>
+                        <String>editor.format.break.line.before.attribute</String>
+                        <Boolean>true</Boolean>
+                    </entry>
+                    <entry>
                         <String>editor.format.break.long.attributes</String>
                         <Boolean>false</Boolean>
                     </entry>
@@ -33,6 +37,10 @@
                     <entry>
                         <String>editor.format.schema.aware</String>
                         <Boolean>false</Boolean>
+                    </entry>
+                    <entry>
+                        <String>editor.sort.attributes</String>
+                        <Boolean>true</Boolean>
                     </entry>
                     <entry>
                         <String>key.document.templates.option.pane</String>
