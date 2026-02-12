@@ -1,0 +1,151 @@
+/* CSS Settings specifically for XprocRef */
+
+/* Headers: */
+h1 {
+  font-size: 2rem;
+}
+
+h2 {
+  border-top: 1px solid black;
+  margin-top: 2rem;
+  font-size: 1.5rem;
+}
+
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 1rem;
+  font-size: 1.2rem;
+}
+
+/* Paragraphs */
+p {
+  margin-bottom: 0.2rem;
+}
+p.bridgehead {
+  margin-top: 1rem;
+  font-size: 105%;
+  font-weight: bold;
+}
+
+p.table-header {
+  margin-left: 0.5rem;
+  margin-top: 1rem;
+  font-weight: bold;
+}
+
+p.site-remark {
+  border-top: 1px solid black;
+  font-size: 80%;
+}
+
+p.tocentry {
+  margin: 0;
+  font-size: 90%;
+}
+
+p.page-banner {
+  background-color: yellow !important;
+  color: black;
+  font-weight: bold;
+  font-size: 110%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+p.item-start-character-list {
+  background-color: black !important;
+  color: white;
+  font-size: 110%;
+  font-weight: bold;
+  margin-top: 1rem;
+  padding-left: 0.5rem;
+}
+
+p.item-start-character-list a {
+  text-decoration: none;
+  color: lightgrey;
+}
+
+a.nomark {
+  text-decoration: none;
+  color: black; 
+}
+
+.grey {
+  color: grey ! important;
+}
+
+/* Code and code-blocks: */
+pre {
+  margin-top: 1rem ! important;
+  margin-bottom: 1rem ! important;
+  background: lightgrey;
+  font-family: Consolas, monospace;
+  font-weight: bold;
+  margin: 0.5rem;
+}
+
+code {
+  font-family: Consolas, monospace;
+  font-weight: bold;
+  color: black;
+}
+
+th code {
+  color: white;
+}
+
+/* Emphasis styles: */
+span.italic {
+  font-style: italic;
+}
+span.bold {
+  font-weight: bold;
+}
+span.underline {
+  text-decoration: underline;
+}
+
+/* Info table: */
+
+table.info {
+  margin-left: 0.5rem;
+}
+
+td.info {
+  padding-left: 0.5rem !important;
+  padding-right: 0.5rem !important;
+  padding-top: 0.3rem !important;
+  padding-bottom: 0.3rem !important;
+  border: thin solid lightgrey;
+  vertical-align: top;
+}
+
+/* TOOLTIP: */
+.citooltip {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+/* Tooltip text */
+.citooltiptext {
+  visibility: hidden; 
+  width: 25vw;
+  background-color: #FFFF88;
+  text-align: left;
+  padding: 5px 0;
+  border-radius: 4px;
+  position: absolute;
+  left: 1vw;
+  z-index: 1; /* Ensure tooltip is displayed above content */
+  font-size: 90%;
+  color: black;
+}
+
+/* Show the tooltip text on hover */
+.citooltip:hover .citooltiptext {
+  visibility: visible;
+}

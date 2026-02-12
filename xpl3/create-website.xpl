@@ -32,7 +32,7 @@
 
   <!-- ======================================================================= -->
 
-  <p:option name="href-build-location" as="xs:string" required="false" select="resolve-uri('../build/website', static-base-uri())">
+  <p:option name="href-build-location" as="xs:string" required="false" select="resolve-uri('../docs', static-base-uri())">
     <p:documentation>The location where the website is built.</p:documentation>
   </p:option>
 
