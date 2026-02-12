@@ -23,7 +23,7 @@
     <property id="gain" name="Gain" value-pattern="^[0-9]+$"/>
 
     <!-- For relays: -->
-    <property id="relay-coil-impedance" name="Coil impedance" value-pattern="^[0-9]+$" suffix="&#2126;"/>
+    <property id="relay-coil-impedance" name="Coil impedance" value-pattern="^[0-9]+$" suffix="&#8486;"/>
     <property id="relay-coil-voltage-dc" name="Coil voltage" value-pattern="^[0-9]+$" suffix="V&#160;DC"/>
     <property id="relay-coil-voltage-ac" name="Coil voltage" value-pattern="^[0-9]+$" suffix="V&#160;AC"/>
     <property id="relay-changeover-contacts" name="Changeover contacts" value-pattern="^[0-9]+$"/>
