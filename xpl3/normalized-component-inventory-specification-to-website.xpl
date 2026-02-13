@@ -55,7 +55,7 @@
     <p:documentation>Whether to process this specification if it contains any warnings.</p:documentation>
   </p:option>
 
-  <p:option name="cname" as="xs:string?" required="false" select="'ic.eriksiegel.nl'">
+  <p:option name="cname" as="xs:string?" required="false" select="'ci.eriksiegel.nl'">
     <p:documentation>The CNAME as used for the GitHub pages.</p:documentation>
   </p:option>
 
