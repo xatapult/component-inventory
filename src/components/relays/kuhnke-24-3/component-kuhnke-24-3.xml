@@ -15,6 +15,7 @@
   <property-values>
     <property-value property-idref="relay-coil-voltage-dc" value="24"/>
     <property-value property-idref="relay-changeover-contacts" value="3"/>
+    <property-value property-idref="relay-coil-impedance" value="940"/>
   </property-values>
 
 </component>

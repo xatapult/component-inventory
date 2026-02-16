@@ -11,4 +11,8 @@
   summary="Hex Buffers with High Voltage Open-Collector Outputs"
   xmlns="https://eriksiegel.nl/ns/component-inventory"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd"/>
+  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd">
+  <description>
+    <p>Max 40mA/30V per driver. </p>
+  </description>
+</component>

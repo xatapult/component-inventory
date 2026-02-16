@@ -844,7 +844,7 @@
     <xsl:if test="exists($image-elms)">
       <xsl:variable name="carousel-id" as="xs:string" select="'carouselOverviewImages'"/>
 
-      <div id="{$carousel-id}" class="carousel slide" data-bs-ride="false">
+      <div id="{$carousel-id}" class="carousel carousel-dark slide" data-bs-ride="false">
 
         <!-- Indicators: -->
         <xsl:if test="count($image-elms) gt 1">
