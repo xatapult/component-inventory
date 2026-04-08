@@ -2,7 +2,7 @@
 <component
   category-idrefs="zener-diode"
   count="#many"
-  location-idref="box-workbench"
+  location-idref="bag"
   summary="Zener diode 6.2V"
   xmlns="https://eriksiegel.nl/ns/component-inventory"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"

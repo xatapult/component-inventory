@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component
+  category-idrefs="relay"
+  count="1"
+  location-idref="relay-container"
+  package-idref="din-rail"
+  price-range-idref="#unknown"
+  since="2026-04-08"
+  summary="Microprocessor controlled digital time switch"
+  xmlns="https://eriksiegel.nl/ns/component-inventory"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd">
+  <description>
+    <para>The MicroRex D22 is a microprocessor controlled digital time switch. Eight programs of your choice can be stored and used to control the
+      automatic operation of your electrical equipment. Each indi- vidual weekday can have a separate program or you can have several days operating
+      on the same „Block“ program. To program the MicroRex D22 a „picture“ is used and when this is complete the chosen times are stored in the
+      microprocessor memory. The MicroRex D22 makes available 2 separate switching channels. The summer-/winter changeover can be programmed for hand
+      or automa- tic operation.</para>
+  </description>
+</component>

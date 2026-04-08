@@ -719,6 +719,10 @@
           electronics ranging from smartphones to industrial equipment, where compact size and efficient assembly are essential.</p>
       </description>
     </package>
+    
+    <package id="din-rail" name="DIN rail component"/>
+      
+    
   </packages>
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
