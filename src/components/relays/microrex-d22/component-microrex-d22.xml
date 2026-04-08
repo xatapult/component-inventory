@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component
+  name="MicroRex D22"
   category-idrefs="relay"
   count="1"
   location-idref="relay-container"
   package-idref="din-rail"
-  price-range-idref="#unknown"
+  price-range-idref="very-expensive"
   since="2026-04-08"
   summary="Microprocessor controlled digital time switch"
   xmlns="https://eriksiegel.nl/ns/component-inventory"
@@ -16,5 +17,6 @@
       on the same „Block“ program. To program the MicroRex D22 a „picture“ is used and when this is complete the chosen times are stored in the
       microprocessor memory. The MicroRex D22 makes available 2 separate switching channels. The summer-/winter changeover can be programmed for hand
       or automa- tic operation.</para>
+    <para>Manufacturer: Le Grand</para>
   </description>
 </component>
