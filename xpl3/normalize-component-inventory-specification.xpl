@@ -37,7 +37,7 @@
 
   <!-- ======================================================================= -->
 
-  <p:input port="source" primary="true" sequence="false" content-types="xml" href="../test/test-specification-2.xml">
+  <p:input port="source" primary="true" sequence="false" content-types="xml" href="../src/ci-specification.xml">
     <p:documentation>The component inventory specification document to process.</p:documentation>
   </p:input>
 
@@ -54,7 +54,11 @@
   <p:option name="messages-enabled" as="xs:boolean" required="false" select="true()">
     <p:documentation>Whether or not console messages are enabled.</p:documentation>
   </p:option>
-
+  
+  <p:option name="href-adjustments" as="xs:string?" required="false" select="resolve-uri('../data/component-inventory-adjustments.xml', static-base-uri())">
+    <p:documentation>The document with ad-hoc adjustments (used parts)</p:documentation>
+  </p:option>
+  
   <!-- ================================================================== -->
   <!-- MAIN: -->
 
@@ -156,7 +160,7 @@
     <p:with-input port="stylesheet" href="xsl-normalize-component-inventory-specification/add-reference-counts.xsl"/>
   </p:xslt>
 
-  <!-- An finally check whether all media files referenced (that are not generated) exist: -->
+  <!-- Check whether all media files referenced (that are not generated) exist: -->
   <p:viewport match="ci:media[not(xs:boolean((@_generated, false())[1]))]/ci:*[exists(@href)]" name="check-media-file-existence">
     <p:variable name="href" as="xs:string" select="xs:string(/*/@href)"/>
     <p:try>
@@ -187,6 +191,15 @@
     <p:with-input port="stylesheet" href="xsl-normalize-component-inventory-specification/sort-items.xsl"/>
   </p:xslt>
   <p:store href="tmp/n-90-normalized.xml" use-when="$debug-output"/>
+  
+  <!-- Perform adjustments (if any): -->
+  <p:if test="exists($href-adjustments)">
+    <p:xslt>
+      <p:with-input port="stylesheet" href="xsl-normalize-component-inventory-specification/perform-adjustments.xsl"/>
+      <p:with-option name="parameters" select="map{'href-adjustments': $href-adjustments}"/>
+    </p:xslt>
+    <p:namespace-delete prefixes="xsi"/>
+  </p:if>
 
   <!-- Done. Record important information on the root element: -->
   <p:variable name="component-count" as="xs:integer" select="count(/*/ci:components/ci:component)"/>

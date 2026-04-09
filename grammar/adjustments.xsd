@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  elementFormDefault="qualified"
+  targetNamespace="https://eriksiegel.nl/ns/component-inventory"
+  xmlns:sml="http://www.eriksiegel.nl/ns/sml"
+  xmlns:ci="https://eriksiegel.nl/ns/component-inventory"
+  vc:minVersion="1.1"
+  xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning">
+
+  <xs:include
+    schemaLocation="ci-common.mod.xsd"/>
+  <xs:import
+    namespace="http://www.eriksiegel.nl/ns/sml"
+    schemaLocation="../../xtpxlib-sml/xsd/sml.xsd"/>
+  <xs:element
+    name="component-inventory-adjustments">
+    <xs:annotation>
+      <xs:documentation>All kinds of additional data for building the component-inventory site</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element
+          maxOccurs="unbounded"
+          minOccurs="0"
+          name="adjustment">
+          <xs:complexType>
+            <xs:attribute
+              name="component-idref"
+              type="ci:t-identifier"
+              use="required">
+              <xs:annotation>
+                <xs:documentation>The identifier of the component to adjust</xs:documentation>
+              </xs:annotation>
+            </xs:attribute>
+            <xs:attribute
+              name="used"
+              type="xs:nonNegativeInteger"
+              use="required"/>
+            <xs:attribute
+              name="remark"
+              type="xs:string"/>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

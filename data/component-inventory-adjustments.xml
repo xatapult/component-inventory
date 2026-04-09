@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component-inventory-adjustments xmlns="https://eriksiegel.nl/ns/component-inventory"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory ../grammar/adjustments.xsd">
+  <!-- ======================================================================= -->
+  <!--
+        Ad-hoc usage
+  -->
+  <!-- ======================================================================= -->
+  
+  
+  
+  
+</component-inventory-adjustments>
