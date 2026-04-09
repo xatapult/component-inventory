@@ -595,10 +595,10 @@
       <description>
         <p>A voltage regulator is an electronic device or circuit that maintains a stable, constant output voltage despite changes in input voltage,
           load current, or other external conditions, ensuring that sensitive electronics receive clean and reliable power. It works by continuously
-          monitoring its output and adjusting its internal resistance or switching behavior to compensate for fluctuations, preventing overvoltage or
-          undervoltage conditions. Regulators come in linear and switching types: linear regulators provide low noise and simplicity, while switching
+          monitoring its output and adjusting its internal resistance or switching behavior to compensate for fluctuations, preventing over-voltage or
+          under-voltage conditions. Regulators come in linear and switching types: linear regulators provide low noise and simplicity, while switching
           regulators offer higher efficiency and can handle larger voltage differences. They are essential in power supplies for everything from
-          microcontrollers to industrial equipment, where consistent voltage is critical for proper operation.</p>
+          micro-controllers to industrial equipment, where consistent voltage is critical for proper operation.</p>
       </description>
     </category>
     <category
@@ -618,6 +618,9 @@
     <category
       id="unknown"
       name="Unknown components"/>
+    <category
+      id="other"
+      name="Other components"/>
 
   </categories>
 
@@ -719,10 +722,12 @@
           electronics ranging from smartphones to industrial equipment, where compact size and efficient assembly are essential.</p>
       </description>
     </package>
-    
-    <package id="din-rail" name="DIN rail component"/>
-      
-    
+
+    <package
+      id="din-rail"
+      name="DIN rail component"/>
+
+
   </packages>
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->

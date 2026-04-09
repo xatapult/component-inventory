@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component
   category-idrefs="opamp"
-  count="3"
+  count="14"
   id="LM741"
   location-box-label="OPAMP A"
   location-idref="box-sub-boxes"

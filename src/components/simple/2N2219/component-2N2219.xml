@@ -1,0 +1,31 @@
+<component
+  category-idrefs="comp transistor transistor.npn"
+  count="12"
+  id="2N2219"
+  location-idref="box-sub-boxes"
+  name="2N2219A"
+  package-idref="TO39"
+  price-range-idref="cheap"
+  since="2026-04-09"
+  summary="NPN Transistor"
+  xmlns="https://eriksiegel.nl/ns/component-inventory"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd">
+  
+  
+  <property-values>
+    <property-value
+      property-idref="collector-to-emitter"
+      value="40"/>
+    <property-value
+      property-idref="collector-to-base"
+      value="75"/>
+    <property-value
+      property-idref="emitter-to-base"
+      value="6"/>
+    <property-value
+      property-idref="collector-current"
+      value="800"/>
+  </property-values>
+  
+</component>

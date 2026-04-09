@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component
+  category-idrefs="other"
+  count="1"
+  location-idref="relay-container"
+  name="SITOP PSE200U 6EP1961-2BA41"
+  package-idref="din-rail"
+  price-range-idref="very-expensive"
+  since="2026-04-09"
+  summary="Power selectivity module"
+  xmlns="https://eriksiegel.nl/ns/component-inventory"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd">
+  <description>
+    <para>In conjunction with a 24 V power supply, the selectivity module is used to distribute the load current across several branches and to
+      monitor the individual currents in these branches. Faults in the individual branches caused by overload or short-circuit are detected and
+      selectively switched off, so that the fault does not impact the other load circuits. This means fast troubleshooting and minimized
+      downtimes.</para>
+  </description>
+</component>
