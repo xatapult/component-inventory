@@ -51,25 +51,26 @@
         <xsl:otherwise>
           <!-- There was a "real" count. Adjust it: -->
           <xsl:variable name="original-count-nr" as="xs:integer" select="xs:integer($original-count)"/>
-          <xsl:variable name="total-adjustments" as="xs:integer" select="sum(for $a in $adjustments return xs:integer($a/@used))"/>
+          <xsl:variable name="total-adjustments" as="xs:integer" select="sum(for $a in $adjustments return xs:integer($a/@delta))"/>
+          <xsl:variable name="new-count" as="xs:integer" select="$original-count-nr + $total-adjustments"/>
           <xsl:choose>
-            <xsl:when test="$total-adjustments gt $original-count-nr">
+            <xsl:when test="$new-count lt 0">
               <xsl:attribute name="count" select="0"/>
-              <warning>Adjustments count ({$total-adjustments}) bigger than the original count ({$original-count-nr}). Count set to 0.</warning>
+              <warning>Adjustments ({$total-adjustments}) more than original count ({$original-count-nr}). Count set to 0.</warning>
             </xsl:when>
-            <xsl:when test="$total-adjustments eq $original-count-nr">
+            <xsl:when test="$new-count eq 0">
               <xsl:attribute name="count" select="0"/>
-              <warning>Adjustments count ({$total-adjustments}) equal to original count. Out of stock?</warning>
+              <warning>Adjustments ({$total-adjustments}) leads to zero count. Out of stock?</warning>
             </xsl:when>
             <xsl:otherwise>
-              <xsl:attribute name="count" select="$original-count-nr - $total-adjustments"/>
+              <xsl:attribute name="count" select="$new-count"/>
             </xsl:otherwise>  
           </xsl:choose>
         </xsl:otherwise>  
         
       </xsl:choose>
       
-      <!-- Create an overview of the adjustments: -->
+      <!-- Create an overview of the adjustments (not needed now, but maybe later for some report): -->
       <adjustments original-count="{$original-count}">
         <xsl:copy-of select="$adjustments"/>
       </adjustments>
