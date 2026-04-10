@@ -727,6 +727,9 @@
       id="din-rail"
       name="DIN rail component"/>
 
+    <package
+      id="other"
+      name="Other package"/>
 
   </packages>
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component
-  category-idrefs="74HC logic.inverter logic.schmitt-trigger"
+  category-idrefs="74HC logic.inverter logic.schmitt-trigger driver"
   count="13"
   id="74HC14"
   location-box-label="HC14"

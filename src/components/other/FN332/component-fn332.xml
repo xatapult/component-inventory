@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component
+  category-idrefs="other"
+  count="5"
+  location-idref="bag"
+  name="Schaffner FN332-1/05"
+  package-idref="other"
+  price-range-idref="very-expensive"
+  since="2026-04-10"
+  summary="Performance EMC/RFI Filter"
+  xmlns="https://eriksiegel.nl/ns/component-inventory"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd">
+  <description>
+    <para>A Schaffner FN332-1/05 is a compact single-phase EMC/EMI line filter designed for general-purpose mains interference suppression, providing
+      1 A current handling at 250 VAC with a single-stage filtering network and FASTON quick-connect terminals for easy chassis mounting. It reduces
+      conducted noise from DC up to 400 Hz, making it suitable for a wide range of electronic, industrial, and appliance applications.</para>
+  </description>
+
+</component>

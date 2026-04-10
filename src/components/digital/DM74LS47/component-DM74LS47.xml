@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component
-  category-idrefs="display logic driver"
+  category-idrefs="display logic"
   count="14"
   id="DM74LS47"
   location-idref="box-sub-boxes"
@@ -8,7 +8,7 @@
   package-idref="DIP16"
   price-range-idref="cheap"
   since="2024-11-12"
-  summary="BCD to 7-segment decoder/driver"
+  summary="BCD to 7-segment decoder"
   xmlns="https://eriksiegel.nl/ns/component-inventory"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="https://eriksiegel.nl/ns/component-inventory file:/xatapult/component-inventory/grammar/ci-component.xsd"/>
