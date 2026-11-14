@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component
   category-idrefs="transistor.pnp transistor.power"
-  count="14"
+  count="10"
   id="BD140"
   location-idref="box-sub-boxes"
   name="BD140"

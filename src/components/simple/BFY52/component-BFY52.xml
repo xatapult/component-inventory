@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component
   category-idrefs="transistor.npn transistor.power"
-  count="20"
+  count="16"
   id="BFY52"
   location-idref="box-sub-boxes"
   name="BFY52"
