@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component
   category-idrefs="motor-driver"
-  count="2"
+  count="4"
   id="L293"
   location-idref="box-sub-boxes"
   name="L293"
